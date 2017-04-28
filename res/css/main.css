@@ -1,0 +1,101 @@
+/*
+ * Created by: Jack Mennie
+ * Description: contains all the main components of the Newcastle Connections page
+*/
+
+
+body {
+    background-color: rgba(150,150,150,1);
+    background-image: url("../image/bg.gif");
+}
+
+/*Resize bootstraps navbar */
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 75px;
+    height: 75px;
+}
+
+.navbar button {
+    margin-top: 32px;
+}
+
+.navbar {
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .header { display: none; }  /* show it on small screens */
+}
+
+
+/* ---------------------Header------------------------- */
+.header {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.headerNavigation ul {
+    list-style-type: none;
+    margin: 0;  
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 40px;
+}
+
+.headerNavigation li {
+    max-width: 150px;
+    display: inline-block;
+    margin: 0;
+    margin-right: -4px;
+    padding: 0;
+    
+}
+
+.headerNavigation li a {
+    margin: 0;
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+    border-bottom: solid lightgray 5px;
+    font-size: 12pt;
+}
+
+.headerNavigation li a:hover {
+    background-color: rgba(180,30,51,0.1);
+    color: rgba(180,30,51,1);
+    border-bottom: solid rgba(180,30,51,1) 5px;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+
+/*-----------------------------------------------------*/
+/* temp */
+.container {
+    padding-top: 100px;
+    background-color: white;
+}
+.col-md-4 {
+    background-color: grey;
+    border: solid black;
+}
+.col-md-3 {
+background-color: grey;
+    border: solid black;
+}
+
+ .col-md-6 {
+background-color: grey;
+    border: solid black;
+ }
