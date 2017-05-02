@@ -1,58 +1,10 @@
-/*
-var slideIndex = 1;
 
-showDivs(slideIndex);
-carousel();
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("imgslide");
-  var dots = document.getElementsByClassName("demo");
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-  x[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " w3-white";
-}
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("imgslide");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > x.length) {slideIndex = 1}    
-    x[slideIndex-1].style.display = "block";  
-    setTimeout(carousel, 9000);    
-}
-*/
-// var $window = $(window),
-//        $stickyEl = $('.calendar'),
-//        elTop = $stickyEl.offset().top;
-
-//    $window.scroll(function() {
-//         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
-//   });
 
 // Background
 // http://vegas.jaysalvat.com
 $("body").vegas({
     delay: 7000,
-    timer: true,
+    timer: false,
     shuffle: false,
     firstTransition: 'fade',
     firstTransitionDuration: 1000,
@@ -67,23 +19,8 @@ $("body").vegas({
 });
 
 
-$(document).bind('scroll',function(e){
-  console.log('test')
-    $('section').each(function(){
-        if (
-           $(this).offset().top < window.pageYOffset + 10
-//begins before top
-        && $(this).offset().top + $(this).height() > window.pageYOffset + 10
-//but ends in visible area
-//+ 10 allows you to change hash before it hits the top border
-        ) {
-            window.location.hash = $(this).attr('id');
-        }
-    });
-});
-
 //Navigation Buttons
-
+//will be replaced with angular code (if we use angular)
 
 var locators = ['navigation','about', 'events', null, 'activities', 'footer']
 var locator = 'navigation'
