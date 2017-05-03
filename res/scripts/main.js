@@ -3,7 +3,7 @@
 // Background
 // http://vegas.jaysalvat.com
 $("body").vegas({
-    delay: 7000,
+    delay: 10000,
     timer: false,
     shuffle: false,
     firstTransition: 'fade',
