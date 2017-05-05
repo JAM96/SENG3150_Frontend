@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/http", 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,36 +10,34 @@ System.register(["angular2/core", "angular2/http", 'rxjs/add/operator/map'], fun
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1;
-    var HTTPTestService;
+    var core_1;
+    var EmitterService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (http_1_1) {
-                http_1 = http_1_1;
-            },
-            function (_1) {}],
+            }],
         execute: function() {
-            HTTPTestService = (function () {
-                function HTTPTestService(_http) {
-                    this._http = _http;
+            EmitterService = (function () {
+                function EmitterService() {
                 }
-                HTTPTestService.prototype.getEmployee = function () {
-                    return this._http.get('http://localhost:8080/getEmployee')
-                        .map(function (res) { return res.json(); });
+                // Set a new event in the store with a given ID
+                // as key
+                EmitterService.get = function (ID) {
+                    if (!this._emitters[ID])
+                        this._emitters[ID] = new core_1.EventEmitter();
+                    return this._emitters[ID];
                 };
-                HTTPTestService.prototype.postJSON = function () {
-                };
-                HTTPTestService = __decorate([
+                // Event store
+                EmitterService._emitters = {};
+                EmitterService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http])
-                ], HTTPTestService);
-                return HTTPTestService;
+                    __metadata('design:paramtypes', [])
+                ], EmitterService);
+                return EmitterService;
             }());
-            exports_1("HTTPTestService", HTTPTestService);
+            exports_1("EmitterService", EmitterService);
         }
     }
 });
-//# sourceMappingURL=services.js.map
+//# sourceMappingURL=emitter.service.js.map

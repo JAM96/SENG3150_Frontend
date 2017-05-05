@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./contacts/contact-list.component", "./contacts/new-contact.component", "angular2/router", "./http-test.component"], function(exports_1, context_1) {
+System.register(['angular2/core', "angular2/router", "./services/getemployee.service"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,42 +10,63 @@ System.register(['angular2/core', "./contacts/contact-list.component", "./contac
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, contact_list_component_1, new_contact_component_1, router_1, router_2, http_test_component_1;
+    var core_1, router_1, getemployee_service_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (contact_list_component_1_1) {
-                contact_list_component_1 = contact_list_component_1_1;
-            },
-            function (new_contact_component_1_1) {
-                new_contact_component_1 = new_contact_component_1_1;
-            },
             function (router_1_1) {
                 router_1 = router_1_1;
-                router_2 = router_1_1;
             },
-            function (http_test_component_1_1) {
-                http_test_component_1 = http_test_component_1_1;
+            function (getemployee_service_1_1) {
+                getemployee_service_1 = getemployee_service_1_1;
             }],
         execute: function() {
+            /*
+            import {HTTPTestComponent} from "./http-test.component";
+            
+            import {Http} from "angular2/http";
+            import 'rxjs/add/operator/toPromise';
+            */
             AppComponent = (function () {
-                function AppComponent() {
+                // Constructor with injected service
+                function AppComponent(employeeService) {
+                    this.employeeService = employeeService;
                 }
+                // Input properties
+                // @Input() listId: string;
+                // @Input() editId: string;
+                AppComponent.prototype.loadEmployees = function () {
+                    var _this = this;
+                    // Get all comments
+                    this.employeeService.getEmployee()
+                        .subscribe(function (employee) { return _this.employees = employee; }, //Bind to view
+                    function (//Bind to view
+                        err) {
+                        // Log errors if any
+                        console.log(err);
+                    });
+                    //console.log(this.employees[0].id);
+                };
+                AppComponent.prototype.ngOnInit = function () {
+                    // Load comments
+                    this.loadEmployees();
+                };
+                AppComponent.prototype.ngOnChanges = function (changes) {
+                    // Listen to the 'list'emitted event so as populate the model
+                    // with the event payload
+                    //EmitterService.get(this.listId).subscribe((employees:Employee[]) => {this.loadEmployees()});
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <header>\n      <nav>\n        <a [routerLink]=\"['Contacts']\">Contacts</a>\n        <a [routerLink]=\"['NewContact']\">New Contact</a>\n      </nav>\n    </header>\n    <div>\n      <router-outlet></router-outlet>\n      <http-test></http-test>\n    </div>\n  ",
-                        directives: [http_test_component_1.HTTPTestComponent, contact_list_component_1.ContactListComponent, router_1.ROUTER_DIRECTIVES]
+                        template: "\n    <header>\n      <h1>List of employees</h1>\n      <ol>\n        <li *ngFor=\"#e of employees\">ID: {{e.id}}, Name: {{e.name}} {{e.lastName}}</li>\n      </ol>\n      <!-- router example<nav>\n        <a [routerLink]=\"['Contacts']\">Contacts</a>\n        <a [routerLink]=\"['NewContact']\">New Contact</a>\n      </nav> -->\n    </header>\n    <div>\n      <router-outlet></router-outlet>\n    </div>\n  ",
+                        providers: [getemployee_service_1.EmployeeService]
                     }),
-                    router_2.RouteConfig([
-                        { path: '/contacts', name: 'Contacts', component: contact_list_component_1.ContactListComponent, useAsDefault: true },
-                        { path: '/newcontact', name: 'NewContact', component: new_contact_component_1.NewContactComponent, useAsDefault: false },
-                        { path: '/newcontact/:lastName', name: 'NewContactFromContact', component: new_contact_component_1.NewContactComponent, useAsDefault: false },
-                    ]), 
-                    __metadata('design:paramtypes', [])
+                    router_1.RouteConfig([]), 
+                    __metadata('design:paramtypes', [getemployee_service_1.EmployeeService])
                 ], AppComponent);
                 return AppComponent;
             }());
@@ -53,4 +74,28 @@ System.register(['angular2/core', "./contacts/contact-list.component", "./contac
         }
     }
 });
+//{"id":"1","map":{"111":{"company":"ABC","id":111,"name":"Ram"},
+//"111":{"company":"ABC","id":111,"name":"Ram"
+//[{"id":1,"lastName":"ABC","name":"Ram"}
+/* old
+export class AppComponent implements OnInit {
+  public data = [{
+            id: 111}, {
+            lastName : "smith"},{
+            name : "john"}
+        ];
+        
+    constructor(private http:Http) {
+       
+    }
+
+    ngOnInit() {
+      this.http.get("http://localhost:8080/getEmployee.action").
+      toPromise().then(r => r.json()).then(r => this.data = r);
+
+     
+    }
+ }*/
+//TUT
+//https://scotch.io/tutorials/angular-2-http-requests-with-observables
 //# sourceMappingURL=app.component.js.map
