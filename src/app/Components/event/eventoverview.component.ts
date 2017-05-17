@@ -6,4 +6,4 @@ import {Component} from "@angular/core";
     templateUrl: 'eventoverview.component.html'
 })
 
-export class EventView {}
+export class EventViewComponent {}

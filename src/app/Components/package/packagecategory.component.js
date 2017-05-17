@@ -7,17 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var EventViewComponent = (function () {
-    function EventViewComponent() {
+var PackageCategoryComponent = (function () {
+    function PackageCategoryComponent() {
     }
-    return EventViewComponent;
+    return PackageCategoryComponent;
 }());
-EventViewComponent = __decorate([
+PackageCategoryComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'eventview',
-        templateUrl: 'eventoverview.component.html'
+        selector: 'packages-category',
+        templateUrl: 'packagecategory.component.html'
     })
-], EventViewComponent);
-exports.EventViewComponent = EventViewComponent;
-//# sourceMappingURL=eventoverview.component.js.map
+], PackageCategoryComponent);
+exports.PackageCategoryComponent = PackageCategoryComponent;
+//# sourceMappingURL=packagecategory.component.js.map
