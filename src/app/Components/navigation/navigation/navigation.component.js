@@ -7,17 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var EventView = (function () {
-    function EventView() {
+var NavigationComponent = (function () {
+    function NavigationComponent() {
     }
-    return EventView;
+    return NavigationComponent;
 }());
-EventView = __decorate([
+NavigationComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'eventview',
-        templateUrl: 'eventoverview.component.html'
+        selector: 'navigation',
+        templateUrl: 'navigation.component.html'
     })
-], EventView);
-exports.EventView = EventView;
-//# sourceMappingURL=eventoverview.component.js.map
+], NavigationComponent);
+exports.NavigationComponent = NavigationComponent;
+//# sourceMappingURL=navigation.component.js.map

@@ -9,6 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("../Components/app.component");
+//import components here
+var about_component_1 = require("../Components/about/about.component");
+var navigation_component_1 = require("../Components/navigation/navigation/navigation.component");
+var navigationtop_component_1 = require("../Components/navigation/navigationtop/navigationtop.component");
+var eventoverview_component_1 = require("../Components/event/eventoverview.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -17,7 +22,13 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent],
+        declarations: [
+            app_component_1.AppComponent,
+            about_component_1.AboutComponent,
+            navigation_component_1.NavigationComponent,
+            navigationtop_component_1.NavigationTopComponent,
+            eventoverview_component_1.EventView,
+        ],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
