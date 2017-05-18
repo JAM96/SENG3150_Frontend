@@ -30,11 +30,15 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             router_1.RouterModule.forRoot([
                 {
-                    path: 'products\thrill',
+                    path: 'packages',
+                    component: packagecategory_component_1.PackageCategoryComponent,
+                },
+                {
+                    path: 'packages\thrill',
                     component: packagesview_component_1.PackageThrillComponent
                 },
                 {
-                    path: 'products\relax',
+                    path: 'packages\relax',
                     component: packagesview_component_2.PackageRelaxComponent
                 }
             ]),

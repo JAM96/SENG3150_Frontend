@@ -15,7 +15,7 @@ var PackageThrillComponent = (function () {
 PackageThrillComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'packages',
+        selector: 'packagesThrill',
         templateUrl: 'packagesview.component.html'
     })
 ], PackageThrillComponent);
@@ -28,7 +28,7 @@ var PackageRelaxComponent = (function () {
 PackageRelaxComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'packages',
+        selector: 'packagesRelax',
         templateUrl: 'packagesview.component.html'
     })
 ], PackageRelaxComponent);

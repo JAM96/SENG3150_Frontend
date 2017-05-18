@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 
 
+
 import { AppComponent }  from '../Components/app.component';
 
 //import components here
@@ -23,11 +24,15 @@ import {PackageRelaxComponent} from '../Components/package/packages/packagesview
     BrowserModule,
     RouterModule.forRoot([
       {
-        path: 'products\thrill',
+        path: 'packages',
+        component: PackageCategoryComponent,
+      },
+      {
+        path: 'packages\thrill',
         component: PackageThrillComponent
       },
       {
-        path: 'products\relax',
+        path: 'packages\relax',
         component: PackageRelaxComponent
       }
     ]),
