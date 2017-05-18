@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
-
 
 @Component({
     moduleId: module.id,
@@ -9,13 +8,42 @@ import {MdDialog, MdDialogRef} from '@angular/material';
 })
 
 
-export class PackageCategoryComponent {
+export class PackageCategoryComponent implements OnInit{
   selectedOption: string;
+  startDate: Date = new Date;
+  endDate: Date = new Date;
+  nights = Math.ceil(
+            (Math.abs(this.endDate.getTime() - this.startDate.getTime()))
+            / (1000*3600*24)
+            )
+  
+  ngOnInit() {
+    if(this.startDate == null) {
+      this.startDate = new Date;
+    }
 
-  constructor(public dialog: MdDialog) {}
+    if(this.endDate == null) {
+      this.endDate = new Date;
+    }
+  }
+
+  constructor(public dialog: MdDialog) {/*
+     if(this.startDate == null) {
+      this.startDate = new Date;
+    }
+
+    if(this.endDate == null) {
+      this.endDate = new Date;
+    }
+
+    var timeDiff = Math.abs(this.endDate.getTime() - this.startDate.getTime());
+    var dayDiff = Math.ceil(timeDiff / (1000*3600*24));
+    this.nights = dayDiff;*/
+  }
 
   openDateForm(category:Number) {
     let dialogRef = this.dialog.open(PackageCategoryComponentDialog);
+
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
     });

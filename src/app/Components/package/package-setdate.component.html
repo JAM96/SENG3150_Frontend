@@ -1,6 +1,29 @@
-<h1 md-dialog-title>Dialog</h1>
-<div md-dialog-content>What would you like to do?</div>
+<h1 md-dialog-title>Set Date</h1>
+
+<md2-datepicker 
+  type="date"
+  required="true"
+  mode="portrait"
+  placeholder="Date of arrival"
+  tabindex="1"
+  openOnFocus="true"
+  container="dialog"
+  [(ngModel)]="startDate">
+</md2-datepicker>
+<md2-datepicker 
+  type="date"
+  required="true"
+  mode="portrait"
+  placeholder="Date of departure"
+  tabindex="1"
+  openOnFocus="true"
+  container="dialog"
+  [(ngModel)]="endDate">
+</md2-datepicker>
+
+<p>Nights staying: {{nights}}</p>
+
 <div md-dialog-actions>
-  <button md-button (click)="dialogRef.close('Option 1')">Option 1</button>
-  <button md-button (click)="dialogRef.close('Option 2')">Option 2</button>
+  <button md-button (click)="dialogRef.close('Option 1')">Cancel</button>
+  <button md-button (click)="dialogRef.close('Option 2')">Submit</button>
 </div>

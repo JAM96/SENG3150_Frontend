@@ -12,6 +12,7 @@ var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var animations_1 = require("@angular/platform-browser/animations");
 var material_1 = require("@angular/material");
+var md2_1 = require("md2");
 var app_component_1 = require("../Components/app.component");
 //import components here
 var about_component_1 = require("../Components/about/about.component");
@@ -34,6 +35,7 @@ AppModule = __decorate([
             material_1.MaterialModule,
             animations_1.BrowserAnimationsModule,
             forms_1.FormsModule,
+            md2_1.Md2Module.forRoot(),
             forms_1.ReactiveFormsModule,
             router_1.RouterModule.forRoot([
                 {

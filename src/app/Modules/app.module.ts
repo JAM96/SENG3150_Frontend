@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '@angular/material';
 
-
+import { Md2Module }  from 'md2';
 import { AppComponent }  from '../Components/app.component';
 
 //import components here
@@ -30,6 +30,7 @@ import {PackageRelaxComponent} from '../Components/package/packages/packagesview
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
+    Md2Module.forRoot(),
     ReactiveFormsModule,
     RouterModule.forRoot([
       {

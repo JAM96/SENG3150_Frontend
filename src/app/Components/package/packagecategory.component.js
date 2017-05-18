@@ -14,7 +14,19 @@ var material_1 = require("@angular/material");
 var PackageCategoryComponent = (function () {
     function PackageCategoryComponent(dialog) {
         this.dialog = dialog;
+        this.startDate = new Date;
+        this.endDate = new Date;
+        this.nights = Math.ceil((Math.abs(this.endDate.getTime() - this.startDate.getTime()))
+            / (1000 * 3600 * 24));
     }
+    PackageCategoryComponent.prototype.ngOnInit = function () {
+        if (this.startDate == null) {
+            this.startDate = new Date;
+        }
+        if (this.endDate == null) {
+            this.endDate = new Date;
+        }
+    };
     PackageCategoryComponent.prototype.openDateForm = function (category) {
         var _this = this;
         var dialogRef = this.dialog.open(PackageCategoryComponentDialog);

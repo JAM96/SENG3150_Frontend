@@ -12,6 +12,11 @@ body {
     height: 100vh;
 }
 
+/* Material Dialog */
+md-dialog {
+    background-color: red;
+}
+
 #loading {
     margin:auto;
     display: table-cell;
