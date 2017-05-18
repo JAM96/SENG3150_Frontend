@@ -7,10 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
-//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-//import {MaterialModule} from '@angular/material';
+var forms_1 = require("@angular/forms");
+var platform_browser_1 = require("@angular/platform-browser");
+var animations_1 = require("@angular/platform-browser/animations");
+var material_1 = require("@angular/material");
 var app_component_1 = require("../Components/app.component");
 //import components here
 var about_component_1 = require("../Components/about/about.component");
@@ -21,7 +22,6 @@ var eventoverview_component_1 = require("../Components/event/eventoverview.compo
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 var packagesview_component_2 = require("../Components/package/packages/packagesview.component");
-//import { PackageSetDateComponent } from '../Components/package/dialog/package.setdate.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,8 +31,10 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            //  BrowserAnimationsModule,
-            // MaterialModule,
+            material_1.MaterialModule,
+            animations_1.BrowserAnimationsModule,
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,
             router_1.RouterModule.forRoot([
                 {
                     path: 'packages',
@@ -54,11 +56,12 @@ AppModule = __decorate([
             navigation_component_1.NavigationComponent,
             navigationtop_component_1.NavigationTopComponent,
             eventoverview_component_1.EventViewComponent,
+            packagecategory_component_1.PackageCategoryComponentDialog,
             packagecategory_component_1.PackageCategoryComponent,
             packagesview_component_1.PackageThrillComponent,
             packagesview_component_2.PackageRelaxComponent,
         ],
-        bootstrap: [app_component_1.AppComponent]
+        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog]
     })
 ], AppModule);
 exports.AppModule = AppModule;

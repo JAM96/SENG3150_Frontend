@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-//import {MdDialog} from '@angular/material';
+import {MdDialog, MdDialogRef} from '@angular/material';
 
-//import {PackageSetDateComponent} from './dialog/package.setdate.component';
 
 @Component({
     moduleId: module.id,
@@ -10,15 +9,25 @@ import {Component} from '@angular/core';
 })
 
 
-export class PackageCategoryComponent {/*
-    selectedOption: string;
+export class PackageCategoryComponent {
+  selectedOption: string;
 
-    constructor(public dialog: MdDialog) {}
+  constructor(public dialog: MdDialog) {}
 
-    openDialog() {
-    let dialogRef = this.dialog.open(PackageSetDateComponent);
+  openDateForm(category:Number) {
+    let dialogRef = this.dialog.open(PackageCategoryComponentDialog);
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
-    });*/
- // }
+    });
+  }
+}
+
+
+@Component({
+  moduleId: module.id,
+  selector: 'package-setdate',
+  templateUrl: 'package-setdate.component.html',
+})
+export class PackageCategoryComponentDialog {
+  constructor(public dialogRef: MdDialogRef<PackageCategoryComponentDialog>) {}
 }

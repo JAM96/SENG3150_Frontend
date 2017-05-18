@@ -21,9 +21,9 @@ PackageSetDateComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'package-set-date',
-        templateUrl: 'package.setdate.component.html'
+        templateUrl: 'package-setdate.component.html'
     }),
     __metadata("design:paramtypes", [material_1.MdDialogRef])
 ], PackageSetDateComponent);
 exports.PackageSetDateComponent = PackageSetDateComponent;
-//# sourceMappingURL=package.setdate.component.js.map
+//# sourceMappingURL=package-setdate.component.js.map

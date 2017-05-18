@@ -1,9 +1,12 @@
 import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 
-//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-//import {MaterialModule} from '@angular/material';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from '@angular/material';
 
 
 import { AppComponent }  from '../Components/app.component';
@@ -15,18 +18,19 @@ import {NavigationTopComponent} from '../Components/navigation/navigationtop/nav
 import {EventViewComponent} from '../Components/event/eventoverview.component';
 
 //packages
-import {PackageCategoryComponent} from '../Components/package/packagecategory.component';
+import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
 import {PackageThrillComponent} from '../Components/package/packages/packagesview.component';
 import {PackageRelaxComponent} from '../Components/package/packages/packagesview.component';
-//import { PackageSetDateComponent } from '../Components/package/dialog/package.setdate.component';
 
 
 
 @NgModule({
   imports:      [ 
     BrowserModule,
-  //  BrowserAnimationsModule,
-   // MaterialModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: 'packages',
@@ -41,7 +45,6 @@ import {PackageRelaxComponent} from '../Components/package/packages/packagesview
         component: PackageRelaxComponent
       }
     ]),
-   
     ],
   declarations: [
     AppComponent,
@@ -49,11 +52,11 @@ import {PackageRelaxComponent} from '../Components/package/packages/packagesview
     NavigationComponent,
     NavigationTopComponent, 
     EventViewComponent,
+    PackageCategoryComponentDialog,
     PackageCategoryComponent,
     PackageThrillComponent,
     PackageRelaxComponent,
     ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent, PackageCategoryComponentDialog]
 })
-export class AppModule {
-}
+export class AppModule {}

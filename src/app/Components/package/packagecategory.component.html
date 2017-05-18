@@ -1,20 +1,19 @@
 <section id="packages" class="container-fluid panel">
     <h1>Packages</h1>
     <p>Select a category to begin.</p>
-    
+    <p>You chose: {{selectedOption}}</p>
     <div class="row">
         <div class="container">
             <div class="col-md-6">
                 <div class="thumbnail">
-                    <a routerLink="/products/thrill">
-                    <!--<button md-button (click)="openDialog()">-->
+                    <a (click)="openDateForm(1)">
                         <div id="thrillImg">
                             <div class="catTitle">Thrill</div>
                             <div class="catTitle font-sm" >
                                 For those who seek a bit of adventure in their life.
                             </div>
                         </div>
-                    </a><!--</button>-->
+                    </a>
                 </div>
             </div><!-- col 1-->
 
