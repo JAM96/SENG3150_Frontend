@@ -9,6 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
+//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+//import {MaterialModule} from '@angular/material';
 var app_component_1 = require("../Components/app.component");
 //import components here
 var about_component_1 = require("../Components/about/about.component");
@@ -19,6 +21,7 @@ var eventoverview_component_1 = require("../Components/event/eventoverview.compo
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 var packagesview_component_2 = require("../Components/package/packages/packagesview.component");
+//import { PackageSetDateComponent } from '../Components/package/dialog/package.setdate.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,6 +31,8 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
+            //  BrowserAnimationsModule,
+            // MaterialModule,
             router_1.RouterModule.forRoot([
                 {
                     path: 'packages',

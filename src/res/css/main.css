@@ -153,7 +153,7 @@ body {
 .calendar {
     text-align: center;
     color: white;
-    margin-top: 100px;
+    margin-top: 00px;
     padding: 2%;
     padding-top: 2px;
     
@@ -225,14 +225,22 @@ p {
     margin: 0;
 }
 
+.panelHalf {
+    padding: 100px;
+    height: auto;
+    background-color: rgba(255,255,255,0.8);
+}
+
 .panel {
+    margin: 0;
+    background-color: #333333;
     background-image: url('../image/panel_bg.png');
     background-size: 100%;
-    background-repeat: no-repeat;
-    color:white; 
-    padding: 100px; 
+    background-repeat: no-repeat; 
     min-height: 100vh;
     height: auto;
+    color: white;
+    padding: 100px;
 }
 
 #thrillImg {

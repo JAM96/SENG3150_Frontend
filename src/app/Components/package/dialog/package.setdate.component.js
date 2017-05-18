@@ -5,21 +5,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-//import {MdDialog} from '@angular/material';
-//import {PackageSetDateComponent} from './dialog/package.setdate.component';
-var PackageCategoryComponent = (function () {
-    function PackageCategoryComponent() {
+var material_1 = require("@angular/material");
+var PackageSetDateComponent = (function () {
+    function PackageSetDateComponent(dialogRef) {
+        this.dialogRef = dialogRef;
     }
-    return PackageCategoryComponent;
+    return PackageSetDateComponent;
 }());
-PackageCategoryComponent = __decorate([
+PackageSetDateComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'packages-category',
-        templateUrl: 'packagecategory.component.html'
-    })
-], PackageCategoryComponent);
-exports.PackageCategoryComponent = PackageCategoryComponent;
-//# sourceMappingURL=packagecategory.component.js.map
+        selector: 'package-set-date',
+        templateUrl: 'package.setdate.component.html'
+    }),
+    __metadata("design:paramtypes", [material_1.MdDialogRef])
+], PackageSetDateComponent);
+exports.PackageSetDateComponent = PackageSetDateComponent;
+//# sourceMappingURL=package.setdate.component.js.map
