@@ -16,10 +16,10 @@ describe('AppComponent', function () {
     beforeEach(function () {
         fixture = testing_1.TestBed.createComponent(app_component_1.AppComponent);
         comp = fixture.componentInstance;
-        de = fixture.debugElement.query(platform_browser_1.By.css('h1'));
+        de = fixture.debugElement.query(platform_browser_1.By.css('.vegas-container'));
     });
     it('should create component', function () { return expect(comp).toBeDefined(); });
-    it('should have expected <h1> text', function () {
+    it('should have expected <body> text', function () {
         fixture.detectChanges();
         var h1 = de.nativeElement;
         expect(h1.innerText).toMatch(/angular/i, '<h1> should say something about "Angular"');

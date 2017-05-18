@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 
+
 import { AppComponent }  from '../Components/app.component';
 
 //import components here
@@ -29,7 +30,8 @@ import {PackageRelaxComponent} from '../Components/package/packages/packagesview
         path: 'products\relax',
         component: PackageRelaxComponent
       }
-    ]), 
+    ]),
+   
     ],
   declarations: [
     AppComponent,
