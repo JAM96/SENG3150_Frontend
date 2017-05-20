@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
+import {Router} from '@angular/router'
 
 @Component({
     moduleId: module.id,
@@ -9,6 +10,7 @@ import {MdDialog, MdDialogRef} from '@angular/material';
 
 
 export class PackageCategoryComponent implements OnInit{
+  parentRouter = Router;
   selectedOption: string;
   startDate: Date = new Date;
   endDate: Date = new Date;
@@ -27,7 +29,7 @@ export class PackageCategoryComponent implements OnInit{
     }
   }
 
-  constructor(public dialog: MdDialog) {/*
+  constructor(public dialog: MdDialog, public router:Router) {/*
      if(this.startDate == null) {
       this.startDate = new Date;
     }
@@ -46,6 +48,11 @@ export class PackageCategoryComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+
+      if(this.selectedOption=="submit") {
+        //this is how to navigate to another page, it updates the URL to .../packages
+        this.router.navigate(['/packages'])
+      }
     });
   }
 }

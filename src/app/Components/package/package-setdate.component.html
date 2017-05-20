@@ -4,7 +4,7 @@
   type="date"
   required="true"
   mode="portrait"
-  placeholder="Date of arrival"
+  placeholder="Check-in date"
   tabindex="1"
   openOnFocus="true"
   container="dialog"
@@ -14,7 +14,7 @@
   type="date"
   required="true"
   mode="portrait"
-  placeholder="Date of departure"
+  placeholder="Check-out date"
   tabindex="1"
   openOnFocus="true"
   container="dialog"
@@ -24,6 +24,6 @@
 <p>Nights staying: {{nights}}</p>
 
 <div md-dialog-actions>
-  <button md-button (click)="dialogRef.close('Option 1')">Cancel</button>
-  <button md-button (click)="dialogRef.close('Option 2')">Submit</button>
+  <button md-button (click)="dialogRef.close('cancel')">Cancel</button>
+  <button md-button (click)="dialogRef.close('submit')">Search</button>
 </div>

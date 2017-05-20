@@ -11,9 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var material_1 = require("@angular/material");
+var router_1 = require("@angular/router");
 var PackageCategoryComponent = (function () {
-    function PackageCategoryComponent(dialog) {
+    function PackageCategoryComponent(dialog, router) {
         this.dialog = dialog;
+        this.router = router;
+        this.parentRouter = router_1.Router;
         this.startDate = new Date;
         this.endDate = new Date;
         this.nights = Math.ceil((Math.abs(this.endDate.getTime() - this.startDate.getTime()))
@@ -32,6 +35,10 @@ var PackageCategoryComponent = (function () {
         var dialogRef = this.dialog.open(PackageCategoryComponentDialog);
         dialogRef.afterClosed().subscribe(function (result) {
             _this.selectedOption = result;
+            if (_this.selectedOption == "submit") {
+                //this is how to navigate to another page, it updates the URL to .../packages
+                _this.router.navigate(['/packages']);
+            }
         });
     };
     return PackageCategoryComponent;
@@ -42,7 +49,7 @@ PackageCategoryComponent = __decorate([
         selector: 'packages-category',
         templateUrl: 'packagecategory.component.html'
     }),
-    __metadata("design:paramtypes", [material_1.MdDialog])
+    __metadata("design:paramtypes", [material_1.MdDialog, router_1.Router])
 ], PackageCategoryComponent);
 exports.PackageCategoryComponent = PackageCategoryComponent;
 var PackageCategoryComponentDialog = (function () {

@@ -236,11 +236,19 @@ p {
     background-color: rgba(255,255,255,0.8);
 }
 
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    .panelHalf {
+    padding: 50px;
+    padding-right: 20px;
+    height: auto;
+    background-color: rgba(255,255,255,0.8);
+}   
+}
 .panel {
     margin: 0;
     background-color: #333333;
     background-image: url('../image/panel_bg.png');
-    background-size: 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat; 
     min-height: 100vh;
     height: auto;
