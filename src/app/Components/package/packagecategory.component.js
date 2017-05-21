@@ -17,6 +17,7 @@ var PackageCategoryComponent = (function () {
         this.dialog = dialog;
         this.router = router;
         this.parentRouter = router_1.Router;
+        this.category = 'thrill';
         this.startDate = new Date;
         this.endDate = new Date;
         this.nights = Math.ceil((Math.abs(this.endDate.getTime() - this.startDate.getTime()))
@@ -37,7 +38,7 @@ var PackageCategoryComponent = (function () {
             _this.selectedOption = result;
             if (_this.selectedOption == "submit") {
                 //this is how to navigate to another page, it updates the URL to .../packages
-                _this.router.navigate(['/packages']);
+                _this.router.navigate(['/packages', { startDate: _this.startDate, endDate: _this.endDate, category: _this.category }]);
             }
         });
     };

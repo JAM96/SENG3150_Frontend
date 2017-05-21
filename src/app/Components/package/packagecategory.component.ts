@@ -12,6 +12,7 @@ import {Router} from '@angular/router'
 export class PackageCategoryComponent implements OnInit{
   parentRouter = Router;
   selectedOption: string;
+  category: string = 'thrill';
   startDate: Date = new Date;
   endDate: Date = new Date;
   nights = Math.ceil(
@@ -51,7 +52,7 @@ export class PackageCategoryComponent implements OnInit{
 
       if(this.selectedOption=="submit") {
         //this is how to navigate to another page, it updates the URL to .../packages
-        this.router.navigate(['/packages'])
+        this.router.navigate(['/packages', {startDate : this.startDate, endDate: this.endDate, category: this.category}])
       }
     });
   }

@@ -1,4 +1,6 @@
-import {Component} from '@angular/core'
+import {Component, Input} from '@angular/core'
+
+import {PackageCategoryComponent} from '../packagecategory.component';
 
 @Component({
     moduleId: module.id,
@@ -7,5 +9,9 @@ import {Component} from '@angular/core'
 })
 
 export class PackagesComponent {
+    @Input('startDate') startDate: Date;
+    @Input('endDate') endDate: Date;
+    @Input('category') category: string;
 
+    guests = 0;
 }

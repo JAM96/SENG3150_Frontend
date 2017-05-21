@@ -3,57 +3,158 @@
         <div class="packageDates">
             <md2-datepicker 
                 type="date"
-                required="true"
                 mode="portrait"
                 placeholder="Check-in date"
                 tabindex="1"
                 openOnFocus="true"
-                container="dialog"
+                container="inline"
                 [(ngModel)]="startDate">
             </md2-datepicker>
             <md2-datepicker 
                 type="date"
-                required="true"
                 mode="portrait"
                 placeholder="Check-in date"
                 tabindex="1"
                 openOnFocus="true"
-                container="dialog"
+                container="inline"
                 [(ngModel)]="startDate">
             </md2-datepicker>
-
+        </div>
         <div class="packageFloat">
-            <div id="packageOptionsWrapper">
-                <div class="round-button">
-                    <div class="round-button-circle">
-                        <a class="round-button">+</a>
-                    </div>
+            <div class="packageOptionsWrapper">
+            <div id="categorySelect">
+                    <md2-select [(ngModel)]="category" value="1" placeholder="Category">
+                        <md2-option>Thrill</md2-option>
+                        <md2-option>Relax</md2-option>
+                        <md2-option>Shopping</md2-option>
+                        <md2-option>Wineries</md2-option>
+                        <md2-option>On the water</md2-option>
+                    </md2-select>
                 </div>
+                
+                <button type="button" md-button style="float: right; width: 5%">+</button>
                 
                 <div id="guests">
-                    <input type="text" />
+                    <md2-autocomplete [items]="items"
+                                    item-text="name"
+                                    item-value="value"
+                                    disabled="true"
+                                    [(ngModel)]="item"
+                                    (change)="selected($event)"
+                                    placeholder="Number of Guests">
+                    </md2-autocomplete>
                 </div>
-                <div class="round-button">
-                    <div class="round-button-circle">
-                        <a class="round-button">+</a>
-                    </div>
-                </div>
-                
-                <md2-select placeholder="Category" style="margin-top: 50%;">
-                    <md2-option>Thrill</md2-option>
-                    <md2-option>Relax</md2-option>
-                    <md2-option>Shopping</md2-option>
-                    <md2-option>Wineries</md2-option>
-                    <md2-option>On the water</md2-option>
-                </md2-select>
+
+                <button type="button" md-button style="float: right; width: 5%">-</button>
             </div>
         </div>
-        </div>
+
         <div style="clear: both;"></div> 
     </div><!-- PACKAGE HEADER -->
 </div>
 <div class="container content">
-    <div class="packageContent">
-        asdklfjalsdkjf
+    <div>
+        Checkin: {{startDate}} ,
+        Checkout: {{endDate}} , 
+        Category: {{category}}
+    </div>
+    <div class="row" style=" height: 70vh; overflow: auto">
+        <div class="row" style="padding: 20px; background-color: white; margin: 20px; border-radius: 10px" md-button>
+            <div class="col-md-3">
+                <div class="thumbnail" style="padding: 0;">
+                    <a md-button style="padding: 0;">
+                        <div id="shoppingImg">
+                            <div class="catTitle">Budget Holiday 1</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <h3>Hotel</h3>
+                Hotel Name
+                <h3>Check in </h3>
+                29/07/17
+                <h3>Check out</h3>
+                04/08/17
+            </div>
+
+            <div class="col-md-2">
+                <h3>Restaurants</h3>
+                <ul>
+                    <li>Restaurant 1</li>
+                    <li>Restaurant 2</li>
+                    <li>Restaurant ...</li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <h3>Events</h3>
+                <ul>
+                    <li>Event 1</li>
+                    <li>Event 2</li>
+                    <li>Event ...</li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <h3>Activities</h3>
+                <ul>
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                    <li>Activity ...</li>
+                </ul>
+            </div>
+        </div><!-- Package One-->
+
+        <div class="row" style="padding: 20px; background-color: white; margin: 20px; border-radius: 10px">
+            <div class="col-md-3">
+                <div class="thumbnail" style="padding: 0;">
+                    <a md-button style="padding: 0;">
+                        <div id="shoppingImg">
+                            <div class="catTitle">Package 2</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <h3>Hotel</h3>
+                Hotel Name
+                <h3>Check in </h3>
+                29/07/17
+                <h3>Check out</h3>
+                04/08/17
+            </div>
+
+            <div class="col-md-2">
+                <h3>Restaurants</h3>
+                <ul>
+                    <li>Restaurant 1</li>
+                    <li>Restaurant 2</li>
+                    <li>Restaurant ...</li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <h3>Events</h3>
+                <ul>
+                    <li>Event 1</li>
+                    <li>Event 2</li>
+                    <li>Event ...</li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <h3>Activities</h3>
+                <ul>
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                    <li>Activity ...</li>
+                </ul>
+            </div>
+        </div><!-- Package One-->
+
+        
     </div>
 </div>

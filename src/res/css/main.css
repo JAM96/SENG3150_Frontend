@@ -239,35 +239,43 @@ p {
     background-color: #ebf4f9;
     border: 3px solid #388ec7;
     border-radius: 20px;
-    height: auto;
-    max-height: 150px;
+    height: 125px;
 }
 
 .packageDates {
     float: left;
-    background-color: blue;
-    width: 100%;
+    width: 30%;
 }
 
 .packageFloat {
-    display: inline;
-    margin-left: 100%;
-    padding: 0;
-    background-color: red;
+    float: left;
+    width: 70%;
+    height: 100%;
+    padding-right: 20px;
+    padding-top: 75px;
 }
 
 
 
-#packageOptionsWrapper {
+.packageOptionsWrapper {
     width: 100%;
-    background-color: pink;
 }
 
+#guests {
+    float: right;
+    margin-top: -20px;
+}
+
+#categorySelect {
+    float: right;
+
+}
 
 /* Round Button */
 .round-button {
-	width: 45px;
-    height: 45px;
+    content: "x";
+    float: right;
+    width: 5%;
 }
 .round-button-circle {
 	width: 100%;
@@ -303,8 +311,7 @@ p {
 
 .content {
      background-color: rgba(255,255,255,0.8);
-     min-height: 100vh;
-     padding: 0;
+     padding-top: 20px;
 }
 
 .panelHalf {
