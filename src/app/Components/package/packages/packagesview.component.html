@@ -1,3 +1,59 @@
-<section id="packages" class="container-fluid panel">
-    <h1>Package 1</h1>
-</section>
+<div class="container">
+    <div class="packageHeader">
+        <div class="packageDates">
+            <md2-datepicker 
+                type="date"
+                required="true"
+                mode="portrait"
+                placeholder="Check-in date"
+                tabindex="1"
+                openOnFocus="true"
+                container="dialog"
+                [(ngModel)]="startDate">
+            </md2-datepicker>
+            <md2-datepicker 
+                type="date"
+                required="true"
+                mode="portrait"
+                placeholder="Check-in date"
+                tabindex="1"
+                openOnFocus="true"
+                container="dialog"
+                [(ngModel)]="startDate">
+            </md2-datepicker>
+
+        <div class="packageFloat">
+            <div id="packageOptionsWrapper">
+                <div class="round-button">
+                    <div class="round-button-circle">
+                        <a class="round-button">+</a>
+                    </div>
+                </div>
+                
+                <div id="guests">
+                    <input type="text" />
+                </div>
+                <div class="round-button">
+                    <div class="round-button-circle">
+                        <a class="round-button">+</a>
+                    </div>
+                </div>
+                
+                <md2-select placeholder="Category" style="margin-top: 50%;">
+                    <md2-option>Thrill</md2-option>
+                    <md2-option>Relax</md2-option>
+                    <md2-option>Shopping</md2-option>
+                    <md2-option>Wineries</md2-option>
+                    <md2-option>On the water</md2-option>
+                </md2-select>
+            </div>
+        </div>
+        </div>
+        <div style="clear: both;"></div> 
+    </div><!-- PACKAGE HEADER -->
+</div>
+<div class="container content">
+    <div class="packageContent">
+        asdklfjalsdkjf
+    </div>
+</div>
