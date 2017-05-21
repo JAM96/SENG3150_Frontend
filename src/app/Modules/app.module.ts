@@ -1,5 +1,9 @@
 import { NgModule }      from '@angular/core';
 
+//used for Auth0
+import {routing, appRoutingProviders} from '../app.routing';
+import {AUTH_PROVIDERS} from 'angular2-jwt';
+import {Auth} from '../services/auth/auth.service';
 //Used for navigation
 import {RouterModule, Routes, Router, NavigationStart} from '@angular/router';
 
@@ -23,10 +27,12 @@ import {HomeComponent} from '../Components/home/home.component';
 import {NavigationComponent} from '../Components/navigation/navigation/navigation.component';
 import {NavigationTopComponent} from '../Components/navigation/navigationtop/navigationtop.component';
 import {EventViewComponent} from '../Components/event/eventoverview.component';
-
+import {ActivitiesComponent} from '../Components/activities/activities.component';
+import {ProfileComponent} from '../Components/profile/profile.component';
 //packages components
 import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
 import {PackagesComponent} from '../Components/package/packages/packagesview.component';
+//import services here
 
 
 /*
@@ -53,19 +59,27 @@ const appRoutes: Routes = [
     Md2Module.forRoot(),
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    routing
     ],
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
+    ActivitiesComponent,
     NavigationComponent,
     NavigationTopComponent, 
     EventViewComponent,
     PackageCategoryComponentDialog,
     PackageCategoryComponent,
     PackagesComponent,
+    ProfileComponent
     ],
-  bootstrap:    [ AppComponent, PackageCategoryComponentDialog]
+  bootstrap:    [ AppComponent, PackageCategoryComponentDialog],
+  providers: [
+    appRoutingProviders,
+    //AUTH_PROVIDERS,
+    //Auth
+  ]
 })
 export class AppModule {
   constructor(router: Router) {

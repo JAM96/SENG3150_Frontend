@@ -6,4 +6,6 @@ import {Component} from "@angular/core";
     templateUrl: 'navigationtop.component.html'
 })
 
-export class NavigationTopComponent {}
+export class NavigationTopComponent {
+    
+}

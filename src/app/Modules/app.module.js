@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+//used for Auth0
+var app_routing_1 = require("../app.routing");
 //Used for navigation
 var router_1 = require("@angular/router");
 //some tutorial code, probs not needed
@@ -28,9 +30,12 @@ var home_component_1 = require("../Components/home/home.component");
 var navigation_component_1 = require("../Components/navigation/navigation/navigation.component");
 var navigationtop_component_1 = require("../Components/navigation/navigationtop/navigationtop.component");
 var eventoverview_component_1 = require("../Components/event/eventoverview.component");
+var activities_component_1 = require("../Components/activities/activities.component");
+var profile_component_1 = require("../Components/profile/profile.component");
 //packages components
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
+//import services here
 /*
 app routes
   add new routes here
@@ -64,19 +69,25 @@ AppModule = __decorate([
             md2_1.Md2Module.forRoot(),
             forms_1.ReactiveFormsModule,
             router_1.RouterModule.forRoot(appRoutes),
+            app_routing_1.routing
         ],
         declarations: [
             app_component_1.AppComponent,
             home_component_1.HomeComponent,
             about_component_1.AboutComponent,
+            activities_component_1.ActivitiesComponent,
             navigation_component_1.NavigationComponent,
             navigationtop_component_1.NavigationTopComponent,
             eventoverview_component_1.EventViewComponent,
             packagecategory_component_1.PackageCategoryComponentDialog,
             packagecategory_component_1.PackageCategoryComponent,
             packagesview_component_1.PackagesComponent,
+            profile_component_1.ProfileComponent
         ],
-        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog]
+        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog],
+        providers: [
+            app_routing_1.appRoutingProviders,
+        ]
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], AppModule);

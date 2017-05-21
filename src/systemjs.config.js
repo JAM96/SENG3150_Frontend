@@ -26,11 +26,15 @@
       '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
       '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
       '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js', 
+      
+      
 
       // other libraries
       'rxjs':                      'npm:rxjs',
       'md2': 'node_modules/md2/bundles/md2.umd.js',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+      'angular2-jwt' : 'node_modules/angular2-jwt/angular2-jwt.js',
+      'auth0': '../auth0.umd.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -43,6 +47,13 @@
         }
       },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      'angular2-jwt' : { 
+        "defaultExtension" : 'js'
+      },
+      'angular-in-memory-web-api' : {
+        main: './index.js',
         defaultExtension: 'js'
       }
     }
