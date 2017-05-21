@@ -3,7 +3,6 @@ import { NgModule }      from '@angular/core';
 //used for Auth0
 import {routing, appRoutingProviders} from '../app.routing';
 import {AUTH_PROVIDERS} from 'angular2-jwt';
-import {Auth} from '../services/auth/auth.service';
 //Used for navigation
 import {RouterModule, Routes, Router, NavigationStart} from '@angular/router';
 
