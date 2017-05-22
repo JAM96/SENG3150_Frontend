@@ -5,4 +5,17 @@ import {Component} from '@angular/core';
     templateUrl: 'profile.component.html'
 })
 
-export class ProfileComponent {}
+export class ProfileComponent {
+    constructor(){}
+    editText : String = "Edit";
+    isEdit : boolean = false;
+    onEdit(){
+        if (this.isEdit==false){
+            this.editText = "Save";
+            this.isEdit = true;
+        } else {
+            this.editText = "Edit"
+            this.isEdit = false;
+        }
+    }
+}

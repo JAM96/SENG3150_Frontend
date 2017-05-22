@@ -1,0 +1,18 @@
+<h1>BenDelore's Profile</h1>
+<div style="  width: 50%; margin: 0 auto;">
+      Username : <input [disabled]="!isEdit" value="BenDelore"> <br>
+      Password : <input [disabled]="!isEdit" type="password" value="Password"> <br>
+      First Name : <input [disabled]="!isEdit" value="Ben"> <br>
+      Last Name : <input [disabled]="!isEdit" value="Delore"> <br>
+      Email : <input [disabled]="!isEdit" value="Bdelore@newcastle.com.au"> <br>
+      Street No : <input [disabled]="!isEdit" value="1"> <br>
+      Street Name : <input [disabled]="!isEdit" value="Newcastle St"> <br>
+      City : <input [disabled]="!isEdit" value="Newcastle"> <br>
+      State : <input [disabled]="!isEdit" value="NSW"> <br>
+      Home Phone : <input [disabled]="!isEdit" value="49434943"> <br>
+      Mobile : <input [disabled]="!isEdit" value="0404040404"> <br>
+      Date : &#09; <input [disabled]="!isEdit" value="01/01/1996">
+</div>
+<div style="  width: 50%; margin: 0 auto;">
+    <button (click)="onEdit()">{{editText}}</button>
+</div>
