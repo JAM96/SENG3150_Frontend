@@ -1,18 +1,20 @@
-<h1>BenDelore's Profile</h1>
-<div style="  width: 50%; margin: 0 auto;">
-      Username : <input [disabled]="!isEdit" value="BenDelore"> <br>
-      Password : <input [disabled]="!isEdit" type="password" value="Password"> <br>
-      First Name : <input [disabled]="!isEdit" value="Ben"> <br>
-      Last Name : <input [disabled]="!isEdit" value="Delore"> <br>
-      Email : <input [disabled]="!isEdit" value="Bdelore@newcastle.com.au"> <br>
-      Street No : <input [disabled]="!isEdit" value="1"> <br>
-      Street Name : <input [disabled]="!isEdit" value="Newcastle St"> <br>
-      City : <input [disabled]="!isEdit" value="Newcastle"> <br>
-      State : <input [disabled]="!isEdit" value="NSW"> <br>
-      Home Phone : <input [disabled]="!isEdit" value="49434943"> <br>
-      Mobile : <input [disabled]="!isEdit" value="0404040404"> <br>
-      Date : &#09; <input [disabled]="!isEdit" value="01/01/1996">
-</div>
-<div style="  width: 50%; margin: 0 auto;">
-    <button (click)="onEdit()">{{editText}}</button>
-</div>
+<section class="container panelHalf">
+    <h1>BenDelore's Profile</h1>
+    <div style="margin: 0 auto;">
+        <label>Username:</label><input [disabled]="!isEdit" value="BenDelore"> <br>
+        <label *ngIf="isEdit">Change Password:</label><input *ngIf="isEdit" [disabled]="!isEdit" type="password"> <br>
+        <label>First Name:</label><input [disabled]="!isEdit" value="Ben"> <br>
+        <label>Last Name:</label><input [disabled]="!isEdit" value="Delore"> <br>
+        <label>Email:</label><input [disabled]="!isEdit" value="Bdelore@newcastle.com.au"> <br>
+        <label>Street No:</label><input [disabled]="!isEdit" value="1"> <br>
+        <label>Street Name:</label><input [disabled]="!isEdit" value="Newcastle St"> <br>
+        <label>City:</label><input [disabled]="!isEdit" value="Newcastle"> <br>
+        <label>State:</label><input [disabled]="!isEdit" value="NSW"> <br>
+        <label>Home Phone:</label><input [disabled]="!isEdit" value="49434943"> <br>
+        <label>Mobile:</label><input [disabled]="!isEdit" value="0404040404"> <br>
+        <label>Date:</label><input [disabled]="!isEdit" value="01/01/1996">
+    </div>
+    <div style="margin-left: 20%;">
+        <button (click)="onEdit()">{{editText}}</button>
+    </div>
+</section>

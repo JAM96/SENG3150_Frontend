@@ -23,6 +23,14 @@ var PackagesComponent = (function () {
         var _this = this;
         this._packagesService.getPackages().then(function (packages) { return _this.packages = packages; });
     };
+    PackagesComponent.prototype.increaseGuests = function () {
+        this.guests = this.guests + 1;
+    };
+    PackagesComponent.prototype.decreaseGuests = function () {
+        if (this.guests != 0) {
+            this.guests = this.guests - 1;
+        }
+    };
     PackagesComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getContacts();

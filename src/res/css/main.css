@@ -222,15 +222,16 @@ md-dialog {
     margin-right: 5%;
     margin-left: 5%;
     width: 90%;
-    height: 50%;
-    padding: 10px;
-    background-color: rgba(200,200,200,0.9);
+    padding: 20px;
+    background-color: rgba(220,224,249,0.75);
+    border: 2px solid grey;
+    color: rgba(127,127,127,1);
     border-radius: 10px;
 }
 
 .customIncreasers {
     padding-top: 10px;
-    width: 50%; 
+    width: 70%; 
 }
 
 .text {
@@ -254,11 +255,7 @@ md-dialog {
 
 /*-----------------------------------------------------*/
 
-p {
-    font-size: 16px;
-    padding-left: 40px;
-    padding-right: 100px;
-}
+
 
 .container-fluid {
     padding: 0;
@@ -298,7 +295,6 @@ p {
 
 #guests {
     float: right;
-    margin-top: -20px;
 }
 
 #categorySelect {
@@ -351,14 +347,15 @@ p {
 
 .panelHalf {
     padding: 100px;
+    min-height: 100vh;
     height: auto;
     background-color: rgba(255,255,255,0.8);
 }
 
 @media screen and (min-width: 0px) and (max-width: 600px) {
     .panelHalf {
-    padding: 50px;
-    padding-right: 20px;
+    /*padding: 50px;
+    padding-right: 20px;*/
     height: auto;
     background-color: rgba(255,255,255,0.8);
 }   
@@ -371,8 +368,59 @@ p {
     background-repeat: no-repeat; 
     min-height: 100vh;
     height: auto;
+    /*padding: 100px;*/
+}
+
+#about {
+    padding: 0;
+    margin: 0;
+}
+
+#panelHeader {
+    margin: 0;
+    padding-top: 20px;
+    padding-left: 15%;
+    width: 100%;
+    min-height: 75px;
+    background-color: rgba(0,0,0,0.5);
     color: white;
-    padding: 100px;
+}
+#panelHeader h1 {
+    margin: 0;
+}
+#aboutText {
+    font-size: 14pt;
+    padding: 20%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: justify;
+    text-justify: inter-word;
+    color: rgba(200,200,200,1);
+}
+
+#images {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    #images {
+        display: none;
+    }
+    #panelHeader {
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+        min-height: 75px;
+        height: auto;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    #aboutText {
+        padding: 40px;
+        text-align: justify;
+        text-justify: inter-word;
+    }
 }
 
 #img {
@@ -686,4 +734,11 @@ a:hover {
   50%  { opacity: 1.0; }
   75%  { opacity: 0.5; }
   100% { opacity: 0.0; }
+}
+
+/* Slider */
+
+.range-slider {
+  margin: 60px 0 0 0%;
+  width: 100%;
 }

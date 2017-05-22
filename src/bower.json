@@ -16,6 +16,7 @@
     "jquery": "^3.2.1",
     "bootstrap": "boostrap#^3.3.7",
     "angular": "angular2#^1.6.1",
-    "vegas": "^2.4.0"
+    "vegas": "^2.4.0",
+    "Scrollify": "https://github.com/lukehaas/Scrollify.git#^1.0.14"
   }
 }

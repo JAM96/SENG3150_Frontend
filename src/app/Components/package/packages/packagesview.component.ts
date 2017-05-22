@@ -23,12 +23,21 @@ export class PackagesComponent implements OnInit{
     endDate: Date;
     category: string;
 
-    guests = 0;
+    guests : number = 0;
 
     constructor(private route: ActivatedRoute, private _packagesService: PackagesService) {}
 
     getContacts() {
         this._packagesService.getPackages().then((packages: PackageList[]) => this.packages = packages);
+    }
+
+    increaseGuests() {
+        this.guests = this.guests + 1;
+    }
+    decreaseGuests() {
+        if(this.guests != 0) {
+        this.guests = this.guests- 1;
+        }
     }
 
     ngOnInit() {

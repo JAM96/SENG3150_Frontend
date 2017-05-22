@@ -80,3 +80,13 @@ $(".upButton").click(function() {
       console.log('  Nav: no more divs to go to')
     }
 });
+
+$(function() {
+  $.scrollify({
+    section : ".section",
+    sectionName : false,
+    before: function(i) {
+      console.log(i);
+    }
+  });
+});

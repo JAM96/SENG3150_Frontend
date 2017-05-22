@@ -33,20 +33,15 @@
                     </md2-select>
                 </div>
                 
-                <button type="button" md-button style="float: right; width: 5%">+</button>
+                <button type="button" md-mini-fab color="accent" (click)="increaseGuests()" style="float: right; margin-right: 10px">+</button>
                 
                 <div id="guests">
-                    <md2-autocomplete [items]="items"
-                                    item-text="name"
-                                    item-value="value"
-                                    disabled="true"
-                                    [(ngModel)]="item"
-                                    (change)="selected($event)"
-                                    placeholder="Number of Guests">
-                    </md2-autocomplete>
+                    <div class="text">
+                        Guests: {{guests}}
+                    </div>
                 </div>
 
-                <button type="button" md-button style="float: right; width: 5%">-</button>
+                <button type="button" md-mini-fab color="accent" (click)="decreaseGuests()" style="float: right;">-</button>
             </div>
         </div>
 

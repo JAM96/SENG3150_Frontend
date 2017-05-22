@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var material_1 = require("@angular/material");
+var router_1 = require("@angular/router");
 var NavigationTopComponent = (function () {
-    function NavigationTopComponent(dialog) {
+    function NavigationTopComponent(dialog, router) {
         this.dialog = dialog;
+        this.router = router;
         this.isOpen = false;
         this.isLogin = false;
         this.loginButtonText = 'Login';
@@ -55,6 +57,7 @@ var NavigationTopComponent = (function () {
     NavigationTopComponent.prototype.onLogout = function () {
         this.isLogin = false;
         this.loginButtonText = 'Login';
+        this.router.navigate(['/home']);
     };
     return NavigationTopComponent;
 }());
@@ -68,7 +71,7 @@ NavigationTopComponent = __decorate([
         selector: 'navigationtop',
         templateUrl: 'navigationtop.component.html'
     }),
-    __metadata("design:paramtypes", [material_1.MdDialog])
+    __metadata("design:paramtypes", [material_1.MdDialog, router_1.Router])
 ], NavigationTopComponent);
 exports.NavigationTopComponent = NavigationTopComponent;
 var LoginPopupComponent = (function () {

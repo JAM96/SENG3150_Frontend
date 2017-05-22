@@ -9,10 +9,11 @@ import {RouterModule, Routes, Router, NavigationStart} from '@angular/router';
 //some tutorial code, probs not needed, *update* formsmodule is needed
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
 //used for the material module (popups)
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '@angular/material';
+import {MaterialModule, MdDatepickerModule, MdNativeDateModule} from '@angular/material';
 
 //used for the calendar popup
 import { Md2Module }  from 'md2';
@@ -53,6 +54,8 @@ const appRoutes: Routes = [
   imports:      [ 
     BrowserModule,
     MaterialModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     BrowserAnimationsModule,
     FormsModule,
     Md2Module.forRoot(),

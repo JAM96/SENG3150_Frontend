@@ -16,10 +16,17 @@
         
         
         <ul class="nav navbar-nav navbar-right">
-            
+            <!-- notifications -->
             <li *ngIf="isLogin"><button type="button" class="btn btn-default navbar-btn" [disabled]="!isLogin" (click)="openNotifications()">!</button></li>
 
-            <li *ngIf="isLogin"><button type="button" routerLink="/profile" class="btn btn-default navbar-btn" [disabled]="!isLogin">{{username}}</button></li>
+            <!-- itinerary -->
+            <li *ngIf="isLogin"><a style="text-decoration: underline;">Itinerary</a></li>
+
+            <!-- vouchers -->
+            <li *ngIf="isLogin"><a style="text-decoration: underline;">Vouchers</a></li>
+
+            <!-- profile -->
+            <li *ngIf="isLogin"><a style="text-decoration: underline;" routerLink="/profile">{{username}}</a></li>
             
             <li><button type="button" class="btn btn-default navbar-btn" (click)="openDialog()">{{loginButtonText}}</button></li>
         </ul>

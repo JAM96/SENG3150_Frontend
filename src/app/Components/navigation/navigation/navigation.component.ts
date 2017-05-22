@@ -1,4 +1,5 @@
-import {Component} from '@angular/core'
+import {Component, ViewChild, AfterViewInit} from '@angular/core'
+import {MdDatepicker} from '@angular/material'
 
 @Component({
     moduleId: module.id,
@@ -6,12 +7,35 @@ import {Component} from '@angular/core'
     templateUrl: 'navigation.component.html'
 })
 
-export class NavigationComponent {
+export class NavigationComponent implements AfterViewInit {
+    @ViewChild(MdDatepicker) checkin: MdDatepicker<Date>;
+    @ViewChild(MdDatepicker) checkout: MdDatepicker<Date>;
+    
+    minBudget = 300;
+    maxBudget = 4000;
+    value : any = 472;
+
+    minDate = new Date();
     guests: number = 0;
     rooms: number = 0;
     maxRooms: number = 10;
     maxGuests: number = 10;
 
+    updateValue() {
+        if(this.value == this.maxBudget) {
+            this.value = "unlimited";
+        }
+    }
+
+    ngAfterViewInit() {}
+
+    openCIDate(){
+        this.checkin.open();
+    }
+
+    openCODate(){
+        this.checkout.open();
+    }
 
     increaseGuests() {
         if(this.guests != this.maxGuests) {

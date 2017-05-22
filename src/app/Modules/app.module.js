@@ -64,6 +64,8 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             material_1.MaterialModule,
+            material_1.MdDatepickerModule,
+            material_1.MdNativeDateModule,
             animations_1.BrowserAnimationsModule,
             forms_1.FormsModule,
             md2_1.Md2Module.forRoot(),

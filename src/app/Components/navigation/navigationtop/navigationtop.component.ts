@@ -1,5 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {MdDialog, MdDialogRef} from '@angular/material';
+import {Router} from '@angular/router'
 
 @Component({
     moduleId: module.id,
@@ -8,7 +9,7 @@ import {MdDialog, MdDialogRef} from '@angular/material';
 })
 
 export class NavigationTopComponent {
-    constructor(public dialog: MdDialog){}
+    constructor(public dialog: MdDialog, public router: Router){}
     isOpen : boolean = false;
     isLogin : boolean = false;
     loginButtonText : String = 'Login';
@@ -64,6 +65,7 @@ export class NavigationTopComponent {
     onLogout(){
         this.isLogin = false;
         this.loginButtonText = 'Login'
+        this.router.navigate(['/home']);
     }
     
 
