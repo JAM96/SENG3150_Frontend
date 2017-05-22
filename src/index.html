@@ -60,4 +60,9 @@
   <script src="bower_components\bootstrap\dist\js\bootstrap.min.js"></script>
   <!--<script src="bower_components\vegas\dist\vegas.js"></script>-->
   <script src="res\scripts\main.js"></script>
+  <script>
+  window.onbeforeunload=function(){
+    return "Data may be lost if you refresh the page"
+  };
+  </script>
 </html>

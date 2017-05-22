@@ -24,7 +24,7 @@ import { AppComponent }  from '../Components/app.component';
 import {AboutComponent} from '../Components/about/about.component';
 import {HomeComponent} from '../Components/home/home.component';
 import {NavigationComponent} from '../Components/navigation/navigation/navigation.component';
-import {NavigationTopComponent} from '../Components/navigation/navigationtop/navigationtop.component';
+import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
 import {EventViewComponent} from '../Components/event/eventoverview.component';
 import {ActivitiesComponent} from '../Components/activities/activities.component';
 import {ProfileComponent} from '../Components/profile/profile.component';
@@ -66,14 +66,16 @@ const appRoutes: Routes = [
     AboutComponent,
     ActivitiesComponent,
     NavigationComponent,
-    NavigationTopComponent, 
+    NavigationTopComponent,
+    LoginPopupComponent,
+    notificationsPopupComponent,
     EventViewComponent,
     PackageCategoryComponentDialog,
     PackageCategoryComponent,
     PackagesComponent,
     ProfileComponent
     ],
-  bootstrap:    [ AppComponent, PackageCategoryComponentDialog],
+  bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
   providers: [
     appRoutingProviders,
     //AUTH_PROVIDERS,

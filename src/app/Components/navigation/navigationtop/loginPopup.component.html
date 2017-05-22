@@ -1,0 +1,14 @@
+<h1 md-dialog-title>Login</h1>
+<div md-dialog-content>Please login or sign-up</div> <br>
+<div md-dialog-actions>
+    <md-input-container>
+      <input mdInput [(ngModel)]="username" placeholder="Username">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="password" placeholder="Password">
+    </md-input-container>
+</div>
+<div md-dialog-actions>
+    <button md-button>Sign Up</button>
+    <button md-button (click)="dialogRef.close('true')">Log In</button>
+</div>
