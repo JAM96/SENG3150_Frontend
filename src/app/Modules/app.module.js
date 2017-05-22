@@ -79,13 +79,14 @@ AppModule = __decorate([
             navigation_component_1.NavigationComponent,
             navigationtop_component_1.NavigationTopComponent,
             navigationtop_component_1.LoginPopupComponent,
+            navigationtop_component_1.notificationsPopupComponent,
             eventoverview_component_1.EventViewComponent,
             packagecategory_component_1.PackageCategoryComponentDialog,
             packagecategory_component_1.PackageCategoryComponent,
             packagesview_component_1.PackagesComponent,
             profile_component_1.ProfileComponent
         ],
-        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent],
+        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [
             app_routing_1.appRoutingProviders,
         ]

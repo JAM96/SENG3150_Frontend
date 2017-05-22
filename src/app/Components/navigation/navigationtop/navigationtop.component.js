@@ -15,19 +15,53 @@ var NavigationTopComponent = (function () {
     function NavigationTopComponent(dialog) {
         this.dialog = dialog;
         this.isOpen = false;
+        this.isLogin = false;
+        this.loginButtonText = 'Login';
     }
     NavigationTopComponent.prototype.openDialog = function () {
         var _this = this;
-        if (this.isOpen == false) {
+        if (this.loginButtonText == 'Logout') {
+            this.onLogout();
+        }
+        else if (this.isOpen == false) {
             var dialogRef = this.dialog.open(LoginPopupComponent);
+            this.isOpen = true;
+            dialogRef.afterClosed().subscribe(function (result) {
+                _this.isOpen = false;
+                if (result == 'true') {
+                    _this.updateUsername('BenDelore');
+                    _this.onLogin();
+                }
+            });
+        }
+    };
+    NavigationTopComponent.prototype.openNotifications = function () {
+        var _this = this;
+        if (this.isOpen == false) {
+            var dialogRef = this.dialog.open(notificationsPopupComponent);
             this.isOpen = true;
             dialogRef.afterClosed().subscribe(function (result) {
                 _this.isOpen = false;
             });
         }
     };
+    NavigationTopComponent.prototype.onLogin = function () {
+        this.isLogin = true;
+        this.loginButtonText = 'Logout';
+    };
+    NavigationTopComponent.prototype.updateUsername = function (username) {
+        this.username = username;
+    };
+    NavigationTopComponent.prototype.onLogout = function () {
+        this.isLogin = false;
+        this.loginButtonText = 'Login';
+    };
     return NavigationTopComponent;
 }());
+__decorate([
+    core_1.Input('user'),
+    __metadata("design:type", String)
+], NavigationTopComponent.prototype, "username", void 0);
 NavigationTopComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
@@ -52,4 +86,19 @@ LoginPopupComponent = __decorate([
     __metadata("design:paramtypes", [material_1.MdDialogRef])
 ], LoginPopupComponent);
 exports.LoginPopupComponent = LoginPopupComponent;
+var notificationsPopupComponent = (function () {
+    function notificationsPopupComponent(dialogRef) {
+        this.dialogRef = dialogRef;
+    }
+    return notificationsPopupComponent;
+}());
+notificationsPopupComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'notificationsPopupComponent',
+        templateUrl: 'notificationsPopup.component.html'
+    }),
+    __metadata("design:paramtypes", [material_1.MdDialogRef])
+], notificationsPopupComponent);
+exports.notificationsPopupComponent = notificationsPopupComponent;
 //# sourceMappingURL=navigationtop.component.js.map
