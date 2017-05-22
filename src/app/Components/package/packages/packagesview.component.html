@@ -7,23 +7,24 @@
                 placeholder="Check-in date"
                 tabindex="1"
                 openOnFocus="true"
+                min="minDate"
                 container="inline"
                 [(ngModel)]="startDate">
             </md2-datepicker>
             <md2-datepicker 
                 type="date"
                 mode="portrait"
-                placeholder="Check-in date"
+                placeholder="Check-out date"
                 tabindex="1"
                 openOnFocus="true"
                 container="inline"
-                [(ngModel)]="startDate">
+                [(ngModel)]="endDate">
             </md2-datepicker>
         </div>
         <div class="packageFloat">
             <div class="packageOptionsWrapper">
             <div id="categorySelect">
-                    <md2-select [(ngModel)]="category" value="1" placeholder="Category">
+                    <md2-select [(ngModel)]="category" placeholder="Category">
                         <md2-option>Thrill</md2-option>
                         <md2-option>Relax</md2-option>
                         <md2-option>Shopping</md2-option>
@@ -53,108 +54,54 @@
     </div><!-- PACKAGE HEADER -->
 </div>
 <div class="container content">
-    <div>
+    <!--<div>
         Checkin: {{startDate}} ,
         Checkout: {{endDate}} , 
         Category: {{category}}
-    </div>
+    </div>-->
     <div class="row" style=" height: 70vh; overflow: auto">
-        <div class="row" style="padding: 20px; background-color: white; margin: 20px; border-radius: 10px" md-button>
+        <div *ngFor="let package of packages; let idx = index" class="row" style="padding: 20px; background-color: white; margin: 20px; border-radius: 10px" md-button>
             <div class="col-md-3">
                 <div class="thumbnail" style="padding: 0;">
                     <a md-button style="padding: 0;">
-                        <div id="shoppingImg">
-                            <div class="catTitle">Budget Holiday 1</div>
+                        <div id="img">
+                            <div class="packageTitle">{{package.packageName}}</div>
+                            <img src="\res\image\{{package.packageImg}}" width="100%" height="100%"/>
+                            <div class="packageTitle" style="bottom: 0">${{package.cost}}</div>
                         </div>
                     </a>
                 </div>
+                <h3>{{package.packageDuration}} Days</h3>
             </div>
 
             <div class="col-md-2">
                 <h3>Hotel</h3>
-                Hotel Name
-                <h3>Check in </h3>
-                29/07/17
-                <h3>Check out</h3>
-                04/08/17
+                {{package.hotelName}}
+                <h3>Availability </h3>
+                {{package.packageAvailabilityStart}} to {{package.packageAvailabilityEnd}}
             </div>
 
             <div class="col-md-2">
                 <h3>Restaurants</h3>
                 <ul>
-                    <li>Restaurant 1</li>
-                    <li>Restaurant 2</li>
-                    <li>Restaurant ...</li>
+                    <li *ngFor="let restaurant of package.restaurants">{{restaurant}}</li>
                 </ul>
             </div>
 
             <div class="col-md-2">
                 <h3>Events</h3>
                 <ul>
-                    <li>Event 1</li>
-                    <li>Event 2</li>
-                    <li>Event ...</li>
+                    <li *ngFor="let event of package.events">{{event}}</li>
                 </ul>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2" style="height: 100%">
                 <h3>Activities</h3>
                 <ul>
-                    <li>Activity 1</li>
-                    <li>Activity 2</li>
-                    <li>Activity ...</li>
+                    <li *ngFor="let activity of package.activities">{{activity}}</li>
                 </ul>
+                <!--<h3 style="position: absolute; bottom:0">Purchase Now</h3>-->
             </div>
         </div><!-- Package One-->
-
-        <div class="row" style="padding: 20px; background-color: white; margin: 20px; border-radius: 10px">
-            <div class="col-md-3">
-                <div class="thumbnail" style="padding: 0;">
-                    <a md-button style="padding: 0;">
-                        <div id="shoppingImg">
-                            <div class="catTitle">Package 2</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <h3>Hotel</h3>
-                Hotel Name
-                <h3>Check in </h3>
-                29/07/17
-                <h3>Check out</h3>
-                04/08/17
-            </div>
-
-            <div class="col-md-2">
-                <h3>Restaurants</h3>
-                <ul>
-                    <li>Restaurant 1</li>
-                    <li>Restaurant 2</li>
-                    <li>Restaurant ...</li>
-                </ul>
-            </div>
-
-            <div class="col-md-2">
-                <h3>Events</h3>
-                <ul>
-                    <li>Event 1</li>
-                    <li>Event 2</li>
-                    <li>Event ...</li>
-                </ul>
-            </div>
-
-            <div class="col-md-2">
-                <h3>Activities</h3>
-                <ul>
-                    <li>Activity 1</li>
-                    <li>Activity 2</li>
-                    <li>Activity ...</li>
-                </ul>
-            </div>
-        </div><!-- Package One-->
-
-        
     </div>
 </div>

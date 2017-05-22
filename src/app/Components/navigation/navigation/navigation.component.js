@@ -9,7 +9,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var NavigationComponent = (function () {
     function NavigationComponent() {
+        this.guests = 0;
+        this.rooms = 0;
+        this.maxRooms = 10;
+        this.maxGuests = 10;
     }
+    NavigationComponent.prototype.increaseGuests = function () {
+        if (this.guests != this.maxGuests) {
+            this.guests = this.guests + 1;
+        }
+    };
+    NavigationComponent.prototype.decreaseGuests = function () {
+        if (this.guests != 0) {
+            this.guests = this.guests - 1;
+        }
+    };
+    NavigationComponent.prototype.increaseRooms = function () {
+        if (this.rooms != this.maxRooms) {
+            this.rooms = this.rooms + 1;
+        }
+    };
+    NavigationComponent.prototype.decreaseRooms = function () {
+        if (this.rooms != 0) {
+            this.rooms = this.rooms - 1;
+        }
+    };
     return NavigationComponent;
 }());
 NavigationComponent = __decorate([

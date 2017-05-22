@@ -13,35 +13,24 @@ export class PackageCategoryComponent implements OnInit{
   parentRouter = Router;
   selectedOption: string;
   category: string = 'thrill';
-  startDate: Date = new Date;
-  endDate: Date = new Date;
-  nights = Math.ceil(
-            (Math.abs(this.endDate.getTime() - this.startDate.getTime()))
-            / (1000*3600*24)
-            )
+  startDate: Date
+  endDate: Date
+  nights: Number;
+
+  updateNights() {
+    alert('test');
+    // this.nights = Math.ceil(
+    //         (Math.abs(this.endDate.getTime() - this.startDate.getTime()))
+    //         / (1000*3600*24)
+    //         )
+  }
   
   ngOnInit() {
-    if(this.startDate == null) {
-      this.startDate = new Date;
-    }
-
-    if(this.endDate == null) {
-      this.endDate = new Date;
-    }
   }
 
-  constructor(public dialog: MdDialog, public router:Router) {/*
-     if(this.startDate == null) {
-      this.startDate = new Date;
-    }
-
-    if(this.endDate == null) {
-      this.endDate = new Date;
-    }
-
-    var timeDiff = Math.abs(this.endDate.getTime() - this.startDate.getTime());
-    var dayDiff = Math.ceil(timeDiff / (1000*3600*24));
-    this.nights = dayDiff;*/
+  constructor(public dialog: MdDialog, public router:Router) {
+    this.startDate = new Date();
+    this.endDate = new Date();
   }
 
   openDateForm(category:Number) {

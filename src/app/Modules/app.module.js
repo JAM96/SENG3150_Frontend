@@ -14,7 +14,7 @@ var core_1 = require("@angular/core");
 var app_routing_1 = require("../app.routing");
 //Used for navigation
 var router_1 = require("@angular/router");
-//some tutorial code, probs not needed
+//some tutorial code, probs not needed, *update* formsmodule is needed
 var forms_1 = require("@angular/forms");
 //used for the material module (popups)
 var platform_browser_1 = require("@angular/platform-browser");

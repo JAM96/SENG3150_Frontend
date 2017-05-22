@@ -10,30 +10,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var packages_service_1 = require("../../../Services/package/packages.service");
 var PackagesComponent = (function () {
-    function PackagesComponent() {
+    function PackagesComponent(route, _packagesService) {
+        this.route = route;
+        this._packagesService = _packagesService;
+        this.minDate = new Date();
         this.guests = 0;
     }
+    PackagesComponent.prototype.getContacts = function () {
+        var _this = this;
+        this._packagesService.getPackages().then(function (packages) { return _this.packages = packages; });
+    };
+    PackagesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.getContacts();
+        this.sub = this.route.params.subscribe(function (params) {
+            _this.startDate = params['startDate'];
+            _this.endDate = params['endDate'];
+            _this.category = params['category'];
+        });
+    };
     return PackagesComponent;
 }());
-__decorate([
-    core_1.Input('startDate'),
-    __metadata("design:type", Date)
-], PackagesComponent.prototype, "startDate", void 0);
-__decorate([
-    core_1.Input('endDate'),
-    __metadata("design:type", Date)
-], PackagesComponent.prototype, "endDate", void 0);
-__decorate([
-    core_1.Input('category'),
-    __metadata("design:type", String)
-], PackagesComponent.prototype, "category", void 0);
 PackagesComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'packages',
-        templateUrl: 'packagesview.component.html'
-    })
+        templateUrl: 'packagesview.component.html',
+        providers: [packages_service_1.PackagesService]
+    }),
+    __metadata("design:paramtypes", [router_1.ActivatedRoute, packages_service_1.PackagesService])
 ], PackagesComponent);
 exports.PackagesComponent = PackagesComponent;
 //# sourceMappingURL=packagesview.component.js.map

@@ -10,9 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var mock_packages_1 = require("../../Objects/mock-packages");
 var PackagesService = (function () {
     function PackagesService() {
     }
+    PackagesService.prototype.getPackages = function () {
+        return Promise.resolve(mock_packages_1.PACKAGE_LIST);
+    };
     return PackagesService;
 }());
 PackagesService = __decorate([

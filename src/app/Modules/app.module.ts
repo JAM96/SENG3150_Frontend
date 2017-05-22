@@ -6,7 +6,7 @@ import {AUTH_PROVIDERS} from 'angular2-jwt';
 //Used for navigation
 import {RouterModule, Routes, Router, NavigationStart} from '@angular/router';
 
-//some tutorial code, probs not needed
+//some tutorial code, probs not needed, *update* formsmodule is needed
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //used for the material module (popups)
