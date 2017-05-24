@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var material_1 = require("@angular/material");
-var NavigationComponent = (function () {
-    function NavigationComponent() {
+var CreateCustomPackageInitialComponent = (function () {
+    function CreateCustomPackageInitialComponent() {
         this.minBudget = 300;
         this.maxBudget = 4000;
         this.value = 472;
@@ -22,54 +22,54 @@ var NavigationComponent = (function () {
         this.maxRooms = 10;
         this.maxGuests = 10;
     }
-    NavigationComponent.prototype.updateValue = function () {
+    CreateCustomPackageInitialComponent.prototype.updateValue = function () {
         if (this.value == this.maxBudget) {
             this.value = "unlimited";
         }
     };
-    NavigationComponent.prototype.ngAfterViewInit = function () { };
-    NavigationComponent.prototype.openCIDate = function () {
+    CreateCustomPackageInitialComponent.prototype.ngAfterViewInit = function () { };
+    CreateCustomPackageInitialComponent.prototype.openCIDate = function () {
         this.checkin.open();
     };
-    NavigationComponent.prototype.openCODate = function () {
+    CreateCustomPackageInitialComponent.prototype.openCODate = function () {
         this.checkout.open();
     };
-    NavigationComponent.prototype.increaseGuests = function () {
+    CreateCustomPackageInitialComponent.prototype.increaseGuests = function () {
         if (this.guests != this.maxGuests) {
             this.guests = this.guests + 1;
         }
     };
-    NavigationComponent.prototype.decreaseGuests = function () {
+    CreateCustomPackageInitialComponent.prototype.decreaseGuests = function () {
         if (this.guests != 0) {
             this.guests = this.guests - 1;
         }
     };
-    NavigationComponent.prototype.increaseRooms = function () {
+    CreateCustomPackageInitialComponent.prototype.increaseRooms = function () {
         if (this.rooms != this.maxRooms) {
             this.rooms = this.rooms + 1;
         }
     };
-    NavigationComponent.prototype.decreaseRooms = function () {
+    CreateCustomPackageInitialComponent.prototype.decreaseRooms = function () {
         if (this.rooms != 0) {
             this.rooms = this.rooms - 1;
         }
     };
-    return NavigationComponent;
+    return CreateCustomPackageInitialComponent;
 }());
 __decorate([
     core_1.ViewChild(material_1.MdDatepicker),
     __metadata("design:type", material_1.MdDatepicker)
-], NavigationComponent.prototype, "checkin", void 0);
+], CreateCustomPackageInitialComponent.prototype, "checkin", void 0);
 __decorate([
     core_1.ViewChild(material_1.MdDatepicker),
     __metadata("design:type", material_1.MdDatepicker)
-], NavigationComponent.prototype, "checkout", void 0);
-NavigationComponent = __decorate([
+], CreateCustomPackageInitialComponent.prototype, "checkout", void 0);
+CreateCustomPackageInitialComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'navigation',
-        templateUrl: 'navigation.component.html'
+        selector: 'initial-custom-form',
+        templateUrl: 'create-custom-package.component.html'
     })
-], NavigationComponent);
-exports.NavigationComponent = NavigationComponent;
-//# sourceMappingURL=navigation.component.js.map
+], CreateCustomPackageInitialComponent);
+exports.CreateCustomPackageInitialComponent = CreateCustomPackageInitialComponent;
+//# sourceMappingURL=create-custom-package.component.js.map

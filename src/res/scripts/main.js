@@ -2,21 +2,23 @@
 
 // Background
 // http://vegas.jaysalvat.com
-$("body").vegas({
-    delay: 10000,
-    timer: false,
-    shuffle: false,
-    firstTransition: 'fade',
-    firstTransitionDuration: 1000,
-    transition: 'blur2',
-    transitionDuration: 7000,
-    slides: [
-        { src: "res/image/home-4.jpg" },
-        { src: "res/image/home-2.jpg" },
-        { src: "res/image/home-3.jpg" },
-        { src: "res/image/home-1.jpg" }
-    ]
-});
+// $(document).ready(function() {
+//   $(".vegas-container").vegas({
+//       delay: 10000,
+//       timer: false,
+//       shuffle: false,
+//       firstTransition: 'fade',
+//       firstTransitionDuration: 1000,
+//       transition: 'blur2',
+//       transitionDuration: 7000,
+//       slides: [
+//           { src: "res/image/home-4.jpg" },
+//           { src: "res/image/home-2.jpg" },
+//           { src: "res/image/home-3.jpg" },
+//           { src: "res/image/home-1.jpg" }
+//       ]
+//   });
+// });
 
 
 //Navigation Buttons
@@ -79,14 +81,4 @@ $(".upButton").click(function() {
     } else {
       console.log('  Nav: no more divs to go to')
     }
-});
-
-$(function() {
-  $.scrollify({
-    section : ".section",
-    sectionName : false,
-    before: function(i) {
-      console.log(i);
-    }
-  });
 });

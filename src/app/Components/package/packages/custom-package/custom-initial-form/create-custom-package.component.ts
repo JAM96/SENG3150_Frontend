@@ -3,11 +3,11 @@ import {MdDatepicker} from '@angular/material'
 
 @Component({
     moduleId: module.id,
-    selector: 'navigation',
-    templateUrl: 'navigation.component.html'
+    selector: 'initial-custom-form',
+    templateUrl: 'create-custom-package.component.html'
 })
 
-export class NavigationComponent implements AfterViewInit {
+export class CreateCustomPackageInitialComponent implements AfterViewInit {
     @ViewChild(MdDatepicker) checkin: MdDatepicker<Date>;
     @ViewChild(MdDatepicker) checkout: MdDatepicker<Date>;
     

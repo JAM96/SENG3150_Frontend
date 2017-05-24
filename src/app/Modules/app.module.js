@@ -27,7 +27,7 @@ var app_component_1 = require("../Components/app.component");
 //import components here
 var about_component_1 = require("../Components/about/about.component");
 var home_component_1 = require("../Components/home/home.component");
-var navigation_component_1 = require("../Components/navigation/navigation/navigation.component");
+var create_custom_package_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component");
 var navigationtop_component_1 = require("../Components/navigation/navigationtop/navigationtop.component");
 var eventoverview_component_1 = require("../Components/event/eventoverview.component");
 var activities_component_1 = require("../Components/activities/activities.component");
@@ -36,18 +36,6 @@ var profile_component_1 = require("../Components/profile/profile.component");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
-/*
-app routes
-  add new routes here
-  default route will be localhost:3000/ which will redirect to localhost:3000/home
-  the home component contains the first view that the user will see, and then the user can navigate elsewhere, such as
-  packages
-*/
-var appRoutes = [
-    { path: 'home', component: home_component_1.HomeComponent },
-    { path: 'packages', component: packagesview_component_1.PackagesComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }
-];
 //add module imports and component declarations here...
 var AppModule = (function () {
     function AppModule(router) {
@@ -70,7 +58,6 @@ AppModule = __decorate([
             forms_1.FormsModule,
             md2_1.Md2Module.forRoot(),
             forms_1.ReactiveFormsModule,
-            router_1.RouterModule.forRoot(appRoutes),
             app_routing_1.routing
         ],
         declarations: [
@@ -78,7 +65,7 @@ AppModule = __decorate([
             home_component_1.HomeComponent,
             about_component_1.AboutComponent,
             activities_component_1.ActivitiesComponent,
-            navigation_component_1.NavigationComponent,
+            create_custom_package_component_1.CreateCustomPackageInitialComponent,
             navigationtop_component_1.NavigationTopComponent,
             navigationtop_component_1.LoginPopupComponent,
             navigationtop_component_1.notificationsPopupComponent,

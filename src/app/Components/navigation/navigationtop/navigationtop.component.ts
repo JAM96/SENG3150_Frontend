@@ -14,6 +14,7 @@ export class NavigationTopComponent {
     isLogin : boolean = false;
     loginButtonText : String = 'Login';
     @Input ('user') username : String;
+    
     openDialog(){
         if(this.loginButtonText=='Logout'){
             this.onLogout();

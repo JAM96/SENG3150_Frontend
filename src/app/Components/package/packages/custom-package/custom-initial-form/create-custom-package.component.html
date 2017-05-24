@@ -1,0 +1,80 @@
+<section id="createForm" class="container-fluid view">
+    <div class="container-fluid homeImg"><!-- have image slider behind it-->
+        <div class="container">
+            <div class="row customPackageCreationForm">
+                <div class="col-md-6"><!-- left column -->
+                    <md2-datepicker 
+                        type="date"
+                        required="true"
+                        mode="portrait"
+                        placeholder="Check-in date"
+                        tabindex="1"
+                        openOnFocus="true"
+                        container="inline"
+                        [(ngModel)]="startDate">
+                    </md2-datepicker>
+                    <br>
+                    <md2-datepicker 
+                        type="date"
+                        required="true"
+                        mode="portrait"
+                        min="minDate"
+                        placeholder="Check-out date"
+                        tabindex="1"
+                        openOnFocus="true"
+                        container="inline"
+                        [(ngModel)]="endDate">
+                    </md2-datepicker>
+
+                    <div class="customIncreasers" style="margin-top: 20px">
+                        <button type="button" md-mini-fab color="accent" (click)="decreaseGuests()">-</button>
+                        <div class="text">
+                            Guests: {{guests}}
+                        </div>
+                        <button type="button" md-mini-fab color="accent" (click)='increaseGuests()' style="margin-left: -10px">+</button>
+                    </div>
+
+                    <div class="customIncreasers">
+                        <button type="button" md-mini-fab color="accent" (click)="decreaseRooms()">-</button>
+                        <div class="text">
+                            Rooms: {{rooms}}
+                        </div>
+                        <button type="button" md-mini-fab color="accent" (click)='increaseRooms()' style="margin-left: -10px">+</button>
+                    </div>
+
+                    <!--Slider -->
+                    <div class="range-slider" style="width: 250px">
+                        <h3>Budget - ${{value}}</h3>
+                        <input (click)="updateValue()" type="range" [(ngModel)]="value" min="{{minBudget}}" max="{{maxBudget}}">
+                        
+                    </div>
+
+                    <br>
+                    <button type="button" md-raised-button color="warn" (click)="submitForm">Create!</button>
+                </div><!-- end left column -->
+                
+                <div class="hideRecommendations col-md-6">
+                    My name is jack
+                </div>
+            </div><!-- custom package form -->
+        </div><!--package container -->
+    </div><!-- image container -->
+
+    <div class="container" style="height: 40%"><!--recommend packages-->
+        <div >t</div>
+    </div><!-- recommend packages -->
+</section>
+
+
+<!--<md-input-container>
+                    <button mdSuffix [mdDatepickerToggle]="checkin"></button>
+                    <input mdInput (click)="openCIDate()" placeholder="Check-in Date" [mdDatepicker]="checkin" [min]="minDate">
+                </md-input-container>
+                <md-datepicker #checkin></md-datepicker>
+
+                <md-input-container>
+                    <button mdSuffix [mdDatepickerToggle]="checkout"></button>
+                    <input mdInput (click)="openCODate()" placeholder="Check-out Datse" [mdDatepicker]="checkout" [min]="minDate">
+                </md-input-container>
+                <md-datepicker #checkout></md-datepicker>-->
+                <!---->

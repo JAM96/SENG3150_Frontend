@@ -24,7 +24,7 @@ import { AppComponent }  from '../Components/app.component';
 //import components here
 import {AboutComponent} from '../Components/about/about.component';
 import {HomeComponent} from '../Components/home/home.component';
-import {NavigationComponent} from '../Components/navigation/navigation/navigation.component';
+import {CreateCustomPackageInitialComponent} from '../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component';
 import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
 import {EventViewComponent} from '../Components/event/eventoverview.component';
 import {ActivitiesComponent} from '../Components/activities/activities.component';
@@ -34,20 +34,6 @@ import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Compo
 import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
 
-
-/*
-app routes
-  add new routes here
-  default route will be localhost:3000/ which will redirect to localhost:3000/home
-  the home component contains the first view that the user will see, and then the user can navigate elsewhere, such as
-  packages
-*/
-const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'packages', component: PackagesComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'}
-
-]
 
 //add module imports and component declarations here...
 @NgModule({
@@ -60,7 +46,6 @@ const appRoutes: Routes = [
     FormsModule,
     Md2Module.forRoot(),
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
     routing
     ],
   declarations: [
@@ -68,7 +53,7 @@ const appRoutes: Routes = [
     HomeComponent,
     AboutComponent,
     ActivitiesComponent,
-    NavigationComponent,
+    CreateCustomPackageInitialComponent,
     NavigationTopComponent,
     LoginPopupComponent,
     notificationsPopupComponent,
