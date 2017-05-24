@@ -21,7 +21,7 @@ Note: this may output some errors, but it should be fine
 Navigate into the src folder
 Open a new command window in this folder
 Use the following command: `bower install`
-5. Start the front end client side server, by typing in 'npm start' in the command window.
+5. Start the front end client side server, by typing in `npm start` in the command window.
 6. The website should load up into your default browser
-If it doesn't load automatically, there may be some errors, or navigate to your browser and type in localhost:PORT
+If it doesn't load automatically, there may be some errors, or navigate to your browser and type in `localhost:PORT`
     where port is the number provided in the output. (should be 3000)
