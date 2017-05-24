@@ -27,13 +27,14 @@
       
       <!-- acount information -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+        <li><a routerLink="/shopping-cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
         <li *ngIf="isLogin">
           <a (click)="openNotifications()">
             <span class="glyphicon glyphicon-bell"></span>
             <span class="badge">42</span>
           </a>
         </li>
+
         
         <li *ngIf="!isLogin"><a (click)="openDialog()">Login</a></li>
         <li *ngIf="isLogin" class="dropdown">

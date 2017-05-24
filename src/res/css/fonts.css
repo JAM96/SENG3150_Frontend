@@ -1,0 +1,32 @@
+/* Font library created by Jack Mennie *
+    24/05/2017
+*/
+
+.text-nl {display: block}               /* New Line */
+.text-b {font-weight: bold}             /* Bold */
+.text-i {font-style: italic}            /* Italics */
+.text-u {text-decoration: underline}    /* Underlined */
+.text-s {text-decoration: line-through} /* Strikethrough */
+
+/* Sizing */
+.text-xlg {font-size: 20pt}     /* Extra Large */
+.text-lg {font-size: 18pt}      /* Large */
+.text-md {font-size: 16pt}      /* Medium */
+.text-smd {font-size: 14pt}     /* Small Medium */
+.text-sm {font-size: 12pt}      /* Small */
+.text-xsm {font-size: 10pt}     /* Extra Small */
+
+/* colouring */
+.text-k {color: black;}
+.text-w {color: white;}
+.text-g {color: rgba(200,200,200,1);}
+.text-primary {color: rgba(0,107,171,1)}
+.text-accent {color: orangered}
+
+/* Hover Text */
+.text-hover-k:hover {opacity: 0.7}
+.text-hover-primary:hover {color: rgba(50,107,200,1); text-decoration: underline} /* blue to lighter shade */
+
+a:hover {
+    cursor: pointer;
+}

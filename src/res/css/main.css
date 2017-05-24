@@ -2,7 +2,6 @@
  * Created by: Jack Mennie
  * Description: contains all the main components of the Newcastle Connections page
 */
-
 html {
     height: 100vh;
     width: 100vw;
@@ -322,12 +321,6 @@ body {
     }
 }
 
-#img {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 250px;
-}
 #thrillImg {
     display: flex;
     flex-direction: column;
@@ -398,6 +391,78 @@ body {
     color: white;
     background-color: rgba(0,0,0,0.5);
 }
+
+#img {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    width: 100%;
+}
+
+.s-view {
+    width: 90%; 
+    padding-top: 20px; 
+    height: 80%; 
+    overflow: auto;
+}
+
+.s-view-a {
+    width: 90%; 
+    padding-top: 20px; 
+    height: 65%; 
+    overflow: auto;
+}
+
+/* CUSTOM PACKAGE FORM */
+.hotelAdvert {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    background-color: rgba(0,107,171,1);
+}
+
+.item-container {
+    background-color: rgba(230,230,255,1);
+    border-left: 5px solid rgba(0,107,171,1);
+    border-radius: 10px;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+}
+
+.item-rating {
+    background-color: rgba(0,107,171,1);
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+}
+
+.item-features {
+    border-top: 1px solid rgba(0,107,171,1);
+    border-bottom: 1px solid rgba(0,107,171,1);
+    padding: 20px;
+}
+
+.item-bottom {
+    background-color: rgba(225,225,255,1);
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-left: 60px;
+}
+
+/* end */
 
 a {
     text-decoration: none;

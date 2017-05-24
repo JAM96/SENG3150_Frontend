@@ -29,6 +29,10 @@ import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent
 import {EventViewComponent} from '../Components/event/eventoverview.component';
 import {ActivitiesComponent} from '../Components/activities/activities.component';
 import {ProfileComponent} from '../Components/profile/profile.component';
+import {FoodComponent} from '../Components/food/food.component';
+import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
+import {ContactComponent} from '../Components/contact/contact.component';
+import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
 //packages components
 import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
 import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
@@ -63,7 +67,11 @@ import {PackagesComponent} from '../Components/package/packages/packagesview.com
     PackageCategoryComponent,
     PackagesComponent,
     ProfileComponent,
-    CustomPackageComponent
+    CustomPackageComponent,
+    FoodComponent,
+    AccomodationComponent,
+    ContactComponent,
+    ShoppingCartComponent
     ],
   bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
   providers: [

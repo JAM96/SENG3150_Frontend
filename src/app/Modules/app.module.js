@@ -32,6 +32,10 @@ var navigationtop_component_1 = require("../Components/navigation/navigationtop/
 var eventoverview_component_1 = require("../Components/event/eventoverview.component");
 var activities_component_1 = require("../Components/activities/activities.component");
 var profile_component_1 = require("../Components/profile/profile.component");
+var food_component_1 = require("../Components/food/food.component");
+var accomodation_component_1 = require("../Components/accomodation/accomodation.component");
+var contact_component_1 = require("../Components/contact/contact.component");
+var shoppingCart_component_1 = require("../Components/shoppingCart/shoppingCart.component");
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
@@ -75,7 +79,11 @@ AppModule = __decorate([
             packagecategory_component_1.PackageCategoryComponent,
             packagesview_component_1.PackagesComponent,
             profile_component_1.ProfileComponent,
-            custom_package_component_1.CustomPackageComponent
+            custom_package_component_1.CustomPackageComponent,
+            food_component_1.FoodComponent,
+            accomodation_component_1.AccomodationComponent,
+            contact_component_1.ContactComponent,
+            shoppingCart_component_1.ShoppingCartComponent
         ],
         bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [

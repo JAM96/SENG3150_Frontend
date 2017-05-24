@@ -19,5 +19,29 @@
 @media screen and (min-width: 0px) and (max-width: 600px) {
     .hideRecommendations {
         display: none;
-    }   
+    } 
+
+    .s-view {
+        height: 70%;
+    }
+
+    .s-view-a { /* accomodation scaling */
+        height: 55%;
+    }  
+
+    .hotelAdvert {
+        display:none;
+    }
+    .item-content {
+        margin-bottom: 50px;
+    }
+
+    .item-rating {
+        background-color: transparent;
+        border-radius: 0px;
+    }
+
+    .text-hide {
+        display: none;
+    }
 }
