@@ -33,6 +33,7 @@ var eventoverview_component_1 = require("../Components/event/eventoverview.compo
 var activities_component_1 = require("../Components/activities/activities.component");
 var profile_component_1 = require("../Components/profile/profile.component");
 //packages components
+var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
@@ -73,7 +74,8 @@ AppModule = __decorate([
             packagecategory_component_1.PackageCategoryComponentDialog,
             packagecategory_component_1.PackageCategoryComponent,
             packagesview_component_1.PackagesComponent,
-            profile_component_1.ProfileComponent
+            profile_component_1.ProfileComponent,
+            custom_package_component_1.CustomPackageComponent
         ],
         bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [

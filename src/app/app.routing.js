@@ -5,6 +5,7 @@ var home_component_1 = require("./Components/home/home.component");
 var profile_component_1 = require("./Components/profile/profile.component");
 var packagesview_component_1 = require("./Components/package/packages/packagesview.component");
 var eventoverview_component_1 = require("./Components/event/eventoverview.component");
+var custom_package_component_1 = require("./Components/package/packages/custom-package/custom-form/custom-package.component");
 /*
 app routes
   add new routes here
@@ -17,6 +18,7 @@ var appRoutes = [
     { path: 'events', component: eventoverview_component_1.EventViewComponent },
     { path: 'packages', component: packagesview_component_1.PackagesComponent },
     { path: 'profile', component: profile_component_1.ProfileComponent },
+    { path: 'createpackage', component: custom_package_component_1.CustomPackageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 exports.appRoutingProviders = [];

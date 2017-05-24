@@ -1,5 +1,6 @@
 import {Component, ViewChild, AfterViewInit} from '@angular/core'
 import {MdDatepicker} from '@angular/material'
+import {Router} from '@angular/router'
 
 @Component({
     moduleId: module.id,
@@ -8,18 +9,21 @@ import {MdDatepicker} from '@angular/material'
 })
 
 export class CreateCustomPackageInitialComponent implements AfterViewInit {
-    @ViewChild(MdDatepicker) checkin: MdDatepicker<Date>;
-    @ViewChild(MdDatepicker) checkout: MdDatepicker<Date>;
-    
     minBudget = 300;
     maxBudget = 4000;
     value : any = 472;
 
     minDate = new Date();
-    guests: number = 0;
-    rooms: number = 0;
+    guests: number = 1;
+    rooms: number = 1;
     maxRooms: number = 10;
     maxGuests: number = 10;
+
+    constructor (public router: Router) {}
+
+    submitForm() {
+        this.router.navigate(["/createpackage"]);    
+    }
 
     updateValue() {
         if(this.value == this.maxBudget) {
@@ -29,14 +33,6 @@ export class CreateCustomPackageInitialComponent implements AfterViewInit {
 
     ngAfterViewInit() {}
 
-    openCIDate(){
-        this.checkin.open();
-    }
-
-    openCODate(){
-        this.checkout.open();
-    }
-
     increaseGuests() {
         if(this.guests != this.maxGuests) {
             this.guests = this.guests + 1;
@@ -44,7 +40,7 @@ export class CreateCustomPackageInitialComponent implements AfterViewInit {
     }
 
     decreaseGuests() {
-        if(this.guests != 0) {
+        if(this.guests != 1) {
             this.guests = this.guests - 1;
         }
     }
@@ -56,7 +52,7 @@ export class CreateCustomPackageInitialComponent implements AfterViewInit {
     }
 
     decreaseRooms() {
-        if(this.rooms != 0) {
+        if(this.rooms != 1) {
             this.rooms = this.rooms - 1;
         }
     }

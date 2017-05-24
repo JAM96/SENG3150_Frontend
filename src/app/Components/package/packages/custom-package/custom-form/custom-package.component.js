@@ -9,8 +9,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var CustomPackageComponent = (function () {
     function CustomPackageComponent() {
+        this.selected = 1;
+        //travel form
+        this.travelSubmitted = false;
+        this.travelValue = 'No';
+        this.travelOptions = ['Yes', 'No'];
+        //travel form
+        this.accommodationValue = 'No';
+        this.accommodationOptions = ['Yes', 'No'];
+        // setTravelValue(selection : boolean) {
+        //     this.travelValue = selection;
+        // }
     }
     CustomPackageComponent.prototype.ngOnInit = function () {
+    };
+    //Navigation
+    CustomPackageComponent.prototype.prevForm = function () {
+        if (this.selected != 1) {
+            this.selected = this.selected - 1;
+            console.info(this.selected);
+        }
+    };
+    CustomPackageComponent.prototype.nextForm = function () {
+        if (this.selected != 5) {
+            this.selected = this.selected + 1;
+            console.info(this.selected);
+        }
+    };
+    CustomPackageComponent.prototype.setNavigation = function (selection) {
+        this.selected = selection;
     };
     return CustomPackageComponent;
 }());

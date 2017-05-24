@@ -30,6 +30,7 @@ import {EventViewComponent} from '../Components/event/eventoverview.component';
 import {ActivitiesComponent} from '../Components/activities/activities.component';
 import {ProfileComponent} from '../Components/profile/profile.component';
 //packages components
+import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
 import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
 import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
@@ -61,7 +62,8 @@ import {PackagesComponent} from '../Components/package/packages/packagesview.com
     PackageCategoryComponentDialog,
     PackageCategoryComponent,
     PackagesComponent,
-    ProfileComponent
+    ProfileComponent,
+    CustomPackageComponent
     ],
   bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
   providers: [

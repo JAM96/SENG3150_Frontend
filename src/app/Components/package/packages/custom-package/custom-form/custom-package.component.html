@@ -1,0 +1,167 @@
+<div class="view view-add-pd-1 container">
+    <ul class="nav nav-tabs">
+        <li role="presentation" *ngIf="selected==1; else notActive1" class="active">
+            <a (click)="setNavigation(1)">Travel</a>
+        </li>
+        <ng-template #notActive1>
+            <li role="presentation"><a (click)="setNavigation(1)">Travel</a></li>
+        </ng-template>
+
+        <li role="presentation" *ngIf="selected==2; else notActive2" class="active">
+            <a (click)="setNavigation(2)">Accomodaton</a>
+        </li>
+        <ng-template #notActive2>
+            <li role="presentation"><a (click)="setNavigation(2)">Accomodaton</a></li>
+        </ng-template>
+
+        <li role="presentation" *ngIf="selected==3; else notActive3" class="active">
+            <a (click)="setNavigation(3)">Food</a>
+        </li>
+        <ng-template #notActive3>
+            <li role="presentation"><a (click)="setNavigation(3)">Food</a></li>
+        </ng-template>
+
+        <li role="presentation" *ngIf="selected==4; else notActive4" class="active">
+            <a (click)="setNavigation(4)">Activities</a>
+        </li>
+        <ng-template #notActive4>
+            <li role="presentation"><a (click)="setNavigation(4)">Activities</a></li>
+        </ng-template>
+
+        <li role="presentation" *ngIf="selected==5; else notActive5" class="active">
+            <a (click)="setNavigation(5)">Cart</a>
+        </li>
+        <ng-template #notActive5>
+            <li role="presentation"><a (click)="setNavigation(5)">Cart</a></li>
+        </ng-template>
+    </ul>
+
+    <div class="container">
+        <div class="row" style="padding-top: 20px" *ngIf="selected==1"><!-- travel -->
+            <p>Newcastle Connections offer a shuttle bus service!</p>
+            <p>Add to your package now</p>
+            <label class="control-label col-sm-3" for="travel">Do you require Travel?</label>
+
+            <md-radio-group class="example-radio-group" [(ngModel)]="travelValue">
+                <md-radio-button class="example-radio-button" *ngFor="let option of travelOptions" [value]="option">
+                    {{option}}
+                </md-radio-button>
+            </md-radio-group>
+
+            <p>If you require travel from a destination or not</p>
+            <p *ngIf="travelValue =='Yes'">You have chosen to travel by us! Yay</p>
+
+            <span *ngIf="travelValue=='Yes'">
+                <hr>
+                <p>Pick-up information:</p>
+                <p>
+                    <md-input-container class="example-full-width">
+                        <textarea mdInput placeholder="Address"></textarea>
+                    </md-input-container>
+                </p>
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="City">
+                            </md-input-container>
+                        </td>
+                        <td>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="State">
+                            </md-input-container>
+                        </td>
+                        <td>
+                            <md-input-container class="example-full-width">
+                                <input mdInput #postalCode maxlength="4" placeholder="Postal Code" value="">
+                                <md-hint align="end">{{postalCode.value.length}} / 4</md-hint>
+                            </md-input-container>
+                        </td>
+                    </tr>
+                </table>
+                <md2-datepicker 
+                    type="date"
+                    required="true"
+                    mode="portrait"
+                    placeholder="Select Date"
+                    tabindex="1"
+                    openOnFocus="true"
+                    container="dialog"
+                    [(ngModel)]="travelDate">
+                </md2-datepicker>
+                <md2-datepicker 
+                    type="time"
+                    required="true"
+                    mode="portrait"
+                    placeholder="Select Time"
+                    tabindex="1"
+                    openOnFocus="true"
+                    container="dialog"
+                    [(ngModel)]="travelTime">
+                </md2-datepicker>
+            </span>
+
+            <span *ngIf="travelValue=='Yes'">
+                <hr>
+                <p>Drop-off information:</p>
+                <p>
+                    <md-input-container class="example-full-width">
+                        <textarea mdInput placeholder="Address"></textarea>
+                    </md-input-container>
+                </p>
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="City">
+                            </md-input-container>
+                        </td>
+                        <td>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="State">
+                            </md-input-container>
+                        </td>
+                        <td>
+                            <md-input-container class="example-full-width">
+                                <input mdInput #postalCode maxlength="4" placeholder="Postal Code" value="">
+                                <md-hint align="end">{{postalCode.value.length}} / 4</md-hint>
+                            </md-input-container>
+                        </td>
+                    </tr>
+                </table>
+                <md2-datepicker 
+                    type="date"
+                    required="true"
+                    mode="portrait"
+                    placeholder="Select Date"
+                    tabindex="1"
+                    openOnFocus="true"
+                    container="dialog"
+                    [(ngModel)]="travelDate">
+                </md2-datepicker>
+                <md2-datepicker 
+                    type="time"
+                    required="true"
+                    mode="portrait"
+                    placeholder="Select Time"
+                    tabindex="1"
+                    openOnFocus="true"
+                    container="dialog"
+                    [(ngModel)]="travelTime">
+                </md2-datepicker>
+            </span>
+        </div>
+
+        <div class="row" style="padding-top: 20px" *ngIf="selected==2"><!-- acommodation -->
+            <label class="control-label col-sm-3" for="travel">Do you require accomodation?</label>
+
+            <md-radio-group class="example-radio-group" [(ngModel)]="accommodationValue">
+                <md-radio-button class="example-radio-button" *ngFor="let option of accommodationOptions" [value]="option">
+                    {{option}}
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+        <button *ngIf="selected != 1" md-raised-button style="margin-top: 20px" type="button" (click)="prevForm()">Previous</button>
+        <button *ngIf="selected != 5" md-raised-button style="margin-top: 20px" type="button" (click)="nextForm()">Next</button>
+    </div>
+</div>

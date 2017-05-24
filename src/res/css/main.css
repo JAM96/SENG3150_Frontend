@@ -6,7 +6,7 @@
 html {
     height: 100vh;
     width: 100vw;
-    overflow-x: none;
+    overflow: hidden;
 }
 
 body {
@@ -15,11 +15,19 @@ body {
     background-image: url("../image/bg.gif");
     height: 100vh;
     width: 100vw;
-    overflow-x: none;
+    overflow: hidden;
 }
 
 .view {
-    height: 100vh;
+    height: 95vh;
+    background-color: white;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+}
+
+.view-add-pd-1 {
+    padding-top: 50px;
 }
 
 .homeImg {
@@ -28,55 +36,31 @@ body {
     height: 60%;
 }
 
-/* ---------------------Header------------------------- */
-.header {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    padding-bottom: 40px;
-}
-
-.headerNavigation ul {
-    list-style-type: none;
-    margin: 0;  
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 40px;
-}
-
-.headerNavigation li {
-    max-width: 150px;
-    display: inline-block;
-    margin: 0;
-    margin-right: -4px;
-    padding: 0;
-    
-}
-
-.headerNavigation li a {
-    margin: 0;
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-
-    border-bottom: solid lightgray 5px;
-    font-size: 12pt;
-}
-
-.headerNavigation li a:hover {
-    background-color: rgba(180,30,51,0.1);
-    color: rgba(180,30,51,1);
-    border-bottom: solid rgba(180,30,51,1) 5px;
-
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+/* md2 customisation */
+.md2-datepicker-trigger {
+    background-color: white;
 
 }
+
+::-webkit-scrollbar { 
+    display: none;
+}
+
+/* forms */
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+
 
 /*--------------- Calendar ---------------------------*/
 .calendar.sticky {

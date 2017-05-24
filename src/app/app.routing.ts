@@ -6,6 +6,7 @@ import {ProfileComponent} from './Components/profile/profile.component';
 import {AboutComponent} from './Components/about/about.component';
 import {PackagesComponent} from './Components/package/packages/packagesview.component';
 import {EventViewComponent} from './Components/event/eventoverview.component';
+import {CustomPackageComponent} from './Components/package/packages/custom-package/custom-form/custom-package.component';
 /*
 app routes
   add new routes here
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'events', component: EventViewComponent},
   { path: 'packages', component: PackagesComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'createpackage', component: CustomPackageComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 
 ]
