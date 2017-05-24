@@ -5,7 +5,7 @@
 4. Install node-modules and bower components in the git bash:
   * Type in and enter "npm install" to install node-modules.
     * Note: Don't worry about the errors that may pop up when you use "npm install".
-  * Type in and enter "bower install" to install bower.
+  * Type in and enter "npm install -g bower" to install bower.
   * Note: These two above components/folders have been added to the .gitignore, since they are large.	
 5. Start the front end client side server, by typing in "npm start" in git bash.
 6. Go to your browser and type in 'localhost:PORT' where port is the number provided in the git bash. It should be 3000 or maybe 4200 now.
