@@ -22,21 +22,30 @@ import { Md2Module }  from 'md2';
 import { AppComponent }  from '../Components/app.component';
 
 //import components here
-import {AboutComponent} from '../Components/about/about.component';
+
 import {HomeComponent} from '../Components/home/home.component';
-import {CreateCustomPackageInitialComponent} from '../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component';
-import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
-import {EventViewComponent} from '../Components/event/eventoverview.component';
-import {ActivitiesComponent} from '../Components/activities/activities.component';
-import {ProfileComponent} from '../Components/profile/profile.component';
-import {FoodComponent} from '../Components/food/food.component';
-import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
-import {ContactComponent} from '../Components/contact/contact.component';
-import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
-//packages components
-import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
-import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
-import {PackagesComponent} from '../Components/package/packages/packagesview.component';
+
+  //Navigation Pages
+  import {AboutComponent} from '../Components/about/about.component';
+  import {EventViewComponent} from '../Components/event/eventoverview.component';
+  import {ActivitiesComponent} from '../Components/activities/activities.component';
+  import {FoodComponent} from '../Components/food/food.component';
+  import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
+  import {ContactComponent} from '../Components/contact/contact.component';
+  import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
+
+  import {CreateCustomPackageInitialComponent} from '../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component';
+  import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
+
+  //Profile Component and Profile Components
+  import {ProfileComponent} from '../Components/profile/profile.component';
+  import {ViewPackagesComponent} from '../Components/profile/viewPackages/viewPackages.component';
+  import {ViewVouchersComponent} from '../Components/profile/viewVouchers/viewVouchers.component';
+  import {LeaveFeedbackComponent} from '../Components/profile/leaveFeedback/leaveFeedback.component';
+  //packages components
+  import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
+  import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
+  import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
 
 
@@ -71,15 +80,17 @@ import {PackagesComponent} from '../Components/package/packages/packagesview.com
     FoodComponent,
     AccomodationComponent,
     ContactComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ViewPackagesComponent,
+    ViewVouchersComponent,
+    LeaveFeedbackComponent
     ],
   bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
   providers: [
     appRoutingProviders,
-    //AUTH_PROVIDERS,
-    //Auth
   ]
 })
+
 export class AppModule {
   constructor(router: Router) {
     router.events.subscribe(
