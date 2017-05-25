@@ -41,7 +41,7 @@ import {HomeComponent} from '../Components/home/home.component';
   import {ProfileComponent} from '../Components/profile/profile.component';
   import {ViewPackagesComponent} from '../Components/profile/viewPackages/viewPackages.component';
   import {ViewVouchersComponent} from '../Components/profile/viewVouchers/viewVouchers.component';
-
+  import {LeaveFeedbackComponent} from '../Components/profile/leaveFeedback/leaveFeedback.component';
   //packages components
   import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
   import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
@@ -82,13 +82,15 @@ import {HomeComponent} from '../Components/home/home.component';
     ContactComponent,
     ShoppingCartComponent,
     ViewPackagesComponent,
-    ViewVouchersComponent
+    ViewVouchersComponent,
+    LeaveFeedbackComponent
     ],
   bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
   providers: [
     appRoutingProviders,
   ]
 })
+
 export class AppModule {
   constructor(router: Router) {
     router.events.subscribe(

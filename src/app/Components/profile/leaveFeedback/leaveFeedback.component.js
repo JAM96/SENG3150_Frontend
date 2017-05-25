@@ -7,17 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ShoppingCartComponent = (function () {
-    function ShoppingCartComponent() {
+var LeaveFeedbackComponent = (function () {
+    function LeaveFeedbackComponent() {
     }
-    return ShoppingCartComponent;
+    return LeaveFeedbackComponent;
 }());
-ShoppingCartComponent = __decorate([
+LeaveFeedbackComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'shoppingCart',
-        templateUrl: 'shoppingCart.component.html'
+        selector: 'leaveFeedback',
+        templateUrl: 'leaveFeedback.component.html'
     })
-], ShoppingCartComponent);
-exports.ShoppingCartComponent = ShoppingCartComponent;
-//# sourceMappingURL=shoppingCart.component.js.map
+], LeaveFeedbackComponent);
+exports.LeaveFeedbackComponent = LeaveFeedbackComponent;
+//# sourceMappingURL=leaveFeedback.component.js.map

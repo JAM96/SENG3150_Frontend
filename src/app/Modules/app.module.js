@@ -40,6 +40,7 @@ var navigationtop_component_1 = require("../Components/navigation/navigationtop/
 var profile_component_1 = require("../Components/profile/profile.component");
 var viewPackages_component_1 = require("../Components/profile/viewPackages/viewPackages.component");
 var viewVouchers_component_1 = require("../Components/profile/viewVouchers/viewVouchers.component");
+var leaveFeedback_component_1 = require("../Components/profile/leaveFeedback/leaveFeedback.component");
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
@@ -89,7 +90,8 @@ AppModule = __decorate([
             contact_component_1.ContactComponent,
             shoppingCart_component_1.ShoppingCartComponent,
             viewPackages_component_1.ViewPackagesComponent,
-            viewVouchers_component_1.ViewVouchersComponent
+            viewVouchers_component_1.ViewVouchersComponent,
+            leaveFeedback_component_1.LeaveFeedbackComponent
         ],
         bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [

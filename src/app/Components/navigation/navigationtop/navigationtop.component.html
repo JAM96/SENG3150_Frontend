@@ -27,7 +27,7 @@
       
       <!-- acount information -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/shopping-cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+        <li><a routerLink="/shoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
         <li *ngIf="isLogin">
           <a (click)="openNotifications()">
             <span class="glyphicon glyphicon-bell"></span>
@@ -43,7 +43,7 @@
             <li><a routerLink="/profile">Edit Profile</a></li>
             <li><a routerLink="/profile/viewPackages">View Packages</a></li>
             <li><a routerLink="/profile/viewVouchers">View Vouchers</a></li>
-            <li><a routerLink="/profile/feedback">Leave Feedback</a></li>
+            <li><a routerLink="/profile/leaveFeedback">Leave Feedback</a></li>
             <li role="separator" class="divider"></li>
             <li><a (click)="openDialog()">Log out</a></li>
           </ul>

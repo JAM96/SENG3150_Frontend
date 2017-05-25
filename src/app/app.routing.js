@@ -5,6 +5,7 @@ var home_component_1 = require("./Components/home/home.component");
 var profile_component_1 = require("./Components/profile/profile.component");
 var viewPackages_component_1 = require("./Components/profile/viewPackages/viewPackages.component");
 var viewVouchers_component_1 = require("./Components/profile/viewVouchers/viewVouchers.component");
+var leaveFeedback_component_1 = require("./Components/profile/leaveFeedback/leaveFeedback.component");
 var packagesview_component_1 = require("./Components/package/packages/packagesview.component");
 var eventoverview_component_1 = require("./Components/event/eventoverview.component");
 var custom_package_component_1 = require("./Components/package/packages/custom-package/custom-form/custom-package.component");
@@ -27,12 +28,13 @@ var appRoutes = [
     { path: 'profile', component: profile_component_1.ProfileComponent },
     { path: 'profile/viewPackages', component: viewPackages_component_1.ViewPackagesComponent },
     { path: 'profile/viewVouchers', component: viewVouchers_component_1.ViewVouchersComponent },
+    { path: 'profile/leaveFeedback', component: leaveFeedback_component_1.LeaveFeedbackComponent },
     { path: 'createpackage', component: custom_package_component_1.CustomPackageComponent },
     { path: 'activities', component: activities_component_1.ActivitiesComponent },
     { path: 'food', component: food_component_1.FoodComponent },
     { path: 'accomodation', component: accomodation_component_1.AccomodationComponent },
     { path: 'contact', component: contact_component_1.ContactComponent },
-    { path: 'shopping-cart', component: shoppingCart_component_1.ShoppingCartComponent },
+    { path: 'shoppingCart', component: shoppingCart_component_1.ShoppingCartComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 exports.appRoutingProviders = [];
