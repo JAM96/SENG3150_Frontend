@@ -158,6 +158,7 @@
         </span>
     </div>
 
+    <!-- hotel form -->
     <div class="container" style="width: 90%; padding-top: 20px;" *ngIf="selected==2">
         <label class="control-label col-sm-3" for="travel">Do you require accomodation?</label>
 
@@ -171,142 +172,7 @@
     <div class="container s-view-a" *ngIf="accommodationValue=='Yes' && selected==2"><!-- acommodation -->
         <div class="row item-container"><!-- hotel 1 --> 
             <div class="col-md-3">
-                <div id="img">
-                    <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                    <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
-                </div>
-            </div><!-- image -->
-            <div class="col-md-9 item-content"><!-- content -->
-                <div class="row">
-                    <div class="col-md-9"><!-- hotel name -->
-                        <h3 class="text-lg text-b text-primary">
-                            <a class="text-hover-primary">Hotel 1</a>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
-                        </h3>
-                        <a class="text-hover-k text-sm text-k">
-                            <span class="text-u">Newcastle</span>
-                            <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </div><!-- hotel name end-->
-
-                    <div class="col-md-3 item-rating"><!-- rating -->
-                        <span class="text-lg text-w text-hide">Fabulous!</span>
-                        <span class="text-sm text-w text-hide">5/5</span>
-                        <a>
-                            <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
-                        </a>
-                    </div><!-- rating -->
-                </div>
-
-                <div class="row item-features">
-                    <span class="text-sm text-k">Features:</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Free parking</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Restaurant</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Pool</span>
-
-                </div>
-
-                <div class="row item-bottom">
-                    <div class="col-md-8">
-                        <span class="text-xlg text-b text-primary">AUD $</span>
-                        <span class="text-xlg text-b text-primary">124</span>
-                        <span class="text-md text-primary glyphicon glyphicon-triangle-left"></span>
-                        <span class="text-md text-k glyphicon glyphicon-bed">1</span>
-                        <span class="text-md text-k glyphicon glyphicon-user">2</span>
-                    </div>
-                    <div class="col-md-4"><!-- Add to cart -->
-                        <button type="button" md-raised-button color="warn" style="float: right">Select</button>
-                        <button type="button" md-raised-button style="float: right; margin-right: 10px">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            View
-                        </button>
-                    </div>
-                </div>
-            </div><!--content -->
-        </div>
-
-        <div class="row item-container"><!-- hotel 1 --> 
-            <div class="col-md-3">
-                <div id="img">
-                    <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                    <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
-                </div>
-            </div><!-- image -->
-            <div class="col-md-9 item-content"><!-- content -->
-                <div class="row">
-                    <div class="col-md-9"><!-- hotel name -->
-                        <h3 class="text-lg text-b text-primary">
-                            <a class="text-hover-primary">Hotel 1</a>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
-                        </h3>
-                        <a class="text-hover-k text-sm text-k">
-                            <span class="text-u">Newcastle</span>
-                            <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </div><!-- hotel name end-->
-
-                    <div class="col-md-3 item-rating"><!-- rating -->
-                        <span class="text-lg text-w text-hide">Fabulous!</span>
-                        <span class="text-sm text-w text-hide">5/5</span>
-                        <a>
-                            <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
-                        </a>
-                    </div><!-- rating -->
-                </div>
-
-                <div class="row item-features">
-                    <span class="text-sm text-k">Features:</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Free parking</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Restaurant</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Pool</span>
-
-                </div>
-
-                <div class="row item-bottom">
-                    <div class="col-md-8">
-                        <span class="text-xlg text-b text-primary">AUD $</span>
-                        <span class="text-xlg text-b text-primary">124</span>
-                        <span class="text-md text-primary glyphicon glyphicon-triangle-left"></span>
-                        <span class="text-md text-k glyphicon glyphicon-bed tooltip">1
-                        </span>
-
-
-                        <span class="text-md text-k glyphicon glyphicon-user">2</span>
-                    </div>
-                    <div class="col-md-4"><!-- Add to cart -->
-                        <button type="button" md-raised-button color="warn" style="float: right">Select</button>
-                        <button type="button" md-raised-button style="float: right; margin-right: 10px">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            View
-                        </button>
-                    </div>
-                </div>
-            </div><!--content -->
-        </div>
-
-        <div class="row item-container"><!-- hotel 1 --> 
-            <div class="col-md-3">
-                <div id="img">
+                <div class="img">
                     <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
                     <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
                 </div>
@@ -372,28 +238,316 @@
     </div>
 
     <!-- Food navigation -->
-    <div *ngIf="selected==3" class="col-md-1" style="height: 100%; border-right: 1px solid grey">
+    <div *ngIf="selected==3" class="col-md-1" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
         <ul class="nav nav-pills nav-stacked" role="tablist">
-            <li>Days</li>
-            <li class="active"><a>1</a></li>
-            <li><a>2</a></li>
-            <li><a>3</a></li>        
+            <li><span class="text-md text-primary">Days</span></li>
+            <li *ngFor="let day of days">
+                <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
+                <ng-template #notActiveDay>
+                    <a (click)="setDays(day)">{{day}}</a>
+                </ng-template>
+            </li>        
         </ul>
     </div>
 
-    <div class="col-md-11">
-        <div *ngIf="selected==3" class="container">
-            <div class="row" style="background-color: red;">
-                Bekfast
+    <div *ngIf="selected==3" class="col-md-11" style="height: 100%"><!-- food day content -->
+        <h1 class="text-md text-primary text-b">Day {{selectedDay}}</h1>
+        <div class="s-view row"><!-- Menu container -->
+            <div (click)="expandB()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                <span class="text-md">Breakfast</span>
+                <a class="expandButton">
+                    <span *ngIf="heightB=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="heightB=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                </a>
             </div>
 
-            <div class="row" style="background-color: orange">
-                Lornch
+            <div class="s-view-f row" [ngStyle]="{'height': heightB}"><!-- breakfast container -->    
+                <div class="row item-container"><!-- restaurant item --> 
+                    <div class="col-md-3">
+                        <div class="img img-f">
+                            <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                            <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        </div>
+                    </div><!-- image -->
+                    <div class="col-md-9 item-content item-content-short"><!-- content -->
+                        <div class="row">
+                            <div class="col-md-9"><!-- hotel name -->
+                                <h3 class="text-lg text-b text-primary">
+                                    <a class="text-hover-primary">Hotel 1</a>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                </h3>
+                                <a class="text-hover-k text-sm text-k">
+                                    <span class="text-u">Newcastle</span>
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                </a>
+                            </div><!-- hotel name end-->
+
+                            <div class="col-md-3 item-rating"><!-- rating -->
+                                <span class="text-lg text-w text-hide">Fabulous!</span>
+                                <span class="text-sm text-w text-hide">5/5</span>
+                                <a>
+                                    <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                </a>
+                            </div><!-- rating -->
+                        </div>
+
+                        <div class="row item-features">
+                            <span class="text-sm text-k">Features:</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Free parking</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Restaurant</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Pool</span>
+
+                        </div>
+
+                        <div class="row item-bottom">
+                            <div class="col-md-8">
+                                <span class="text-sm text-k">Starting at </span>
+                                <span class="text-lg text-b text-primary">$</span>
+                                <span class="text-lg text-b text-primary">124</span>
+                            </div>
+                            <div class="col-md-4"><!-- Add to cart -->
+                                <button type="button" md-raised-button color="warn" >Select</button>
+                                <button type="button" md-raised-button style="float: left;  margin-right: 10px">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div><!--content -->
+                </div>
             </div>
 
-            <div class="row" style="background-color: red">
-                Danna
+            <div (click)="expandL()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                <span class="text-md">Lunch</span>
+                <a class="expandButton">
+                    <span *ngIf="heightB=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="heightB=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                </a>
             </div>
-        </div>
-    </div>
-</div>
+
+            <div class="s-view-f row" [ngStyle]="{'height': heightL}"><!-- lunch container -->    
+                <div class="row item-container"><!-- restaurant item --> 
+                    <div class="col-md-3">
+                        <div class="img img-f">
+                            <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                            <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        </div>
+                    </div><!-- image -->
+                    <div class="col-md-9 item-content item-content-short"><!-- content -->
+                        <div class="row">
+                            <div class="col-md-9"><!-- hotel name -->
+                                <h3 class="text-lg text-b text-primary">
+                                    <a class="text-hover-primary">Hotel 1</a>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                </h3>
+                                <a class="text-hover-k text-sm text-k">
+                                    <span class="text-u">Newcastle</span>
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                </a>
+                            </div><!-- hotel name end-->
+
+                            <div class="col-md-3 item-rating"><!-- rating -->
+                                <span class="text-lg text-w text-hide">Fabulous!</span>
+                                <span class="text-sm text-w text-hide">5/5</span>
+                                <a>
+                                    <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                </a>
+                            </div><!-- rating -->
+                        </div>
+
+                        <div class="row item-features">
+                            <span class="text-sm text-k">Features:</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Free parking</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Restaurant</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Pool</span>
+
+                        </div>
+
+                        <div class="row item-bottom">
+                            <div class="col-md-8">
+                                <span class="text-sm text-k">Starting at </span>
+                                <span class="text-lg text-b text-primary">$</span>
+                                <span class="text-lg text-b text-primary">124</span>
+                            </div>
+                            <div class="col-md-4"><!-- Add to cart -->
+                                <button type="button" md-raised-button color="warn" >Select</button>
+                                <button type="button" md-raised-button style="float: left;  margin-right: 10px">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div><!--content -->
+                </div>
+            </div>
+
+            <div (click)="expandD()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                <span class="text-md">Dinner</span>
+                <a class="expandButton">
+                    <span *ngIf="heightB=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="heightB=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                </a>
+            </div>
+
+            <div class="s-view-f row" [ngStyle]="{'height': heightD}"><!-- Dinner container -->    
+                <div class="row item-container"><!-- restaurant item --> 
+                    <div class="col-md-3">
+                        <div class="img img-f">
+                            <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                            <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        </div>
+                    </div><!-- image -->
+                    <div class="col-md-9 item-content item-content-short"><!-- content -->
+                        <div class="row">
+                            <div class="col-md-9"><!-- hotel name -->
+                                <h3 class="text-lg text-b text-primary">
+                                    <a class="text-hover-primary">Hotel 1</a>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                </h3>
+                                <a class="text-hover-k text-sm text-k">
+                                    <span class="text-u">Newcastle</span>
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                </a>
+                            </div><!-- hotel name end-->
+
+                            <div class="col-md-3 item-rating"><!-- rating -->
+                                <span class="text-lg text-w text-hide">Fabulous!</span>
+                                <span class="text-sm text-w text-hide">5/5</span>
+                                <a>
+                                    <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                </a>
+                            </div><!-- rating -->
+                        </div>
+
+                        <div class="row item-features">
+                            <span class="text-sm text-k">Features:</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Free parking</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Restaurant</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Pool</span>
+
+                        </div>
+
+                        <div class="row item-bottom">
+                            <div class="col-md-8">
+                                <span class="text-sm text-k">Starting at </span>
+                                <span class="text-lg text-b text-primary">$</span>
+                                <span class="text-lg text-b text-primary">124</span>
+                            </div>
+                            <div class="col-md-4"><!-- Add to cart -->
+                                <button type="button" md-raised-button color="warn" >Select</button>
+                                <button type="button" md-raised-button style="float: left;  margin-right: 10px">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div><!--content -->
+                </div>
+            </div>
+
+            <div (click)="expandO()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                <span class="text-md">Other</span>
+                <a class="expandButton">
+                    <span *ngIf="heightO=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="heightO=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                </a>
+            </div>
+
+            <div class="s-view-f row" [ngStyle]="{'height': heightO}"><!-- Dinner container -->    
+                <div class="row item-container"><!-- restaurant item --> 
+                    <div class="col-md-3">
+                        <div class="img img-f">
+                            <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                            <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        </div>
+                    </div><!-- image -->
+                    <div class="col-md-9 item-content item-content-short"><!-- content -->
+                        <div class="row">
+                            <div class="col-md-9"><!-- hotel name -->
+                                <h3 class="text-lg text-b text-primary">
+                                    <a class="text-hover-primary">Hotel 1</a>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                </h3>
+                                <a class="text-hover-k text-sm text-k">
+                                    <span class="text-u">Newcastle</span>
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                </a>
+                            </div><!-- hotel name end-->
+
+                            <div class="col-md-3 item-rating"><!-- rating -->
+                                <span class="text-lg text-w text-hide">Fabulous!</span>
+                                <span class="text-sm text-w text-hide">5/5</span>
+                                <a>
+                                    <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                </a>
+                            </div><!-- rating -->
+                        </div>
+
+                        <div class="row item-features">
+                            <span class="text-sm text-k">Features:</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Free parking</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Restaurant</span>
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-xsm text-k">Pool</span>
+
+                        </div>
+
+                        <div class="row item-bottom">
+                            <div class="col-md-8">
+                                <span class="text-sm text-k">Starting at </span>
+                                <span class="text-lg text-b text-primary">$</span>
+                                <span class="text-lg text-b text-primary">124</span>
+                            </div>
+                            <div class="col-md-4"><!-- Add to cart -->
+                                <button type="button" md-raised-button color="warn" >Select</button>
+                                <button type="button" md-raised-button style="float: left;  margin-right: 10px">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div><!--content -->
+                </div>
+            </div>
+        </div><!-- end menu container -->
+    </div><!-- end food content -->
+</div><!-- end container -->

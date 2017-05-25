@@ -6,7 +6,9 @@ import {Component, Input, OnInit} from '@angular/core';
     templateUrl: 'custom-package.component.html',
 })
 export class CustomPackageComponent implements OnInit{
-    selected : number = 1;
+    selected : number = 3;
+    days : number[] = [1,2,3,4,5];
+    selectedDay : number = 3;
 
     //travel form
     travelSubmitted : boolean = false;
@@ -16,6 +18,13 @@ export class CustomPackageComponent implements OnInit{
     //travel form
     accommodationValue : string = 'No';
     accommodationOptions = ['Yes', 'No'];
+
+
+    //food form
+    heightB : string = '0%';
+    heightL : string = '0%';
+    heightD : string = '0%';
+    heightO : string = '0%';
 
     ngOnInit() {
         
@@ -40,6 +49,41 @@ export class CustomPackageComponent implements OnInit{
         this.selected = selection;
     }
 
+    setDays(selection : number) {
+        this.selectedDay = selection;
+    }
+
+    expandB(){
+        if(this.heightB == '0%') {
+            this.heightB = '80%';
+        } else {
+            this.heightB = '0%';
+        }
+    }
+
+    expandL(){
+        if(this.heightL == '0%') {
+            this.heightL = '80%';
+        } else {
+            this.heightL = '0%';
+        }
+    }
+
+    expandD(){
+        if(this.heightD == '0%') {
+            this.heightD = '80%';
+        } else {
+            this.heightD = '0%';
+        }
+    }
+
+    expandO() {
+        if(this.heightO == '0%') {
+            this.heightO = '80%';
+        } else {
+            this.heightO = '0%';
+        }
+    }
     // setTravelValue(selection : boolean) {
     //     this.travelValue = selection;
     // }

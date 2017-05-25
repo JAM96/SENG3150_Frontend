@@ -9,7 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var CustomPackageComponent = (function () {
     function CustomPackageComponent() {
-        this.selected = 1;
+        this.selected = 3;
+        this.days = [1, 2, 3, 4, 5];
+        this.selectedDay = 3;
         //travel form
         this.travelSubmitted = false;
         this.travelValue = 'No';
@@ -17,6 +19,11 @@ var CustomPackageComponent = (function () {
         //travel form
         this.accommodationValue = 'No';
         this.accommodationOptions = ['Yes', 'No'];
+        //food form
+        this.heightB = '0%';
+        this.heightL = '0%';
+        this.heightD = '0%';
+        this.heightO = '0%';
         // setTravelValue(selection : boolean) {
         //     this.travelValue = selection;
         // }
@@ -38,6 +45,41 @@ var CustomPackageComponent = (function () {
     };
     CustomPackageComponent.prototype.setNavigation = function (selection) {
         this.selected = selection;
+    };
+    CustomPackageComponent.prototype.setDays = function (selection) {
+        this.selectedDay = selection;
+    };
+    CustomPackageComponent.prototype.expandB = function () {
+        if (this.heightB == '0%') {
+            this.heightB = '80%';
+        }
+        else {
+            this.heightB = '0%';
+        }
+    };
+    CustomPackageComponent.prototype.expandL = function () {
+        if (this.heightL == '0%') {
+            this.heightL = '80%';
+        }
+        else {
+            this.heightL = '0%';
+        }
+    };
+    CustomPackageComponent.prototype.expandD = function () {
+        if (this.heightD == '0%') {
+            this.heightD = '80%';
+        }
+        else {
+            this.heightD = '0%';
+        }
+    };
+    CustomPackageComponent.prototype.expandO = function () {
+        if (this.heightO == '0%') {
+            this.heightO = '80%';
+        }
+        else {
+            this.heightO = '0%';
+        }
     };
     return CustomPackageComponent;
 }());
