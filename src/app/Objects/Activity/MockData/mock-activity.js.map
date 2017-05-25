@@ -1,0 +1,1 @@
+{"version":3,"file":"mock-activity.js","sourceRoot":"","sources":["mock-activity.ts"],"names":[],"mappings":";;AAEa,QAAA,aAAa,GAAmB;IACzC;QACI,YAAY,EAAE,mBAAmB;QACjC,WAAW,EAAE,EAAE;QACf,QAAQ,EAAE,iBAAiB;QAC3B,KAAK,EAAG,CAAC,qCAAqC,EAAE,uBAAuB,EAAE,wBAAwB,CAAC;QAClG,WAAW,EAAG,cAAc;QAC5B,IAAI,EAAE,CAAC,mBAAmB,EAAE,qBAAqB,EAAE,oBAAoB,CAAC;QACxE,gBAAgB,EAAE,CAAC;KACtB;CACJ,CAAA"}

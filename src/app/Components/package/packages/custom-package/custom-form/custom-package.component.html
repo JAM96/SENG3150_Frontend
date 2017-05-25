@@ -158,18 +158,7 @@
         </span>
     </div>
 
-    <!-- hotel form -->
-    <div class="container" style="width: 90%; padding-top: 20px;" *ngIf="selected==2">
-        <label class="control-label col-sm-3" for="travel">Do you require accomodation?</label>
-
-        <md-radio-group class="example-radio-group" [(ngModel)]="accommodationValue">
-            <md-radio-button class="example-radio-button" *ngFor="let option of accommodationOptions" [value]="option">
-                {{option}}
-            </md-radio-button>
-        </md-radio-group>
-    </div>
-
-    <div class="container s-view-a" *ngIf="accommodationValue=='Yes' && selected==2"><!-- acommodation -->
+    <div class="container s-view-a" *ngIf="selected==2"><!-- acommodation -->
         <div class="row item-container"><!-- hotel 1 --> 
             <div class="col-md-3">
                 <div class="img">
@@ -238,7 +227,7 @@
     </div>
 
     <!-- Food navigation -->
-    <div *ngIf="selected==3" class="col-md-1" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
+    <div *ngIf="selected==3" class="col-xs-1" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
         <ul class="nav nav-pills nav-stacked" role="tablist">
             <li><span class="text-md text-primary">Days</span></li>
             <li *ngFor="let day of days">
@@ -250,18 +239,18 @@
         </ul>
     </div>
 
-    <div *ngIf="selected==3" class="col-md-11" style="height: 100%"><!-- food day content -->
+    <div *ngIf="selected==3" class="col-xs-11" style="height: 100%"><!-- food day content -->
         <h1 class="text-md text-primary text-b">Day {{selectedDay}}</h1>
         <div class="s-view row"><!-- Menu container -->
             <div (click)="expandB()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                 <span class="text-md">Breakfast</span>
                 <a class="expandButton">
-                    <span *ngIf="heightB=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
-                    <span *ngIf="heightB=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                    <span *ngIf="displayB=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="displayB=='block'" class="glyphicon glyphicon-triangle-top"></span>
                 </a>
             </div>
 
-            <div class="s-view-f row" [ngStyle]="{'height': heightB}"><!-- breakfast container -->    
+            <div class="s-view-f row" [ngStyle]="{'display': displayB}"><!-- breakfast container -->    
                 <div class="row item-container"><!-- restaurant item --> 
                     <div class="col-md-3">
                         <div class="img img-f">
@@ -327,15 +316,15 @@
                 </div>
             </div>
 
-            <div (click)="expandL()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+            <div (click)="expandL()" class="row hover" style="padding-top: 5px; width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                 <span class="text-md">Lunch</span>
                 <a class="expandButton">
-                    <span *ngIf="heightB=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
-                    <span *ngIf="heightB=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                    <span *ngIf="displayB=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="displayB=='block'" class="glyphicon glyphicon-triangle-top"></span>
                 </a>
             </div>
 
-            <div class="s-view-f row" [ngStyle]="{'height': heightL}"><!-- lunch container -->    
+            <div class="s-view-f row" [ngStyle]="{'display': displayL}"><!-- lunch container -->    
                 <div class="row item-container"><!-- restaurant item --> 
                     <div class="col-md-3">
                         <div class="img img-f">
@@ -401,15 +390,15 @@
                 </div>
             </div>
 
-            <div (click)="expandD()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+            <div (click)="expandD()" class="row hover" style="padding-top: 5px; width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                 <span class="text-md">Dinner</span>
                 <a class="expandButton">
-                    <span *ngIf="heightB=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
-                    <span *ngIf="heightB=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                    <span *ngIf="displayB=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="displayB=='block'" class="glyphicon glyphicon-triangle-top"></span>
                 </a>
             </div>
 
-            <div class="s-view-f row" [ngStyle]="{'height': heightD}"><!-- Dinner container -->    
+            <div class="s-view-f row" [ngStyle]="{'display': displayD}"><!-- Dinner container -->    
                 <div class="row item-container"><!-- restaurant item --> 
                     <div class="col-md-3">
                         <div class="img img-f">
@@ -475,15 +464,15 @@
                 </div>
             </div>
 
-            <div (click)="expandO()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+            <div (click)="expandO()" class="row hover" style="padding-top: 5px; width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                 <span class="text-md">Other</span>
                 <a class="expandButton">
-                    <span *ngIf="heightO=='0%'" class="glyphicon glyphicon-triangle-bottom"></span>
-                    <span *ngIf="heightO=='80%'" class="glyphicon glyphicon-triangle-top"></span>
+                    <span *ngIf="displayB=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span *ngIf="displayB=='block'" class="glyphicon glyphicon-triangle-top"></span>
                 </a>
             </div>
 
-            <div class="s-view-f row" [ngStyle]="{'height': heightO}"><!-- Dinner container -->    
+            <div class="s-view-f row" [ngStyle]="{'display': displayO}"><!-- Dinner container -->    
                 <div class="row item-container"><!-- restaurant item --> 
                     <div class="col-md-3">
                         <div class="img img-f">

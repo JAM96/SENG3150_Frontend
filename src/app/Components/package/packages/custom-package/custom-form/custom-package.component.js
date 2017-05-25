@@ -20,10 +20,10 @@ var CustomPackageComponent = (function () {
         this.accommodationValue = 'No';
         this.accommodationOptions = ['Yes', 'No'];
         //food form
-        this.heightB = '0%';
-        this.heightL = '0%';
-        this.heightD = '0%';
-        this.heightO = '0%';
+        this.displayB = 'none';
+        this.displayL = 'none';
+        this.displayD = 'none';
+        this.displayO = 'none';
         // setTravelValue(selection : boolean) {
         //     this.travelValue = selection;
         // }
@@ -50,35 +50,35 @@ var CustomPackageComponent = (function () {
         this.selectedDay = selection;
     };
     CustomPackageComponent.prototype.expandB = function () {
-        if (this.heightB == '0%') {
-            this.heightB = '80%';
+        if (this.displayB == 'none') {
+            this.displayB = 'block';
         }
         else {
-            this.heightB = '0%';
+            this.displayB = 'none';
         }
     };
     CustomPackageComponent.prototype.expandL = function () {
-        if (this.heightL == '0%') {
-            this.heightL = '80%';
+        if (this.displayL == 'none') {
+            this.displayL = 'block';
         }
         else {
-            this.heightL = '0%';
+            this.displayL = 'none';
         }
     };
     CustomPackageComponent.prototype.expandD = function () {
-        if (this.heightD == '0%') {
-            this.heightD = '80%';
+        if (this.displayD == 'none') {
+            this.displayD = 'block';
         }
         else {
-            this.heightD = '0%';
+            this.displayD = 'none';
         }
     };
     CustomPackageComponent.prototype.expandO = function () {
-        if (this.heightO == '0%') {
-            this.heightO = '80%';
+        if (this.displayO == 'none') {
+            this.displayO = 'block';
         }
         else {
-            this.heightO = '0%';
+            this.displayO = 'none';
         }
     };
     return CustomPackageComponent;
