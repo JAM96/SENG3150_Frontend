@@ -25,17 +25,21 @@ var md2_1 = require("md2");
 //import app
 var app_component_1 = require("../Components/app.component");
 //import components here
-var about_component_1 = require("../Components/about/about.component");
 var home_component_1 = require("../Components/home/home.component");
-var create_custom_package_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component");
-var navigationtop_component_1 = require("../Components/navigation/navigationtop/navigationtop.component");
+//Navigation Pages
+var about_component_1 = require("../Components/about/about.component");
 var eventoverview_component_1 = require("../Components/event/eventoverview.component");
 var activities_component_1 = require("../Components/activities/activities.component");
-var profile_component_1 = require("../Components/profile/profile.component");
 var food_component_1 = require("../Components/food/food.component");
 var accomodation_component_1 = require("../Components/accomodation/accomodation.component");
 var contact_component_1 = require("../Components/contact/contact.component");
 var shoppingCart_component_1 = require("../Components/shoppingCart/shoppingCart.component");
+var create_custom_package_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component");
+var navigationtop_component_1 = require("../Components/navigation/navigationtop/navigationtop.component");
+//Profile Component and Profile Components
+var profile_component_1 = require("../Components/profile/profile.component");
+var viewPackages_component_1 = require("../Components/profile/viewPackages/viewPackages.component");
+var viewVouchers_component_1 = require("../Components/profile/viewVouchers/viewVouchers.component");
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
@@ -83,7 +87,9 @@ AppModule = __decorate([
             food_component_1.FoodComponent,
             accomodation_component_1.AccomodationComponent,
             contact_component_1.ContactComponent,
-            shoppingCart_component_1.ShoppingCartComponent
+            shoppingCart_component_1.ShoppingCartComponent,
+            viewPackages_component_1.ViewPackagesComponent,
+            viewVouchers_component_1.ViewVouchersComponent
         ],
         bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [
