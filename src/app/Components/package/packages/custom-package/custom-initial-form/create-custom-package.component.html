@@ -27,26 +27,33 @@
                     </md2-datepicker>
 
                     <div class="customIncreasers" style="margin-top: 20px">
-                        <button type="button" md-mini-fab color="accent" (click)="decreaseGuests()">-</button>
+                        <a>
+                            <span (click)="decreaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
+                        </a>
                         <div class="text">
                             Guests: {{guests}}
                         </div>
-                        <button type="button" md-mini-fab color="accent" (click)='increaseGuests()' style="margin-left: -10px">+</button>
+                        <a>
+                            <span (click)="increaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
+                        </a>
                     </div>
 
                     <div class="customIncreasers">
-                        <button type="button" md-mini-fab color="accent" (click)="decreaseRooms()">-</button>
+                        <a>
+                            <span (click)="decreaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
+                        </a>
                         <div class="text">
                             Rooms: {{rooms}}
                         </div>
-                        <button type="button" md-mini-fab color="accent" (click)='increaseRooms()' style="margin-left: -10px">+</button>
+                        <a>
+                            <span (click)="increaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
+                        </a>
                     </div>
 
                     <!--Slider -->
                     <div class="range-slider">
-                        <h3>Budget - ${{value}}</h3>
+                        <h3 class="text-md text-b">Budget - ${{value}}</h3>
                         <input (click)="updateValue()" type="range" [(ngModel)]="value" min="{{minBudget}}" max="{{maxBudget}}">
-                        
                     </div>
 
                     <br>

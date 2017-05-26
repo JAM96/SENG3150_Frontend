@@ -50,7 +50,8 @@ import {HomeComponent} from '../Components/home/home.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
 
-
+//ng2 aside
+import {AsideModule} from 'ng2-aside';
 //test component
 import {TestComponent} from '../Components/test-component/test.component';
 
@@ -66,7 +67,8 @@ import {TestComponent} from '../Components/test-component/test.component';
     FormsModule,
     Md2Module.forRoot(),
     ReactiveFormsModule,
-    routing
+    routing,
+    AsideModule,
     ],
   declarations: [
     AppComponent,

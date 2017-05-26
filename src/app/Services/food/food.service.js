@@ -11,17 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var mock_food_1 = require("../../Objects/Food/MockData/mock-food");
+var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/catch");
+require("rxjs/add/operator/map");
 var FoodService = (function () {
-    function FoodService() {
+    function FoodService(http) {
+        this.http = http;
+        this.url = "http://localhost:8080/foodAndDrinks";
     }
     FoodService.prototype.getFood = function () {
+        return this.http.get(this.url)
+            .map(function (response) { return response.json().result; })
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
+    };
+    FoodService.prototype.getMockFood = function () {
         return Promise.resolve(mock_food_1.FOOD_LIST);
     };
     return FoodService;
 }());
 FoodService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [http_1.Http])
 ], FoodService);
 exports.FoodService = FoodService;
 //# sourceMappingURL=food.service.js.map

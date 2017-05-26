@@ -2,24 +2,33 @@ import {Component, Input, OnInit} from '@angular/core';
 
 //import objects
 import {Hotel} from '../../../../../Objects/Hotel/Hotel';
+import {Food} from '../../../../../Objects/Food/Food';
 
 //import services
 import {HotelService} from '../../../../../Services/hotel/hotel.service';
+import {FoodService} from '../../../../../Services/food/food.service';
 
 
 @Component({
     moduleId: module.id,
     selector: 'custom-package',
     templateUrl: 'custom-package.component.html',
-    providers: [HotelService]
+    providers: [
+        HotelService,
+        FoodService
+        ]
 })
 export class CustomPackageComponent implements OnInit{
     //Objects
     hotels : Hotel[];
-    //
+    food   : Food[];
+
+    //View variables
     selected : number = 3;
     days : number[] = [1,2,3,4,5];
     selectedDay : number = 3;
+    isTrue = false;
+    screenWidth : number = document.getElementsByTagName('body')[0].clientWidth;
 
     //travel form
     travelSubmitted : boolean = false;
@@ -37,7 +46,10 @@ export class CustomPackageComponent implements OnInit{
     displayD : string = 'none';
     displayO : string = 'none';
 
-    constructor(private hotelService : HotelService) {}
+    constructor(
+        private hotelService    :   HotelService,
+        private foodService     :   FoodService
+        ) {}
 
     ngOnInit() {
     }
@@ -48,6 +60,15 @@ export class CustomPackageComponent implements OnInit{
         this.hotelService.getHotels()
             .subscribe(
                 hotel => this.hotels = hotel
+                , err => {console.log(err);})
+    }
+
+    getFood() {
+        console.log('retrieving food');
+        //this.hotelService.getMockFood().then((food: Food[]) => this.food = food);
+        this.foodService.getFood()
+            .subscribe(
+                food => this.food = food
                 , err => {console.log(err);})
     }
 
@@ -72,7 +93,7 @@ export class CustomPackageComponent implements OnInit{
         switch(selection) {
             case 1:
             case 2: this.getHotels();
-            case 3:
+            case 3: this.getFood();
             case 4:
             case 5:
         }

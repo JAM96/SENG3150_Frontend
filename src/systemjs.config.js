@@ -35,6 +35,7 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'angular2-jwt' : 'node_modules/angular2-jwt/angular2-jwt.js',
       'auth0': '../auth0.umd.js',
+      'ng2-aside': 'node_modules/ng2-aside/dist/ng2-aside.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

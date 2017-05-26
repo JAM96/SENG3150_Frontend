@@ -12,13 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 //import services
 var hotel_service_1 = require("../../../../../Services/hotel/hotel.service");
+var food_service_1 = require("../../../../../Services/food/food.service");
 var CustomPackageComponent = (function () {
-    function CustomPackageComponent(hotelService) {
+    function CustomPackageComponent(hotelService, foodService) {
         this.hotelService = hotelService;
-        //
+        this.foodService = foodService;
+        //View variables
         this.selected = 3;
         this.days = [1, 2, 3, 4, 5];
         this.selectedDay = 3;
+        this.isTrue = false;
+        this.screenWidth = document.getElementsByTagName('body')[0].clientWidth;
         //travel form
         this.travelSubmitted = false;
         this.travelValue = 'No';
@@ -41,6 +45,13 @@ var CustomPackageComponent = (function () {
         this.hotelService.getHotels()
             .subscribe(function (hotel) { return _this.hotels = hotel; }, function (err) { console.log(err); });
     };
+    CustomPackageComponent.prototype.getFood = function () {
+        var _this = this;
+        console.log('retrieving food');
+        //this.hotelService.getMockFood().then((food: Food[]) => this.food = food);
+        this.foodService.getFood()
+            .subscribe(function (food) { return _this.food = food; }, function (err) { console.log(err); });
+    };
     //Navigation
     CustomPackageComponent.prototype.prevForm = function () {
         if (this.selected != 1) {
@@ -59,7 +70,7 @@ var CustomPackageComponent = (function () {
         switch (selection) {
             case 1:
             case 2: this.getHotels();
-            case 3:
+            case 3: this.getFood();
             case 4:
             case 5:
         }
@@ -106,9 +117,13 @@ CustomPackageComponent = __decorate([
         moduleId: module.id,
         selector: 'custom-package',
         templateUrl: 'custom-package.component.html',
-        providers: [hotel_service_1.HotelService]
+        providers: [
+            hotel_service_1.HotelService,
+            food_service_1.FoodService
+        ]
     }),
-    __metadata("design:paramtypes", [hotel_service_1.HotelService])
+    __metadata("design:paramtypes", [hotel_service_1.HotelService,
+        food_service_1.FoodService])
 ], CustomPackageComponent);
 exports.CustomPackageComponent = CustomPackageComponent;
 //# sourceMappingURL=custom-package.component.js.map
