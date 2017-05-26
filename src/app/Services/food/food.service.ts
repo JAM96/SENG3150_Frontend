@@ -15,15 +15,23 @@ export class FoodService {
     
     constructor(private http : Http) {}
 
-
+    data : Food[]
 
     getFood() {
         return this.http.get(this.url)
             .map((response:Response) => response.json().result)
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+       
     }
 
     getMockFood() {
         return Promise.resolve(FOOD_LIST);
+    }
+
+
+    someFunction() {
+        return Promise.resolve( this.http.get(this.url)
+            .map((response:Response) => response.json().result)
+                .catch((error:any) => Observable.throw(error.json().error || 'Server error')))
     }
 }

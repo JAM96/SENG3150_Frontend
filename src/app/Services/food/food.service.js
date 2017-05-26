@@ -28,6 +28,11 @@ var FoodService = (function () {
     FoodService.prototype.getMockFood = function () {
         return Promise.resolve(mock_food_1.FOOD_LIST);
     };
+    FoodService.prototype.someFunction = function () {
+        return Promise.resolve(this.http.get(this.url)
+            .map(function (response) { return response.json().result; })
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); }));
+    };
     return FoodService;
 }());
 FoodService = __decorate([

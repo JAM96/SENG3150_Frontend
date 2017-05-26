@@ -1,102 +1,119 @@
-<div class="container">
-    <div class="packageHeader">
-        <div class="packageDates">
-            <md2-datepicker 
-                type="date"
-                mode="portrait"
-                placeholder="Check-in date"
-                tabindex="1"
-                openOnFocus="true"
-                min="minDate"
-                container="inline"
-                [(ngModel)]="startDate">
-            </md2-datepicker>
-            <md2-datepicker 
-                type="date"
-                mode="portrait"
-                placeholder="Check-out date"
-                tabindex="1"
-                openOnFocus="true"
-                container="inline"
-                [(ngModel)]="endDate">
-            </md2-datepicker>
-        </div>
-        <div class="packageFloat">
-            <div class="packageOptionsWrapper">
-            <div id="categorySelect">
-                    <md2-select [(ngModel)]="category" placeholder="Category">
-                        <md2-option>Thrill</md2-option>
-                        <md2-option>Relax</md2-option>
-                        <md2-option>Shopping</md2-option>
-                        <md2-option>Wineries</md2-option>
-                        <md2-option>On the water</md2-option>
-                    </md2-select>
+<div class="view view-add-pd-1 container">
+    <div class="container">
+        <div class="packageHeader">
+            <div class="packageDates">
+                <md2-datepicker 
+                    type="date"
+                    mode="portrait"
+                    placeholder="Check-in date"
+                    tabindex="1"
+                    openOnFocus="true"
+                    min="minDate"
+                    container="inline"
+                    [(ngModel)]="startDate">
+                </md2-datepicker>
+                <md2-datepicker 
+                    type="date"
+                    mode="portrait"
+                    placeholder="Check-out date"
+                    tabindex="1"
+                    openOnFocus="true"
+                    container="inline"
+                    [(ngModel)]="endDate">
+                </md2-datepicker>
+            </div>
+            <div class="packageFloat">
+                <div class="packageOptionsWrapper">
+                <div id="categorySelect">
+                        <md2-select [(ngModel)]="category" placeholder="Category">
+                            <md2-option>Thrill</md2-option>
+                            <md2-option>Relax</md2-option>
+                            <md2-option>Shopping</md2-option>
+                            <md2-option>Wineries</md2-option>
+                            <md2-option>On the water</md2-option>
+                        </md2-select>
+                    </div>
+                    
+                    <button type="button" md-mini-fab color="accent" (click)="increaseGuests()" style="float: right; margin-right: 10px">+</button>
+                    
+                    <div id="guests">
+                        <div class="text">
+                            Guests: {{guests}}
+                        </div>
+                    </div>
+
+                    <button type="button" md-mini-fab color="accent" (click)="decreaseGuests()" style="float: right;">-</button>
                 </div>
-                
-                <button type="button" md-mini-fab color="accent" (click)="increaseGuests()" style="float: right; margin-right: 10px">+</button>
-                
-                <div id="guests">
-                    <div class="text">
-                        Guests: {{guests}}
+            </div>
+
+            <div style="clear: both;"></div> 
+        </div><!-- PACKAGE HEADER -->
+    </div>
+
+    <div class="s-view-f container">
+        <div *ngFor="let package of packages" class="row item-container">
+            <div class="col-md-3"><!-- image -->
+                <div id="img">
+                    <img src="\res\image\{{package.packageImg}}" width="100%" height="100%"/>
+                    <div class="hotelAdvert" style="bottom: 0">WOW BUY NOW!!!</div>
+                </div>
+            </div><!-- End Image -->
+
+            <div class="col-md-9 item-content"><!-- package content -->
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h3 class="text-lg text-primary text-b">
+                            <a class="text-hover-primary">{{package.packageName}}</a>
+                        </h3>
+                    </div>
+                    <div class="col-md-3 item-rating"><!-- duration -->
+                        <span class="text-lg text-w text-hide">{{package.packageDuration}} Days</span>
+                    </div><!-- rating -->
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <span class="text-md text-primary text-nl">Hotel</span>
+                        {{package.hotelName}}
+                    </div>
+
+                    <div class="col-md-3">
+                        <span class="text-md text-primary">Restaurants</span>
+                        <ul>
+                            <li *ngFor="let restaurant of package.restaurants">{{restaurant}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <span class="text-md text-primary">Events</span>
+                        <ul>
+                            <li *ngFor="let event of package.events">{{event}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <span class="text-md text-primary">Activities</span>
+                        <ul>
+                            <li *ngFor="let activity of package.activities">{{activity}}</li>
+                        </ul>
+                        <!--<h3 style="position: absolute; bottom:0">Purchase Now</h3>-->
+                    </div>
+                </div><!-- package row-->
+
+                <div class="row item-bottom">
+                    <div class="col-md-8">
+                        <span class="text-xlg text-b text-primary">AUD $</span>
+                        <span class="text-xlg text-b text-primary">{{package.cost}}</span>
+                        <span class="text-md">Availability:</span>
+                        <span class="text-sm">{{package.packageAvailabilityStart}} to {{package.packageAvailabilityEnd}}</span>
+                    </div>
+                    <div class="col-md-4"><!-- Add to cart -->
+                        <button type="button" md-raised-button style="float: right;">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            View
+                        </button>
                     </div>
                 </div>
-
-                <button type="button" md-mini-fab color="accent" (click)="decreaseGuests()" style="float: right;">-</button>
-            </div>
-        </div>
-
-        <div style="clear: both;"></div> 
-    </div><!-- PACKAGE HEADER -->
-</div>
-<div class="container content">
-    <!--<div>
-        Checkin: {{startDate}} ,
-        Checkout: {{endDate}} , 
-        Category: {{category}}
-    </div>-->
-    <div class="row" style="height: 70vh; overflow: auto">
-        <div *ngFor="let package of packages; let idx = index" class="row" style="padding: 20px; background-color: white; margin: 20px; border-radius: 10px" md-button>
-            <div class="col-md-3">
-                <div class="thumbnail" style="padding: 0;">
-                    <a md-button style="padding: 0;">
-                        <div id="img">
-                            <div class="packageTitle">{{package.packageName}}</div>
-                            <img src="\res\image\{{package.packageImg}}" width="100%" height="100%"/>
-                            <div class="packageTitle" style="bottom: 0">${{package.cost}}</div>
-                        </div>
-                    </a>
-                </div>
-                <h3>{{package.packageDuration}} Days</h3>
-            </div>
-
-            <div class="col-md-2">
-                <h3>Hotel</h3>
-                {{package.hotelName}}
-                <h3>Availability </h3>
-                {{package.packageAvailabilityStart}} to {{package.packageAvailabilityEnd}}
-            </div>
-
-            <div class="col-md-2">
-                <h3>Restaurants</h3>
-                <ul>
-                    <li *ngFor="let restaurant of package.restaurants">{{restaurant}}</li>
-                </ul>
-            </div>
-
-            <div class="col-md-2">
-                <h3>Events</h3>
-                <ul>
-                    <li *ngFor="let event of package.events">{{event}}</li>
-                </ul>
-            </div>
-
-            <div class="col-md-2" style="height: 100%">
-                <h3>Activities</h3>
-                <ul>
-                    <li *ngFor="let activity of package.activities">{{activity}}</li>
-                </ul>
-                <!--<h3 style="position: absolute; bottom:0">Purchase Now</h3>-->
-            </div>
+            </div><!-- end content -->
         </div><!-- Package One-->
     </div>
 </div>

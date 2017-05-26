@@ -50,8 +50,14 @@ import {HomeComponent} from '../Components/home/home.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
 
-//ng2 aside
+//ng2 
 import {AsideModule} from 'ng2-aside';
+import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
+
+//calendar
+import {CalendarModule} from 'angular-calendar';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 //test component
 import {TestComponent} from '../Components/test-component/test.component';
 
@@ -69,6 +75,9 @@ import {TestComponent} from '../Components/test-component/test.component';
     ReactiveFormsModule,
     routing,
     AsideModule,
+    SlimLoadingBarModule.forRoot(),
+    CalendarModule.forRoot(),
+    NgbModule.forRoot(),
     ],
   declarations: [
     AppComponent,

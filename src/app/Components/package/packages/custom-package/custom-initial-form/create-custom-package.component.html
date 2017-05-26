@@ -3,28 +3,11 @@
         <div class="container">
             <div class="row customPackageCreationForm">
                 <div class="col-xs-7"><!-- left column -->
-                    <md2-datepicker
-                        type="date"
-                        required="true"
-                        mode="portrait"
-                        placeholder="Check-in date"
-                        tabindex="1"
-                        openOnFocus="true"
-                        container="inline"
-                        [(ngModel)]="startDate">
-                    </md2-datepicker>
-                    <br>
-                    <md2-datepicker 
-                        type="date"
-                        required="true"
-                        mode="portrait"
-                        min="minDate"
-                        placeholder="Check-out date"
-                        tabindex="1"
-                        openOnFocus="true"
-                        container="inline"
-                        [(ngModel)]="endDate">
-                    </md2-datepicker>
+                    <label for="checkin">Check-in: </label>
+                    <input class="form-control" type="date" id="checkin" [(ngModel)]="checkIn"/>
+
+                    <label for="checkout" style="padding-top: 10px">Check-out: </label>
+                    <input class="form-control" type="date" id="checkout" [(ngModel)]="checkOut"/>
 
                     <div class="customIncreasers" style="margin-top: 20px">
                         <a>
@@ -52,7 +35,7 @@
 
                     <!--Slider -->
                     <div class="range-slider">
-                        <h3 class="text-md text-b">Budget - ${{value}}</h3>
+                        <h3 class="text-sm text-b">Budget - ${{value}}</h3>
                         <input (click)="updateValue()" type="range" [(ngModel)]="value" min="{{minBudget}}" max="{{maxBudget}}">
                     </div>
 
@@ -71,17 +54,3 @@
         <div >t</div>
     </div><!-- recommend packages -->
 </section>
-
-
-<!--<md-input-container>
-                    <button mdSuffix [mdDatepickerToggle]="checkin"></button>
-                    <input mdInput (click)="openCIDate()" placeholder="Check-in Date" [mdDatepicker]="checkin" [min]="minDate">
-                </md-input-container>
-                <md-datepicker #checkin></md-datepicker>
-
-                <md-input-container>
-                    <button mdSuffix [mdDatepickerToggle]="checkout"></button>
-                    <input mdInput (click)="openCODate()" placeholder="Check-out Datse" [mdDatepicker]="checkout" [min]="minDate">
-                </md-input-container>
-                <md-datepicker #checkout></md-datepicker>-->
-                <!---->

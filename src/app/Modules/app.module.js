@@ -48,8 +48,12 @@ var custom_package_component_1 = require("../Components/package/packages/custom-
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
-//ng2 aside
+//ng2 
 var ng2_aside_1 = require("ng2-aside");
+var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
+//calendar
+var angular_calendar_1 = require("angular-calendar");
+var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 //test component
 var test_component_1 = require("../Components/test-component/test.component");
 //add module imports and component declarations here...
@@ -77,6 +81,9 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             app_routing_1.routing,
             ng2_aside_1.AsideModule,
+            ng2_slim_loading_bar_1.SlimLoadingBarModule.forRoot(),
+            angular_calendar_1.CalendarModule.forRoot(),
+            ng_bootstrap_1.NgbModule.forRoot(),
         ],
         declarations: [
             app_component_1.AppComponent,

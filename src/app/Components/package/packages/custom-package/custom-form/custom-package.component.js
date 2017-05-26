@@ -13,16 +13,19 @@ var core_1 = require("@angular/core");
 //import services
 var hotel_service_1 = require("../../../../../Services/hotel/hotel.service");
 var food_service_1 = require("../../../../../Services/food/food.service");
+var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
 var CustomPackageComponent = (function () {
-    function CustomPackageComponent(hotelService, foodService) {
+    function CustomPackageComponent(hotelService, foodService, slimLoadingBarService) {
         this.hotelService = hotelService;
         this.foodService = foodService;
+        this.slimLoadingBarService = slimLoadingBarService;
         //View variables
         this.selected = 3;
         this.days = [1, 2, 3, 4, 5];
         this.selectedDay = 3;
         this.isTrue = false;
         this.screenWidth = document.getElementsByTagName('body')[0].clientWidth;
+        this.loaded = false;
         //travel form
         this.travelSubmitted = false;
         this.travelValue = 'No';
@@ -35,24 +38,58 @@ var CustomPackageComponent = (function () {
         this.displayL = 'none';
         this.displayD = 'none';
         this.displayO = 'none';
+        this.testString = "hello world";
     }
     CustomPackageComponent.prototype.ngOnInit = function () {
     };
+    CustomPackageComponent.prototype.startLoading = function () {
+        this.slimLoadingBarService.start(function () {
+            console.log('Loading complete');
+        });
+    };
+    CustomPackageComponent.prototype.stopLoading = function () {
+        this.slimLoadingBarService.stop();
+    };
+    CustomPackageComponent.prototype.completeLoading = function () {
+        this.slimLoadingBarService.complete();
+    };
     CustomPackageComponent.prototype.getHotels = function () {
         var _this = this;
+        this.startLoading();
         console.log('retrieving hotels');
-        this.hotelService.getMockHotels().then(function (hotels) { return _this.hotels = hotels; });
-        // this.hotelService.getHotels()
-        //     .subscribe(
-        //         hotel => this.hotels = hotel
-        //         , err => {console.log(err);})
+        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
+        this.hotelService.getHotels()
+            .subscribe(function (hotel) { return _this.hotels = hotel; });
+        // .subscribe(
+        //     function(response) {
+        //         console.log('Success, response is: ', response); 
+        //         (response : Hotel[]) => this.hotels = response;
+        //     },
+        //     function(error) {
+        //         console.log(error)
+        //     },
+        //     function() {
+        //          var cpc : CustomPackageComponent;
+        //         console.log('Completed', cpc.testString);
+        //         cpc.completeLoading();
+        //     });
+        //console.log(this.hotels)
+        //fake loading bar
+        setTimeout(function () {
+            _this.completeLoading();
+        }, 3000);
     };
     CustomPackageComponent.prototype.getFood = function () {
         var _this = this;
         console.log('retrieving food');
         //this.hotelService.getMockFood().then((food: Food[]) => this.food = food);
+        this.startLoading();
         this.foodService.getFood()
-            .subscribe(function (food) { return _this.food = food; }, function (err) { console.log(err); });
+            .subscribe(function (food) { return _this.food = food; });
+        //fake loading bar
+        setTimeout(function () {
+            _this.completeLoading();
+        }, 1000);
     };
     //Navigation
     CustomPackageComponent.prototype.prevForm = function () {
@@ -69,12 +106,17 @@ var CustomPackageComponent = (function () {
     };
     CustomPackageComponent.prototype.setNavigation = function (selection) {
         this.selected = selection;
+        console.log('SELECTED VALUE: ', selection);
         switch (selection) {
-            case 1:
-            case 2: this.getHotels();
-            case 3: this.getFood();
-            case 4:
-            case 5:
+            case 1: break;
+            case 2:
+                this.getHotels();
+                break;
+            case 3:
+                this.getFood();
+                break;
+            case 4: break;
+            case 5: break;
         }
     };
     CustomPackageComponent.prototype.setDays = function (selection) {
@@ -125,7 +167,8 @@ CustomPackageComponent = __decorate([
         ]
     }),
     __metadata("design:paramtypes", [hotel_service_1.HotelService,
-        food_service_1.FoodService])
+        food_service_1.FoodService,
+        ng2_slim_loading_bar_1.SlimLoadingBarService])
 ], CustomPackageComponent);
 exports.CustomPackageComponent = CustomPackageComponent;
 //# sourceMappingURL=custom-package.component.js.map

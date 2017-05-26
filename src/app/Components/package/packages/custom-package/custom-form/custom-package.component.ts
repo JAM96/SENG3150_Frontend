@@ -7,7 +7,7 @@ import {Food} from '../../../../../Objects/Food/Food';
 //import services
 import {HotelService} from '../../../../../Services/hotel/hotel.service';
 import {FoodService} from '../../../../../Services/food/food.service';
-
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 
 @Component({
     moduleId: module.id,
@@ -29,6 +29,7 @@ export class CustomPackageComponent implements OnInit{
     selectedDay : number = 3;
     isTrue = false;
     screenWidth : number = document.getElementsByTagName('body')[0].clientWidth;
+    loaded = false;
 
     //travel form
     travelSubmitted : boolean = false;
@@ -48,28 +49,70 @@ export class CustomPackageComponent implements OnInit{
 
     constructor(
         private hotelService    :   HotelService,
-        private foodService     :   FoodService
+        private foodService     :   FoodService,
+        private slimLoadingBarService : SlimLoadingBarService
         ) {}
 
     ngOnInit() {
     }
 
+    startLoading() {
+        this.slimLoadingBarService.start(() => {
+            console.log('Loading complete');
+        });
+    }
+
+    stopLoading() {
+        this.slimLoadingBarService.stop();
+    }
+
+    completeLoading() {
+        this.slimLoadingBarService.complete();
+    }
+
+    public hotelsX : Hotel[]
+    public testString : string = "hello world";
+
     getHotels() {
+        this.startLoading();
         console.log('retrieving hotels');
-        this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-        // this.hotelService.getHotels()
-        //     .subscribe(
-        //         hotel => this.hotels = hotel
-        //         , err => {console.log(err);})
+        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
+        this.hotelService.getHotels()
+            .subscribe((hotel : Hotel[]) => this.hotels = hotel)
+            // .subscribe(
+            //     function(response) {
+            //         console.log('Success, response is: ', response); 
+            //         (response : Hotel[]) => this.hotels = response;
+            //     },
+            //     function(error) {
+            //         console.log(error)
+            //     },
+            //     function() {
+            //          var cpc : CustomPackageComponent;
+            //         console.log('Completed', cpc.testString);
+                   
+            //         cpc.completeLoading();
+            //     });
+        //console.log(this.hotels)
+
+        //fake loading bar
+        setTimeout(() => {
+            this.completeLoading();
+        }, 3000);
     }
 
     getFood() {
         console.log('retrieving food');
         //this.hotelService.getMockFood().then((food: Food[]) => this.food = food);
+        this.startLoading();
+       
         this.foodService.getFood()
-            .subscribe(
-                food => this.food = food
-                , err => {console.log(err);})
+            .subscribe((food : Food[]) => this.food = food);
+        
+        //fake loading bar
+        setTimeout(() => {
+            this.completeLoading();
+        }, 1000);
     }
 
     //Navigation
@@ -89,13 +132,14 @@ export class CustomPackageComponent implements OnInit{
 
     setNavigation(selection : number) {
         this.selected = selection;
+        console.log('SELECTED VALUE: ', selection);
 
         switch(selection) {
-            case 1:
-            case 2: this.getHotels();
-            case 3: this.getFood();
-            case 4:
-            case 5:
+            case 1: break;
+            case 2: this.getHotels();   break;
+            case 3: this.getFood();     break;
+            case 4: break;
+            case 5: break;
         }
     }
 

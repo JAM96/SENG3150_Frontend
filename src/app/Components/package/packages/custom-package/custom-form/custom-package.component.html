@@ -1,3 +1,4 @@
+<ng2-slim-loading-bar [height]="'4px'"></ng2-slim-loading-bar>
 <div class="container view view-add-pd-1 ">
     <ul class="nav nav-tabs">
         <li role="resentation">
@@ -255,7 +256,9 @@
                     </a>
                 </div>
 
-                <div class="s-view-f row" [ngStyle]="{'display': displayB}"><!-- breakfast container -->    
+                <div class="s-view-f row" [ngStyle]="{'display': block}"><!-- breakfast container -->
+                    
+
                     <div *ngFor="let f of food" class="row item-container"><!-- restaurant item --> 
                         <div class="col-md-3">
                             <div class="img img-f">
