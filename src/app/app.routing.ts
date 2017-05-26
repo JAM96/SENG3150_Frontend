@@ -16,6 +16,9 @@ import {AccomodationComponent} from './Components/accomodation/accomodation.comp
 import {ContactComponent} from './Components/contact/contact.component';
 import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
 
+//test component
+import {TestComponent} from './Components/test-component/test.component';
+
 
 
 /*
@@ -39,6 +42,7 @@ const appRoutes: Routes = [
   { path: 'accomodation', component: AccomodationComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
+  { path: 'test', component: TestComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 
 ]

@@ -1,5 +1,7 @@
 import { NgModule }      from '@angular/core';
 
+//providers
+import {HttpModule} from '@angular/http';
 //used for Auth0
 import {routing, appRoutingProviders} from '../app.routing';
 import {AUTH_PROVIDERS} from 'angular2-jwt';
@@ -49,10 +51,14 @@ import {HomeComponent} from '../Components/home/home.component';
 //import services here
 
 
+//test component
+import {TestComponent} from '../Components/test-component/test.component';
+
 //add module imports and component declarations here...
 @NgModule({
   imports:      [ 
     BrowserModule,
+    HttpModule,
     MaterialModule,
     MdDatepickerModule,
     MdNativeDateModule,
@@ -64,6 +70,7 @@ import {HomeComponent} from '../Components/home/home.component';
     ],
   declarations: [
     AppComponent,
+    TestComponent,
     HomeComponent,
     AboutComponent,
     ActivitiesComponent,

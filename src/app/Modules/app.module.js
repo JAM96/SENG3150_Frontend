@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+//providers
+var http_1 = require("@angular/http");
 //used for Auth0
 var app_routing_1 = require("../app.routing");
 //Used for navigation
@@ -46,6 +48,8 @@ var custom_package_component_1 = require("../Components/package/packages/custom-
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
+//test component
+var test_component_1 = require("../Components/test-component/test.component");
 //add module imports and component declarations here...
 var AppModule = (function () {
     function AppModule(router) {
@@ -61,6 +65,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
+            http_1.HttpModule,
             material_1.MaterialModule,
             material_1.MdDatepickerModule,
             material_1.MdNativeDateModule,
@@ -72,6 +77,7 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
+            test_component_1.TestComponent,
             home_component_1.HomeComponent,
             about_component_1.AboutComponent,
             activities_component_1.ActivitiesComponent,
