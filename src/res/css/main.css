@@ -57,7 +57,7 @@ body {
 .s-view {
     width: 100%; 
     padding-top: 20px;
-    height: 90%;  
+    height: 100%;  
     overflow: auto;
 }
 
@@ -71,7 +71,7 @@ body {
 .s-view-a {
     width: 90%; 
     padding-top: 20px; 
-    height: 80%; 
+    height: 100%; 
     overflow: auto;
 }
 

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 
 import {Test} from './test';
-import {Result} from './Result';
 import {TEST_LIST} from './test-list';
 
 import {Http, Response} from "@angular/http";

@@ -56,11 +56,11 @@ export class CustomPackageComponent implements OnInit{
 
     getHotels() {
         console.log('retrieving hotels');
-        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-        this.hotelService.getHotels()
-            .subscribe(
-                hotel => this.hotels = hotel
-                , err => {console.log(err);})
+        this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
+        // this.hotelService.getHotels()
+        //     .subscribe(
+        //         hotel => this.hotels = hotel
+        //         , err => {console.log(err);})
     }
 
     getFood() {

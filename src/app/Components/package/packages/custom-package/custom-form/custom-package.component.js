@@ -41,9 +41,11 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.getHotels = function () {
         var _this = this;
         console.log('retrieving hotels');
-        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-        this.hotelService.getHotels()
-            .subscribe(function (hotel) { return _this.hotels = hotel; }, function (err) { console.log(err); });
+        this.hotelService.getMockHotels().then(function (hotels) { return _this.hotels = hotels; });
+        // this.hotelService.getHotels()
+        //     .subscribe(
+        //         hotel => this.hotels = hotel
+        //         , err => {console.log(err);})
     };
     CustomPackageComponent.prototype.getFood = function () {
         var _this = this;
