@@ -27,7 +27,7 @@ export class PackagesComponent implements OnInit{
 
     constructor(private route: ActivatedRoute, private _packagesService: PackagesService) {}
 
-    getContacts() {
+    getPackages() {
         this._packagesService.getPackages().then((packages: PackageList[]) => this.packages = packages);
     }
 
@@ -41,7 +41,7 @@ export class PackagesComponent implements OnInit{
     }
 
     ngOnInit() {
-        this.getContacts();
+        this.getPackages();
 
         this.sub = this.route.params.subscribe(params => {
           this.startDate = params['startDate'];

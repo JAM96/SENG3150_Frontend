@@ -19,7 +19,7 @@ var PackagesComponent = (function () {
         this.minDate = new Date();
         this.guests = 0;
     }
-    PackagesComponent.prototype.getContacts = function () {
+    PackagesComponent.prototype.getPackages = function () {
         var _this = this;
         this._packagesService.getPackages().then(function (packages) { return _this.packages = packages; });
     };
@@ -33,7 +33,7 @@ var PackagesComponent = (function () {
     };
     PackagesComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getContacts();
+        this.getPackages();
         this.sub = this.route.params.subscribe(function (params) {
             _this.startDate = params['startDate'];
             _this.endDate = params['endDate'];
