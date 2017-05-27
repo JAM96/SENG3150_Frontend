@@ -11,8 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var mock_activity_1 = require("../../Objects/Activity/MockData/mock-activity");
+var http_1 = require("@angular/http");
 var ActivityService = (function () {
-    function ActivityService() {
+    function ActivityService(http) {
+        this.http = http;
+        this.url = "http://localhost:8080/accommodation";
     }
     ActivityService.prototype.getActivities = function () {
         return Promise.resolve(mock_activity_1.ACTIVITY_LIST);
@@ -24,7 +27,7 @@ var ActivityService = (function () {
 }());
 ActivityService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [http_1.Http])
 ], ActivityService);
 exports.ActivityService = ActivityService;
 //# sourceMappingURL=activities.service.js.map

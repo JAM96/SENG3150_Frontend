@@ -13,9 +13,12 @@ import {ActivityService} from '../../Services/activities/activities.service';
 export class ActivitiesComponent {
         
         constructor(private activityService : ActivityService){}
-        activity : ActivityList[];
+
+        activityList : ActivityList[];
+        
         getActivities() {
-        this.activityService.getMockActivities().then((activity: ActivityList[]) => this.activity = activity);    
+
+            this.activityService.getMockActivities().then((activityList: ActivityList[]) => this.activityList = activityList);    
         /*
         console.log('retrieving food');
         

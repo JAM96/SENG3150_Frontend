@@ -17,7 +17,7 @@ var ActivitiesComponent = (function () {
     }
     ActivitiesComponent.prototype.getActivities = function () {
         var _this = this;
-        this.activityService.getMockActivities().then(function (activity) { return _this.activity = activity; });
+        this.activityService.getMockActivities().then(function (activityList) { return _this.activityList = activityList; });
         /*
         console.log('retrieving food');
         

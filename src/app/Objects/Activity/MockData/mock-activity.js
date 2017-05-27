@@ -8,7 +8,8 @@ exports.ACTIVITY_LIST = [
         hours: ["Public/School Holidays : 10am - 5pm", "Sat - Sun : 8am - 5pm", "Mon - Fri : 10am - 5pm"],
         description: "Water Skiing",
         cost: ["Kids(6-12) : $200", "Teens(13-17) : $250", "Adults(18+) : $300"],
-        activityDuration: 2
+        activityDuration: 2,
+        activityRating: 4
     }
 ];
 //# sourceMappingURL=mock-activity.js.map
