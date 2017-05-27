@@ -3,11 +3,14 @@ import {Component, Input, OnInit} from '@angular/core';
 //import objects
 import {Hotel} from '../../../../../Objects/Hotel/Hotel';
 import {Food} from '../../../../../Objects/Food/Food';
+import {Activity} from '../../../../../Objects/Activity/Activity';
 
 //import services
 import {HotelService} from '../../../../../Services/hotel/hotel.service';
 import {FoodService} from '../../../../../Services/food/food.service';
+import {ActivityService} from '../../../../../Services/activity/activity.service';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import {CreateCustomPackageInitialComponent} from '../custom-initial-form/create-custom-package.component';
 
 @Component({
     moduleId: module.id,
@@ -15,13 +18,23 @@ import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
     templateUrl: 'custom-package.component.html',
     providers: [
         HotelService,
-        FoodService
+        FoodService,
+        ActivityService,
+        CreateCustomPackageInitialComponent,
         ]
 })
 export class CustomPackageComponent implements OnInit{
+    //Data from previous form
+    budget : any;
+    guests : number;
+    rooms : number;
+    checkin : Date;
+    checkout: Date;
+
     //Objects
     hotels : Hotel[];
     food   : Food[];
+    activities  : Activity[];
 
     //View variables
     selected : number = 3;
@@ -50,8 +63,18 @@ export class CustomPackageComponent implements OnInit{
     constructor(
         private hotelService    :   HotelService,
         private foodService     :   FoodService,
+        private activityService :   ActivityService,
+        private cpf             :   CreateCustomPackageInitialComponent,
         private slimLoadingBarService : SlimLoadingBarService
-        ) {}
+        ) 
+        {
+            this.budget = cpf.getBudget()
+            this.guests = cpf.getGuests();
+            this.rooms = cpf.getRooms();
+            this.checkin = cpf.getCheckin();
+            this.checkout = cpf.getCheckout();
+
+        }
 
     ngOnInit() {
     }
@@ -115,6 +138,20 @@ export class CustomPackageComponent implements OnInit{
         }, 1000);
     }
 
+    getActivities() {
+        console.log('retrieving Activities');
+        //this.hotelService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        this.startLoading();
+       
+        this.activityService.getActivities()
+            .subscribe((activity : Activity[]) => this.activities = activity);
+        
+        //fake loading bar
+        setTimeout(() => {
+            this.completeLoading();
+        }, 1000);
+    }
+
     //Navigation
     prevForm() {
         if(this.selected != 1) {
@@ -136,9 +173,9 @@ export class CustomPackageComponent implements OnInit{
 
         switch(selection) {
             case 1: break;
-            case 2: this.getHotels();   break;
-            case 3: this.getFood();     break;
-            case 4: break;
+            case 2: this.getHotels();       break;
+            case 3: this.getFood();         break;
+            case 4: this.getActivities();   break;
             case 5: break;
         }
     }

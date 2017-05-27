@@ -11,15 +11,36 @@ import {Router} from '@angular/router'
 export class CreateCustomPackageInitialComponent implements AfterViewInit {
     minBudget = 300;
     maxBudget = 4000;
-    value : any = 472;
 
-    minDate = new Date();
+    //form data
+    value : any = 472;
     guests: number = 1;
     rooms: number = 1;
+    checkin : Date;
+    checkout: Date;
+
+
+    minDate = new Date();
     maxRooms: number = 10;
     maxGuests: number = 10;
 
     constructor (public router: Router) {}
+
+    getBudget() {
+        return this.value;
+    }
+    getGuests() {
+        return this.guests;
+    }
+    getRooms() {
+        return this.rooms;
+    }
+    getCheckin() {
+        return this.checkin;
+    }
+    getCheckout() {
+        return this.checkout;
+    }
 
     submitForm() {
         this.router.navigate(["/createpackage"]);    

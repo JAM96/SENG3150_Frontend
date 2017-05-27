@@ -17,37 +17,40 @@ body {
     overflow: hidden;
 }
 
+/* CONTAINERS */
+
+/*Home Page Panels */
+.panel {
+    margin: 0;
+    background-color: #333333;
+    background-image: url('../image/panel_bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+    min-height: 100vh;
+    height: auto;
+    /*padding: 100px;*/
+}
+.panelHalf {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 100px;
+    min-height: 100vh;
+    height: auto;
+    background-color: rgba(255,255,255,1);
+}
+
+/* VIEWS */
+/* style="width: 100%; height: 95vh; overflow: auto; overflow-x: hidden"*/
 .view {
+    width: 100vw;
     height: 95vh;
+    overflow: auto;
+    overflow-x: hidden;
+    
     background-color: white;
     border: 1px solid black;
     border-top: none;
     border-bottom: none;
-}
-
-.expandButton {
-    float: right;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.expandButton:hover {
-    background-color: rgba(238,238,238,1);
-}
-
-.hover:hover {
-    cursor: pointer;
-}
-
-#timeoutmessage {
-    position: absolute; 
-    bottom: 0;
-    margin-bottom: 0;
-    padding: 20px;
-    background-color: rgba(0,0,0,0.5);
-    text-align: center;
-    width: 100%; 
-    color: white
 }
 
 .view-add-pd-1 {
@@ -74,6 +77,35 @@ body {
     height: 100%; 
     overflow: auto;
 }
+
+/* END VIEWS */
+
+.expandButton {
+    float: right;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.expandButton:hover {
+    background-color: rgba(238,238,238,1);
+}
+
+.hover:hover {
+    cursor: pointer;
+}
+
+#timeoutmessage {
+    position: absolute; 
+    bottom: 0;
+    margin-bottom: 0;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    width: 100%; 
+    color: white
+}
+
+
 
 .homeImg {
     background-image: url("../image/home-4.jpg");
@@ -234,26 +266,7 @@ md-sidenav {
      padding-top: 20px;
 }
 
-.panelHalf {
-    margin-left: 20%;
-    margin-right: 20%;
-    padding: 100px;
-    min-height: 100vh;
-    height: auto;
-    background-color: rgba(255,255,255,0.8);
-}
 
-
-.panel {
-    margin: 0;
-    background-color: #333333;
-    background-image: url('../image/panel_bg.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat; 
-    min-height: 100vh;
-    height: auto;
-    /*padding: 100px;*/
-}
 
 #about {
     padding: 0;

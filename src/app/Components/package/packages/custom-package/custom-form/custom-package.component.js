@@ -13,11 +13,15 @@ var core_1 = require("@angular/core");
 //import services
 var hotel_service_1 = require("../../../../../Services/hotel/hotel.service");
 var food_service_1 = require("../../../../../Services/food/food.service");
+var activity_service_1 = require("../../../../../Services/activity/activity.service");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
+var create_custom_package_component_1 = require("../custom-initial-form/create-custom-package.component");
 var CustomPackageComponent = (function () {
-    function CustomPackageComponent(hotelService, foodService, slimLoadingBarService) {
+    function CustomPackageComponent(hotelService, foodService, activityService, cpf, slimLoadingBarService) {
         this.hotelService = hotelService;
         this.foodService = foodService;
+        this.activityService = activityService;
+        this.cpf = cpf;
         this.slimLoadingBarService = slimLoadingBarService;
         //View variables
         this.selected = 3;
@@ -39,6 +43,11 @@ var CustomPackageComponent = (function () {
         this.displayD = 'none';
         this.displayO = 'none';
         this.testString = "hello world";
+        this.budget = cpf.getBudget();
+        this.guests = cpf.getGuests();
+        this.rooms = cpf.getRooms();
+        this.checkin = cpf.getCheckin();
+        this.checkout = cpf.getCheckout();
     }
     CustomPackageComponent.prototype.ngOnInit = function () {
     };
@@ -91,6 +100,18 @@ var CustomPackageComponent = (function () {
             _this.completeLoading();
         }, 1000);
     };
+    CustomPackageComponent.prototype.getActivities = function () {
+        var _this = this;
+        console.log('retrieving Activities');
+        //this.hotelService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        this.startLoading();
+        this.activityService.getActivities()
+            .subscribe(function (activity) { return _this.activities = activity; });
+        //fake loading bar
+        setTimeout(function () {
+            _this.completeLoading();
+        }, 1000);
+    };
     //Navigation
     CustomPackageComponent.prototype.prevForm = function () {
         if (this.selected != 1) {
@@ -115,7 +136,9 @@ var CustomPackageComponent = (function () {
             case 3:
                 this.getFood();
                 break;
-            case 4: break;
+            case 4:
+                this.getActivities();
+                break;
             case 5: break;
         }
     };
@@ -163,11 +186,15 @@ CustomPackageComponent = __decorate([
         templateUrl: 'custom-package.component.html',
         providers: [
             hotel_service_1.HotelService,
-            food_service_1.FoodService
+            food_service_1.FoodService,
+            activity_service_1.ActivityService,
+            create_custom_package_component_1.CreateCustomPackageInitialComponent,
         ]
     }),
     __metadata("design:paramtypes", [hotel_service_1.HotelService,
         food_service_1.FoodService,
+        activity_service_1.ActivityService,
+        create_custom_package_component_1.CreateCustomPackageInitialComponent,
         ng2_slim_loading_bar_1.SlimLoadingBarService])
 ], CustomPackageComponent);
 exports.CustomPackageComponent = CustomPackageComponent;

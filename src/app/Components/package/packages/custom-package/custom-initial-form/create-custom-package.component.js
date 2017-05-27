@@ -16,13 +16,29 @@ var CreateCustomPackageInitialComponent = (function () {
         this.router = router;
         this.minBudget = 300;
         this.maxBudget = 4000;
+        //form data
         this.value = 472;
-        this.minDate = new Date();
         this.guests = 1;
         this.rooms = 1;
+        this.minDate = new Date();
         this.maxRooms = 10;
         this.maxGuests = 10;
     }
+    CreateCustomPackageInitialComponent.prototype.getBudget = function () {
+        return this.value;
+    };
+    CreateCustomPackageInitialComponent.prototype.getGuests = function () {
+        return this.guests;
+    };
+    CreateCustomPackageInitialComponent.prototype.getRooms = function () {
+        return this.rooms;
+    };
+    CreateCustomPackageInitialComponent.prototype.getCheckin = function () {
+        return this.checkin;
+    };
+    CreateCustomPackageInitialComponent.prototype.getCheckout = function () {
+        return this.checkout;
+    };
     CreateCustomPackageInitialComponent.prototype.submitForm = function () {
         this.router.navigate(["/createpackage"]);
     };

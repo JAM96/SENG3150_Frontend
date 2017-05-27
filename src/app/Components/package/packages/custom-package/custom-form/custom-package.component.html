@@ -1,4 +1,11 @@
 <ng2-slim-loading-bar [height]="'4px'"></ng2-slim-loading-bar>
+<div class="row" style="padding-left: 100px">
+    <p>Budget: {{budget}}</p>
+    <p>Guests: {{guests}}</p>
+    <p>Rooms: {{rooms}}</p>
+    <p>Checkin: {{checkin}}</p>
+    <p>Checkout: {{checkout}}</p>
+</div>
 <div class="container view view-add-pd-1 ">
     <ul class="nav nav-tabs">
         <li role="resentation">
@@ -13,10 +20,10 @@
         </ng-template>
 
         <li role="presentation" *ngIf="selected==2; else notActive2" class="active">
-            <a (click)="setNavigation(2)">Accomodaton</a>
+            <a (click)="setNavigation(2)">Accommodation</a>
         </li>
         <ng-template #notActive2>
-            <li role="presentation"><a (click)="setNavigation(2)">Accomodaton</a></li>
+            <li role="presentation"><a (click)="setNavigation(2)">Accommodation</a></li>
         </ng-template>
 
         <li role="presentation" *ngIf="selected==3; else notActive3" class="active">
@@ -256,9 +263,7 @@
                     </a>
                 </div>
 
-                <div class="s-view-f row" [ngStyle]="{'display': block}"><!-- breakfast container -->
-                    
-
+                <div class="s-view-f row" [ngStyle]="{'display': displayB}"><!-- breakfast container -->
                     <div *ngFor="let f of food" class="row item-container"><!-- restaurant item --> 
                         <div class="col-md-3">
                             <div class="img img-f">
@@ -318,24 +323,24 @@
                 <div (click)="expandL()" class="row hover" style="padding-top: 5px; width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                     <span class="text-md">Lunch</span>
                     <a class="expandButton">
-                        <span *ngIf="displayB=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
-                        <span *ngIf="displayB=='block'" class="glyphicon glyphicon-triangle-top"></span>
+                        <span *ngIf="displayL=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                        <span *ngIf="displayL=='block'" class="glyphicon glyphicon-triangle-top"></span>
                     </a>
                 </div>
 
                 <div class="s-view-f row" [ngStyle]="{'display': displayL}"><!-- lunch container -->    
-                    <div class="row item-container"><!-- restaurant item --> 
+                    <div *ngFor="let f of food" class="row item-container"><!-- restaurant item --> 
                         <div class="col-md-3">
                             <div class="img img-f">
                                 <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                                <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                                <div class="hotelAdvert" style="bottom: 0">{{f.diningStyle}}</div>
                             </div>
                         </div><!-- image -->
                         <div class="col-md-9 item-content item-content-short"><!-- content -->
                             <div class="row">
                                 <div class="col-md-9"><!-- hotel name -->
                                     <h3 class="text-lg text-b text-primary">
-                                        <a class="text-hover-primary">Hotel 1</a>
+                                        <a class="text-hover-primary">{{f.name}}</a>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
@@ -343,14 +348,14 @@
                                         <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
                                     </h3>
                                     <a class="text-hover-k text-sm text-k">
-                                        <span class="text-u">Newcastle</span>
+                                        <span class="text-u">{{f.suburb}}</span>
                                         <span class="glyphicon glyphicon-globe"></span>
                                     </a>
                                 </div><!-- hotel name end-->
 
                                 <div class="col-md-3 item-rating"><!-- rating -->
                                     <span class="text-lg text-w text-hide">Fabulous!</span>
-                                    <span class="text-sm text-w text-hide">5/5</span>
+                                    <span class="text-sm text-w text-hide">{{f.userRating}}/5</span>
                                     <a>
                                         <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
                                     </a>
@@ -358,26 +363,17 @@
                             </div>
 
                             <div class="row item-features">
-                                <span class="text-sm text-k">Features:</span>
+                                <span class="text-sm text-k">Menu Theme: {{f.menuTheme}}</span>
 
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Free parking</span>
-
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Restaurant</span>
-
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Pool</span>
+                                <span class="text-xsm text-k">Description: {{f.briefDescription}}</span>
 
                             </div>
 
                             <div class="row item-bottom">
                                 <div class="col-md-8">
-                                    <span class="text-sm text-k">Starting at </span>
-                                    <span class="text-lg text-b text-primary">$</span>
-                                    <span class="text-lg text-b text-primary">124</span>
+                                        <span class="text-lg text-b text-primary">$</span>
                                 </div>
-                                <div class="col-md-4"><!-- Add to cart -->
+                                <div class="col-xs-4"><!-- Add to cart -->
                                     <button type="button" md-raised-button color="warn" >Select</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
@@ -392,24 +388,24 @@
                 <div (click)="expandD()" class="row hover" style="padding-top: 5px; width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                     <span class="text-md">Dinner</span>
                     <a class="expandButton">
-                        <span *ngIf="displayB=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
-                        <span *ngIf="displayB=='block'" class="glyphicon glyphicon-triangle-top"></span>
+                        <span *ngIf="displayD=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                        <span *ngIf="displayD=='block'" class="glyphicon glyphicon-triangle-top"></span>
                     </a>
                 </div>
 
                 <div class="s-view-f row" [ngStyle]="{'display': displayD}"><!-- Dinner container -->    
-                    <div class="row item-container"><!-- restaurant item --> 
+                    <div *ngFor="let f of food" class="row item-container"><!-- restaurant item --> 
                         <div class="col-md-3">
                             <div class="img img-f">
                                 <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                                <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                                <div class="hotelAdvert" style="bottom: 0">{{f.diningStyle}}</div>
                             </div>
                         </div><!-- image -->
                         <div class="col-md-9 item-content item-content-short"><!-- content -->
                             <div class="row">
                                 <div class="col-md-9"><!-- hotel name -->
                                     <h3 class="text-lg text-b text-primary">
-                                        <a class="text-hover-primary">Hotel 1</a>
+                                        <a class="text-hover-primary">{{f.name}}</a>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
@@ -417,14 +413,14 @@
                                         <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
                                     </h3>
                                     <a class="text-hover-k text-sm text-k">
-                                        <span class="text-u">Newcastle</span>
+                                        <span class="text-u">{{f.suburb}}</span>
                                         <span class="glyphicon glyphicon-globe"></span>
                                     </a>
                                 </div><!-- hotel name end-->
 
                                 <div class="col-md-3 item-rating"><!-- rating -->
                                     <span class="text-lg text-w text-hide">Fabulous!</span>
-                                    <span class="text-sm text-w text-hide">5/5</span>
+                                    <span class="text-sm text-w text-hide">{{f.userRating}}/5</span>
                                     <a>
                                         <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
                                     </a>
@@ -432,26 +428,17 @@
                             </div>
 
                             <div class="row item-features">
-                                <span class="text-sm text-k">Features:</span>
+                                <span class="text-sm text-k">Menu Theme: {{f.menuTheme}}</span>
 
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Free parking</span>
-
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Restaurant</span>
-
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Pool</span>
+                                <span class="text-xsm text-k">Description: {{f.briefDescription}}</span>
 
                             </div>
 
                             <div class="row item-bottom">
                                 <div class="col-md-8">
-                                    <span class="text-sm text-k">Starting at </span>
-                                    <span class="text-lg text-b text-primary">$</span>
-                                    <span class="text-lg text-b text-primary">124</span>
+                                        <span class="text-lg text-b text-primary">$</span>
                                 </div>
-                                <div class="col-md-4"><!-- Add to cart -->
+                                <div class="col-xs-4"><!-- Add to cart -->
                                     <button type="button" md-raised-button color="warn" >Select</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
@@ -466,24 +453,24 @@
                 <div (click)="expandO()" class="row hover" style="padding-top: 5px; width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                     <span class="text-md">Other</span>
                     <a class="expandButton">
-                        <span *ngIf="displayB=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
-                        <span *ngIf="displayB=='block'" class="glyphicon glyphicon-triangle-top"></span>
+                        <span *ngIf="displayO=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                        <span *ngIf="displayO=='block'" class="glyphicon glyphicon-triangle-top"></span>
                     </a>
                 </div>
 
                 <div class="s-view-f row" [ngStyle]="{'display': displayO}"><!-- Dinner container -->    
-                    <div class="row item-container"><!-- restaurant item --> 
+                    <div *ngFor="let f of food" class="row item-container"><!-- restaurant item --> 
                         <div class="col-md-3">
                             <div class="img img-f">
                                 <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                                <div class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                                <div class="hotelAdvert" style="bottom: 0">{{f.diningStyle}}</div>
                             </div>
                         </div><!-- image -->
                         <div class="col-md-9 item-content item-content-short"><!-- content -->
                             <div class="row">
                                 <div class="col-md-9"><!-- hotel name -->
                                     <h3 class="text-lg text-b text-primary">
-                                        <a class="text-hover-primary">Hotel 1</a>
+                                        <a class="text-hover-primary">{{f.name}}</a>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
                                         <span class="text-smd text-primary glyphicon glyphicon-star"></span>
@@ -491,14 +478,14 @@
                                         <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
                                     </h3>
                                     <a class="text-hover-k text-sm text-k">
-                                        <span class="text-u">Newcastle</span>
+                                        <span class="text-u">{{f.suburb}}</span>
                                         <span class="glyphicon glyphicon-globe"></span>
                                     </a>
                                 </div><!-- hotel name end-->
 
                                 <div class="col-md-3 item-rating"><!-- rating -->
                                     <span class="text-lg text-w text-hide">Fabulous!</span>
-                                    <span class="text-sm text-w text-hide">5/5</span>
+                                    <span class="text-sm text-w text-hide">{{f.userRating}}/5</span>
                                     <a>
                                         <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
                                     </a>
@@ -506,26 +493,102 @@
                             </div>
 
                             <div class="row item-features">
-                                <span class="text-sm text-k">Features:</span>
+                                <span class="text-sm text-k">Menu Theme: {{f.menuTheme}}</span>
 
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Free parking</span>
-
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Restaurant</span>
-
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span class="text-xsm text-k">Pool</span>
+                                <span class="text-xsm text-k">Description: {{f.briefDescription}}</span>
 
                             </div>
 
                             <div class="row item-bottom">
                                 <div class="col-md-8">
-                                    <span class="text-sm text-k">Starting at </span>
-                                    <span class="text-lg text-b text-primary">$</span>
-                                    <span class="text-lg text-b text-primary">124</span>
+                                        <span class="text-lg text-b text-primary">$</span>
                                 </div>
-                                <div class="col-md-4"><!-- Add to cart -->
+                                <div class="col-xs-4"><!-- Add to cart -->
+                                    <button type="button" md-raised-button color="warn" >Select</button>
+                                    <button type="button" md-raised-button style="float: left;  margin-right: 10px">
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                        View
+                                    </button>
+                                </div>
+                            </div>
+                        </div><!--content -->
+                    </div>
+                </div>
+            </div><!-- end menu container -->
+        </div><!-- end food content -->
+    </md-sidenav-container>
+
+
+    <!-- Ativities navigation -->
+    <md-sidenav-container *ngIf="selected==4">
+        <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
+            <div class="col-xs-1" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
+                <ul class="nav nav-pills nav-stacked" role="tablist">
+                    <li><span class="text-md text-primary">Days</span></li>
+                    <li *ngFor="let day of days">
+                        <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
+                        <ng-template #notActiveDay>
+                            <a (click)="setDays(day)">{{day}}</a>
+                        </ng-template>
+                    </li>        
+                </ul>
+            </div>
+        </md-sidenav>
+
+        <div class="col-xs-11" style="height: 100%"><!-- Activity day content -->
+            <button type="button" (click)="sidenav.open()">Toggle Left</button>
+            <h1 class="text-md text-primary text-b">Day {{selectedDay}}</h1>
+            <div class="s-view row"><!-- Menu container -->
+                <div class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                    <span class="text-md">Add a sick activity Bruh</span>
+                </div>
+
+                <div class="s-view-f row"><!-- breakfast container -->
+                    <div *ngFor="let activity of activities" class="row item-container"><!-- restaurant item --> 
+                        <div class="col-md-3">
+                            <div class="img img-f">
+                                <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                                <div class="hotelAdvert" style="bottom: 0">{{activity.diningStyle}}</div>
+                            </div>
+                        </div><!-- image -->
+                        <div class="col-md-9 item-content item-content-short"><!-- content -->
+                            <div class="row">
+                                <div class="col-md-9"><!-- hotel name -->
+                                    <h3 class="text-lg text-b text-primary">
+                                        <a class="text-hover-primary">{{activity.name}}</a>
+                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                        <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                    </h3>
+                                    <a class="text-hover-k text-sm text-k">
+                                        <span class="text-u">{{activity.suburb}}</span>
+                                        <span class="glyphicon glyphicon-globe"></span>
+                                    </a>
+                                </div><!-- hotel name end-->
+
+                                <div class="col-md-3 item-rating"><!-- rating -->
+                                    <span class="text-lg text-w text-hide">Fabulous!</span>
+                                    <span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>
+                                    <a>
+                                        <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                    </a>
+                                </div><!-- rating -->
+                            </div>
+
+                            <div class="row item-features">
+                                <span class="text-sm text-k">Menu Theme: {{activity.menuTheme}}</span>
+
+                                <span class="text-xsm text-k">Description: {{activity.briefDescription}}</span>
+
+                            </div>
+
+                            <div class="row item-bottom">
+                                <div class="col-md-8">
+                                        <span class="text-lg text-b text-primary">$</span>
+                                </div>
+                                <div class="col-xs-4"><!-- Add to cart -->
                                     <button type="button" md-raised-button color="warn" >Select</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
