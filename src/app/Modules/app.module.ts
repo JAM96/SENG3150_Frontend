@@ -55,8 +55,7 @@ import {AsideModule} from 'ng2-aside';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
 
 //calendar
-import {CalendarModule} from 'angular-calendar';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 //test component
 import {TestComponent} from '../Components/test-component/test.component';
@@ -76,8 +75,6 @@ import {TestComponent} from '../Components/test-component/test.component';
     routing,
     AsideModule,
     SlimLoadingBarModule.forRoot(),
-    CalendarModule.forRoot(),
-    NgbModule.forRoot(),
     ],
   declarations: [
     AppComponent,
