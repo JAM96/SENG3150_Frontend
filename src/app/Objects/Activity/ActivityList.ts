@@ -6,4 +6,5 @@ export interface ActivityList {
     description : string;
     cost: string[],
     activityDuration: Number;
+    activityRating: Number;
 }

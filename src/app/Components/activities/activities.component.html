@@ -1,4 +1,8 @@
 <section class="panelHalf">
     <h1>Activities:</h1>
-    
+    <div class="container s-view-a">
+        <div *ngFor="let activity of activityList" class="row item-container">
+            {{activity.activityName}}
+        </div>
+    </div>
 </section>
