@@ -2,14 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ACTIVITY_LIST = [
     {
-        activityName: "Newcastle Skiiers",
-        activityImg: "",
-        location: "Belmont 16fters",
-        hours: ["Public/School Holidays : 10am - 5pm", "Sat - Sun : 8am - 5pm", "Mon - Fri : 10am - 5pm"],
-        description: "Water Skiing",
-        cost: ["Kids(6-12) : $200", "Teens(13-17) : $250", "Adults(18+) : $300"],
-        activityDuration: 2,
-        activityRating: 4
+        activityID: '3323232',
+        name: 'Newcastle Skiiers',
+        category: 'activity',
+        address: '15 queens wharf Newcastle',
+        suburb: 'Newcastle',
+        mainPhotoURL: 'lol.jpg',
+        briefDescription: 'water skiing on the beautiful waters of newcastle',
+        websiteURL: 'www.skiatnewcastle.com',
+        phoneNo: '04320322',
+        price: 213,
+        limitedTimeOnly: false,
+        startDate: new Date(4, 23, 17),
+        endDate: new Date(4, 23, 17),
+        bestSeller: true
     }
 ];
 //# sourceMappingURL=mock-activity.js.map

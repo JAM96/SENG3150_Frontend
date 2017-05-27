@@ -56,6 +56,8 @@ import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
 
 //calendar
 
+//custom package service
+import {CustomPackageService} from '../Components/package/packages/custom-package/custom-package-service/custom-package.service';
 
 //test component
 import {TestComponent} from '../Components/test-component/test.component';
@@ -103,6 +105,7 @@ import {TestComponent} from '../Components/test-component/test.component';
   bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
   providers: [
     appRoutingProviders,
+    CustomPackageService,
   ]
 })
 

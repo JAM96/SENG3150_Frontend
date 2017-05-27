@@ -10,7 +10,10 @@ import {HotelService} from '../../../../../Services/hotel/hotel.service';
 import {FoodService} from '../../../../../Services/food/food.service';
 import {ActivityService} from '../../../../../Services/activity/activity.service';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
-import {CreateCustomPackageInitialComponent} from '../custom-initial-form/create-custom-package.component';
+import {CustomPackageService} from '../custom-package-service/custom-package.service';
+
+
+import {CustomPackage} from '../CustomPackage';
 
 @Component({
     moduleId: module.id,
@@ -19,17 +22,12 @@ import {CreateCustomPackageInitialComponent} from '../custom-initial-form/create
     providers: [
         HotelService,
         FoodService,
-        ActivityService,
-        CreateCustomPackageInitialComponent,
+        ActivityService
         ]
 })
 export class CustomPackageComponent implements OnInit{
     //Data from previous form
-    budget : any;
-    guests : number;
-    rooms : number;
-    checkin : Date;
-    checkout: Date;
+    custom : CustomPackage;
 
     //Objects
     hotels : Hotel[];
@@ -64,19 +62,15 @@ export class CustomPackageComponent implements OnInit{
         private hotelService    :   HotelService,
         private foodService     :   FoodService,
         private activityService :   ActivityService,
-        private cpf             :   CreateCustomPackageInitialComponent,
+        private packageService  :   CustomPackageService,
         private slimLoadingBarService : SlimLoadingBarService
         ) 
         {
-            this.budget = cpf.getBudget()
-            this.guests = cpf.getGuests();
-            this.rooms = cpf.getRooms();
-            this.checkin = cpf.getCheckin();
-            this.checkout = cpf.getCheckout();
-
+            
         }
 
     ngOnInit() {
+        this.custom = this.packageService.getInitialData();
     }
 
     startLoading() {

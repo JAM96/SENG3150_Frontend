@@ -10,21 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var activities_service_1 = require("../../Services/activities/activities.service");
+var activity_service_1 = require("../../Services/activity/activity.service");
 var ActivitiesComponent = (function () {
     function ActivitiesComponent(activityService) {
         this.activityService = activityService;
     }
+    ActivitiesComponent.prototype.ngOnInit = function () {
+        this.getActivities();
+    };
     ActivitiesComponent.prototype.getActivities = function () {
         var _this = this;
-        this.activityService.getMockActivities().then(function (activityList) { return _this.activityList = activityList; });
-        /*
-        console.log('retrieving food');
-        
-       
+        //this.activityService.getMockActivities().then((activityList: Activity[]) => this.activityList = activityList);    
         this.activityService.getActivities()
-            .subscribe((activity : ActivityList[]) => this.activity = activity);
-        */
+            .subscribe(function (activity) { return _this.activities = activity; });
     };
     return ActivitiesComponent;
 }());
@@ -33,10 +31,9 @@ ActivitiesComponent = __decorate([
         moduleId: module.id,
         selector: 'activities',
         templateUrl: 'activities.component.html',
-        providers: [activities_service_1.ActivityService]
+        providers: [activity_service_1.ActivityService]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof activities_service_1.ActivityService !== "undefined" && activities_service_1.ActivityService) === "function" && _a || Object])
+    __metadata("design:paramtypes", [activity_service_1.ActivityService])
 ], ActivitiesComponent);
 exports.ActivitiesComponent = ActivitiesComponent;
-var _a;
 //# sourceMappingURL=activities.component.js.map

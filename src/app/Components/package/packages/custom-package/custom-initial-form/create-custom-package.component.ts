@@ -2,10 +2,12 @@ import {Component, ViewChild, AfterViewInit} from '@angular/core'
 import {MdDatepicker} from '@angular/material'
 import {Router} from '@angular/router'
 
+import {CustomPackageService} from '../custom-package-service/custom-package.service';
+
 @Component({
     moduleId: module.id,
     selector: 'initial-custom-form',
-    templateUrl: 'create-custom-package.component.html'
+    templateUrl: 'create-custom-package.component.html',
 })
 
 export class CreateCustomPackageInitialComponent implements AfterViewInit {
@@ -24,25 +26,30 @@ export class CreateCustomPackageInitialComponent implements AfterViewInit {
     maxRooms: number = 10;
     maxGuests: number = 10;
 
-    constructor (public router: Router) {}
+    constructor (
+        public router: Router,
+        private packageService: CustomPackageService
+        ) {}
 
-    getBudget() {
-        return this.value;
-    }
-    getGuests() {
-        return this.guests;
-    }
-    getRooms() {
-        return this.rooms;
-    }
-    getCheckin() {
-        return this.checkin;
-    }
-    getCheckout() {
-        return this.checkout;
+    sendLog() {
+        console.log("Outputting Output:::");
+        console.log("   Budget: ", this.value);
+        console.log("   Guests", this.guests);
+        console.log("   Rooms: ", this.rooms);
+        console.log("   checkin: ", this.checkin);
+        console.log("   checkout: ", this.checkout);
+        console.log("-- Log Complete");
     }
 
     submitForm() {
+        console.log('budget: ', this.value);
+        this.packageService.setInitialData(
+            this.value,
+            this.guests,
+            this.rooms,
+            this.checkin,
+            this.checkout
+            );
         this.router.navigate(["/createpackage"]);    
     }
 

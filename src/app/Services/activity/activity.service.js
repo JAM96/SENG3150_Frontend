@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var mock_activities_1 = require("../../Objects/Activity/MockData/mock-activities");
+var mock_activity_1 = require("../../Objects/Activity/MockData/mock-activity");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/catch");
@@ -26,7 +26,7 @@ var ActivityService = (function () {
             .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
     };
     ActivityService.prototype.getMockActivities = function () {
-        return Promise.resolve(mock_activities_1.ACTIVITY_LIST);
+        return Promise.resolve(mock_activity_1.ACTIVITY_LIST);
     };
     return ActivityService;
 }());

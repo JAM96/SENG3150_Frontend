@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var custom_package_service_1 = require("../custom-package-service/custom-package.service");
 var CreateCustomPackageInitialComponent = (function () {
-    function CreateCustomPackageInitialComponent(router) {
+    function CreateCustomPackageInitialComponent(router, packageService) {
         this.router = router;
+        this.packageService = packageService;
         this.minBudget = 300;
         this.maxBudget = 4000;
         //form data
@@ -24,22 +26,18 @@ var CreateCustomPackageInitialComponent = (function () {
         this.maxRooms = 10;
         this.maxGuests = 10;
     }
-    CreateCustomPackageInitialComponent.prototype.getBudget = function () {
-        return this.value;
-    };
-    CreateCustomPackageInitialComponent.prototype.getGuests = function () {
-        return this.guests;
-    };
-    CreateCustomPackageInitialComponent.prototype.getRooms = function () {
-        return this.rooms;
-    };
-    CreateCustomPackageInitialComponent.prototype.getCheckin = function () {
-        return this.checkin;
-    };
-    CreateCustomPackageInitialComponent.prototype.getCheckout = function () {
-        return this.checkout;
+    CreateCustomPackageInitialComponent.prototype.sendLog = function () {
+        console.log("Outputting Output:::");
+        console.log("   Budget: ", this.value);
+        console.log("   Guests", this.guests);
+        console.log("   Rooms: ", this.rooms);
+        console.log("   checkin: ", this.checkin);
+        console.log("   checkout: ", this.checkout);
+        console.log("-- Log Complete");
     };
     CreateCustomPackageInitialComponent.prototype.submitForm = function () {
+        console.log('budget: ', this.value);
+        this.packageService.setInitialData(this.value, this.guests, this.rooms, this.checkin, this.checkout);
         this.router.navigate(["/createpackage"]);
     };
     CreateCustomPackageInitialComponent.prototype.updateValue = function () {
@@ -74,9 +72,10 @@ CreateCustomPackageInitialComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'initial-custom-form',
-        templateUrl: 'create-custom-package.component.html'
+        templateUrl: 'create-custom-package.component.html',
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router,
+        custom_package_service_1.CustomPackageService])
 ], CreateCustomPackageInitialComponent);
 exports.CreateCustomPackageInitialComponent = CreateCustomPackageInitialComponent;
 //# sourceMappingURL=create-custom-package.component.js.map

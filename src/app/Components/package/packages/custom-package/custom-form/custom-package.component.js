@@ -15,13 +15,13 @@ var hotel_service_1 = require("../../../../../Services/hotel/hotel.service");
 var food_service_1 = require("../../../../../Services/food/food.service");
 var activity_service_1 = require("../../../../../Services/activity/activity.service");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
-var create_custom_package_component_1 = require("../custom-initial-form/create-custom-package.component");
+var custom_package_service_1 = require("../custom-package-service/custom-package.service");
 var CustomPackageComponent = (function () {
-    function CustomPackageComponent(hotelService, foodService, activityService, cpf, slimLoadingBarService) {
+    function CustomPackageComponent(hotelService, foodService, activityService, packageService, slimLoadingBarService) {
         this.hotelService = hotelService;
         this.foodService = foodService;
         this.activityService = activityService;
-        this.cpf = cpf;
+        this.packageService = packageService;
         this.slimLoadingBarService = slimLoadingBarService;
         //View variables
         this.selected = 3;
@@ -43,13 +43,9 @@ var CustomPackageComponent = (function () {
         this.displayD = 'none';
         this.displayO = 'none';
         this.testString = "hello world";
-        this.budget = cpf.getBudget();
-        this.guests = cpf.getGuests();
-        this.rooms = cpf.getRooms();
-        this.checkin = cpf.getCheckin();
-        this.checkout = cpf.getCheckout();
     }
     CustomPackageComponent.prototype.ngOnInit = function () {
+        this.custom = this.packageService.getInitialData();
     };
     CustomPackageComponent.prototype.startLoading = function () {
         this.slimLoadingBarService.start(function () {
@@ -187,14 +183,13 @@ CustomPackageComponent = __decorate([
         providers: [
             hotel_service_1.HotelService,
             food_service_1.FoodService,
-            activity_service_1.ActivityService,
-            create_custom_package_component_1.CreateCustomPackageInitialComponent,
+            activity_service_1.ActivityService
         ]
     }),
     __metadata("design:paramtypes", [hotel_service_1.HotelService,
         food_service_1.FoodService,
         activity_service_1.ActivityService,
-        create_custom_package_component_1.CreateCustomPackageInitialComponent,
+        custom_package_service_1.CustomPackageService,
         ng2_slim_loading_bar_1.SlimLoadingBarService])
 ], CustomPackageComponent);
 exports.CustomPackageComponent = CustomPackageComponent;

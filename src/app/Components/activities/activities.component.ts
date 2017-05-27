@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Route } from '@angular/router';
-import {ActivityList} from '../../Objects/Activity/ActivityList';
-import {ActivityService} from '../../Services/activities/activities.service';
+import {Activity} from '../../Objects/Activity/Activity';
+import {ActivityService} from '../../Services/activity/activity.service';
 
 @Component({
     moduleId: module.id,
@@ -10,21 +10,19 @@ import {ActivityService} from '../../Services/activities/activities.service';
     providers: [ActivityService]
 })
 
-export class ActivitiesComponent {
-        
-        constructor(private activityService : ActivityService){}
+export class ActivitiesComponent implements OnInit{   
+    constructor(private activityService : ActivityService){}
 
-        activityList : ActivityList[];
-        
-        getActivities() {
+    ngOnInit() {
+        this.getActivities();
+    }
 
-            this.activityService.getMockActivities().then((activityList: ActivityList[]) => this.activityList = activityList);    
-        /*
-        console.log('retrieving food');
-        
-       
+    activities : Activity[];
+    
+    getActivities() {
+
+        //this.activityService.getMockActivities().then((activityList: Activity[]) => this.activityList = activityList);    
         this.activityService.getActivities()
-            .subscribe((activity : ActivityList[]) => this.activity = activity);
-        */
+            .subscribe((activity : Activity[]) => this.activities = activity);
     }
 }

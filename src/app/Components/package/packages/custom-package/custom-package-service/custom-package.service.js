@@ -10,24 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var mock_activity_1 = require("../../Objects/Activity/MockData/mock-activity");
-var http_1 = require("@angular/http");
-var ActivityService = (function () {
-    function ActivityService(http) {
-        this.http = http;
-        this.url = "http://localhost:8080/accommodation";
+var CustomPackage_1 = require("../CustomPackage");
+var CustomPackageService = (function () {
+    function CustomPackageService() {
     }
-    ActivityService.prototype.getActivities = function () {
-        return Promise.resolve(mock_activity_1.ACTIVITY_LIST);
+    CustomPackageService.prototype.setInitialData = function (budget, guests, rooms, checkin, checkout) {
+        var data = new CustomPackage_1.CustomPackage;
+        data.budget = budget;
+        data.guests = guests;
+        data.rooms = rooms;
+        data.checkin = checkin;
+        data.checkout = checkout;
+        this.cp = data;
     };
-    ActivityService.prototype.getMockActivities = function () {
-        return Promise.resolve(mock_activity_1.ACTIVITY_LIST);
+    CustomPackageService.prototype.getInitialData = function () {
+        return this.cp;
     };
-    return ActivityService;
+    return CustomPackageService;
 }());
-ActivityService = __decorate([
+CustomPackageService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], ActivityService);
-exports.ActivityService = ActivityService;
-//# sourceMappingURL=activities.service.js.map
+    __metadata("design:paramtypes", [])
+], CustomPackageService);
+exports.CustomPackageService = CustomPackageService;
+//# sourceMappingURL=custom-package.service.js.map

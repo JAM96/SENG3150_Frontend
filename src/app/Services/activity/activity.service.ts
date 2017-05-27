@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {Activity} from '../../Objects/Activity/Activity';
-import {ACTIVITY_LIST} from '../../Objects/Activity/MockData/mock-activities';
+import {ACTIVITY_LIST} from '../../Objects/Activity/MockData/mock-activity';
 
 import {Http, Response} from "@angular/http";
 import { Observable }     from 'rxjs/Observable';
