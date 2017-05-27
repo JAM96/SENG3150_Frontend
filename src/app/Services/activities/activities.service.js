@@ -17,6 +17,9 @@ var ActivityService = (function () {
     ActivityService.prototype.getActivities = function () {
         return Promise.resolve(mock_activity_1.ACTIVITY_LIST);
     };
+    ActivityService.prototype.getMockActivities = function () {
+        return Promise.resolve(mock_activity_1.ACTIVITY_LIST);
+    };
     return ActivityService;
 }());
 ActivityService = __decorate([

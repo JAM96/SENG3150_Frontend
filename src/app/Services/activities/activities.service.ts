@@ -11,6 +11,10 @@ export class ActivityService {
         return Promise.resolve(ACTIVITY_LIST);
     }
 
+    getMockActivities() {
+        return Promise.resolve(ACTIVITY_LIST);
+    }
+
     constructor() {}
  
 }
