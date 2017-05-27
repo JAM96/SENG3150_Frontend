@@ -22,18 +22,21 @@
     } 
 
     .s-view {
-        height: 70%;
+        height: 70vh;
     }
 
     .s-view-a { /* accomodation scaling */
         height: 100%;
     }  
 
-    .hotelAdvert {
-        display:none;
+    .m-form-extend {
+        width: 100%;
     }
-    .item-content {
-        margin-bottom: 50px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 990px) {
+     .hotelAdvert {
+        display:none;
     }
 
     .item-rating {

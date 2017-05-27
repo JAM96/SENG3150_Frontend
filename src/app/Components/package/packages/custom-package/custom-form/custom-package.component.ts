@@ -26,16 +26,15 @@ import {CustomPackage} from '../CustomPackage';
         ]
 })
 export class CustomPackageComponent implements OnInit{
-    //Data from previous form
     custom : CustomPackage;
 
-    //Objects
+    //Package Items
     hotels : Hotel[];
     food   : Food[];
     activities  : Activity[];
 
     //View variables
-    selected : number = 3;
+    selected : number = 1;
     days : number[] = [1,2,3,4,5];
     selectedDay : number = 3;
     isTrue = false;
@@ -93,9 +92,11 @@ export class CustomPackageComponent implements OnInit{
     getHotels() {
         this.startLoading();
         console.log('retrieving hotels');
-        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-        this.hotelService.getHotels()
-            .subscribe((hotel : Hotel[]) => this.hotels = hotel)
+        this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
+        // this.hotelService.getHotels()
+        //     .subscribe((hotel : Hotel[]) => this.hotels = hotel)
+
+        //Another way of doing this but does not currently work
             // .subscribe(
             //     function(response) {
             //         console.log('Success, response is: ', response); 
@@ -115,7 +116,7 @@ export class CustomPackageComponent implements OnInit{
         //fake loading bar
         setTimeout(() => {
             this.completeLoading();
-        }, 3000);
+        }, 1000);
     }
 
     getFood() {
@@ -181,7 +182,7 @@ export class CustomPackageComponent implements OnInit{
     expandB(){
         if(this.displayB == 'none') {
             this.displayB = 'block';
-        } else {
+        } else { 
             this.displayB = 'none';
         }
     }
@@ -212,4 +213,13 @@ export class CustomPackageComponent implements OnInit{
     // setTravelValue(selection : boolean) {
     //     this.travelValue = selection;
     // }
+
+
+    /* Item Selection */
+    addHotel(accID : string, accName : string) {
+        alert('You have selected: \n Item ID: ' + accID + '\n Name: ' + accName);
+        this.custom.hotel = accName;
+
+        console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
+    }
 }

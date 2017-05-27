@@ -13,39 +13,29 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var custom_package_service_1 = require("../custom-package-service/custom-package.service");
 var CreateCustomPackageInitialComponent = (function () {
+    //CCPIC Constructor with instantiates the router and custom-package services
     function CreateCustomPackageInitialComponent(router, packageService) {
         this.router = router;
         this.packageService = packageService;
-        this.minBudget = 300;
-        this.maxBudget = 4000;
+        this.minBudget = 300; //define minimum budget value
+        this.maxBudget = 4000; //define maximum budget value
+        this.minDate = new Date(); //used to prevent previous dates to the current date being selected
+        this.maxRooms = 10; //Maximum rooms the user can book. 
+        this.maxGuests = 10; //Maximum guests user wants to book. 
         //form data
-        this.value = 472;
-        this.guests = 1;
-        this.rooms = 1;
-        this.minDate = new Date();
-        this.maxRooms = 10;
-        this.maxGuests = 10;
+        this.value = 472; //budget value set at $472
+        this.guests = 1; //guests value set at 1, This will show all accomodation with X+ rooms
+        this.rooms = 1; //rooms value set at 1 This will show all room capable of providing X+ guests
     }
-    CreateCustomPackageInitialComponent.prototype.sendLog = function () {
-        console.log("Outputting Output:::");
-        console.log("   Budget: ", this.value);
-        console.log("   Guests", this.guests);
-        console.log("   Rooms: ", this.rooms);
-        console.log("   checkin: ", this.checkin);
-        console.log("   checkout: ", this.checkout);
-        console.log("-- Log Complete");
-    };
-    CreateCustomPackageInitialComponent.prototype.submitForm = function () {
-        console.log('budget: ', this.value);
-        this.packageService.setInitialData(this.value, this.guests, this.rooms, this.checkin, this.checkout);
-        this.router.navigate(["/createpackage"]);
-    };
+    /* TODO:
+        This needs to be optomised since this current implementation does not update budget to unlimited.
+    */
     CreateCustomPackageInitialComponent.prototype.updateValue = function () {
         if (this.value == this.maxBudget) {
             this.value = "unlimited";
         }
     };
-    CreateCustomPackageInitialComponent.prototype.ngAfterViewInit = function () { };
+    //Following methods increase or decreases the numbers of guests or rooms.
     CreateCustomPackageInitialComponent.prototype.increaseGuests = function () {
         if (this.guests != this.maxGuests) {
             this.guests = this.guests + 1;
@@ -65,6 +55,24 @@ var CreateCustomPackageInitialComponent = (function () {
         if (this.rooms != 1) {
             this.rooms = this.rooms - 1;
         }
+    };
+    //Submit form will output a log for debugging purposes
+    //Send the data to the custom-package service
+    //Navigate to the next page
+    CreateCustomPackageInitialComponent.prototype.submitForm = function () {
+        console.log('');
+        this.sendLog();
+        this.packageService.setInitialData(this.value, this.guests, this.rooms, this.checkin, this.checkout);
+        this.router.navigate(["/createpackage"]);
+    };
+    CreateCustomPackageInitialComponent.prototype.sendLog = function () {
+        console.info("[INFO] Submitting form: ");
+        console.info("       Budget: ", this.value);
+        console.info("       Guests", this.guests);
+        console.info("       Rooms: ", this.rooms);
+        console.info("       Checkin: ", this.checkin);
+        console.info("       Checkout: ", this.checkout);
+        console.info("[INFO] Loading custom page...");
     };
     return CreateCustomPackageInitialComponent;
 }());

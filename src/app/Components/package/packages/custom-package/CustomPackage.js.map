@@ -1,1 +1,1 @@
-{"version":3,"file":"CustomPackage.js","sourceRoot":"","sources":["CustomPackage.ts"],"names":[],"mappings":";;AAAA;IAAA;IAMA,CAAC;IAAD,oBAAC;AAAD,CAAC,AAND,IAMC;AANY,sCAAa"}
+{"version":3,"file":"CustomPackage.js","sourceRoot":"","sources":["CustomPackage.ts"],"names":[],"mappings":";;AAAA;IAAA;QACI,WAAM,GAAgB,GAAG,CAAC;QAC1B,WAAM,GAAgB,CAAC,CAAC;QACxB,UAAK,GAAiB,CAAC,CAAC;IAK5B,CAAC;IAAD,oBAAC;AAAD,CAAC,AARD,IAQC;AARY,sCAAa"}

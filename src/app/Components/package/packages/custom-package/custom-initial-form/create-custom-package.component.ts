@@ -10,57 +10,36 @@ import {CustomPackageService} from '../custom-package-service/custom-package.ser
     templateUrl: 'create-custom-package.component.html',
 })
 
-export class CreateCustomPackageInitialComponent implements AfterViewInit {
-    minBudget = 300;
-    maxBudget = 4000;
+export class CreateCustomPackageInitialComponent { //CCPIC
+    minBudget = 300;        //define minimum budget value
+    maxBudget = 4000;       //define maximum budget value
+    minDate = new Date();   //used to prevent previous dates to the current date being selected
+    maxRooms: number = 10;  //Maximum rooms the user can book. 
+    maxGuests: number = 10; //Maximum guests user wants to book. 
 
     //form data
-    value : any = 472;
-    guests: number = 1;
-    rooms: number = 1;
-    checkin : Date;
-    checkout: Date;
+    value : any = 472;      //budget value set at $472
+    guests: number = 1;     //guests value set at 1, This will show all accomodation with X+ rooms
+    rooms: number = 1;      //rooms value set at 1 This will show all room capable of providing X+ guests
+    checkin : Date;         //Date when user wants to have their holiday
+    checkout: Date;         //Date when user wants to end their holiday
 
-
-    minDate = new Date();
-    maxRooms: number = 10;
-    maxGuests: number = 10;
-
+    //CCPIC Constructor with instantiates the router and custom-package services
     constructor (
         public router: Router,
         private packageService: CustomPackageService
         ) {}
 
-    sendLog() {
-        console.log("Outputting Output:::");
-        console.log("   Budget: ", this.value);
-        console.log("   Guests", this.guests);
-        console.log("   Rooms: ", this.rooms);
-        console.log("   checkin: ", this.checkin);
-        console.log("   checkout: ", this.checkout);
-        console.log("-- Log Complete");
-    }
-
-    submitForm() {
-        console.log('budget: ', this.value);
-        this.packageService.setInitialData(
-            this.value,
-            this.guests,
-            this.rooms,
-            this.checkin,
-            this.checkout
-            );
-        this.router.navigate(["/createpackage"]);    
-    }
-
+    /* TODO:
+        This needs to be optomised since this current implementation does not update budget to unlimited.
+    */
     updateValue() {
         if(this.value == this.maxBudget) {
             this.value = "unlimited";
         }
     }
 
-    ngAfterViewInit() {}
-
+    //Following methods increase or decreases the numbers of guests or rooms.
     increaseGuests() {
         if(this.guests != this.maxGuests) {
             this.guests = this.guests + 1;
@@ -83,5 +62,32 @@ export class CreateCustomPackageInitialComponent implements AfterViewInit {
         if(this.rooms != 1) {
             this.rooms = this.rooms - 1;
         }
+    }
+
+    //Submit form will output a log for debugging purposes
+    //Send the data to the custom-package service
+    //Navigate to the next page
+    submitForm() {
+        console.log(''); 
+        this.sendLog();
+
+        this.packageService.setInitialData(
+            this.value,
+            this.guests,
+            this.rooms,
+            this.checkin,
+            this.checkout
+            );
+        this.router.navigate(["/createpackage"]);    
+    }
+
+     sendLog() {
+        console.info("[INFO] Submitting form: ");
+        console.info("       Budget: ", this.value);
+        console.info("       Guests", this.guests);
+        console.info("       Rooms: ", this.rooms);
+        console.info("       Checkin: ", this.checkin);
+        console.info("       Checkout: ", this.checkout);
+        console.info("[INFO] Loading custom page...");
     }
 }

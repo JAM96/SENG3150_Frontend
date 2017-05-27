@@ -42,5 +42,61 @@ export const HOTEL_LIST: Hotel[] = [
         bestSeller: true,
         accommodationType: 'Hotel',
         pictureURL: 'grand.jpg'
+    },
+    {
+        accommodationID: 'PI: 823238833',
+        accommodationName: 'The Grand Hotel',
+        accommodationAddress: '1 wentworth street',
+        accommodationSuburb: 'Newcastle',
+        accommodationStarRating: 4,
+        accommodationUserRating: 5,
+        numBeds: 2,
+        numPeople: 4,
+        pricePerNight: 180.0,
+        bestSeller: true,
+        accommodationType: 'Hotel',
+        pictureURL: 'grand.jpg'
+    },
+    {
+        accommodationID: 'PI: 823238833',
+        accommodationName: 'The Grand Hotel',
+        accommodationAddress: '1 wentworth street',
+        accommodationSuburb: 'Newcastle',
+        accommodationStarRating: 4,
+        accommodationUserRating: 5,
+        numBeds: 2,
+        numPeople: 4,
+        pricePerNight: 180.0,
+        bestSeller: true,
+        accommodationType: 'Hotel',
+        pictureURL: 'grand.jpg'
+    },
+    {
+        accommodationID: 'PI: 823238833',
+        accommodationName: 'The Grand Hotel',
+        accommodationAddress: '1 wentworth street',
+        accommodationSuburb: 'Newcastle',
+        accommodationStarRating: 4,
+        accommodationUserRating: 5,
+        numBeds: 2,
+        numPeople: 4,
+        pricePerNight: 180.0,
+        bestSeller: true,
+        accommodationType: 'Hotel',
+        pictureURL: 'grand.jpg'
+    },
+    {
+        accommodationID: 'PI: 823238833',
+        accommodationName: 'The Grand Hotel',
+        accommodationAddress: '1 wentworth street',
+        accommodationSuburb: 'Newcastle',
+        accommodationStarRating: 4,
+        accommodationUserRating: 5,
+        numBeds: 2,
+        numPeople: 4,
+        pricePerNight: 180.0,
+        bestSeller: true,
+        accommodationType: 'Hotel',
+        pictureURL: 'grand.jpg'
     }
 ]

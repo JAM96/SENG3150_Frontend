@@ -13,6 +13,7 @@ var core_1 = require("@angular/core");
 var CustomPackage_1 = require("../CustomPackage");
 var CustomPackageService = (function () {
     function CustomPackageService() {
+        this.cp = new CustomPackage_1.CustomPackage;
     }
     CustomPackageService.prototype.setInitialData = function (budget, guests, rooms, checkin, checkout) {
         var data = new CustomPackage_1.CustomPackage;

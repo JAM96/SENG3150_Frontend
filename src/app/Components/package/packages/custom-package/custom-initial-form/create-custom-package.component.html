@@ -2,7 +2,7 @@
     <div class="container-fluid homeImg"><!-- have image slider behind it-->
         <div class="container">
             <div class="row customPackageCreationForm">
-                <div class="col-xs-7"><!-- left column -->
+                <div class="col-xs-7 m-form-extend"><!-- left column -->
                     <label for="checkin">Check-in: </label>
                     <input class="form-control" type="date" id="checkin" [(ngModel)]="checkin"/>
 
@@ -41,7 +41,6 @@
 
                     <br>
                     <button type="button" md-raised-button color="warn" (click)="submitForm()">Create!</button>
-                    <button type="button" md-raised-button (click)="sendLog()">Send log</button>
                 </div><!-- end left column -->
                 
                 <div class="hideRecommendations col-xs-3">

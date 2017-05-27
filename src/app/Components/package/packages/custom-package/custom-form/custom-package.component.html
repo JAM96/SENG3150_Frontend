@@ -1,13 +1,6 @@
-<ng2-slim-loading-bar [height]="'4px'"></ng2-slim-loading-bar>
-<div class="row" style="padding-left: 100px">
-    <p>Budget: {{custom.budget}}</p>
-    <p>Guests: {{custom.guests}}</p>
-    <p>Rooms: {{custom.rooms}}</p>
-    <p>Checkin: {{custom.checkin}}</p>
-    <p>Checkout: {{custom.checkout}}</p>
-</div>
-<div class="container view view-add-pd-1 ">
-    <ul class="nav nav-tabs">
+<ng2-slim-loading-bar [height]="'4px'"></ng2-slim-loading-bar><!-- loading bar which gets activated when loading of data from the database -->
+<div class="container view view-lock "><!-- Main View Container -->
+    <ul class="nav nav-tabs"><!-- Nav bar -->
         <li role="resentation">
             <a (click)="prevForm()"><span class="glyphicon glyphicon-triangle-left"></span></a>
         </li>
@@ -50,27 +43,40 @@
         <li role="presentation">
             <a (click)="nextForm()"><span class="glyphicon glyphicon-triangle-right"></span></a>
         </li>
-    </ul>
+    </ul><!-- end Nav bar -->
 
-    <div class="container s-view" *ngIf="selected==1"><!-- travel -->
-        <p>Newcastle Connections offer a shuttle bus service!</p>
-        <p>Add to your package now</p>
-        <label class="control-label col-sm-3" for="travel">Do you require Travel?</label>
+    <!-- Following divs are the different views for each form item -->
+    <!-- Note: This way should be replaced with individual components-->
 
-        <md-radio-group class="example-radio-group" [(ngModel)]="travelValue">
-            <md-radio-button class="example-radio-button" *ngFor="let option of travelOptions" [value]="option">
-                {{option}}
-            </md-radio-button>
-        </md-radio-group>
 
-        <p>If you require travel from a destination or not</p>
+    <!-- ===========================================
+                    TRAVEL VIEW
+    
+        ============================================-->
+    <div class="container" *ngIf="selected==1">
+        <div class="row"><!-- Travel initial form -->
+            <div class="col-md-12">
+                <p>Newcastle Connections offer a shuttle bus service!</p>
+                <p>Add to your package now</p>
+                <label class="control-label col-sm-3" for="travel">Do you require Travel?</label>
 
-        <span *ngIf="travelValue=='Yes'">
+                <md-radio-group class="example-radio-group" [(ngModel)]="travelValue">
+                    <md-radio-button class="example-radio-button" *ngFor="let option of travelOptions" [value]="option">
+                        {{option}}
+                    </md-radio-button>
+                </md-radio-group>
+
+                <p>If you require travel from a destination or not</p>
+            </div>
+        </div>
+        
+        <!-- Travel form input -->
+        <div class="row s-view" *ngIf="travelValue=='Yes'" style="padding-bottom: 100px">
             <hr>
             <p>Pick-up information:</p>
             <p>
                 <md-input-container class="example-full-width">
-                    <textarea mdInput placeholder="Address"></textarea>
+                    <input mdInput placeholder="Address" />
                 </md-input-container>
             </p>
             <table class="example-full-width" cellspacing="0">
@@ -113,14 +119,12 @@
                 container="dialog"
                 [(ngModel)]="travelTime">
             </md2-datepicker>
-        </span>
 
-        <span *ngIf="travelValue=='Yes'">
             <hr>
             <p>Drop-off information:</p>
             <p>
                 <md-input-container class="example-full-width">
-                    <textarea mdInput placeholder="Address"></textarea>
+                    <input mdInput placeholder="Address"/>
                 </md-input-container>
             </p>
             <table class="example-full-width" cellspacing="0">
@@ -163,10 +167,14 @@
                 container="dialog"
                 [(ngModel)]="travelTime">
             </md2-datepicker>
-        </span>
+        </div>
     </div>
 
-    <div class="container s-view-a" *ngIf="selected==2"><!-- acommodation -->
+    <!-- ===========================================
+                ACCOMMODATION VIEW
+    
+        ============================================-->
+    <div class="container s-view" *ngIf="selected==2">
         <div *ngFor="let hotel of hotels" class="row item-container"><!-- hotel i --> 
             <div class="col-md-3">
                 <div class="img">
@@ -223,7 +231,7 @@
                         <span class="text-md text-k glyphicon glyphicon-user">{{hotel.numPeople}}</span>
                     </div>
                     <div class="col-md-4"><!-- Add to cart -->
-                        <button type="button" md-raised-button color="warn" style="float: right">Select</button>
+                        <button (click)="addHotel(hotel.accommodationID, hotel.accommodationName)" type="button" md-raised-button color="warn" style="float: right">Select</button>
                         <button type="button" md-raised-button style="float: right; margin-right: 10px">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             View
@@ -234,10 +242,13 @@
         </div>
     </div>
 
-    <!-- Food navigation -->
+    <!-- ===========================================
+                FOOD AND DRINKS VIEW
+    
+        ============================================-->
     <md-sidenav-container *ngIf="selected==3">
         <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
-            <div class="col-xs-1" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
+            <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
                 <ul class="nav nav-pills nav-stacked" role="tablist">
                     <li><span class="text-md text-primary">Days</span></li>
                     <li *ngFor="let day of days">
@@ -251,9 +262,7 @@
         </md-sidenav>
 
         <div *ngIf="selected==3" class="col-xs-11" style="height: 100%"><!-- food day content -->
-            {{screenWidth}}
-            <button type="button" (click)="sidenav.open()">Toggle Left</button>
-            <h1 class="text-md text-primary text-b">Day {{selectedDay}}</h1>
+            <button type="button" md-raised-button (click)="sidenav.open()" class="text-md text-primary text-b">Select day: {{selectedDay}}</button>
             <div class="s-view row"><!-- Menu container -->
                 <div (click)="expandB()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                     <span class="text-md">Breakfast</span>
@@ -519,7 +528,10 @@
     </md-sidenav-container>
 
 
-    <!-- Ativities navigation -->
+    <!-- ===========================================
+                    ACTIVITES VIEW
+    
+        ============================================-->
     <md-sidenav-container *ngIf="selected==4">
         <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
             <div class="col-xs-1" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
@@ -602,4 +614,18 @@
             </div><!-- end menu container -->
         </div><!-- end food content -->
     </md-sidenav-container>
-</div><!-- end container -->
+
+    <!-- ===========================================
+                    CART VIEW
+    
+        ============================================-->
+    <div class="container s-view" *ngIf="selected==5">
+        <h1>Shopping Cart</h1>
+        <h2>Date</h2>
+        <p>{{custom.checkin}} to {{custom.checkout}}</p>
+        <h2>Guests</h2>
+        <p>{{custom.guests}} guests with {{custom.rooms}} rooms.
+        <h2>Hotel</h2>
+        <p>{{custom.hotel}}</p>
+    </div>
+</div><!-- end Main View Container -->

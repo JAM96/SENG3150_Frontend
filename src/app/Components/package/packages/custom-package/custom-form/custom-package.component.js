@@ -24,7 +24,7 @@ var CustomPackageComponent = (function () {
         this.packageService = packageService;
         this.slimLoadingBarService = slimLoadingBarService;
         //View variables
-        this.selected = 3;
+        this.selected = 1;
         this.days = [1, 2, 3, 4, 5];
         this.selectedDay = 3;
         this.isTrue = false;
@@ -62,9 +62,10 @@ var CustomPackageComponent = (function () {
         var _this = this;
         this.startLoading();
         console.log('retrieving hotels');
-        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-        this.hotelService.getHotels()
-            .subscribe(function (hotel) { return _this.hotels = hotel; });
+        this.hotelService.getMockHotels().then(function (hotels) { return _this.hotels = hotels; });
+        // this.hotelService.getHotels()
+        //     .subscribe((hotel : Hotel[]) => this.hotels = hotel)
+        //Another way of doing this but does not currently work
         // .subscribe(
         //     function(response) {
         //         console.log('Success, response is: ', response); 
@@ -82,7 +83,7 @@ var CustomPackageComponent = (function () {
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();
-        }, 3000);
+        }, 1000);
     };
     CustomPackageComponent.prototype.getFood = function () {
         var _this = this;
@@ -172,6 +173,15 @@ var CustomPackageComponent = (function () {
         else {
             this.displayO = 'none';
         }
+    };
+    // setTravelValue(selection : boolean) {
+    //     this.travelValue = selection;
+    // }
+    /* Item Selection */
+    CustomPackageComponent.prototype.addHotel = function (accID, accName) {
+        alert('You have selected: \n Item ID: ' + accID + '\n Name: ' + accName);
+        this.custom.hotel = accName;
+        console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
     };
     return CustomPackageComponent;
 }());

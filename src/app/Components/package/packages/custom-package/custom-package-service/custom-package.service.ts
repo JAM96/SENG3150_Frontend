@@ -6,7 +6,9 @@ import {CustomPackage} from '../CustomPackage';
 @Injectable()
 export class CustomPackageService {
     cp : CustomPackage;
-    constructor(){}
+    constructor(){
+        this.cp = new CustomPackage;
+    }
 
     setInitialData(
         budget: any,
