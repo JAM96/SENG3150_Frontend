@@ -25,3 +25,5 @@ Use the following command: `bower install`
 6. The website should load up into your default browser
 If it doesn't load automatically, there may be some errors, or navigate to your browser and type in `localhost:PORT`
     where port is the number provided in the output. (should be 3000)
+	
+Note: You have to have the backend running for the frontend to display the data from the database.
