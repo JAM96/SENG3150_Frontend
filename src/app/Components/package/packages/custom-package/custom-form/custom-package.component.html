@@ -553,12 +553,12 @@
         </md-sidenav>
 
         <div class="col-xs-11" style="height: 100%"><!-- Activity day content -->
-            <button type="button" (click)="sidenav.open()">Toggle Left</button>
+            <button type="button" (click)="sidenav.open()">Select day:</button>
             <h1 class="text-md text-primary text-b">Day {{selectedDay}}</h1>
             <div class="s-view row"><!-- Menu container -->
-                <div class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                <!--<div class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                     <span class="text-md">Add a sick activity Bruh</span>
-                </div>
+                </div>-->
 
                 <div class="s-view-f row"><!-- breakfast container -->
                     <div *ngFor="let activity of activities" class="row item-container"><!-- restaurant item --> 
