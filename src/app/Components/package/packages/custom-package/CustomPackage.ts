@@ -6,4 +6,14 @@ export class CustomPackage {
     checkout: Date;
 
     hotel   : string;
+    
+
+    //food items
+    foodBreakfast   : string[];
+    foodLunch       : string[];
+    foodDinner      : string[];
+    foodOther       : string[];
+
+    //activities 
+    activity        : string[][] // [n days][n activites] 
 }

@@ -39,7 +39,7 @@ var appRoutes = [
     },
     { path: 'activities', component: activities_component_1.ActivitiesComponent },
     { path: 'food', component: food_component_1.FoodComponent },
-    { path: 'accomodation', component: accomodation_component_1.AccomodationComponent },
+    { path: 'accommodation', component: accomodation_component_1.AccomodationComponent },
     { path: 'contact', component: contact_component_1.ContactComponent },
     { path: 'shoppingCart', component: shoppingCart_component_1.ShoppingCartComponent },
     { path: 'test', component: test_component_1.TestComponent },

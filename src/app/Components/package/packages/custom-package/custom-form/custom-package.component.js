@@ -28,7 +28,7 @@ var CustomPackageComponent = (function () {
         //View variables
         this.selected = 1;
         this.days = [];
-        this.selectedDay = this.days[0];
+        this.selectedDay = 1;
         this.isTrue = false;
         this.screenWidth = document.getElementsByTagName('body')[0].clientWidth;
         this.loaded = false;
@@ -91,9 +91,9 @@ var CustomPackageComponent = (function () {
         var _this = this;
         this.startLoading();
         console.log('retrieving hotels');
-        this.hotelService.getMockHotels().then(function (hotels) { return _this.hotels = hotels; });
-        // this.hotelService.getHotels()
-        //     .subscribe((hotel : Hotel[]) => this.hotels = hotel)
+        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
+        this.hotelService.getHotels()
+            .subscribe(function (hotel) { return _this.hotels = hotel; });
         //Another way of doing this but does not currently work
         // .subscribe(
         //     function(response) {
@@ -118,7 +118,7 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.getFood = function () {
         var _this = this;
         console.log('retrieving food');
-        //this.hotelService.getMockFood().then((food: Food[]) => this.food = food);
+        //this.foodService.getMockFood().then((food: Food[]) => this.food = food);
         this.startLoading();
         this.foodService.getFood()
             .subscribe(function (food) { return _this.food = food; });
@@ -131,7 +131,7 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.getActivities = function () {
         var _this = this;
         console.log('retrieving Activities');
-        //this.hotelService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
         this.startLoading();
         this.activityService.getActivities()
             .subscribe(function (activity) { return _this.activities = activity; });
@@ -213,6 +213,136 @@ var CustomPackageComponent = (function () {
         alert('You have selected: \n Item ID: ' + accID + '\n Name: ' + accName);
         this.custom.hotel = accName;
         console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
+    };
+    CustomPackageComponent.prototype.setFood = function (menuType, item, setForAll) {
+        var day = this.selectedDay;
+        switch (menuType) {
+            case 1:
+                console.log('Setting food with the following: ');
+                console.log(' - Time of Day: ', menuType);
+                console.log(' - Day: ', this.selectedDay);
+                console.log(' - Item: ', item);
+                console.log(' - Set all: ', setForAll);
+                //This checks if items have been added into the breakfast array yet
+                if (this.custom.foodBreakfast == null) {
+                    this.custom.foodBreakfast = [];
+                    for (var i = 1; i <= this.duration; i++) {
+                        this.custom.foodBreakfast.push('');
+                    }
+                    console.log(this.custom.foodBreakfast);
+                    if (!setForAll) {
+                        this.custom.foodBreakfast[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodBreakfast[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodBreakfast);
+                }
+                else {
+                    if (!setForAll) {
+                        this.custom.foodBreakfast[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodBreakfast[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodBreakfast);
+                }
+                break;
+            case 2:
+                //This checks if items have been added into the Lunch array yet
+                if (this.custom.foodLunch == null) {
+                    this.custom.foodLunch = [];
+                    for (var i = 1; i <= this.duration; i++) {
+                        this.custom.foodLunch.push('');
+                    }
+                    console.log(this.custom.foodLunch);
+                    if (!setForAll) {
+                        this.custom.foodLunch[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodLunch[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodLunch);
+                }
+                else {
+                    if (!setForAll) {
+                        this.custom.foodLunch[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodLunch[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodLunch);
+                }
+                break;
+            case 3:
+                //This checks if items have been added into the Dinner array yet
+                if (this.custom.foodDinner == null) {
+                    this.custom.foodDinner = [];
+                    for (var i = 1; i <= this.duration; i++) {
+                        this.custom.foodDinner.push('');
+                    }
+                    console.log(this.custom.foodDinner);
+                    if (!setForAll) {
+                        this.custom.foodDinner[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodDinner[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodDinner);
+                }
+                else {
+                    if (!setForAll) {
+                        this.custom.foodDinner[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodDinner[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodDinner);
+                }
+                break;
+            case 4:
+                //This checks if items have been added into the Other array yet
+                if (this.custom.foodOther == null) {
+                    this.custom.foodOther = [];
+                    for (var i = 1; i <= this.duration; i++) {
+                        this.custom.foodOther.push('');
+                    }
+                    console.log(this.custom.foodOther);
+                    if (!setForAll) {
+                        this.custom.foodOther[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodOther[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodOther);
+                }
+                else {
+                    if (!setForAll) {
+                        this.custom.foodOther[day - 1] = item;
+                    }
+                    else {
+                        for (var i = 0; i < this.duration; i++) {
+                            this.custom.foodOther[i] = item;
+                        }
+                    }
+                    console.log(this.custom.foodOther);
+                }
+                break;
+        }
     };
     CustomPackageComponent.prototype.canDeactivate = function () {
         console.log('i am navigating away');

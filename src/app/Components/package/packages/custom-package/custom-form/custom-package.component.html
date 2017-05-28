@@ -254,7 +254,7 @@
                     <li *ngFor="let day of days">
                         <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
                         <ng-template #notActiveDay>
-                            <a (click)="setDays(day)">{{day}}</a>
+                            <a (click)="setDays(day); sidenav.close()">{{day}}</a>
                         </ng-template>
                     </li>        
                 </ul>
@@ -268,6 +268,10 @@
             </button>
 
             <div class="s-view row"><!-- Menu container -->
+                <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                    <span class="text-xsm">Add food and drinks to your package.</span>
+                </div>
+
                 <div (click)="expandB()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                     <span class="text-md">Breakfast</span>
                     <a class="expandButton">
@@ -322,8 +326,8 @@
                                         <span class="text-lg text-b text-primary">$</span>
                                 </div>
                                 <div class="col-md-6"><!-- Add to cart -->
-                                    <button type="button" md-raised-button color="warn" >Select</button>
-                                    <button type="button" md-raised-button color="warn" >Select for all days</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(1, f.name, 0)">Select</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(1, f.name, 1)">Select for all days</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                         View
@@ -388,7 +392,8 @@
                                         <span class="text-lg text-b text-primary">$</span>
                                 </div>
                                 <div class="col-xs-4"><!-- Add to cart -->
-                                    <button type="button" md-raised-button color="warn" >Select</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(2, f.name, 0)">Select</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(2, f.name, 1)">Select for all days</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                         View
@@ -453,7 +458,8 @@
                                         <span class="text-lg text-b text-primary">$</span>
                                 </div>
                                 <div class="col-xs-4"><!-- Add to cart -->
-                                    <button type="button" md-raised-button color="warn" >Select</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(3, f.name, 0)">Select</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(3, f.name, 1)">Select for all days</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                         View
@@ -518,7 +524,8 @@
                                         <span class="text-lg text-b text-primary">$</span>
                                 </div>
                                 <div class="col-xs-4"><!-- Add to cart -->
-                                    <button type="button" md-raised-button color="warn" >Select</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(4, f.name, 0)">Select</button>
+                                    <button type="button" md-raised-button color="warn" (click)="setFood(4, f.name, 1)">Select for all days</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                         View
@@ -539,25 +546,27 @@
         ============================================-->
     <md-sidenav-container *ngIf="selected==4">
         <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
-            <div class="col-xs-1" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
+            <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
                 <ul class="nav nav-pills nav-stacked" role="tablist">
                     <li><span class="text-md text-primary">Days</span></li>
                     <li *ngFor="let day of days">
                         <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
                         <ng-template #notActiveDay>
-                            <a (click)="setDays(day)">{{day}}</a>
+                            <a (click)="setDays(day); sidenav.close()">{{day}}</a>
                         </ng-template>
                     </li>        
                 </ul>
             </div>
         </md-sidenav>
 
-        <div class="col-xs-11" style="height: 100%"><!-- Activity day content -->
-            <button type="button" (click)="sidenav.open()">Toggle Left</button>
-            <h1 class="text-md text-primary text-b">Day {{selectedDay}}</h1>
+        <div class="container s-view" style="height: 100%"><!-- Activity day content -->
+            <button type="button" md-raised-button (click)="sidenav.open()">
+                <span class="text-sm text-primary text-b">Select day:</span>
+                <span class="text-sm text-primary">{{selectedDay}}</span>
+            </button>
             <div class="s-view row"><!-- Menu container -->
-                <div class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
-                    <span class="text-md">Add a sick activity Bruh</span>
+                <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                    <span class="text-xsm">Add activites / events and attractions to your package.</span>
                 </div>
 
                 <div class="s-view-f row"><!-- breakfast container -->

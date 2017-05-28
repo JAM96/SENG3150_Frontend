@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     },
   { path: 'activities', component: ActivitiesComponent},
   { path: 'food', component: FoodComponent},
-  { path: 'accomodation', component: AccomodationComponent},
+  { path: 'accommodation', component: AccomodationComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
   { path: 'test', component: TestComponent},

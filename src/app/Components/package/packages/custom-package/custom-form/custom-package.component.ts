@@ -37,7 +37,7 @@ export class CustomPackageComponent implements OnInit{
     //View variables
     selected : number = 1;
     days : number[] = [];
-    selectedDay : number = this.days[0];
+    selectedDay : number = 1;
     duration : number;
 
     isTrue = false;
@@ -133,9 +133,9 @@ export class CustomPackageComponent implements OnInit{
     getHotels() {
         this.startLoading();
         console.log('retrieving hotels');
-        this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-        // this.hotelService.getHotels()
-        //     .subscribe((hotel : Hotel[]) => this.hotels = hotel)
+        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
+         this.hotelService.getHotels()
+             .subscribe((hotel : Hotel[]) => this.hotels = hotel)
 
         //Another way of doing this but does not currently work
             // .subscribe(
@@ -163,7 +163,7 @@ export class CustomPackageComponent implements OnInit{
     /* Retrieves all food objects from the backend */
     getFood() {
         console.log('retrieving food');
-        //this.hotelService.getMockFood().then((food: Food[]) => this.food = food);
+        //this.foodService.getMockFood().then((food: Food[]) => this.food = food);
         this.startLoading();
        
         this.foodService.getFood()
@@ -178,7 +178,7 @@ export class CustomPackageComponent implements OnInit{
     /* Retrieves all activity objects from the backend */
     getActivities() {
         console.log('retrieving Activities');
-        //this.hotelService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
         this.startLoading();
        
         this.activityService.getActivities()
@@ -264,6 +264,141 @@ export class CustomPackageComponent implements OnInit{
         this.custom.hotel = accName;
 
         console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
+    }
+
+
+    setFood(menuType : number, item : string, setForAll : boolean) {
+        var day = this.selectedDay;
+
+        switch(menuType) {
+            case 1: //Breakfast
+                console.log('Setting food with the following: ');
+                console.log(' - Time of Day: ', menuType);
+                console.log(' - Day: ', this.selectedDay);
+                console.log(' - Item: ', item);
+                console.log(' - Set all: ', setForAll);
+
+                //This checks if items have been added into the breakfast array yet
+                if(this.custom.foodBreakfast == null) {
+                    this.custom.foodBreakfast = [];
+                    for(let i = 1; i <= this.duration; i++) {
+                        this.custom.foodBreakfast.push('');
+                    }
+                    console.log(this.custom.foodBreakfast);
+
+                    if(!setForAll) {
+                        this.custom.foodBreakfast[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodBreakfast[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodBreakfast);
+                } else {
+                    if(!setForAll) {
+                        this.custom.foodBreakfast[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodBreakfast[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodBreakfast);
+                }
+                break;
+            case 2: //Lunch
+                //This checks if items have been added into the Lunch array yet
+                if(this.custom.foodLunch == null) {
+                    this.custom.foodLunch = [];
+                    for(let i = 1; i <= this.duration; i++) {
+                        this.custom.foodLunch.push('');
+                    }
+                    console.log(this.custom.foodLunch);
+
+                    if(!setForAll) {
+                        this.custom.foodLunch[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodLunch[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodLunch);
+                } else {
+                    if(!setForAll) {
+                        this.custom.foodLunch[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodLunch[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodLunch);
+                }
+                break;
+            case 3: //Dinner
+                //This checks if items have been added into the Dinner array yet
+                if(this.custom.foodDinner == null) {
+                    this.custom.foodDinner = [];
+                    for(let i = 1; i <= this.duration; i++) {
+                        this.custom.foodDinner.push('');
+                    }
+                    console.log(this.custom.foodDinner);
+
+                    if(!setForAll) {
+                        this.custom.foodDinner[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodDinner[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodDinner);
+                } else {
+                    if(!setForAll) {
+                        this.custom.foodDinner[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodDinner[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodDinner);
+                }
+                break;
+            case 4: //Other
+                //This checks if items have been added into the Other array yet
+                if(this.custom.foodOther == null) {
+                    this.custom.foodOther = [];
+                    for(let i = 1; i <= this.duration; i++) {
+                        this.custom.foodOther.push('');
+                    }
+                    console.log(this.custom.foodOther);
+
+                    if(!setForAll) {
+                        this.custom.foodOther[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodOther[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodOther);
+                } else {
+                    if(!setForAll) {
+                        this.custom.foodOther[day-1] = item;
+                    } else {
+                        for(let i = 0; i < this.duration; i++) {
+                            this.custom.foodOther[i] = item;
+                        }
+                    }
+
+                    console.log(this.custom.foodOther);
+                }
+                break;
+
+        }
     }
 
 

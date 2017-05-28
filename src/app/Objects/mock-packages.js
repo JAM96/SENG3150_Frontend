@@ -25,5 +25,29 @@ exports.PACKAGE_LIST = [
         activities: [],
         events: ['V8 Supercars']
     },
+    {
+        packageName: 'V12 Supercars',
+        packageImg: 'cars.jpg',
+        hotelName: 'The Gateway Hotel',
+        packageAvailabilityStart: '27/07/17',
+        packageAvailabilityEnd: '27/07/17',
+        cost: 327,
+        packageDuration: 3,
+        restaurants: [],
+        activities: [],
+        events: ['V8 Supercars']
+    },
+    {
+        packageName: 'Ellite Party Package',
+        packageImg: 'cars.jpg',
+        hotelName: 'The Gateway Hotel',
+        packageAvailabilityStart: '27/07/17',
+        packageAvailabilityEnd: '27/07/17',
+        cost: 327,
+        packageDuration: 3,
+        restaurants: [],
+        activities: [],
+        events: ['V8 Supercars']
+    },
 ];
 //# sourceMappingURL=mock-packages.js.map

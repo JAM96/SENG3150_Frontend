@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" routerLink="/home">
+      <a class="navbar-brand" (click)="setNavOption(1)">
           <img alt="Newcastle Connections" src="res/image/logo-cropped.png" height="120%"/>
       </a>
     </div>
@@ -16,14 +16,61 @@
     <!-- Navigation Links-->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a routerLink="/home">Home<span class="sr-only">(current)</span></a></li>
-        <li><a routerLink="/packages">Packages</a></li>
-        <li><a routerLink="/events">Events</a></li>
-        <li><a routerLink="/activities">Activities</a></li>
-        <li><a routerLink="/food">Food</a></li>
-        <li><a routerLink="/accomodation">Accomodation</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/test">Test JSON</a></li>
+        <li *ngIf="selectedOption==1; else notActive1" class="active">
+            <a (click)="setNavOption(1)">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive1>
+            <li><a (click)="setNavOption(1)">Home</a></li>
+        </ng-template>
+
+        <li *ngIf="selectedOption==2; else notActive2" class="active">
+            <a (click)="setNavOption(2)">Packages<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive2>
+            <li><a (click)="setNavOption(2)">Packages</a></li>
+        </ng-template>
+
+        <li *ngIf="selectedOption==3; else notActive3" class="active">
+            <a (click)="setNavOption(3)">Events<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive3>
+            <li><a (click)="setNavOption(3)">Events</a></li>
+        </ng-template>
+
+        <li *ngIf="selectedOption==4; else notActive4" class="active">
+            <a (click)="setNavOption(4)">Activities<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive4>
+            <li><a (click)="setNavOption(4)">Activities</a></li>
+        </ng-template>
+
+        <li *ngIf="selectedOption==5; else notActive5" class="active">
+            <a (click)="setNavOption(5)">Food<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive5>
+            <li><a (click)="setNavOption(5)">Food</a></li>
+        </ng-template>
+
+        <li *ngIf="selectedOption==6; else notActive6" class="active">
+            <a (click)="setNavOption(6)">Accommodation<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive6>
+            <li><a (click)="setNavOption(6)">Accommodation</a></li>
+        </ng-template>
+
+        <li *ngIf="selectedOption==7; else notActive7" class="active">
+            <a (click)="setNavOption(7)">Contact<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive7>
+            <li><a (click)="setNavOption(7)">Contact</a></li>
+        </ng-template>
+
+        <li *ngIf="selectedOption==8; else notActive8" class="active">
+            <a (click)="setNavOption(8)">Test Database<span class="sr-only">(current)</span></a>
+        </li>
+        <ng-template #notActive8>
+            <li><a (click)="setNavOption(8)">Test Database</a></li>
+        </ng-template>
       </ul>
       
       <!-- acount information -->

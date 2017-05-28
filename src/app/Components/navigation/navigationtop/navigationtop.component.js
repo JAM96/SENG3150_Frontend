@@ -16,10 +16,40 @@ var NavigationTopComponent = (function () {
     function NavigationTopComponent(dialog, router) {
         this.dialog = dialog;
         this.router = router;
+        this.selectedOption = 1;
         this.isOpen = false;
         this.isLogin = false;
         this.loginButtonText = 'Login';
     }
+    NavigationTopComponent.prototype.setNavOption = function (selection) {
+        this.selectedOption = selection;
+        switch (this.selectedOption) {
+            case 1:
+                this.router.navigate(['/home']);
+                break;
+            case 2:
+                this.router.navigate(['/packages']);
+                break;
+            case 3:
+                this.router.navigate(['/events']);
+                break;
+            case 4:
+                this.router.navigate(['/activities']);
+                break;
+            case 5:
+                this.router.navigate(['/food']);
+                break;
+            case 6:
+                this.router.navigate(['/accommodation']);
+                break;
+            case 7:
+                this.router.navigate(['/contact']);
+                break;
+            case 8:
+                this.router.navigate(['/test']);
+                break;
+        }
+    };
     NavigationTopComponent.prototype.openDialog = function () {
         var _this = this;
         if (this.loginButtonText == 'Logout') {
