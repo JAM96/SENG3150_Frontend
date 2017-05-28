@@ -129,31 +129,14 @@ export class CustomPackageComponent implements OnInit{
         this.slimLoadingBarService.complete();
     }
 
-
+    /* Retrieves all the hotel objects from the backend */
     getHotels() {
-        this.startLoading();
         console.log('retrieving hotels');
-        this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-        // this.hotelService.getHotels()
-        //     .subscribe((hotel : Hotel[]) => this.hotels = hotel)
-
-        //Another way of doing this but does not currently work
-            // .subscribe(
-            //     function(response) {
-            //         console.log('Success, response is: ', response); 
-            //         (response : Hotel[]) => this.hotels = response;
-            //     },
-            //     function(error) {
-            //         console.log(error)
-            //     },
-            //     function() {
-            //          var cpc : CustomPackageComponent;
-            //         console.log('Completed', cpc.testString);
-                   
-            //         cpc.completeLoading();
-            //     });
-        //console.log(this.hotels)
-
+        this.startLoading();
+       
+        this.hotelService.getHotels()
+            .subscribe((hotel : Hotel[]) => this.hotels = hotel);
+        
         //fake loading bar
         setTimeout(() => {
             this.completeLoading();

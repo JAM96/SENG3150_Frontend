@@ -87,28 +87,13 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.completeLoading = function () {
         this.slimLoadingBarService.complete();
     };
+    /* Retrieves all the hotel objects from the backend */
     CustomPackageComponent.prototype.getHotels = function () {
         var _this = this;
-        this.startLoading();
         console.log('retrieving hotels');
-        this.hotelService.getMockHotels().then(function (hotels) { return _this.hotels = hotels; });
-        // this.hotelService.getHotels()
-        //     .subscribe((hotel : Hotel[]) => this.hotels = hotel)
-        //Another way of doing this but does not currently work
-        // .subscribe(
-        //     function(response) {
-        //         console.log('Success, response is: ', response); 
-        //         (response : Hotel[]) => this.hotels = response;
-        //     },
-        //     function(error) {
-        //         console.log(error)
-        //     },
-        //     function() {
-        //          var cpc : CustomPackageComponent;
-        //         console.log('Completed', cpc.testString);
-        //         cpc.completeLoading();
-        //     });
-        //console.log(this.hotels)
+        this.startLoading();
+        this.hotelService.getHotels()
+            .subscribe(function (hotel) { return _this.hotels = hotel; });
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();
