@@ -1,5 +1,5 @@
 # SENG3150 Frontend
-## Dependencies
+## Dependencies steps:
 ------
 1. IDE Recommended: [Visual Studio Code](https://code.visualstudio.com/Download)
 2. [Node.JS](https://nodejs.org/en/) is required to run the front-end:
@@ -18,7 +18,7 @@ This will install bower globally to your computer
 `npm install`
 Note: this may output some errors, but it should be fine
 4. Install bower components
-Navigate into the src folder
+Navigate into the "src" folder of SENG3150_Frontend
 Open a new command window in this folder
 Use the following command: `bower install`
 5. Start the front end client side server, by typing in `npm start` in the command window.
