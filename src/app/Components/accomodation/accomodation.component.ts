@@ -9,7 +9,8 @@ import {HotelService} from '../../Services/hotel/hotel.service';
 @Component({
     moduleId: module.id,
     selector: 'accomodation',
-    templateUrl: 'accomodation.component.html',
+    // templateUrl: 'accomodation.component.html',
+    templateUrl: 'accomodationListView/accomodationListView.html',
     providers: [HotelService]
 })
 
