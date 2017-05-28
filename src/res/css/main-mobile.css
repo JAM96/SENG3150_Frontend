@@ -27,7 +27,12 @@
 
     .s-view-a { /* accomodation scaling */
         height: 100%;
-    }  
+    } 
+
+    .s-view-f {
+        margin-left: 10%;
+        width: 90%;
+    } 
 
     .m-form-extend {
         width: 100%;

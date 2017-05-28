@@ -11,6 +11,7 @@ import {FoodService} from '../../../../../Services/food/food.service';
 import {ActivityService} from '../../../../../Services/activity/activity.service';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 import {CustomPackageService} from '../custom-package-service/custom-package.service';
+import {Router} from '@angular/router';
 
 
 import {CustomPackage} from '../CustomPackage';
@@ -35,8 +36,10 @@ export class CustomPackageComponent implements OnInit{
 
     //View variables
     selected : number = 1;
-    days : number[] = [1,2,3,4,5];
-    selectedDay : number = 3;
+    days : number[] = [];
+    selectedDay : number = this.days[0];
+    duration : number;
+
     isTrue = false;
     screenWidth : number = document.getElementsByTagName('body')[0].clientWidth;
     loaded = false;
@@ -62,7 +65,8 @@ export class CustomPackageComponent implements OnInit{
         private foodService     :   FoodService,
         private activityService :   ActivityService,
         private packageService  :   CustomPackageService,
-        private slimLoadingBarService : SlimLoadingBarService
+        private slimLoadingBarService : SlimLoadingBarService,
+        private router          : Router
         ) 
         {
             
@@ -70,8 +74,47 @@ export class CustomPackageComponent implements OnInit{
 
     ngOnInit() {
         this.custom = this.packageService.getInitialData();
+
+        console.log(this.custom.checkin)
+        this.calculateDuration(this.custom.checkin, this.custom.checkout);
+        this.setDaysArray(this.duration);
     }
 
+
+    //Calculates the duration of the selected holiday
+    calculateDuration(checkin : Date, checkout : Date) {
+        var check = new Date(checkin);
+
+        if(checkin == null) {
+            this.router.navigate(["/home"]);    
+        }
+
+        var one_day=1000*60*60*24;  //used to convert the time calculated into days
+
+        console.log(new Date(checkout));
+        console.log(new Date(checkin));
+
+        var duration = new Date(checkout).getTime() - new Date(checkin).getTime();
+
+        this.duration = Math.round(duration/one_day);
+    }
+
+
+    /* Assigns each day to the days array
+        This is required since angular cannot pass in a value in the *ngFor
+          e.g cannot do *ngFor="let x = 1; x <= duration ..."
+          ngFor can only loop through arrays.
+    */
+    setDaysArray(duration : number) {
+        console.log(duration);
+
+        for(let i = 1; i <= duration; i++) {
+            this.days.push(i);
+        }
+        console.log(this.days);
+    }
+
+    //fake loading atm
     startLoading() {
         this.slimLoadingBarService.start(() => {
             console.log('Loading complete');
@@ -86,8 +129,6 @@ export class CustomPackageComponent implements OnInit{
         this.slimLoadingBarService.complete();
     }
 
-    public hotelsX : Hotel[]
-    public testString : string = "hello world";
 
     getHotels() {
         this.startLoading();
@@ -119,6 +160,7 @@ export class CustomPackageComponent implements OnInit{
         }, 1000);
     }
 
+    /* Retrieves all food objects from the backend */
     getFood() {
         console.log('retrieving food');
         //this.hotelService.getMockFood().then((food: Food[]) => this.food = food);
@@ -133,6 +175,7 @@ export class CustomPackageComponent implements OnInit{
         }, 1000);
     }
 
+    /* Retrieves all activity objects from the backend */
     getActivities() {
         console.log('retrieving Activities');
         //this.hotelService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
@@ -221,5 +264,17 @@ export class CustomPackageComponent implements OnInit{
         this.custom.hotel = accName;
 
         console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
+    }
+
+
+    canDeactivate(){ 
+        console.log('i am navigating away');
+        console.log(this.custom.checkin);
+        //check if user wants to navigate away
+        if(this.custom.checkin != null) {
+            return window.confirm("You will lose all changes and will have to start again. Are you sure you want to continue?");
+        } else {
+            return true;
+        }
     }
 }

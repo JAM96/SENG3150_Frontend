@@ -261,8 +261,12 @@
             </div>
         </md-sidenav>
 
-        <div *ngIf="selected==3" class="col-xs-11" style="height: 100%"><!-- food day content -->
-            <button type="button" md-raised-button (click)="sidenav.open()" class="text-md text-primary text-b">Select day: {{selectedDay}}</button>
+        <div *ngIf="selected==3" class="container s-view" style="height: 100%"><!-- food day content -->
+            <button type="button" md-raised-button (click)="sidenav.open()">
+                <span class="text-sm text-primary text-b">Select day:</span>
+                <span class="text-sm text-primary">{{selectedDay}}</span>
+            </button>
+
             <div class="s-view row"><!-- Menu container -->
                 <div (click)="expandB()" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                     <span class="text-md">Breakfast</span>
@@ -314,11 +318,12 @@
                             </div>
 
                             <div class="row item-bottom">
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                         <span class="text-lg text-b text-primary">$</span>
                                 </div>
-                                <div class="col-xs-4"><!-- Add to cart -->
+                                <div class="col-md-6"><!-- Add to cart -->
                                     <button type="button" md-raised-button color="warn" >Select</button>
+                                    <button type="button" md-raised-button color="warn" >Select for all days</button>
                                     <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                         View
@@ -620,12 +625,13 @@
     
         ============================================-->
     <div class="container s-view" *ngIf="selected==5">
-        <h1>Shopping Cart</h1>
-        <h2>Date</h2>
-        <p>{{custom.checkin}} to {{custom.checkout}}</p>
-        <h2>Guests</h2>
-        <p>{{custom.guests}} guests with {{custom.rooms}} rooms.
-        <h2>Hotel</h2>
-        <p>{{custom.hotel}}</p>
+        <span class="text-lg text-primary text-b text-u text-nl">Shopping Cart</span>
+        <span class="text-md text-primary text-b text-nl">Date:</span>
+        <span class="text-sm text-k text-nl">{{custom.checkin}} to {{custom.checkout}}</span>
+        <span class="text-sm text-k text-nl">{{duration}} days</span>
+        <span class="text-md text-primary text-b text-nl">Guests</span>
+        <span class="text-sm text-k text-nl">{{custom.guests}} guests with {{custom.rooms}} rooms.</span>
+        <span class="text-md text-primary text-b text-nl">Hotel</span>
+        <span class="text-sm text-ktext-nl">{{custom.hotel}}</span>
     </div>
 </div><!-- end Main View Container -->

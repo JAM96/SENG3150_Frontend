@@ -48,6 +48,7 @@ var custom_package_component_1 = require("../Components/package/packages/custom-
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
+var can_deactivate_guard_service_1 = require("../Components/guards/can-deactivate-guard.service");
 //ng2 
 var ng2_aside_1 = require("ng2-aside");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
@@ -111,6 +112,7 @@ AppModule = __decorate([
         providers: [
             app_routing_1.appRoutingProviders,
             custom_package_service_1.CustomPackageService,
+            can_deactivate_guard_service_1.CanDeactivateGuard,
         ]
     }),
     __metadata("design:paramtypes", [router_1.Router])

@@ -1,5 +1,7 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {CanDeactivateGuard} from './Components/guards/can-deactivate-guard.service';
+
 
 import {HomeComponent} from './Components/home/home.component';
 import {ProfileComponent} from './Components/profile/profile.component';
@@ -36,7 +38,11 @@ const appRoutes: Routes = [
   { path: 'profile/viewPackages', component: ViewPackagesComponent},
   { path: 'profile/viewVouchers', component: ViewVouchersComponent},
   { path: 'profile/leaveFeedback', component: LeaveFeedbackComponent},
-  { path: 'createpackage', component: CustomPackageComponent},
+  { 
+    path: 'createpackage', 
+    component: CustomPackageComponent,
+    canDeactivate: [CanDeactivateGuard],
+    },
   { path: 'activities', component: ActivitiesComponent},
   { path: 'food', component: FoodComponent},
   { path: 'accomodation', component: AccomodationComponent},

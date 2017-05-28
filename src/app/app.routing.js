@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = require("@angular/router");
+var can_deactivate_guard_service_1 = require("./Components/guards/can-deactivate-guard.service");
 var home_component_1 = require("./Components/home/home.component");
 var profile_component_1 = require("./Components/profile/profile.component");
 var viewPackages_component_1 = require("./Components/profile/viewPackages/viewPackages.component");
@@ -31,7 +32,11 @@ var appRoutes = [
     { path: 'profile/viewPackages', component: viewPackages_component_1.ViewPackagesComponent },
     { path: 'profile/viewVouchers', component: viewVouchers_component_1.ViewVouchersComponent },
     { path: 'profile/leaveFeedback', component: leaveFeedback_component_1.LeaveFeedbackComponent },
-    { path: 'createpackage', component: custom_package_component_1.CustomPackageComponent },
+    {
+        path: 'createpackage',
+        component: custom_package_component_1.CustomPackageComponent,
+        canDeactivate: [can_deactivate_guard_service_1.CanDeactivateGuard],
+    },
     { path: 'activities', component: activities_component_1.ActivitiesComponent },
     { path: 'food', component: food_component_1.FoodComponent },
     { path: 'accomodation', component: accomodation_component_1.AccomodationComponent },

@@ -60,10 +60,26 @@ var CreateCustomPackageInitialComponent = (function () {
     //Send the data to the custom-package service
     //Navigate to the next page
     CreateCustomPackageInitialComponent.prototype.submitForm = function () {
-        console.log('');
-        this.sendLog();
-        this.packageService.setInitialData(this.value, this.guests, this.rooms, this.checkin, this.checkout);
-        this.router.navigate(["/createpackage"]);
+        if (this.validateForm()) {
+            this.sendLog();
+            this.packageService.setInitialData(this.value, this.guests, this.rooms, this.checkin, this.checkout);
+            this.router.navigate(["/createpackage"]);
+        }
+    };
+    CreateCustomPackageInitialComponent.prototype.validateForm = function () {
+        if (this.checkin == null) {
+            window.alert("You must enter a checkin date!");
+            return false;
+        }
+        if (this.checkout == null) {
+            window.alert("You must enter a checkout date!");
+            return false;
+        }
+        if (this.checkout < this.checkin) {
+            window.alert("Your checkout date cannot be before checkin!");
+            return false;
+        }
+        return true;
     };
     CreateCustomPackageInitialComponent.prototype.sendLog = function () {
         console.info("[INFO] Submitting form: ");

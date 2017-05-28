@@ -79,10 +79,8 @@ body {
 }
 
 .s-view-f {
-    width: 90%; 
-    padding-top: 20px; 
-    padding-left: 40px;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 .s-view-a {
@@ -447,7 +445,7 @@ md-sidenav {
 }
 
 .item-content-short {
-    height: 200px
+    min-height: 200px
 }
 
 .item-rating {

@@ -49,6 +49,8 @@ import {HomeComponent} from '../Components/home/home.component';
   import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
+import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
+
 
 //ng2 
 import {AsideModule} from 'ng2-aside';
@@ -106,6 +108,7 @@ import {TestComponent} from '../Components/test-component/test.component';
   providers: [
     appRoutingProviders,
     CustomPackageService,
+    CanDeactivateGuard,
   ]
 })
 
