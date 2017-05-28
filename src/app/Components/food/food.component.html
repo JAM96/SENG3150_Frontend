@@ -1,0 +1,10 @@
+<section class="panelHalf">
+    <h1>Food and Drinks page:</h1>
+    <p>Eventually, the entire list of food and drink businesses will be displayed on this page.</p>
+    <p>This is to allow customers to have a look at the food and drink businesses in Newcastle, without having to start creating a custom package to view them.</p>
+    <div class="container s-view-a">
+        <div *ngFor="let activity of activities" class="row item-container">
+            {{activity.name}}
+        </div>
+    </div>
+</section>

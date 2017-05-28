@@ -2,7 +2,8 @@ export interface Activity {
     activityID          :   string;
     name                :   string;
     category            :   string;
-    activityType        :   string;
+    //Later on, we should include this variable:
+    // activityType        :   string;
     address             :   string;
     suburb              :   string;
     mainPhotoURL        :   string;
