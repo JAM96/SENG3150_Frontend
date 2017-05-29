@@ -596,7 +596,9 @@
 
                                 <div class="col-md-3 item-rating"><!-- rating -->
                                     <span class="text-lg text-w text-hide">Fabulous!</span>
-                                    <span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>
+                                    <!--<span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>-->
+                                    <!-- Currently hardcoding the userRating to 4, since we don't have a userRating variable in the Activity table: -->
+                                    <span class="text-sm text-w text-hide">4/5</span>
                                     <a>
                                         <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
                                     </a>
@@ -604,7 +606,7 @@
                             </div>
 
                             <div class="row item-features">
-                                <span class="text-sm text-k">Menu Theme: {{activity.menuTheme}}</span>
+                                <!--<span class="text-sm text-k">Menu Theme: {{activity.menuTheme}}</span>-->
 
                                 <span class="text-xsm text-k">Description: {{activity.briefDescription}}</span>
 

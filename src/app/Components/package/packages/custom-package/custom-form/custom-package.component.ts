@@ -129,10 +129,12 @@ export class CustomPackageComponent implements OnInit{
         this.slimLoadingBarService.complete();
     }
 
-
+    /* Retrieves all the hotel objects from the backend */
     getHotels() {
-        this.startLoading();
         console.log('retrieving hotels');
+
+        this.startLoading();
+
         //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
          this.hotelService.getHotels()
              .subscribe((hotel : Hotel[]) => this.hotels = hotel)
@@ -153,6 +155,7 @@ export class CustomPackageComponent implements OnInit{
             //         cpc.completeLoading();
             //     });
         //console.log(this.hotels)
+
 
         //fake loading bar
         setTimeout(() => {

@@ -87,10 +87,11 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.completeLoading = function () {
         this.slimLoadingBarService.complete();
     };
+    /* Retrieves all the hotel objects from the backend */
     CustomPackageComponent.prototype.getHotels = function () {
         var _this = this;
-        this.startLoading();
         console.log('retrieving hotels');
+        this.startLoading();
         //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
         this.hotelService.getHotels()
             .subscribe(function (hotel) { return _this.hotels = hotel; });
