@@ -64,6 +64,7 @@ import {CustomPackageService} from '../Components/package/packages/custom-packag
 //test component
 import {TestComponent} from '../Components/test-component/test.component';
 
+
 //add module imports and component declarations here...
 @NgModule({
   imports:      [ 

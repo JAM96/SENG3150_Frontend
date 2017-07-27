@@ -74,6 +74,8 @@ export class CustomPackageComponent implements OnInit{
 
     ngOnInit() {
         this.custom = this.packageService.getInitialData();
+        this.custom.checkin = new Date('February 4, 2016 10:13:00');
+        this.custom.checkout = new Date('February 6, 2016 10:13:00');
 
         console.log(this.custom.checkin)
         this.calculateDuration(this.custom.checkin, this.custom.checkout);

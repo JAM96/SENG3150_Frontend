@@ -11,7 +11,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HotelService {
-    private url : string = "http://localhost:8080/accommodation"
+    private url : string = remoteConnection + '/accommodation'
+    private urlLocal : string = remoteConnectionLocal + '/accomodation'
     
     constructor(private http : Http) {}
 

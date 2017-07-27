@@ -82,7 +82,9 @@ export class CreateCustomPackageInitialComponent { //CCPIC
         } 
     }
 
-    validateForm() {
+
+/*FORM VALIDATION, COMMENTED FOR EASY DEV */
+    validateForm() {/*
         if(this.checkin == null) {
             window.alert("You must enter a checkin date!");
             return false;
@@ -96,7 +98,7 @@ export class CreateCustomPackageInitialComponent { //CCPIC
         if(this.checkout < this.checkin) {
             window.alert("Your checkout date cannot be before checkin!");
             return false;
-        }
+        }*/
 
         return true;
     }

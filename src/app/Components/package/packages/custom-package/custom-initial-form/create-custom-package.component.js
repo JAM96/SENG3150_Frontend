@@ -66,19 +66,8 @@ var CreateCustomPackageInitialComponent = (function () {
             this.router.navigate(["/createpackage"]);
         }
     };
+    /*FORM VALIDATION, COMMENTED FOR EASY DEV */
     CreateCustomPackageInitialComponent.prototype.validateForm = function () {
-        if (this.checkin == null) {
-            window.alert("You must enter a checkin date!");
-            return false;
-        }
-        if (this.checkout == null) {
-            window.alert("You must enter a checkout date!");
-            return false;
-        }
-        if (this.checkout < this.checkin) {
-            window.alert("Your checkout date cannot be before checkin!");
-            return false;
-        }
         return true;
     };
     CreateCustomPackageInitialComponent.prototype.sendLog = function () {

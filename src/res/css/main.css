@@ -57,6 +57,11 @@ body {
     overflow: hidden;
 }
 
+.add-padding-15 {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
 
 @media screen and (min-height: 800px){
     .s-view { 
