@@ -1,56 +1,53 @@
-<section id="createForm" class="container-fluid view">
-    <div class="container-fluid homeImg"><!-- have image slider behind it-->
-        <div class="container">
-            <div class="row customPackageCreationForm">
-                <div class="col-xs-7 m-form-extend"><!-- left column -->
-                    <label for="checkin">Check-in: </label>
-                    <input class="form-control" type="date" id="checkin" [(ngModel)]="checkin"/>
+<section id="createForm" class="h-view">
+    <div class="customPackageCreationForm">
+        <div class="row"><!-- calendar row -->
+            <div class="col-md-6"><!-- Checkin calendar column -->
+                <label for="checkin">Check-in: </label>
+                <custom-calendar></custom-calendar>
+                <!--<input class="form-control" type="date" id="checkin" [(ngModel)]="checkin"/>-->
+            </div><!-- end checkin calendar -->
 
-                    <label for="checkout" style="padding-top: 10px">Check-out: </label>
-                    <input class="form-control" type="date" id="checkout" [(ngModel)]="checkout"/>
-
-                    <div class="customIncreasers" style="margin-top: 20px">
-                        <a>
-                            <span (click)="decreaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
-                        </a>
-                        <div class="text">
-                            Guests: {{guests}}
-                        </div>
-                        <a>
-                            <span (click)="increaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
-                        </a>
-                    </div>
-
-                    <div class="customIncreasers">
-                        <a>
-                            <span (click)="decreaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
-                        </a>
-                        <div class="text">
-                            Rooms: {{rooms}}
-                        </div>
-                        <a>
-                            <span (click)="increaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
-                        </a>
-                    </div>
-
-                    <!--Slider -->
-                    <div class="range-slider">
-                        <h3 class="text-sm text-b">Budget - ${{value}}</h3>
-                        <input (click)="updateValue()" type="range" [(ngModel)]="value" min="{{minBudget}}" max="{{maxBudget}}">
-                    </div>
-
-                    <br>
-                    <button type="button" md-raised-button color="warn" (click)="submitForm()">Create!</button>
-                </div><!-- end left column -->
+            <div class="col-md-6"><!-- Checkout calendar column -->
+                <label for="checkout">Check-out: </label>
+                <!--<input class="form-control" type="date" id="checkout" [(ngModel)]="checkout"/>-->
+            </div><!-- end checkout calendar -->
+        </div><!-- end calendar row -->
             
-                <div class="hideRecommendations col-xs-3">
-                    Promotions will go here
+        <div class="row"><!-- rest of the custom package form -->
+            <div class="customIncreasers" style="margin-top: 20px">
+                <a>
+                    <span (click)="decreaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
+                </a>
+                <div class="text">
+                    Guests: {{guests}}
                 </div>
-            </div><!-- custom package form -->
-        </div><!--package container -->
-    </div><!-- image container -->
+                <a>
+                    <span (click)="increaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
+                </a>
+            </div>
 
-    <div class="container" style="height: 40%"><!--recommend packages-->
-        <div>Upcoming events / attractions etc will go here</div>
-    </div><!-- recommend packages -->
+            <div class="customIncreasers">
+                <a>
+                    <span (click)="decreaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
+                </a>
+                <div class="text">
+                    Rooms: {{rooms}}
+                </div>
+                <a>
+                    <span (click)="increaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
+                </a>
+            </div>
+
+            <!--Slider -->
+            <div class="range-slider">
+                <h3 class="text-sm text-b">Budget - ${{value}}</h3>
+                <!--<input (click)="updateValue()" type="range" [(ngModel)]="value" min="{{minBudget}}" max="{{maxBudget}}">-->
+            </div>
+            <br>
+            <button type="button" md-raised-button color="warn" (click)="submitForm()">Create!</button>
+        </div>
+    </div><!-- custom package form -->
+
+    <div id="verticalLine"></div>
+    <div id="horizontalLine"></div>
 </section>

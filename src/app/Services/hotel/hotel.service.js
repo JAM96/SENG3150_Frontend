@@ -18,8 +18,9 @@ require("rxjs/add/operator/map");
 var HotelService = (function () {
     function HotelService(http) {
         this.http = http;
-        this.url = remoteConnection + '/accommodation';
-        this.urlLocal = remoteConnectionLocal + '/accomodation';
+        //private url : string = remoteConnection + '/accommodation'
+        // private urlLocal : string = remoteConnectionLocal + '/accomodation'
+        this.url = "http://localhost:8080";
     }
     HotelService.prototype.getHotels = function () {
         return this.http.get(this.url)

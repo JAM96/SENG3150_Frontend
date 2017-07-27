@@ -53,6 +53,59 @@ body {
     border-bottom: none;
 }
 
+.h-view {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: #333333;
+    z-index: 1000;
+
+
+    background-image: url("../image/home-4.jpg");
+    background-size: 100% 100%;
+}
+
+.customPackageCreationForm {
+    position: absolute;
+
+    height: 40%;
+    width: 50%;
+
+    top: 50%;
+    left: 50%;
+
+    margin-top: -10%;
+    margin-right: 25%;
+    margin-left: -25%;
+    z-index: 10002;
+
+    padding: 20px;
+    background-color: rgba(50,50,55,0.9);
+    border: 4px solid rgba(30,27,27,1);
+    color: white;
+    border-radius: 10px;
+}
+
+#verticalLine {
+    width: 2px;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    z-index: 10001;
+}
+
+#horizontalLine {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    z-index: 10001;
+}
+
 .view-lock {
     overflow: hidden;
 }
@@ -127,7 +180,6 @@ body {
 .homeImg {
     background-image: url("../image/home-4.jpg");
     background-size: 100% 100%;
-    height: 60%;
 }
 
 /* md2 customisation */
@@ -164,16 +216,6 @@ md-sidenav {
   margin-left: 15px;
 }
 
-
-.customPackageCreationForm {
-    margin: 5%;
-    width: 90%;
-    padding: 20px;
-    background-color: rgba(50,50,55,0.9);
-    border: 4px solid rgba(30,27,27,1);
-    color: white;
-    border-radius: 10px;
-}
 
 .customIncreasers {
     padding-top: 10px;
@@ -534,4 +576,30 @@ a:hover {
 
 .range-slider {
   width: 100%;
+}
+
+.custom-calendar {
+    background-color: rgba(50,100,200,0.8);
+    width: 100%;
+}
+
+.calendar-day {
+    text-align: center;
+    background-color: rgba(80,80,80,0.8);
+}
+
+.calendar-day:hover {
+    background-color: rgba(150,120,120,0.8);
+    cursor: pointer;
+}
+
+.calendar-table {
+    width: 100%;
+}
+
+.calendar-underline {
+    text-align: center;
+    background-color: rgba(70,70,70,0.8);
+    border-bottom: solid 2px rgba(30,30,30,1);
+    padding-bottom: 5px;
 }

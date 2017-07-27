@@ -1,0 +1,91 @@
+<!-- HTML TEMPLATE CREATED BY JACK MENNIE
+    27/07/17
+-->
+<div class="container custom-calendar">
+    <!-- Calendar Container -->
+    <div *ngIf="selected==0" class="calendar-main-view">
+        <div class="row"><!-- Calendar buttons -->
+                <button type="button" md-button (click)="submitForm()">July</button>
+                <button type="button" md-button (click)="submitForm()">2017</button>
+
+                <button type="button" md-button style="float:right">27/07/17</button>
+        </div>
+
+        <div class="row"><!-- Days -->
+            <table class="calendar-table">
+                <tr>
+                    <th class=" calendar-underline">Su</th>
+                    <th class=" calendar-underline">Mo</th>
+                    <th class=" calendar-underline">Tu</th>
+                    <th class=" calendar-underline">We</th>
+                    <th class=" calendar-underline">Th</th>
+                    <th class=" calendar-underline">Fr</th>
+                    <th class=" calendar-underline">Sa</th>
+                </tr>
+                <tr>
+                    <td class="calendar-day">{{days[0]}}</td>
+                    <td class="calendar-day">{{days[1]}}</td>
+                    <td class="calendar-day">{{days[2]}}</td>
+                    <td class="calendar-day">{{days[3]}}</td>
+                    <td class="calendar-day">{{days[4]}}</td>
+                    <td class="calendar-day">{{days[5]}}</td>
+                    <td class="calendar-day">{{days[6]}}</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">{{days[7]}}</td>
+                    <td class="calendar-day">{{days[8]}}</td>
+                    <td class="calendar-day">{{days[9]}}</td>
+                    <td class="calendar-day">{{days[10]}}</td>
+                    <td class="calendar-day">{{days[11]}}</td>
+                    <td class="calendar-day">{{days[12]}}</td>
+                    <td class="calendar-day">{{days[13]}}</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">{{days[14]}}</td>
+                    <td class="calendar-day">{{days[15]}}</td>
+                    <td class="calendar-day">{{days[16]}}</td>
+                    <td class="calendar-day">{{days[17]}}</td>
+                    <td class="calendar-day">{{days[18]}}</td>
+                    <td class="calendar-day">{{days[19]}}</td>
+                    <td class="calendar-day">{{days[20]}}</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">{{days[21]}}</td>
+                    <td class="calendar-day">{{days[22]}}</td>
+                    <td class="calendar-day">{{days[23]}}</td>
+                    <td class="calendar-day">{{days[24]}}</td>
+                    <td class="calendar-day">{{days[25]}}</td>
+                    <td class="calendar-day">{{days[26]}}</td>
+                    <td class="calendar-day">{{days[27]}}</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">{{days[28]}}</td>
+                    <td class="calendar-day">{{days[29]}}</td>
+                    <td class="calendar-day">{{days[30]}}</td>
+                    <td class="calendar-day">{{days[31]}}</td>
+                    <td class="calendar-day">{{days[32]}}</td>
+                    <td class="calendar-day">{{days[33]}}</td>
+                    <td class="calendar-day">{{days[34]}}</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">{{days[35]}}</td>
+                    <td class="calendar-day">{{days[36]}}</td>
+                    <td class="calendar-day">{{days[37]}}</td>
+                    <td class="calendar-day">{{days[38]}}</td>
+                    <td class="calendar-day">{{days[39]}}</td>
+                    <td class="calendar-day">{{days[40]}}</td>
+                    <td class="calendar-day">{{days[41]}}</td>
+                </tr>
+            </table>
+        </div>
+    </div><!-- end calendar-main-view-->
+
+    <div *ngIf="selected==1" class="calendar-month-view">
+    </div><!-- end calendar-month-view-->
+
+    <div *ngIf="selected==2" class="calendar-year-view">
+    </div><!-- end calendar-year-view-->
+
+
+
+</div>
