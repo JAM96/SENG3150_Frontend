@@ -33,11 +33,11 @@ var TestService = (function () {
     TestService.prototype.getMockTest = function () {
         return Promise.resolve(test_list_1.TEST_LIST);
     };
+    TestService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], TestService);
     return TestService;
 }());
-TestService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], TestService);
 exports.TestService = TestService;
 //# sourceMappingURL=test.service.js.map

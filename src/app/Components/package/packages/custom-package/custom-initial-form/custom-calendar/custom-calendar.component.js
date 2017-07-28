@@ -73,15 +73,15 @@ var CustomCalendarComponent = (function () {
     CustomCalendarComponent.prototype.setDay = function (value) {
         this.selectedDay = value;
     };
+    CustomCalendarComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'custom-calendar',
+            templateUrl: 'custom-calendar.component.html',
+            styleUrls: ['custom-calendar.component.css']
+        })
+    ], CustomCalendarComponent);
     return CustomCalendarComponent;
 }());
-CustomCalendarComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'custom-calendar',
-        templateUrl: 'custom-calendar.component.html',
-        styleUrls: ['custom-calendar.component.css']
-    })
-], CustomCalendarComponent);
 exports.CustomCalendarComponent = CustomCalendarComponent;
 //# sourceMappingURL=custom-calendar.component.js.map
