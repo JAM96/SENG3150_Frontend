@@ -5,8 +5,8 @@
     <!-- Calendar Container -->
     <div *ngIf="selected==0" class="calendar-main-view">
         <div class="row"><!-- Calendar buttons -->
-                <button type="button" md-button (click)="submitForm()">July</button>
-                <button type="button" md-button (click)="submitForm()">2017</button>
+                <button type="button" md-button (click)="openMonth()">{{month}}</button>
+                <button type="button" md-button (click)="openYear()">2017</button>
 
                 <button type="button" md-button style="float:right">27/07/17</button>
         </div>
@@ -81,9 +81,32 @@
     </div><!-- end calendar-main-view-->
 
     <div *ngIf="selected==1" class="calendar-month-view">
+        <table class="calendar-table">
+            <tr>
+                <td class="calendar-day" (click)="updateMonth(0)">Jan</td>
+                <td class="calendar-day" (click)="updateMonth(1)">Feb</td>
+                <td class="calendar-day" (click)="updateMonth(2)">Mar</td>
+            </tr>
+            <tr>
+                <td class="calendar-day" (click)="updateMonth(3)">Apr</td>
+                <td class="calendar-day" (click)="updateMonth(4)">May</td>
+                <td class="calendar-day" (click)="updateMonth(5)">Jun</td>
+            </tr>
+            <tr>
+                <td class="calendar-day" (click)="updateMonth(6)">Jul</td>
+                <td class="calendar-day" (click)="updateMonth(7)">Aug</td>
+                <td class="calendar-day" (click)="updateMonth(8)">Sep</td>
+            </tr>
+            <tr>
+                <td class="calendar-day" (click)="updateMonth(9)">Oct</td>
+                <td class="calendar-day" (click)="updateMonth(10)">Nov</td>
+                <td class="calendar-day" (click)="updateMonth(11)">Dec</td>
+            </tr>
+        </table>
     </div><!-- end calendar-month-view-->
 
     <div *ngIf="selected==2" class="calendar-year-view">
+        <button type="button" md-button (click)="close()">Back</button>
     </div><!-- end calendar-year-view-->
 
 

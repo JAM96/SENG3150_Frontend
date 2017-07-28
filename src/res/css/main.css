@@ -595,10 +595,9 @@ a:hover {
     width: 100%;
 }
 
-.calendar-day {
+/*.calendar-day {
     text-align: center;
-    background-color: rgba(80,80,80,0.8);
-}
+}*/
 
 .calendar-day:hover {
     background-color: rgba(150,120,120,0.8);
@@ -655,4 +654,12 @@ a:hover {
 
 #home-about-button:hover {
     background-image: url("../image/about-button-hover.png");
+}
+
+#home-title {
+    padding: 0;
+    margin: 0;
+    font-style: bookman;
+    margin-bottom: 20px;
+    font-size: 24pt;
 }
