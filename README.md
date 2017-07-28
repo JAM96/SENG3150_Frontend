@@ -1,10 +1,10 @@
 # SENG3150 Frontend
 ## Dependencies steps:
 ------
-1. IDE Recommended: [Visual Studio Code](https://code.visualstudio.com/Download)
-2. [Node.JS](https://nodejs.org/en/) is required to run the front-end:
+1. Download and install [Visual Studio Code](https://code.visualstudio.com/Download)
+2. Download and install [Node.JS](https://nodejs.org/en/):
 Ensure you are downloading v7.10.0 Current
-3. Bower is required to install some components
+3. Download and install Bower through Node Package Manager (npm):
 Install bower by opening a command window
 Type in the following:
 `npm install -g bower`
