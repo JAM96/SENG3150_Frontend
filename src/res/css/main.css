@@ -53,6 +53,11 @@ body {
     border-bottom: none;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+
+}
 .h-view {
     position: fixed;
     top: 0;
@@ -62,30 +67,37 @@ body {
     background-color: #333333;
     z-index: 1000;
 
+    display: table;
+    margin: 0 auto;
 
     background-image: url("../image/home-4.jpg");
     background-size: 100% 100%;
 }
 
+.centrediv {
+    height: 100%;
+    display: table-cell;   
+    vertical-align: middle;
+}
+
 .customPackageCreationForm {
-    position: absolute;
-
-    height: 40%;
+    height: 60%;
     width: 50%;
-
-    top: 50%;
-    left: 50%;
-
-    margin-top: -10%;
-    margin-right: 25%;
-    margin-left: -25%;
-    z-index: 10002;
+    
+    margin: auto;
 
     padding: 20px;
     background-color: rgba(50,50,55,0.9);
     border: 4px solid rgba(30,27,27,1);
     color: white;
     border-radius: 10px;
+}
+
+@media screen and (min-height: 1080) {
+    .customPackageCreationForm {
+        height: 50%;
+        margin-top: 10%;
+    }
 }
 
 #verticalLine {
@@ -602,4 +614,45 @@ a:hover {
     background-color: rgba(70,70,70,0.8);
     border-bottom: solid 2px rgba(30,30,30,1);
     padding-bottom: 5px;
+}
+
+.home-button {
+    width: 100px;
+    height: 100px;
+
+    position: fixed;
+
+    z-index: 1010;
+    cursor: pointer;
+    background-size: 100% 100%;
+}
+
+#home-packages-button {
+    background-image: url("../image/packages-button.png");
+    left: 0;
+    top: 0;
+}
+
+#home-packages-button:hover {
+    background-image: url("../image/packages-button-hover.png");
+}
+
+#home-login-button {
+    background-image: url("../image/login-button.png");
+    right: 0;
+    top: 0;
+}
+
+#home-login-button:hover {
+    background-image: url("../image/login-button-hover.png");
+}
+
+#home-about-button {
+    background-image: url("../image/about-button.png");
+    bottom: 0;
+    left: 0;    
+}
+
+#home-about-button:hover {
+    background-image: url("../image/about-button-hover.png");
 }

@@ -1,4 +1,5 @@
 <section id="createForm" class="h-view">
+    <div class="centrediv">
     <div class="customPackageCreationForm">
         <div class="row"><!-- calendar row -->
             <div class="col-md-6"><!-- Checkin calendar column -->
@@ -9,6 +10,7 @@
 
             <div class="col-md-6"><!-- Checkout calendar column -->
                 <label for="checkout">Check-out: </label>
+                <custom-calendar></custom-calendar>
                 <!--<input class="form-control" type="date" id="checkout" [(ngModel)]="checkout"/>-->
             </div><!-- end checkout calendar -->
         </div><!-- end calendar row -->
@@ -47,7 +49,9 @@
             <button type="button" md-raised-button color="warn" (click)="submitForm()">Create!</button>
         </div>
     </div><!-- custom package form -->
+    </div>
 
-    <div id="verticalLine"></div>
-    <div id="horizontalLine"></div>
+    <div (click)="setNavOption(1)" class="home-button" id="home-packages-button"></div>
+    <div (click)="setNavOption(2)" class="home-button" id="home-login-button"></div>
+    <div (click)="setNavOption(3)" class="home-button" id="home-about-button"></div>
 </section>

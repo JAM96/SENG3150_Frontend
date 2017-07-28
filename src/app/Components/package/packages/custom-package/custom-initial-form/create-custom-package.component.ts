@@ -4,13 +4,22 @@ import {Router} from '@angular/router'
 
 import {CustomPackageService} from '../custom-package-service/custom-package.service';
 
+// import slide in/out animation
+import { slideInOutAnimation } from '../../../../_animations';
+
 @Component({
     moduleId: module.id,
     selector: 'initial-custom-form',
     templateUrl: 'create-custom-package.component.html',
+    // make slide in/out animation available to this component
+    animations: [slideInOutAnimation],
+ 
+    // attach the slide in/out animation to the host (root) element of this component
+    host: { '[@slideInOutAnimation]': '' }
 })
 
 export class CreateCustomPackageInitialComponent { //CCPIC
+    selectedOption : number = 1;    //defines the selected option
     minBudget = 300;        //define minimum budget value
     maxBudget = 4000;       //define maximum budget value
     minDate = new Date();   //used to prevent previous dates to the current date being selected
@@ -111,5 +120,15 @@ export class CreateCustomPackageInitialComponent { //CCPIC
         console.info("       Checkin: ", this.checkin);
         console.info("       Checkout: ", this.checkout);
         console.info("[INFO] Loading custom page...");
+    }
+
+    setNavOption(selection : number) {
+        this.selectedOption = selection;
+
+        switch(this.selectedOption) {
+            case 1: this.router.navigate(['/packages']);            break;
+            case 2: ;        break; 
+            case 3: this.router.navigate(['/about']);          break;
+        }
     }
 }

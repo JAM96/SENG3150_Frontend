@@ -12,11 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var custom_package_service_1 = require("../custom-package-service/custom-package.service");
+// import slide in/out animation
+var _animations_1 = require("../../../../_animations");
 var CreateCustomPackageInitialComponent = (function () {
     //CCPIC Constructor with instantiates the router and custom-package services
     function CreateCustomPackageInitialComponent(router, packageService) {
         this.router = router;
         this.packageService = packageService;
+        this.selectedOption = 1; //defines the selected option
         this.minBudget = 300; //define minimum budget value
         this.maxBudget = 4000; //define maximum budget value
         this.minDate = new Date(); //used to prevent previous dates to the current date being selected
@@ -79,6 +82,20 @@ var CreateCustomPackageInitialComponent = (function () {
         console.info("       Checkout: ", this.checkout);
         console.info("[INFO] Loading custom page...");
     };
+    CreateCustomPackageInitialComponent.prototype.setNavOption = function (selection) {
+        this.selectedOption = selection;
+        switch (this.selectedOption) {
+            case 1:
+                this.router.navigate(['/packages']);
+                break;
+            case 2:
+                ;
+                break;
+            case 3:
+                this.router.navigate(['/about']);
+                break;
+        }
+    };
     return CreateCustomPackageInitialComponent;
 }());
 CreateCustomPackageInitialComponent = __decorate([
@@ -86,6 +103,10 @@ CreateCustomPackageInitialComponent = __decorate([
         moduleId: module.id,
         selector: 'initial-custom-form',
         templateUrl: 'create-custom-package.component.html',
+        // make slide in/out animation available to this component
+        animations: [_animations_1.slideInOutAnimation],
+        // attach the slide in/out animation to the host (root) element of this component
+        host: { '[@slideInOutAnimation]': '' }
     }),
     __metadata("design:paramtypes", [router_1.Router,
         custom_package_service_1.CustomPackageService])
