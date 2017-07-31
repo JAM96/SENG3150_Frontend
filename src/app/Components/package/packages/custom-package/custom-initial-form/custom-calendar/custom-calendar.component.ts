@@ -11,7 +11,7 @@ import {ROW_STYLE} from './custom-calendar.style'
 export class CustomCalendarComponent {
     private selected : number = 0;
     
-    calendar  : any[][] = [
+    calendar  : string[][] = [
         //Su    Mo    Tu    We    Th    Fr    Sa
         ['250617', '260617', '270617', '280617', '290617', '300617', '010717'],
         ['020717', '030717', '040717', '050717', '060717', '070717', '080717'],
@@ -23,11 +23,9 @@ export class CustomCalendarComponent {
     
     
     month : string = "July";
-    selectedDay : number = 260717;  //day that is selected.
-    currentDay  : number = 280717;  //current day
-
-    calendarday = 'normal';
-
+    year : number = 2017;
+    selectedDay : string = '260717';  //day that is selected.
+    currentDay  : string = '280717';  //current day
 
     openMonth() {
         this.selected = 1;
@@ -61,7 +59,46 @@ export class CustomCalendarComponent {
     }
 
     /* updates the selected day */
-    setDay(value : number) {
+    setDay(value : string) {
+        var month = this.extractMiddle(value);
+
+        switch(month) {
+            case '01': month = "January"; break;
+            case '02': month = "February"; break;
+            case '03': month = "March"; break;
+            case '04': month = "April"; break;
+            case '05': month = "May"; break;
+            case '06': month = "June"; break;
+            case '07': month = "July"; break;
+            case '08': month = "August"; break;
+            case '09': month = "September"; break;
+            case '10': month = "October"; break;
+            case '11': month = "November"; break;
+            case '12': month = "December"; break;
+        }
+        console.log(month);
+
+        if(month != this.month) {
+            this.month = month;
+        }
+        
+
         this.selectedDay = value;
+    }
+
+    extractMiddle(str : string) {
+
+        var position;
+        var length;
+
+        if(str.length % 2 == 1) {
+            position = str.length / 2;
+            length = 1;
+        } else {
+            position = str.length / 2 - 1;
+            length = 2;
+        }
+
+        return str.substring(position, position + length)
     }
 }

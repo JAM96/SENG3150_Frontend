@@ -607,11 +607,21 @@ a:hover {
 }
 
 .calendar-day-selected {
+    text-align: center;
     background-color: red;
+}
+
+.calendar-day-current {
+    text-align: center;
+    background-color: orange;
 }
 
 .calendar-day:hover {
     background-color: rgba(150,120,120,0.8);
+    cursor: pointer;
+}
+
+.calendar-day-current:hover {
     cursor: pointer;
 }
 
