@@ -10,14 +10,14 @@ var core_1 = require("@angular/core");
 var ContactComponent = (function () {
     function ContactComponent() {
     }
-    ContactComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'contact',
-            templateUrl: 'contact.component.html'
-        })
-    ], ContactComponent);
     return ContactComponent;
 }());
+ContactComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'contact',
+        templateUrl: 'contact.component.html'
+    })
+], ContactComponent);
 exports.ContactComponent = ContactComponent;
 //# sourceMappingURL=contact.component.js.map

@@ -10,14 +10,14 @@ var core_1 = require("@angular/core");
 var FoodComponent = (function () {
     function FoodComponent() {
     }
-    FoodComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'food',
-            templateUrl: 'food.component.html'
-        })
-    ], FoodComponent);
     return FoodComponent;
 }());
+FoodComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'food',
+        templateUrl: 'food.component.html'
+    })
+], FoodComponent);
 exports.FoodComponent = FoodComponent;
 //# sourceMappingURL=food.component.js.map

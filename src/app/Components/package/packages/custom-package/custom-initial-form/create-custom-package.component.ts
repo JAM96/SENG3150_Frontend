@@ -1,5 +1,5 @@
-import {Component, ViewChild, AfterViewInit} from '@angular/core'
-import {MdDatepicker} from '@angular/material'
+import {Component, ViewChild, AfterViewInit, Input} from '@angular/core'
+import {MdDatepicker, MdDialog} from '@angular/material'
 import {Router} from '@angular/router'
 
 import {CustomPackageService} from '../custom-package-service/custom-package.service';
@@ -129,6 +129,10 @@ export class CreateCustomPackageInitialComponent { //CCPIC
             case 1: this.router.navigate(['/packages']);            break;
             case 2: ;        break; 
             case 3: this.router.navigate(['/about']);          break;
+            case 4: this.router.navigate(['/accommodation']); break;
+            case 5: this.router.navigate(['/events']); break;
+            case 6: this.router.navigate(['/activities']); break;
+            case 7: this.router.navigate(['/food']); break;
         }
     }
 }

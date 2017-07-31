@@ -10,15 +10,15 @@ var core_1 = require("@angular/core");
 var EventViewComponent = (function () {
     function EventViewComponent() {
     }
-    EventViewComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'eventview',
-            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-            templateUrl: 'eventoverview.component.html'
-        })
-    ], EventViewComponent);
     return EventViewComponent;
 }());
+EventViewComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'eventview',
+        changeDetection: core_1.ChangeDetectionStrategy.OnPush,
+        templateUrl: 'eventoverview.component.html'
+    })
+], EventViewComponent);
 exports.EventViewComponent = EventViewComponent;
 //# sourceMappingURL=eventoverview.component.js.map

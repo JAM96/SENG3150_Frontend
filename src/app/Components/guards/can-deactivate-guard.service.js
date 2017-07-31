@@ -13,10 +13,10 @@ var CanDeactivateGuard = (function () {
     CanDeactivateGuard.prototype.canDeactivate = function (component) {
         return component.canDeactivate ? component.canDeactivate() : true;
     };
-    CanDeactivateGuard = __decorate([
-        core_1.Injectable()
-    ], CanDeactivateGuard);
     return CanDeactivateGuard;
 }());
+CanDeactivateGuard = __decorate([
+    core_1.Injectable()
+], CanDeactivateGuard);
 exports.CanDeactivateGuard = CanDeactivateGuard;
 //# sourceMappingURL=can-deactivate-guard.service.js.map
