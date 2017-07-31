@@ -28,11 +28,11 @@ var ActivityService = (function () {
     ActivityService.prototype.getMockActivities = function () {
         return Promise.resolve(mock_activity_1.ACTIVITY_LIST);
     };
+    ActivityService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], ActivityService);
     return ActivityService;
 }());
-ActivityService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], ActivityService);
 exports.ActivityService = ActivityService;
 //# sourceMappingURL=activity.service.js.map

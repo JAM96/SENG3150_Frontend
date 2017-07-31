@@ -17,11 +17,11 @@ var PackagesService = (function () {
     PackagesService.prototype.getPackages = function () {
         return Promise.resolve(mock_packages_1.PACKAGE_LIST);
     };
+    PackagesService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], PackagesService);
     return PackagesService;
 }());
-PackagesService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], PackagesService);
 exports.PackagesService = PackagesService;
 //# sourceMappingURL=packages.service.js.map

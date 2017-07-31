@@ -41,30 +41,30 @@ var PackageCategoryComponent = (function () {
             }
         });
     };
+    PackageCategoryComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'packages-category',
+            templateUrl: 'packagecategory.component.html'
+        }),
+        __metadata("design:paramtypes", [material_1.MdDialog, router_1.Router])
+    ], PackageCategoryComponent);
     return PackageCategoryComponent;
 }());
-PackageCategoryComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'packages-category',
-        templateUrl: 'packagecategory.component.html'
-    }),
-    __metadata("design:paramtypes", [material_1.MdDialog, router_1.Router])
-], PackageCategoryComponent);
 exports.PackageCategoryComponent = PackageCategoryComponent;
 var PackageCategoryComponentDialog = (function () {
     function PackageCategoryComponentDialog(dialogRef) {
         this.dialogRef = dialogRef;
     }
+    PackageCategoryComponentDialog = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'package-setdate',
+            templateUrl: 'package-setdate.component.html',
+        }),
+        __metadata("design:paramtypes", [material_1.MdDialogRef])
+    ], PackageCategoryComponentDialog);
     return PackageCategoryComponentDialog;
 }());
-PackageCategoryComponentDialog = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'package-setdate',
-        templateUrl: 'package-setdate.component.html',
-    }),
-    __metadata("design:paramtypes", [material_1.MdDialogRef])
-], PackageCategoryComponentDialog);
 exports.PackageCategoryComponentDialog = PackageCategoryComponentDialog;
 //# sourceMappingURL=packagecategory.component.js.map

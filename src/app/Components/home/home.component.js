@@ -16,14 +16,14 @@ var HomeComponent = (function () {
         this.scrollValue + 1;
         console.log(this.scrollValue);
     };
+    HomeComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'home',
+            templateUrl: 'home.component.html'
+        })
+    ], HomeComponent);
     return HomeComponent;
 }());
-HomeComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'home',
-        templateUrl: 'home.component.html'
-    })
-], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map

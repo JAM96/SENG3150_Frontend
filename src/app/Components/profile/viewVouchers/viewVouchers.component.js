@@ -10,14 +10,14 @@ var core_1 = require("@angular/core");
 var ViewVouchersComponent = (function () {
     function ViewVouchersComponent() {
     }
+    ViewVouchersComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'viewVouchers',
+            templateUrl: 'viewVouchers.component.html'
+        })
+    ], ViewVouchersComponent);
     return ViewVouchersComponent;
 }());
-ViewVouchersComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'viewVouchers',
-        templateUrl: 'viewVouchers.component.html'
-    })
-], ViewVouchersComponent);
 exports.ViewVouchersComponent = ViewVouchersComponent;
 //# sourceMappingURL=viewVouchers.component.js.map
