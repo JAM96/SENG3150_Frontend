@@ -595,9 +595,14 @@ a:hover {
     width: 100%;
 }
 
-/*.calendar-day {
+.calendar-day {
     text-align: center;
-}*/
+     background-color: rgba(80,80,80,0.8);
+}
+
+.calendar-day-selected {
+    background-color: red;
+}
 
 .calendar-day:hover {
     background-color: rgba(150,120,120,0.8);

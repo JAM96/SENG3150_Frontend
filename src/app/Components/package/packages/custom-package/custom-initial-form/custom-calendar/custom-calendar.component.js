@@ -7,15 +7,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var custom_calendar_style_1 = require("./custom-calendar.style");
 var CustomCalendarComponent = (function () {
     function CustomCalendarComponent() {
         this.selected = 0;
-        this.days = ['25', '26', '27', '28', '29', '30', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
-            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23',
-            '24', '25', '26', '27', '28', '29', '30', '31', '01', '02', '03', '04', '05'];
+        this.calendar = [
+            //Su    Mo    Tu    We    Th    Fr    Sa
+            ['250617', '260617', '270617', '280617', '290617', '300617', '010717'],
+            ['020717', '030717', '040717', '050717', '060717', '070717', '080717'],
+            ['090717', '100717', '110717', '120717', '130717', '140717', '150717'],
+            ['160717', '170717', '180717', '190717', '200717', '210717', '220717'],
+            ['230717', '240717', '250717', '260717', '270717', '280717', '290717'],
+            ['300717', '310717', '010817', '020817', '030817', '040817', '050817']
+        ]; //The calendar array contains the days for easy implementation in the html
         this.month = "July";
-        this.selectedDay = 26; //day that is selected.
-        this.currentDay = 28; //current day
+        this.selectedDay = 260717; //day that is selected.
+        this.currentDay = 280717; //current day
         this.calendarday = 'normal';
     }
     CustomCalendarComponent.prototype.openMonth = function () {
@@ -80,7 +87,7 @@ CustomCalendarComponent = __decorate([
         moduleId: module.id,
         selector: 'custom-calendar',
         templateUrl: 'custom-calendar.component.html',
-        styleUrls: ['custom-calendar.component.css']
+        styleUrls: [custom_calendar_style_1.ROW_STYLE]
     })
 ], CustomCalendarComponent);
 exports.CustomCalendarComponent = CustomCalendarComponent;

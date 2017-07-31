@@ -46,6 +46,7 @@ var leaveFeedback_component_1 = require("../Components/profile/leaveFeedback/lea
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var custom_calendar_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component");
+var calendar_truncate_pipe_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
@@ -108,7 +109,8 @@ AppModule = __decorate([
             viewPackages_component_1.ViewPackagesComponent,
             viewVouchers_component_1.ViewVouchersComponent,
             leaveFeedback_component_1.LeaveFeedbackComponent,
-            custom_calendar_component_1.CustomCalendarComponent
+            custom_calendar_component_1.CustomCalendarComponent,
+            calendar_truncate_pipe_1.TruncatePipe
         ],
         bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [

@@ -47,6 +47,7 @@ import {HomeComponent} from '../Components/home/home.component';
   //packages components
   import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
   import {CustomCalendarComponent} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component';
+  import {TruncatePipe} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe';
   import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
@@ -105,7 +106,8 @@ import {TestComponent} from '../Components/test-component/test.component';
     ViewPackagesComponent,
     ViewVouchersComponent,
     LeaveFeedbackComponent,
-    CustomCalendarComponent
+    CustomCalendarComponent,
+    TruncatePipe
     ],
   bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
   providers: [
