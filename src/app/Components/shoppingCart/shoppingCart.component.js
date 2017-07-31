@@ -10,14 +10,14 @@ var core_1 = require("@angular/core");
 var ShoppingCartComponent = (function () {
     function ShoppingCartComponent() {
     }
-    ShoppingCartComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'shoppingCart',
-            templateUrl: 'shoppingCart.component.html'
-        })
-    ], ShoppingCartComponent);
     return ShoppingCartComponent;
 }());
+ShoppingCartComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'shoppingCart',
+        templateUrl: 'shoppingCart.component.html'
+    })
+], ShoppingCartComponent);
 exports.ShoppingCartComponent = ShoppingCartComponent;
 //# sourceMappingURL=shoppingCart.component.js.map

@@ -10,14 +10,14 @@ var core_1 = require("@angular/core");
 var LeaveFeedbackComponent = (function () {
     function LeaveFeedbackComponent() {
     }
-    LeaveFeedbackComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'leaveFeedback',
-            templateUrl: 'leaveFeedback.component.html'
-        })
-    ], LeaveFeedbackComponent);
     return LeaveFeedbackComponent;
 }());
+LeaveFeedbackComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'leaveFeedback',
+        templateUrl: 'leaveFeedback.component.html'
+    })
+], LeaveFeedbackComponent);
 exports.LeaveFeedbackComponent = LeaveFeedbackComponent;
 //# sourceMappingURL=leaveFeedback.component.js.map

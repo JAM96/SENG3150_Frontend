@@ -6,9 +6,8 @@
     <div *ngIf="selected==0" class="calendar-main-view">
         <div class="row"><!-- Calendar buttons -->
                 <button type="button" md-button (click)="openMonth()">{{month}}</button>
-                <button type="button" md-button (click)="openYear()">2017</button>
-
-                <button type="button" md-button style="float:right">27/07/17</button>
+                <button type="button" md-button (click)="openYear()">{{year}}</button>
+                <button type="button" md-button style="float:right">{{selectedDay | limitTo: 2}} {{month | limitTo: 3}} {{year}}</button>
         </div>
 
         <div class="row"><!-- Days -->
@@ -24,15 +23,25 @@
                 </tr>
                 <tr *ngFor="let week of calendar">
                     <ng-container *ngFor="let day of week">
-                        <td *ngIf="selectedDay == day; then selected else normal"></td>
+                        <td *ngIf="selectedDay == day; then selected"></td>
+                        <td *ngIf="currentDay == day && selectedDay != day; then current"></td>
+                        <!--<td *ngIf="disabledDays[day].isDisabled; then disabled"></td>-->
+                        <td *ngIf="selectedDay != day && currentDay != day; then normal"></td>
                         <!-- normal cell -->
                         <ng-template #normal>
-                            <td class="calendar-day">{{day | limitTo: 2}}</td>
+                            <td class="calendar-day" (click)="setDay(day)">{{day | limitTo: 2}}</td>
                         </ng-template>
-
                         <!-- selected cell -->
                         <ng-template #selected>
-                            <td class="calendar-day-selected">{{day | limitTo: 2}}</td>
+                            <td class="calendar-day-selected" (click)="setDay(day)">{{day | limitTo: 2}}</td>
+                        </ng-template>
+                        <!-- disabled cell -->
+                        <ng-template #disabled>
+                            <td class="calendar-day-disabled">{{day | limitTo: 2}}</td>
+                        </ng-template>
+                        <!-- current day cell -->
+                        <ng-template #current>
+                            <td class="calendar-day-current" (click)="setDay(day)">{{day | limitTo: 2}}</td>
                         </ng-template>
                     </ng-container>
                 </tr>
