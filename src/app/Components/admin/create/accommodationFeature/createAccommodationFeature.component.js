@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var http_service_1 = require("../../../../Services/http/http.service");
 var CreateAccommodationFeatureComponent = (function () {
-    function CreateAccommodationFeatureComponent(router) {
+    function CreateAccommodationFeatureComponent(router, _httpService) {
         this.router = router;
+        this._httpService = _httpService;
         //This is the number which represents the page that the user wants to go to next.
         //Set to 0 (ie. back to the admin panel starting page), by default.
         this.selectedOption = 0;
@@ -26,13 +28,20 @@ var CreateAccommodationFeatureComponent = (function () {
                 break;
         }
     };
+    CreateAccommodationFeatureComponent.prototype.sendDataToServer = function (dataFromForm) {
+        this._httpService.sendData(dataFromForm).subscribe(function (response) { return console.log(response); }, //success
+        function (//success
+            error) { return console.log(error); }, //error
+        function () { return console.log('completed'); }); //complete
+    };
     CreateAccommodationFeatureComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'createAccommodationFeature',
             templateUrl: 'createAccommodationFeature.component.html'
         }),
-        __metadata("design:paramtypes", [router_1.Router])
+        __metadata("design:paramtypes", [router_1.Router,
+            http_service_1.HttpService])
     ], CreateAccommodationFeatureComponent);
     return CreateAccommodationFeatureComponent;
 }());

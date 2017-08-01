@@ -1,5 +1,6 @@
 import {Component} from '@angular/core'
 import {Router} from '@angular/router'
+import {HttpService} from '../../../../Services/http/http.service';
 
 @Component({
     moduleId: module.id,
@@ -13,7 +14,8 @@ export class CreateAccommodationFeatureComponent{
     selectedOption:number = 0;
 
     constructor(
-        public router: Router
+        public router: Router,
+        private _httpService: HttpService
     ){}
 
     setNavOption(selection: number){
@@ -22,5 +24,12 @@ export class CreateAccommodationFeatureComponent{
         switch(this.selectedOption){
             case 0: this.router.navigate(['/admin']); break;
         }
+    }
+
+    sendDataToServer(dataFromForm: any){
+        this._httpService.sendData(dataFromForm).subscribe(
+            response => console.log(response), //success
+            error => console.log(error), //error
+            () => console.log('completed')) //complete
     }
 }
