@@ -26,6 +26,7 @@ export class AdminComponent{
             case 3: this.router.navigate(['/createActivity']); break;
             case 4: this.router.navigate(['/createEvent']); break;
             case 5: this.router.navigate(['/createFoodAndDrink']); break;
+            case 6: this.router.navigate(['/createAccommodationFeature']); break;
         }
     }
 }

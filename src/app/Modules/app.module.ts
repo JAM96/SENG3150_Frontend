@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 
 //providers
-import {HttpModule} from '@angular/http';
+import {HttpModule, JsonpModule} from '@angular/http';
 //used for Auth0
 import {routing, appRoutingProviders} from '../app.routing';
 import {AUTH_PROVIDERS} from 'angular2-jwt';
@@ -37,6 +37,7 @@ import {HomeComponent} from '../Components/home/home.component';
   import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
   import {AdminComponent} from '../Components/admin/admin.component';
   import {CreateAccommodationComponent} from '../Components/admin/create/accommodation/createAccommodation.component';
+  import {CreateAccommodationFeatureComponent} from "../Components/admin/create/accommodationFeature/createAccommodationFeature.component";
 
   import {CreateCustomPackageInitialComponent} from '../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component';
   import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
@@ -74,6 +75,7 @@ import {TestComponent} from '../Components/test-component/test.component';
   imports:      [ 
     BrowserModule,
     HttpModule,
+    JsonpModule,
     MaterialModule,
     MdDatepickerModule,
     MdNativeDateModule,
@@ -94,6 +96,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     AdminComponent,
     CreateCustomPackageInitialComponent,
     CreateAccommodationComponent,
+    CreateAccommodationFeatureComponent,
     NavigationTopComponent,
     LoginPopupComponent,
     notificationsPopupComponent,

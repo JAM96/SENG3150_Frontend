@@ -18,6 +18,7 @@ import {ContactComponent} from './Components/contact/contact.component';
 import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
 import {AdminComponent} from './Components/admin/admin.component';
 import {CreateAccommodationComponent} from './Components/admin/create/accommodation/createAccommodation.component';
+import {CreateAccommodationFeatureComponent} from "./Components/admin/create/accommodationFeature/createAccommodationFeature.component";
 
 //test component
 import {TestComponent} from './Components/test-component/test.component';
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
   { path: 'test', component: TestComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'createAccommodation', component: CreateAccommodationComponent},
+  { path: 'createAccommodationFeature', component: CreateAccommodationFeatureComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ]
 

@@ -11,48 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var AdminComponent = (function () {
-    function AdminComponent(router) {
+var CreateAccommodationFeatureComponent = (function () {
+    function CreateAccommodationFeatureComponent(router) {
         this.router = router;
         //This is the number which represents the page that the user wants to go to next.
-        //Set to 0 (ie. back to the home page), by default.
+        //Set to 0 (ie. back to the admin panel starting page), by default.
         this.selectedOption = 0;
     }
-    AdminComponent.prototype.setNavOption = function (selection) {
+    CreateAccommodationFeatureComponent.prototype.setNavOption = function (selection) {
         this.selectedOption = selection;
         switch (this.selectedOption) {
             case 0:
-                this.router.navigate(['/']);
-                break;
-            case 1:
-                this.router.navigate(['/createAccommodation']);
-                break;
-            case 2:
-                this.router.navigate(['/createPackage']);
-                break;
-            case 3:
-                this.router.navigate(['/createActivity']);
-                break;
-            case 4:
-                this.router.navigate(['/createEvent']);
-                break;
-            case 5:
-                this.router.navigate(['/createFoodAndDrink']);
-                break;
-            case 6:
-                this.router.navigate(['/createAccommodationFeature']);
+                this.router.navigate(['/admin']);
                 break;
         }
     };
-    AdminComponent = __decorate([
+    CreateAccommodationFeatureComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'admin',
-            templateUrl: 'admin.component.html'
+            selector: 'createAccommodationFeature',
+            templateUrl: 'createAccommodationFeature.component.html'
         }),
         __metadata("design:paramtypes", [router_1.Router])
-    ], AdminComponent);
-    return AdminComponent;
+    ], CreateAccommodationFeatureComponent);
+    return CreateAccommodationFeatureComponent;
 }());
-exports.AdminComponent = AdminComponent;
-//# sourceMappingURL=admin.component.js.map
+exports.CreateAccommodationFeatureComponent = CreateAccommodationFeatureComponent;
+//# sourceMappingURL=createAccommodationFeature.component.js.map

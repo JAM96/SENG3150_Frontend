@@ -38,6 +38,7 @@ var contact_component_1 = require("../Components/contact/contact.component");
 var shoppingCart_component_1 = require("../Components/shoppingCart/shoppingCart.component");
 var admin_component_1 = require("../Components/admin/admin.component");
 var createAccommodation_component_1 = require("../Components/admin/create/accommodation/createAccommodation.component");
+var createAccommodationFeature_component_1 = require("../Components/admin/create/accommodationFeature/createAccommodationFeature.component");
 var create_custom_package_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component");
 var navigationtop_component_1 = require("../Components/navigation/navigationtop/navigationtop.component");
 //Profile Component and Profile Components
@@ -75,6 +76,7 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
+                http_1.JsonpModule,
                 material_1.MaterialModule,
                 material_1.MdDatepickerModule,
                 material_1.MdNativeDateModule,
@@ -95,6 +97,7 @@ var AppModule = (function () {
                 admin_component_1.AdminComponent,
                 create_custom_package_component_1.CreateCustomPackageInitialComponent,
                 createAccommodation_component_1.CreateAccommodationComponent,
+                createAccommodationFeature_component_1.CreateAccommodationFeatureComponent,
                 navigationtop_component_1.NavigationTopComponent,
                 navigationtop_component_1.LoginPopupComponent,
                 navigationtop_component_1.notificationsPopupComponent,
