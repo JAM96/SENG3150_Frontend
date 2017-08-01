@@ -140,16 +140,16 @@ var CustomCalendarComponent = (function () {
         }
         return str.substring(position, position + length);
     };
+    CustomCalendarComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'custom-calendar',
+            templateUrl: 'custom-calendar.component.html',
+            styleUrls: [custom_calendar_style_1.ROW_STYLE]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CustomCalendarComponent);
     return CustomCalendarComponent;
 }());
-CustomCalendarComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'custom-calendar',
-        templateUrl: 'custom-calendar.component.html',
-        styleUrls: [custom_calendar_style_1.ROW_STYLE]
-    }),
-    __metadata("design:paramtypes", [])
-], CustomCalendarComponent);
 exports.CustomCalendarComponent = CustomCalendarComponent;
 //# sourceMappingURL=custom-calendar.component.js.map

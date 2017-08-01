@@ -27,11 +27,11 @@ var CustomPackageService = (function () {
     CustomPackageService.prototype.getInitialData = function () {
         return this.cp;
     };
+    CustomPackageService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], CustomPackageService);
     return CustomPackageService;
 }());
-CustomPackageService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], CustomPackageService);
 exports.CustomPackageService = CustomPackageService;
 //# sourceMappingURL=custom-package.service.js.map

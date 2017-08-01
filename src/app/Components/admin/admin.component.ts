@@ -1,28 +1,31 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Route } from '@angular/router';
-import {Activity} from '../../Objects/Activity/Activity';
-import {ActivityService} from '../../Services/activity/activity.service';
+import {Component} from '@angular/core'
+import {Router} from '@angular/router'
 
 @Component({
     moduleId: module.id,
-    selector: 'activities',
-    templateUrl: 'activities.component.html',
-    providers: [ActivityService]
+    selector: 'admin',
+    templateUrl: 'admin.component.html'
 })
 
-export class ActivitiesComponent implements OnInit{   
-    constructor(private activityService : ActivityService){}
+export class AdminComponent{
+    //This is the number which represents the page that the user wants to go to next.
+    //Set to 0 (ie. back to the home page), by default.
+    selectedOption:number = 0;
 
-    ngOnInit() {
-        this.getActivities();
-    }
+    constructor(
+        public router: Router
+    ){}
 
-    activities : Activity[];
-    
-    getActivities() {
+    setNavOption(selection: number){
+        this.selectedOption = selection;
 
-        //this.activityService.getMockActivities().then((activityList: Activity[]) => this.activityList = activityList);    
-        this.activityService.getActivities()
-            .subscribe((activity : Activity[]) => this.activities = activity);
+        switch(this.selectedOption){
+            case 0: this.router.navigate(['/']); break;
+            case 1: this.router.navigate(['/createAccommodation']); break;
+            case 2: this.router.navigate(['/createPackage']); break;
+            case 3: this.router.navigate(['/createActivity']); break;
+            case 4: this.router.navigate(['/createEvent']); break;
+            case 5: this.router.navigate(['/createFoodAndDrink']); break;
+        }
     }
 }

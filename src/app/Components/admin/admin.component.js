@@ -10,30 +10,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var activity_service_1 = require("../../Services/activity/activity.service");
-var ActivitiesComponent = (function () {
-    function ActivitiesComponent(activityService) {
-        this.activityService = activityService;
+var router_1 = require("@angular/router");
+var AdminComponent = (function () {
+    function AdminComponent(router) {
+        this.router = router;
+        //This is the number which represents the page that the user wants to go to next.
+        //Set to 0 (ie. back to the home page), by default.
+        this.selectedOption = 0;
     }
-    ActivitiesComponent.prototype.ngOnInit = function () {
-        this.getActivities();
+    AdminComponent.prototype.setNavOption = function (selection) {
+        this.selectedOption = selection;
+        switch (this.selectedOption) {
+            case 0:
+                this.router.navigate(['/']);
+                break;
+            case 1:
+                this.router.navigate(['/createAccommodation']);
+                break;
+            case 2:
+                this.router.navigate(['/createPackage']);
+                break;
+            case 3:
+                this.router.navigate(['/createActivity']);
+                break;
+            case 4:
+                this.router.navigate(['/createEvent']);
+                break;
+            case 5:
+                this.router.navigate(['/createFoodAndDrink']);
+                break;
+        }
     };
-    ActivitiesComponent.prototype.getActivities = function () {
-        var _this = this;
-        //this.activityService.getMockActivities().then((activityList: Activity[]) => this.activityList = activityList);    
-        this.activityService.getActivities()
-            .subscribe(function (activity) { return _this.activities = activity; });
-    };
-    return ActivitiesComponent;
+    AdminComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'admin',
+            templateUrl: 'admin.component.html'
+        }),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], AdminComponent);
+    return AdminComponent;
 }());
-ActivitiesComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'activities',
-        templateUrl: 'activities.component.html',
-        providers: [activity_service_1.ActivityService]
-    }),
-    __metadata("design:paramtypes", [activity_service_1.ActivityService])
-], ActivitiesComponent);
-exports.ActivitiesComponent = ActivitiesComponent;
+exports.AdminComponent = AdminComponent;
 //# sourceMappingURL=admin.component.js.map

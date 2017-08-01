@@ -17,13 +17,13 @@ var TruncatePipe = (function () {
         var trail = '';
         return value.length > limit ? value.substring(0, limit) + trail : value;
     };
+    TruncatePipe = __decorate([
+        core_1.Pipe({
+            name: 'limitTo'
+        })
+    ], TruncatePipe);
     return TruncatePipe;
 }());
-TruncatePipe = __decorate([
-    core_1.Pipe({
-        name: 'limitTo'
-    })
-], TruncatePipe);
 exports.TruncatePipe = TruncatePipe;
 /*
 Copyright 2016 Google Inc. All Rights Reserved.

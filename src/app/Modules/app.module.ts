@@ -35,6 +35,8 @@ import {HomeComponent} from '../Components/home/home.component';
   import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
   import {ContactComponent} from '../Components/contact/contact.component';
   import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
+  import {AdminComponent} from '../Components/admin/admin.component';
+  import {CreateAccommodationComponent} from '../Components/admin/create/accommodation/createAccommodation.component';
 
   import {CreateCustomPackageInitialComponent} from '../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component';
   import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
@@ -89,7 +91,9 @@ import {TestComponent} from '../Components/test-component/test.component';
     HomeComponent,
     AboutComponent,
     ActivitiesComponent,
+    AdminComponent,
     CreateCustomPackageInitialComponent,
+    CreateAccommodationComponent,
     NavigationTopComponent,
     LoginPopupComponent,
     notificationsPopupComponent,

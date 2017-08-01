@@ -1,2 +1,21 @@
-<h1>Admin Panel Homepage</h1>
-<p>Testing to make sure I can create a very simple page for the user to see.</p>
+<h1>Admin Panel</h1>
+<h2>Create New:</h2>
+<ul>
+    <li>
+        <button (click)="setNavOption(1)">Accommodation</button>
+    </li>
+    <li>
+        <button (click)="setNavOption(2)">Package</button>
+    </li>
+    <li>
+        <button (click)="setNavOption(3)">Activity</button>
+    </li>
+    <li>
+        <button (click)="setNavOption(4)">Event</button>
+    </li>
+    <li>
+        <button (click)="setNavOption(5)">Food/drink establishment</button>
+    </li>
+</ul>
+
+<button (click)="setNavOption(0)">Back to home</button>

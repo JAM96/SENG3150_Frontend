@@ -2,7 +2,6 @@ import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {CanDeactivateGuard} from './Components/guards/can-deactivate-guard.service';
 
-
 import {HomeComponent} from './Components/home/home.component';
 import {ProfileComponent} from './Components/profile/profile.component';
 import {ViewPackagesComponent} from './Components/profile/viewPackages/viewPackages.component';
@@ -17,11 +16,11 @@ import {FoodComponent} from './Components/food/food.component';
 import {AccomodationComponent} from './Components/accomodation/accomodation.component';
 import {ContactComponent} from './Components/contact/contact.component';
 import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
+import {AdminComponent} from './Components/admin/admin.component';
+import {CreateAccommodationComponent} from './Components/admin/create/accommodation/createAccommodation.component';
 
 //test component
 import {TestComponent} from './Components/test-component/test.component';
-
-
 
 /*
 app routes
@@ -49,8 +48,9 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
   { path: 'test', component: TestComponent},
+  { path: 'admin', component: AdminComponent},
+  { path: 'createAccommodation', component: CreateAccommodationComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
-
 ]
 
 export const appRoutingProviders: any[] = [];

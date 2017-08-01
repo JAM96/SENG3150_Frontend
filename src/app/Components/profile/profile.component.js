@@ -25,15 +25,15 @@ var ProfileComponent = (function () {
             this.isEdit = false;
         }
     };
+    ProfileComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'profile',
+            templateUrl: 'profile.component.html'
+        }),
+        __metadata("design:paramtypes", [])
+    ], ProfileComponent);
     return ProfileComponent;
 }());
-ProfileComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'profile',
-        templateUrl: 'profile.component.html'
-    }),
-    __metadata("design:paramtypes", [])
-], ProfileComponent);
 exports.ProfileComponent = ProfileComponent;
 //# sourceMappingURL=profile.component.js.map
