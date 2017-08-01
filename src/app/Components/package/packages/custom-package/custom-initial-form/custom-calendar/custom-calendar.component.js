@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var custom_calendar_style_1 = require("./custom-calendar.style");
@@ -24,6 +27,7 @@ var CustomCalendarComponent = (function () {
         this.year = 2017;
         this.selectedDay = '260717'; //day that is selected.
         this.currentDay = '280717'; //current day
+        this.someDay = new Date();
     }
     CustomCalendarComponent.prototype.openMonth = function () {
         this.selected = 1;
@@ -136,15 +140,16 @@ var CustomCalendarComponent = (function () {
         }
         return str.substring(position, position + length);
     };
-    CustomCalendarComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'custom-calendar',
-            templateUrl: 'custom-calendar.component.html',
-            styleUrls: [custom_calendar_style_1.ROW_STYLE]
-        })
-    ], CustomCalendarComponent);
     return CustomCalendarComponent;
 }());
+CustomCalendarComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'custom-calendar',
+        templateUrl: 'custom-calendar.component.html',
+        styleUrls: [custom_calendar_style_1.ROW_STYLE]
+    }),
+    __metadata("design:paramtypes", [])
+], CustomCalendarComponent);
 exports.CustomCalendarComponent = CustomCalendarComponent;
 //# sourceMappingURL=custom-calendar.component.js.map

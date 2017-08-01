@@ -24,16 +24,16 @@ var ActivitiesComponent = (function () {
         this.activityService.getActivities()
             .subscribe(function (activity) { return _this.activities = activity; });
     };
-    ActivitiesComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'activities',
-            templateUrl: 'activities.component.html',
-            providers: [activity_service_1.ActivityService]
-        }),
-        __metadata("design:paramtypes", [activity_service_1.ActivityService])
-    ], ActivitiesComponent);
     return ActivitiesComponent;
 }());
+ActivitiesComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'activities',
+        templateUrl: 'activities.component.html',
+        providers: [activity_service_1.ActivityService]
+    }),
+    __metadata("design:paramtypes", [activity_service_1.ActivityService])
+], ActivitiesComponent);
 exports.ActivitiesComponent = ActivitiesComponent;
 //# sourceMappingURL=admin.component.js.map

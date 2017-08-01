@@ -27,6 +27,12 @@ export class CustomCalendarComponent {
     selectedDay : string = '260717';  //day that is selected.
     currentDay  : string = '280717';  //current day
 
+    someDay = new Date();
+
+    constructor() {
+        
+    }
+
     openMonth() {
         this.selected = 1;
     }

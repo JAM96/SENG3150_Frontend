@@ -4,6 +4,9 @@
         <div class="row" id="home-title"><!-- title -->
             Create your holiday now!
         </div>
+        
+        <hr>
+
         <div class="row"><!-- calendar row -->
             <div class="col-md-6"><!-- Checkin calendar column -->
                 <label for="checkin">Check-in: </label>
@@ -51,18 +54,43 @@
             <br>
             <button type="button" md-raised-button color="warn" (click)="submitForm()">Create!</button>
         </div>
+
+        <hr>
+        
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();   
+            });
+        </script>
+
+        <div id="links">
+            <button style="color: #333333" type="button" md-raised-button (click)="setNavOption(1)">Packages</button>
+            <button type="button" md-button (click)="setNavOption(4)"
+                data-toggle="tooltip" data-placement="top" title="Accomodation">
+                <span class="glyphicon glyphicon-home"></span>
+            </button>
+            <button type="button" md-button (click)="setNavOption(5)"
+                data-toggle="tooltip" data-placement="top" title="Events">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </button>
+            <button type="button" md-button (click)="setNavOption(6)"
+                data-toggle="tooltip" data-placement="top" title="Activities">
+                <span class="glyphicon glyphicon-tower"></span>
+            </button>
+            <button type="button" md-button (click)="setNavOption(7)"
+                data-toggle="tooltip" data-placement="top" title="Food and Drinks">
+                <span class="glyphicon glyphicon-cutlery"></span>
+            </button>
+            <button style="color: #333333" type="button" md-raised-button (click)="setNavOption(3)">About</button>
+        </div>
     </div><!-- custom package form -->
     </div>
 
-    <div (click)="setNavOption(1)" class="home-button" id="home-packages-button"></div>
-    <div (click)="setNavOption(2)" class="home-button" id="home-login-button"></div>
-    <div (click)="setNavOption(3)" class="home-button" id="home-about-button"></div>
+    <button md-raised-button (click)="setNavOption(2)" id="home-login-button">Login</button>
+    
 
-    <div class="bottomNav">
-        <button type="button" md-raised-button color="warn" (click)="setNavOption(4)">Accommodation</button>
-        <button type="button" md-raised-button color="warn" (click)="setNavOption(5)">Events</button>
-        <button type="button" md-raised-button color="warn" (click)="setNavOption(6)">Activities</button>
-        <button type="button" md-raised-button color="warn" (click)="setNavOption(7)">Food & Drinks</button>
-        <button type="button" md-raised-button color="warn" (click)="setNavOption(8)">Admin Panel</button>
+    <div class="header">
+        <div class="logo">
+        </div>
     </div>
 </section>

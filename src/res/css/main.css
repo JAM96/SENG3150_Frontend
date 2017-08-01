@@ -86,8 +86,34 @@ body {
     left:50%;
 }
 
+#links {
+    text-align: center;
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 75px;
+    background-color: rgba(240,250,255,0.8);
+    box-shadow: 0px 5px 25px #333333;
+}
+
+.logo {
+    padding: 20px;
+    position: absolute;
+    background-image: url("../image/logo.png");
+    background-size: 100% 100%;
+    top: 0;
+    left: 50%;
+    width: 300px;
+    height: 100%;
+    margin-left: -150px;
+}
+
 .customPackageCreationForm {
-    height: 60%;
+    height: auto;
     width: 50%;
     
     margin: auto;
@@ -608,12 +634,13 @@ a:hover {
 
 .calendar-day-selected {
     text-align: center;
-    background-color: red;
+    background-color: rgba(80,80,180,0.8);
+    border: 2px solid #4679BD;
 }
 
 .calendar-day-current {
     text-align: center;
-    background-color: orange;
+    background-color: rgba(255,255,255,0.5);
 }
 
 .calendar-day:hover {
@@ -658,13 +685,10 @@ a:hover {
 }
 
 #home-login-button {
-    background-image: url("../image/login-button.png");
-    right: 0;
-    top: 0;
-}
-
-#home-login-button:hover {
-    background-image: url("../image/login-button-hover.png");
+    position: absolute;
+    z-index: 1010;
+    right: 2%;
+    top: 2%;
 }
 
 #home-about-button {
