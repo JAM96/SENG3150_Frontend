@@ -1,10 +1,35 @@
 <section id="createForm" class="h-view">
     <div class="centrediv">
     <div class="customPackageCreationForm">
-        <div class="row" id="home-title"><!-- title -->
-            Create your holiday now!
-        </div>
         
+        <table id="links">
+            <tr>
+            <td>
+                <button style="font-weight: bold; color: #ffffff; background-color: #FF0000" type="button" md-raised-button (click)="setNavOption(1)"> Packages</button>
+            </td>
+            <td>
+                <button type="button" md-button (click)="setNavOption(4)"
+                    data-toggle="tooltip" data-placement="top" title="Accomodation">
+                    <span class="glyphicon glyphicon-home"></span>
+                </button>
+                <button type="button" md-button (click)="setNavOption(5)"
+                    data-toggle="tooltip" data-placement="top" title="Events">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+                <button type="button" md-button (click)="setNavOption(6)"
+                    data-toggle="tooltip" data-placement="top" title="Activities">
+                    <span class="glyphicon glyphicon-tower"></span>
+                </button>
+                <button type="button" md-button (click)="setNavOption(7)"
+                    data-toggle="tooltip" data-placement="top" title="Food and Drinks">
+                    <span class="glyphicon glyphicon-cutlery"></span>
+                </button>
+            </td>
+            <td>
+                <button style="color: #333333" type="button" md-raised-button (click)="setNavOption(3)">About</button>
+            </td>
+            </tr>
+        </table>
         <hr>
 
         <div class="row"><!-- calendar row -->
@@ -63,25 +88,8 @@
             });
         </script>
 
-        <div id="links">
-            <button style="color: #333333" type="button" md-raised-button (click)="setNavOption(1)">Packages</button>
-            <button type="button" md-button (click)="setNavOption(4)"
-                data-toggle="tooltip" data-placement="top" title="Accomodation">
-                <span class="glyphicon glyphicon-home"></span>
-            </button>
-            <button type="button" md-button (click)="setNavOption(5)"
-                data-toggle="tooltip" data-placement="top" title="Events">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </button>
-            <button type="button" md-button (click)="setNavOption(6)"
-                data-toggle="tooltip" data-placement="top" title="Activities">
-                <span class="glyphicon glyphicon-tower"></span>
-            </button>
-            <button type="button" md-button (click)="setNavOption(7)"
-                data-toggle="tooltip" data-placement="top" title="Food and Drinks">
-                <span class="glyphicon glyphicon-cutlery"></span>
-            </button>
-            <button style="color: #333333" type="button" md-raised-button (click)="setNavOption(3)">About</button>
+        <div class="row" id="home-title"><!-- title -->
+            Create your holiday now!
         </div>
     </div><!-- custom package form -->
     </div>
