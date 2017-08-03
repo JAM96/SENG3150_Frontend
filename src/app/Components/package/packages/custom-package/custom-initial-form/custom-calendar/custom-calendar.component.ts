@@ -9,6 +9,8 @@ import {ROW_STYLE} from './custom-calendar.style'
 })
 
 export class CustomCalendarComponent {
+    private _locale : any = "en-US";
+
     private selected : number = 0;
     
     calendar  : string[][] = [
@@ -27,10 +29,10 @@ export class CustomCalendarComponent {
     selectedDay : string = '260717';  //day that is selected.
     currentDay  : string = '280717';  //current day
 
-    someDay = new Date();
+    someDay = new Date('09/21/17');
 
     constructor() {
-        
+        this.fillCalendarDays(new Date());
     }
 
     openMonth() {
@@ -106,5 +108,43 @@ export class CustomCalendarComponent {
         }
 
         return str.substring(position, position + length)
+    }
+
+    fillCalendarDays(value : Date) {
+        var day = this.getDayName(value, this._locale);
+
+        switch(day) {
+            case 'Sunday': 
+                console.log('value is sunday');
+                break;
+            case 'Monday': 
+                console.log('value is mon');
+                break;
+            case 'Tuesday': 
+                console.log('value is tues');
+                break;
+            case 'Wednesday': 
+                console.log('value is wed');
+                break;
+            case 'Thursday': 
+                console.log('value is thur');
+                break;
+            case 'Friday': 
+                console.log('value is fri');
+                break;
+            case 'Saturday': 
+                console.log('value is sat');
+                break;
+        }
+
+
+
+        console.log("testing this function now");
+        console.log("Date value: " + this.getDayName(value, this._locale));
+        console.log("Day value: " + value.getDate().toString());
+    }
+
+    getDayName(date : Date, locale : any) {
+        return date.toLocaleDateString(locale, {weekday: 'long'});
     }
 }

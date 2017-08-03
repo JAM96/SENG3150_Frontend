@@ -10,14 +10,14 @@ var core_1 = require("@angular/core");
 var ViewPackagesComponent = (function () {
     function ViewPackagesComponent() {
     }
-    ViewPackagesComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'viewPackages',
-            templateUrl: 'viewPackages.component.html'
-        })
-    ], ViewPackagesComponent);
     return ViewPackagesComponent;
 }());
+ViewPackagesComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'viewPackages',
+        templateUrl: 'viewPackages.component.html'
+    })
+], ViewPackagesComponent);
 exports.ViewPackagesComponent = ViewPackagesComponent;
 //# sourceMappingURL=viewPackages.component.js.map

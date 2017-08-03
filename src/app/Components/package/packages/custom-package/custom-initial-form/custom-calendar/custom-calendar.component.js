@@ -13,6 +13,7 @@ var core_1 = require("@angular/core");
 var custom_calendar_style_1 = require("./custom-calendar.style");
 var CustomCalendarComponent = (function () {
     function CustomCalendarComponent() {
+        this._locale = "en-US";
         this.selected = 0;
         this.calendar = [
             //Su    Mo    Tu    We    Th    Fr    Sa
@@ -27,7 +28,8 @@ var CustomCalendarComponent = (function () {
         this.year = 2017;
         this.selectedDay = '260717'; //day that is selected.
         this.currentDay = '280717'; //current day
-        this.someDay = new Date();
+        this.someDay = new Date('09/21/17');
+        this.fillCalendarDays(new Date());
     }
     CustomCalendarComponent.prototype.openMonth = function () {
         this.selected = 1;
@@ -140,16 +142,48 @@ var CustomCalendarComponent = (function () {
         }
         return str.substring(position, position + length);
     };
-    CustomCalendarComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'custom-calendar',
-            templateUrl: 'custom-calendar.component.html',
-            styleUrls: [custom_calendar_style_1.ROW_STYLE]
-        }),
-        __metadata("design:paramtypes", [])
-    ], CustomCalendarComponent);
+    CustomCalendarComponent.prototype.fillCalendarDays = function (value) {
+        var day = this.getDayName(value, this._locale);
+        switch (day) {
+            case 'Sunday':
+                console.log('value is sunday');
+                break;
+            case 'Monday':
+                console.log('value is mon');
+                break;
+            case 'Tuesday':
+                console.log('value is tues');
+                break;
+            case 'Wednesday':
+                console.log('value is wed');
+                break;
+            case 'Thursday':
+                console.log('value is thur');
+                break;
+            case 'Friday':
+                console.log('value is fri');
+                break;
+            case 'Saturday':
+                console.log('value is sat');
+                break;
+        }
+        console.log("testing this function now");
+        console.log("Date value: " + this.getDayName(value, this._locale));
+        console.log("Day value: " + value.getDate().toString());
+    };
+    CustomCalendarComponent.prototype.getDayName = function (date, locale) {
+        return date.toLocaleDateString(locale, { weekday: 'long' });
+    };
     return CustomCalendarComponent;
 }());
+CustomCalendarComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'custom-calendar',
+        templateUrl: 'custom-calendar.component.html',
+        styleUrls: [custom_calendar_style_1.ROW_STYLE]
+    }),
+    __metadata("design:paramtypes", [])
+], CustomCalendarComponent);
 exports.CustomCalendarComponent = CustomCalendarComponent;
 //# sourceMappingURL=custom-calendar.component.js.map

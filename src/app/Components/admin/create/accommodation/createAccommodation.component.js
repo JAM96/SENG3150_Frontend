@@ -26,15 +26,15 @@ var CreateAccommodationComponent = (function () {
                 break;
         }
     };
-    CreateAccommodationComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'createAccommodation',
-            templateUrl: 'createAccommodation.component.html'
-        }),
-        __metadata("design:paramtypes", [router_1.Router])
-    ], CreateAccommodationComponent);
     return CreateAccommodationComponent;
 }());
+CreateAccommodationComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'createAccommodation',
+        templateUrl: 'createAccommodation.component.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
+], CreateAccommodationComponent);
 exports.CreateAccommodationComponent = CreateAccommodationComponent;
 //# sourceMappingURL=createAccommodation.component.js.map
