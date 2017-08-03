@@ -1,11 +1,13 @@
 import {Component} from '@angular/core'
 import {Router} from '@angular/router'
 import {HttpService} from '../../../../Services/http/http.service';
+import {HttpModule} from '@angular/http'
 
 @Component({
     moduleId: module.id,
     selector: 'createAccommodationFeature',
-    templateUrl: 'createAccommodationFeature.component.html'
+    templateUrl: 'createAccommodationFeature.component.html',
+    providers: [HttpService]
 })
 
 export class CreateAccommodationFeatureComponent{

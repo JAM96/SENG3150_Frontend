@@ -3,7 +3,8 @@
 <p style="color:red; font-size:150%">
     Later on, I think we should bring up a list of all accommodation items on this page, so the data entry clerk doesn't have to copy+paste the unique accommodationID.
 </p>
-<form>
+<!-- The following is not how you're supposed to do forms in Angular: -->
+<form (submit)="sendDataToServer(accFeatID.value)">
     Accommodation ID: <input type="text" name="accFeatID">
     <br>
     Feature: <input type="text" name="accFeatFeature">

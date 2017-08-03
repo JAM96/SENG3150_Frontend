@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
 require("rxjs/add/operator/map");
 var http_1 = require("@angular/http");
 var HttpService = (function () {
@@ -16,7 +17,7 @@ var HttpService = (function () {
     function HttpService(_http) {
         this._http = _http;
         //URL which handles JSON encoded data (I'm not sure how to use this. Maybe the localhost URL of the backend server.):
-        this._url = "http://example.com";
+        this._url = "http://localhost:8080/jsonInput";
     }
     HttpService.prototype.sendData = function (data) {
         //Convert the passed in data into a JSON string:
@@ -25,11 +26,11 @@ var HttpService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.post(encoded_data, this._url, options).map(function (res) { return res.json() || {}; });
     };
-    HttpService = __decorate([
-        Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], HttpService);
     return HttpService;
 }());
+HttpService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], HttpService);
 exports.HttpService = HttpService;
 //# sourceMappingURL=http.service.js.map

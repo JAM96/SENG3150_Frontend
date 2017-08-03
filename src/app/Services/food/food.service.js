@@ -33,11 +33,11 @@ var FoodService = (function () {
             .map(function (response) { return response.json().result; })
             .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); }));
     };
-    FoodService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], FoodService);
     return FoodService;
 }());
+FoodService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], FoodService);
 exports.FoodService = FoodService;
 //# sourceMappingURL=food.service.js.map

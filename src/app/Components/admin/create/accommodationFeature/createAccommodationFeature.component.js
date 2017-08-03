@@ -34,16 +34,17 @@ var CreateAccommodationFeatureComponent = (function () {
             error) { return console.log(error); }, //error
         function () { return console.log('completed'); }); //complete
     };
-    CreateAccommodationFeatureComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'createAccommodationFeature',
-            templateUrl: 'createAccommodationFeature.component.html'
-        }),
-        __metadata("design:paramtypes", [router_1.Router,
-            http_service_1.HttpService])
-    ], CreateAccommodationFeatureComponent);
     return CreateAccommodationFeatureComponent;
 }());
+CreateAccommodationFeatureComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'createAccommodationFeature',
+        templateUrl: 'createAccommodationFeature.component.html',
+        providers: [http_service_1.HttpService]
+    }),
+    __metadata("design:paramtypes", [router_1.Router,
+        http_service_1.HttpService])
+], CreateAccommodationFeatureComponent);
 exports.CreateAccommodationFeatureComponent = CreateAccommodationFeatureComponent;
 //# sourceMappingURL=createAccommodationFeature.component.js.map

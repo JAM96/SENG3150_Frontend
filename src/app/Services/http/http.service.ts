@@ -1,11 +1,12 @@
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, HttpModule, Response, Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class HttpService{
     //URL which handles JSON encoded data (I'm not sure how to use this. Maybe the localhost URL of the backend server.):
-    private _url: string = "http://example.com";
+    private _url: string = "http://localhost:8080/jsonInput";
 
     //Injecting the Http service:
     constructor(private _http: Http){}
