@@ -1,5 +1,6 @@
 import {Component} from '@angular/core'
 import {Router} from '@angular/router'
+import {Accommodation} from '';
 
 @Component({
     moduleId: module.id,
@@ -12,6 +13,8 @@ export class CreateAccommodationComponent{
     //Set to 0 (ie. back to the admin panel starting page), by default.
     selectedOption:number = 0;
 
+    model = new AccommodationFeature('', '');
+
     constructor(
         public router: Router
     ){}
@@ -22,5 +25,9 @@ export class CreateAccommodationComponent{
         switch(this.selectedOption){
             case 0: this.router.navigate(['/admin']); break;
         }
+    }
+
+    get diagnostic(){
+        return JSON.stringify(this.model);
     }
 }

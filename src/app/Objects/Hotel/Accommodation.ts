@@ -1,4 +1,4 @@
-export interface Hotel {
+export interface Accommodation {
     accommodationID          :   string;
     accommodationName        :   string;
     accommodationAddress     :   string;
@@ -8,7 +8,9 @@ export interface Hotel {
     numBeds                 :   number;
     numPeople               :   number;
     pricePerNight           :   number;
-    bestSeller              :   boolean
+    bestSeller              :   boolean;
     accommodationType        :   string;
-    pictureURL              :   string; 
+    pictureURL              :   string;
+    websiteURL              :   string;
+    phoneNo                 :   string;
 }
