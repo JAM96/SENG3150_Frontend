@@ -12,11 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var custom_package_service_1 = require("../custom-package-service/custom-package.service");
+// import slide in/out animation
+var _animations_1 = require("../../../../_animations");
 var CreateCustomPackageInitialComponent = (function () {
     //CCPIC Constructor with instantiates the router and custom-package services
     function CreateCustomPackageInitialComponent(router, packageService) {
         this.router = router;
         this.packageService = packageService;
+        this.selectedOption = 1; //defines the selected option
         this.minBudget = 300; //define minimum budget value
         this.maxBudget = 4000; //define maximum budget value
         this.minDate = new Date(); //used to prevent previous dates to the current date being selected
@@ -26,7 +29,37 @@ var CreateCustomPackageInitialComponent = (function () {
         this.value = 472; //budget value set at $472
         this.guests = 1; //guests value set at 1, This will show all accomodation with X+ rooms
         this.rooms = 1; //rooms value set at 1 This will show all room capable of providing X+ guests
+        this.myDateRangePickerOptions = {
+            // other options...
+            dateFormat: 'dd.mm.yyyy',
+            showApplyBtn: false,
+            showClearBtn: false,
+            firstDayOfWeek: "su",
+            sunHighlight: false,
+            minYear: 2017,
+            maxYear: 3000,
+            height: '34px',
+            width: '260px',
+            inline: false,
+            editableDateRangeField: false,
+            alignSelectorRight: false,
+            indicateInvalidDateRange: true,
+        };
+        // For example initialize to specific date (09.10.2018 - 19.10.2018). It is also possible
+        // to set initial date range value using the selDateRange attribute.
+        this.model = { beginDate: { year: 2017, month: 8, day: 7 },
+            endDate: { year: 2017, month: 8, day: 7 } };
     }
+    CreateCustomPackageInitialComponent.prototype.onDateRangeChanged = function (event) {
+        console.log('onDateRangeChanged(): Begin date: ', event.beginDate, ' End date: ', event.endDate);
+        console.log('onDateRangeChanged(): Formatted: ', event.formatted);
+        console.log('onDateRangeChanged(): BeginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
+        //console log of javascript date
+        console.log('JS Start Date: ', event.beginJsDate);
+        console.log('JS End Date: ', event.endJsDate);
+        this.checkin = event.beginJsDate;
+        this.checkout = event.endJsDate;
+    };
     /* TODO:
         This needs to be optomised since this current implementation does not update budget to unlimited.
     */
@@ -60,25 +93,15 @@ var CreateCustomPackageInitialComponent = (function () {
     //Send the data to the custom-package service
     //Navigate to the next page
     CreateCustomPackageInitialComponent.prototype.submitForm = function () {
+        console.log(this.checkin);
         if (this.validateForm()) {
             this.sendLog();
             this.packageService.setInitialData(this.value, this.guests, this.rooms, this.checkin, this.checkout);
             this.router.navigate(["/createpackage"]);
         }
     };
+    /*FORM VALIDATION, COMMENTED FOR EASY DEV */
     CreateCustomPackageInitialComponent.prototype.validateForm = function () {
-        if (this.checkin == null) {
-            window.alert("You must enter a checkin date!");
-            return false;
-        }
-        if (this.checkout == null) {
-            window.alert("You must enter a checkout date!");
-            return false;
-        }
-        if (this.checkout < this.checkin) {
-            window.alert("Your checkout date cannot be before checkin!");
-            return false;
-        }
         return true;
     };
     CreateCustomPackageInitialComponent.prototype.sendLog = function () {
@@ -90,6 +113,35 @@ var CreateCustomPackageInitialComponent = (function () {
         console.info("       Checkout: ", this.checkout);
         console.info("[INFO] Loading custom page...");
     };
+    CreateCustomPackageInitialComponent.prototype.setNavOption = function (selection) {
+        this.selectedOption = selection;
+        switch (this.selectedOption) {
+            case 1:
+                this.router.navigate(['/packages']);
+                break;
+            case 2:
+                ;
+                break;
+            case 3:
+                this.router.navigate(['/about']);
+                break;
+            case 4:
+                this.router.navigate(['/accommodation']);
+                break;
+            case 5:
+                this.router.navigate(['/events']);
+                break;
+            case 6:
+                this.router.navigate(['/activities']);
+                break;
+            case 7:
+                this.router.navigate(['/food']);
+                break;
+            case 8:
+                this.router.navigate(['/admin']);
+                break;
+        }
+    };
     return CreateCustomPackageInitialComponent;
 }());
 CreateCustomPackageInitialComponent = __decorate([
@@ -97,6 +149,10 @@ CreateCustomPackageInitialComponent = __decorate([
         moduleId: module.id,
         selector: 'initial-custom-form',
         templateUrl: 'create-custom-package.component.html',
+        // make slide in/out animation available to this component
+        animations: [_animations_1.slideInOutAnimation],
+        // attach the slide in/out animation to the host (root) element of this component
+        host: { '[@slideInOutAnimation]': '' }
     }),
     __metadata("design:paramtypes", [router_1.Router,
         custom_package_service_1.CustomPackageService])

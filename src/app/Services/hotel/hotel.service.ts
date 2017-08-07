@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 export class HotelService {
     //private url : string = remoteConnection + '/accommodation'
    // private urlLocal : string = remoteConnectionLocal + '/accomodation'
-    url = "http://localhost:8080";
+    url = "http://localhost:8080/accommodation";
     constructor(private http : Http) {}
 
 
@@ -23,6 +23,14 @@ export class HotelService {
             .map((response:Response) => response.json().result)
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+
+
+    /*
+     return this.http.get(this.url)
+            .map((response:Response) => response.json().result)
+                .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+       
+                */
 
     getMockHotels() {
         return Promise.resolve(HOTEL_LIST);

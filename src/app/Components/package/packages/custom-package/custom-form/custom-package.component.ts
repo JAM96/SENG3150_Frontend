@@ -54,6 +54,9 @@ export class CustomPackageComponent implements OnInit{
     accommodationOptions = ['Yes', 'No'];
 
 
+    //hotel form
+    selectedAccommodation : String;
+
     //food form
     displayB : string = 'none';
     displayL : string = 'none';
@@ -267,6 +270,7 @@ export class CustomPackageComponent implements OnInit{
     addHotel(accID : string, accName : string) {
         alert('You have selected: \n Item ID: ' + accID + '\n Name: ' + accName);
         this.custom.hotel = accName;
+        this.selectedAccommodation = accID;
 
         console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
     }

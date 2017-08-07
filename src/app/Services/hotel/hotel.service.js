@@ -18,6 +18,8 @@ require("rxjs/add/operator/map");
 var HotelService = (function () {
     function HotelService(http) {
         this.http = http;
+        //private url : string = remoteConnection + '/accommodation'
+        // private urlLocal : string = remoteConnectionLocal + '/accomodation'
         this.url = "http://localhost:8080/accommodation";
     }
     HotelService.prototype.getHotels = function () {
@@ -25,6 +27,12 @@ var HotelService = (function () {
             .map(function (response) { return response.json().result; })
             .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
     };
+    /*
+     return this.http.get(this.url)
+            .map((response:Response) => response.json().result)
+                .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+       
+                */
     HotelService.prototype.getMockHotels = function () {
         return Promise.resolve(Mock_Hotel_1.HOTEL_LIST);
     };

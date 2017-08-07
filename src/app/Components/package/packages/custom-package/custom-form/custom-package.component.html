@@ -232,7 +232,14 @@
                         <span class="text-md text-k glyphicon glyphicon-user">{{hotel.numPeople}}</span>
                     </div>
                     <div class="col-md-4"><!-- Add to cart -->
-                        <button (click)="addHotel(hotel.accommodationID, hotel.accommodationName)" type="button" md-raised-button color="warn" style="float: right">Select</button>
+                        <ng-container *ngIf="hotel.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
+                            <ng-template #accNormal>
+                                <button (click)="addHotel(hotel.accommodationID, hotel.accommodationName)" type="button" md-raised-button color="warn" style="float: right">Select</button>
+                            </ng-template>
+                            <ng-template #accSelected>
+                                <button (click)="addHotel(hotel.accommodationID, hotel.accommodationName)" disabled type="button" md-raised-button color="warn" style="float: right">Selected</button>
+                            </ng-template>
+                        
                         <button type="button" md-raised-button style="float: right; margin-right: 10px">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             View
