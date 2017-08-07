@@ -33,17 +33,12 @@
         <hr>
 
         <div class="row"><!-- calendar row -->
-            <div class="col-md-6"><!-- Checkin calendar column -->
-                <label for="checkin">Check-in: </label>
-                <custom-calendar></custom-calendar>
-                <!--<input class="form-control" type="date" id="checkin" [(ngModel)]="checkin"/>-->
-            </div><!-- end checkin calendar -->
-
-            <div class="col-md-6"><!-- Checkout calendar column -->
-                <label for="checkout">Check-out: </label>
-                <custom-calendar></custom-calendar>
-                <!--<input class="form-control" type="date" id="checkout" [(ngModel)]="checkout"/>-->
-            </div><!-- end checkout calendar -->
+            <form #myForm="ngForm" novalidate>
+                <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                                [(ngModel)]="model" required
+                                (dateRangeChanged)="onDateRangeChanged($event)">
+                </my-date-range-picker>
+            </form>
         </div><!-- end calendar row -->
             
         <div class="row"><!-- rest of the custom package form -->
@@ -96,7 +91,7 @@
 
     <button md-raised-button (click)="setNavOption(2)" id="home-login-button">Login</button>
     
-    <div class="header">
+    <div class="headerBar">
         <div class="logo">
         </div>
     </div>

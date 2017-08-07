@@ -1,6 +1,7 @@
 import {Component, ViewChild, AfterViewInit, Input} from '@angular/core'
 import {MdDatepicker, MdDialog} from '@angular/material'
 import {Router} from '@angular/router'
+import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 
 import {CustomPackageService} from '../custom-package-service/custom-package.service';
 
@@ -38,6 +39,42 @@ export class CreateCustomPackageInitialComponent { //CCPIC
         public router: Router,
         private packageService: CustomPackageService
         ) {}
+
+    private myDateRangePickerOptions: IMyDrpOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy',
+        showApplyBtn: false,
+        showClearBtn: false,
+        firstDayOfWeek: "su",
+        sunHighlight: false,
+        minYear: 2017,
+        maxYear: 3000,
+        height: '34px',
+        width: '260px',
+        inline: false,
+        editableDateRangeField: false,
+        alignSelectorRight: false,
+        indicateInvalidDateRange: true,
+
+    };
+
+    // For example initialize to specific date (09.10.2018 - 19.10.2018). It is also possible
+    // to set initial date range value using the selDateRange attribute.
+    private model: Object = {beginDate: {year: 2017, month: 8, day: 7},
+                             endDate: {year: 2017, month: 8, day: 7}};
+
+     onDateRangeChanged(event: IMyDateRangeModel) {
+        console.log('onDateRangeChanged(): Begin date: ', event.beginDate, ' End date: ', event.endDate);
+        console.log('onDateRangeChanged(): Formatted: ', event.formatted);
+        console.log('onDateRangeChanged(): BeginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
+        
+        //console log of javascript date
+        console.log('JS Start Date: ', event.beginJsDate);
+        console.log('JS End Date: ', event.endJsDate);
+
+        this.checkin = event.beginJsDate;
+        this.checkout = event.endJsDate;
+    }
 
     /* TODO:
         This needs to be optomised since this current implementation does not update budget to unlimited.
@@ -77,6 +114,8 @@ export class CreateCustomPackageInitialComponent { //CCPIC
     //Send the data to the custom-package service
     //Navigate to the next page
     submitForm() {
+        console.log(this.checkin);
+
         if(this.validateForm()) { 
             this.sendLog();
 

@@ -22,7 +22,7 @@ var CustomCalendarComponent = (function () {
             ['090717', '100717', '110717', '120717', '130717', '140717', '150717'],
             ['160717', '170717', '180717', '190717', '200717', '210717', '220717'],
             ['230717', '240717', '250717', '260717', '270717', '280717', '290717'],
-            ['300717', '310717', '010817', '020817', '030817', '040817', '050817']
+            ['300717', '310717', '010817', '020817', '030817', '040817', '050817'] // Week 6, will contain next month days
         ]; //The calendar array contains the days for easy implementation in the html
         this.month = "July";
         this.year = 2017;
@@ -142,34 +142,69 @@ var CustomCalendarComponent = (function () {
         }
         return str.substring(position, position + length);
     };
+    /*
+        the fill calendar days function will get the selected date and find out the day that corresponds with it
+        e.g. 03/08/17 is a thursday
+        It will then iterate through a list to ensure that the date '03' is closet to the 42 day array value
+        which will be in the calendarDays[1][X] row where X is to be determined
+    */
     CustomCalendarComponent.prototype.fillCalendarDays = function (value) {
-        var day = this.getDayName(value, this._locale);
+        var day = this.getDayName(value, this._locale); //get the day from the date, e.g. 'Sunday'
         switch (day) {
+            //the switch will then call another function which will populate an array with the neccesary days
             case 'Sunday':
                 console.log('value is sunday');
+                this.insertIntoArray([0, 7, 14, 21, 28, 35], value); //sunday days occur on the following array inserts
                 break;
             case 'Monday':
                 console.log('value is mon');
+                this.insertIntoArray([1, 8, 15, 22, 29, 36], value);
                 break;
             case 'Tuesday':
                 console.log('value is tues');
+                this.insertIntoArray([2, 9, 16, 23, 30, 37], value);
                 break;
             case 'Wednesday':
                 console.log('value is wed');
+                this.insertIntoArray([3, 10, 17, 24, 31, 38], value);
                 break;
             case 'Thursday':
                 console.log('value is thur');
+                this.insertIntoArray([4, 11, 18, 25, 32, 39], value);
                 break;
             case 'Friday':
                 console.log('value is fri');
+                this.insertIntoArray([5, 12, 19, 26, 33, 40], value);
                 break;
             case 'Saturday':
                 console.log('value is sat');
+                this.insertIntoArray([6, 13, 20, 27, 34, 41], value);
                 break;
         }
-        console.log("testing this function now");
-        console.log("Date value: " + this.getDayName(value, this._locale));
-        console.log("Day value: " + value.getDate().toString());
+    };
+    CustomCalendarComponent.prototype.insertIntoArray = function (dayValues, dateInsert) {
+        var date = dateInsert.getDay();
+        var index; //index at where to begin the for loops to fill calendar days
+        if (date > 0 && date < 7) {
+            //append to row 0
+            index = dayValues[0];
+        }
+        else if (date >= 7 && date < 14) {
+            //append to row 1
+            index = dayValues[1];
+        }
+        else if (date >= 14 && date < 21) {
+            //append to row 2
+            index = dayValues[2];
+        }
+        else if (date >= 21 && date < 28) {
+            //append to row 3
+            index = dayValues[3];
+        }
+        else if (date >= 28) {
+            //append to row 4
+            index = dayValues[4];
+        }
     };
     CustomCalendarComponent.prototype.getDayName = function (date, locale) {
         return date.toLocaleDateString(locale, { weekday: 'long' });

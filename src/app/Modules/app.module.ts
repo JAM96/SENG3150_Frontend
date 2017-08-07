@@ -19,6 +19,8 @@ import {MaterialModule, MdDatepickerModule, MdNativeDateModule} from '@angular/m
 
 //used for the calendar popup
 import { Md2Module }  from 'md2';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
+
 
 //import app
 import { AppComponent }  from '../Components/app.component';
@@ -84,6 +86,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     routing,
     AsideModule,
     SlimLoadingBarModule.forRoot(),
+    MyDateRangePickerModule,
     ],
   declarations: [
     AppComponent,

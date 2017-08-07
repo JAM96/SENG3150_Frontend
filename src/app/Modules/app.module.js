@@ -24,6 +24,7 @@ var animations_1 = require("@angular/platform-browser/animations");
 var material_1 = require("@angular/material");
 //used for the calendar popup
 var md2_1 = require("md2");
+var mydaterangepicker_1 = require("mydaterangepicker");
 //import app
 var app_component_1 = require("../Components/app.component");
 //import components here
@@ -87,6 +88,7 @@ AppModule = __decorate([
             app_routing_1.routing,
             ng2_aside_1.AsideModule,
             ng2_slim_loading_bar_1.SlimLoadingBarModule.forRoot(),
+            mydaterangepicker_1.MyDateRangePickerModule,
         ],
         declarations: [
             app_component_1.AppComponent,
