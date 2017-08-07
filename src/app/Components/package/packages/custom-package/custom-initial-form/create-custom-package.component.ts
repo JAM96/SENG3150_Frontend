@@ -172,7 +172,6 @@ export class CreateCustomPackageInitialComponent { //CCPIC
             case 5: this.router.navigate(['/events']); break;
             case 6: this.router.navigate(['/activities']); break;
             case 7: this.router.navigate(['/food']); break;
-            case 8: this.router.navigate(['/admin']); break;
         }
     }
 }

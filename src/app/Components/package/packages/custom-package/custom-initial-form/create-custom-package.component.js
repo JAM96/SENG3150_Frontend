@@ -137,25 +137,22 @@ var CreateCustomPackageInitialComponent = (function () {
             case 7:
                 this.router.navigate(['/food']);
                 break;
-            case 8:
-                this.router.navigate(['/admin']);
-                break;
         }
     };
+    CreateCustomPackageInitialComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'initial-custom-form',
+            templateUrl: 'create-custom-package.component.html',
+            // make slide in/out animation available to this component
+            animations: [_animations_1.slideInOutAnimation],
+            // attach the slide in/out animation to the host (root) element of this component
+            host: { '[@slideInOutAnimation]': '' }
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            custom_package_service_1.CustomPackageService])
+    ], CreateCustomPackageInitialComponent);
     return CreateCustomPackageInitialComponent;
 }());
-CreateCustomPackageInitialComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'initial-custom-form',
-        templateUrl: 'create-custom-package.component.html',
-        // make slide in/out animation available to this component
-        animations: [_animations_1.slideInOutAnimation],
-        // attach the slide in/out animation to the host (root) element of this component
-        host: { '[@slideInOutAnimation]': '' }
-    }),
-    __metadata("design:paramtypes", [router_1.Router,
-        custom_package_service_1.CustomPackageService])
-], CreateCustomPackageInitialComponent);
 exports.CreateCustomPackageInitialComponent = CreateCustomPackageInitialComponent;
 //# sourceMappingURL=create-custom-package.component.js.map

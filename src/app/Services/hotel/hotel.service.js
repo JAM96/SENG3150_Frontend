@@ -36,11 +36,11 @@ var HotelService = (function () {
     HotelService.prototype.getMockHotels = function () {
         return Promise.resolve(Mock_Hotel_1.HOTEL_LIST);
     };
+    HotelService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], HotelService);
     return HotelService;
 }());
-HotelService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], HotelService);
 exports.HotelService = HotelService;
 //# sourceMappingURL=hotel.service.js.map

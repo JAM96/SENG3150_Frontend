@@ -41,15 +41,15 @@ var AdminComponent = (function () {
                 break;
         }
     };
+    AdminComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'admin',
+            templateUrl: 'admin.component.html'
+        }),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], AdminComponent);
     return AdminComponent;
 }());
-AdminComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'admin',
-        templateUrl: 'admin.component.html'
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
-], AdminComponent);
 exports.AdminComponent = AdminComponent;
 //# sourceMappingURL=admin.component.js.map

@@ -221,7 +221,7 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.setFood = function (menuType, item, setForAll) {
         var day = this.selectedDay;
         switch (menuType) {
-            case 1:
+            case 1://Breakfast
                 console.log('Setting food with the following: ');
                 console.log(' - Time of Day: ', menuType);
                 console.log(' - Day: ', this.selectedDay);
@@ -256,7 +256,7 @@ var CustomPackageComponent = (function () {
                     console.log(this.custom.foodBreakfast);
                 }
                 break;
-            case 2:
+            case 2://Lunch
                 //This checks if items have been added into the Lunch array yet
                 if (this.custom.foodLunch == null) {
                     this.custom.foodLunch = [];
@@ -286,7 +286,7 @@ var CustomPackageComponent = (function () {
                     console.log(this.custom.foodLunch);
                 }
                 break;
-            case 3:
+            case 3://Dinner
                 //This checks if items have been added into the Dinner array yet
                 if (this.custom.foodDinner == null) {
                     this.custom.foodDinner = [];
@@ -316,7 +316,7 @@ var CustomPackageComponent = (function () {
                     console.log(this.custom.foodDinner);
                 }
                 break;
-            case 4:
+            case 4://Other
                 //This checks if items have been added into the Other array yet
                 if (this.custom.foodOther == null) {
                     this.custom.foodOther = [];
@@ -359,25 +359,25 @@ var CustomPackageComponent = (function () {
             return true;
         }
     };
+    CustomPackageComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'custom-package',
+            templateUrl: 'custom-package.component.html',
+            providers: [
+                hotel_service_1.HotelService,
+                food_service_1.FoodService,
+                activity_service_1.ActivityService
+            ]
+        }),
+        __metadata("design:paramtypes", [hotel_service_1.HotelService,
+            food_service_1.FoodService,
+            activity_service_1.ActivityService,
+            custom_package_service_1.CustomPackageService,
+            ng2_slim_loading_bar_1.SlimLoadingBarService,
+            router_1.Router])
+    ], CustomPackageComponent);
     return CustomPackageComponent;
 }());
-CustomPackageComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'custom-package',
-        templateUrl: 'custom-package.component.html',
-        providers: [
-            hotel_service_1.HotelService,
-            food_service_1.FoodService,
-            activity_service_1.ActivityService
-        ]
-    }),
-    __metadata("design:paramtypes", [hotel_service_1.HotelService,
-        food_service_1.FoodService,
-        activity_service_1.ActivityService,
-        custom_package_service_1.CustomPackageService,
-        ng2_slim_loading_bar_1.SlimLoadingBarService,
-        router_1.Router])
-], CustomPackageComponent);
 exports.CustomPackageComponent = CustomPackageComponent;
 //# sourceMappingURL=custom-package.component.js.map

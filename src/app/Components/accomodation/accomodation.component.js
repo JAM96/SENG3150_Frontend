@@ -20,17 +20,17 @@ var AccomodationComponent = (function () {
         var _this = this;
         this.hotelService.getMockHotels().then(function (hotels) { return _this.hotels = hotels; });
     };
+    AccomodationComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'accomodation',
+            // templateUrl: 'accomodation.component.html',
+            templateUrl: 'accomodationListView/accomodationListView.html',
+            providers: [hotel_service_1.HotelService]
+        }),
+        __metadata("design:paramtypes", [hotel_service_1.HotelService])
+    ], AccomodationComponent);
     return AccomodationComponent;
 }());
-AccomodationComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'accomodation',
-        // templateUrl: 'accomodation.component.html',
-        templateUrl: 'accomodationListView/accomodationListView.html',
-        providers: [hotel_service_1.HotelService]
-    }),
-    __metadata("design:paramtypes", [hotel_service_1.HotelService])
-], AccomodationComponent);
 exports.AccomodationComponent = AccomodationComponent;
 //# sourceMappingURL=accomodation.component.js.map
