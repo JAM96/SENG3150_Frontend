@@ -9,7 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var HomeComponent = (function () {
     function HomeComponent() {
+        this.scrollValue = 0;
     }
+    HomeComponent.prototype.contentScroll = function () {
+        alert('this works!');
+        this.scrollValue + 1;
+        console.log(this.scrollValue);
+    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([

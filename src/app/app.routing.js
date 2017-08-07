@@ -15,8 +15,6 @@ var food_component_1 = require("./Components/food/food.component");
 var accomodation_component_1 = require("./Components/accomodation/accomodation.component");
 var contact_component_1 = require("./Components/contact/contact.component");
 var shoppingCart_component_1 = require("./Components/shoppingCart/shoppingCart.component");
-var admin_component_1 = require("./Components/admin/admin.component");
-var createAccommodation_component_1 = require("./Components/admin/create/accommodation/createAccommodation.component");
 //test component
 var test_component_1 = require("./Components/test-component/test.component");
 /*
@@ -45,8 +43,6 @@ var appRoutes = [
     { path: 'contact', component: contact_component_1.ContactComponent },
     { path: 'shoppingCart', component: shoppingCart_component_1.ShoppingCartComponent },
     { path: 'test', component: test_component_1.TestComponent },
-    { path: 'admin', component: admin_component_1.AdminComponent },
-    { path: 'createAccommodation', component: createAccommodation_component_1.CreateAccommodationComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 exports.appRoutingProviders = [];

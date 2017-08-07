@@ -24,7 +24,6 @@ var animations_1 = require("@angular/platform-browser/animations");
 var material_1 = require("@angular/material");
 //used for the calendar popup
 var md2_1 = require("md2");
-var mydaterangepicker_1 = require("mydaterangepicker");
 //import app
 var app_component_1 = require("../Components/app.component");
 //import components here
@@ -37,8 +36,6 @@ var food_component_1 = require("../Components/food/food.component");
 var accomodation_component_1 = require("../Components/accomodation/accomodation.component");
 var contact_component_1 = require("../Components/contact/contact.component");
 var shoppingCart_component_1 = require("../Components/shoppingCart/shoppingCart.component");
-var admin_component_1 = require("../Components/admin/admin.component");
-var createAccommodation_component_1 = require("../Components/admin/create/accommodation/createAccommodation.component");
 var create_custom_package_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component");
 var navigationtop_component_1 = require("../Components/navigation/navigationtop/navigationtop.component");
 //Profile Component and Profile Components
@@ -48,8 +45,6 @@ var viewVouchers_component_1 = require("../Components/profile/viewVouchers/viewV
 var leaveFeedback_component_1 = require("../Components/profile/leaveFeedback/leaveFeedback.component");
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
-var custom_calendar_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component");
-var calendar_truncate_pipe_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
@@ -88,7 +83,6 @@ AppModule = __decorate([
             app_routing_1.routing,
             ng2_aside_1.AsideModule,
             ng2_slim_loading_bar_1.SlimLoadingBarModule.forRoot(),
-            mydaterangepicker_1.MyDateRangePickerModule,
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -96,9 +90,7 @@ AppModule = __decorate([
             home_component_1.HomeComponent,
             about_component_1.AboutComponent,
             activities_component_1.ActivitiesComponent,
-            admin_component_1.AdminComponent,
             create_custom_package_component_1.CreateCustomPackageInitialComponent,
-            createAccommodation_component_1.CreateAccommodationComponent,
             navigationtop_component_1.NavigationTopComponent,
             navigationtop_component_1.LoginPopupComponent,
             navigationtop_component_1.notificationsPopupComponent,
@@ -114,9 +106,7 @@ AppModule = __decorate([
             shoppingCart_component_1.ShoppingCartComponent,
             viewPackages_component_1.ViewPackagesComponent,
             viewVouchers_component_1.ViewVouchersComponent,
-            leaveFeedback_component_1.LeaveFeedbackComponent,
-            custom_calendar_component_1.CustomCalendarComponent,
-            calendar_truncate_pipe_1.TruncatePipe
+            leaveFeedback_component_1.LeaveFeedbackComponent
         ],
         bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [
