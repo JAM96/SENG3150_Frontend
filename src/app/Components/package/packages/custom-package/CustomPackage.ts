@@ -9,10 +9,10 @@ export class CustomPackage {
     
 
     //food items
-    foodBreakfast   : string[];
-    foodLunch       : string[];
-    foodDinner      : string[];
-    foodOther       : string[];
+    foodBreakfast   : object[]; //format in day, venue, time
+    foodLunch       : object[];
+    foodDinner      : object[];
+    foodOther       : object[];
 
     //activities 
     activity        : string[][] // [n days][n activites] 
