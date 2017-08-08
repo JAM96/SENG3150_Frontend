@@ -282,9 +282,9 @@ export class CustomPackageComponent implements OnInit{
 
         this.startLoading();
 
-        //this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
-         this.hotelService.getHotels()
-             .subscribe((hotel : Hotel[]) => this.accommodationList = hotel)
+        this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.accommodationList = hotels);
+        //  this.hotelService.getHotels()
+        //      .subscribe((hotel : Hotel[]) => this.accommodationList = hotel)
 
         //Another way of doing this but does not currently work
             // .subscribe(
@@ -313,11 +313,11 @@ export class CustomPackageComponent implements OnInit{
     /* Retrieves all food objects from the backend */
     getFood() {
         console.log('retrieving food');
-        //this.foodService.getMockFood().then((food: Food[]) => this.food = food);
+        this.foodService.getMockFood().then((food: Food[]) => this.food = food);
         this.startLoading();
        
-        this.foodService.getFood()
-            .subscribe((food : Food[]) => this.food = food);
+        // this.foodService.getFood()
+        //     .subscribe((food : Food[]) => this.food = food);
         
         //fake loading bar
         setTimeout(() => {
@@ -341,11 +341,11 @@ export class CustomPackageComponent implements OnInit{
     /* Retrieves all activity objects from the backend */
     getActivities() {
         console.log('retrieving Activities');
-        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
         this.startLoading();
        
-        this.activityService.getActivities()
-            .subscribe((activity : Activity[]) => this.activities = activity);
+        // this.activityService.getActivities()
+        //     .subscribe((activity : Activity[]) => this.activities = activity);
         
         //fake loading bar
         setTimeout(() => {
