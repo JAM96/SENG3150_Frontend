@@ -17,11 +17,11 @@ var EventService = (function () {
     EventService.prototype.getEvents = function () {
         return Promise.resolve(mock_event_1.EVENT_LIST);
     };
-    EventService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [])
-    ], EventService);
     return EventService;
 }());
+EventService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], EventService);
 exports.EventService = EventService;
 //# sourceMappingURL=events.service.js.map
