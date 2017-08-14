@@ -33,7 +33,7 @@ import {HomeComponent} from '../Components/home/home.component';
   import {AboutComponent} from '../Components/about/about.component';
   import {EventViewComponent} from '../Components/event/eventoverview.component';
   import {ActivitiesComponent} from '../Components/activities/activities.component';
-  import {FoodComponent} from '../Components/food/food.component';
+  import {FoodComponent} from '../Components/food-and-drinks/food.component';
   import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
   import {ContactComponent} from '../Components/contact/contact.component';
   import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
@@ -56,7 +56,7 @@ import {HomeComponent} from '../Components/home/home.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
 import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
-
+import {DataService} from '../Services/data.service';
 
 //ng2 
 import {AsideModule} from 'ng2-aside';
@@ -120,6 +120,7 @@ import {TestComponent} from '../Components/test-component/test.component';
   providers: [
     appRoutingProviders,
     CustomPackageService,
+    DataService,
     CanDeactivateGuard,
   ]
 })

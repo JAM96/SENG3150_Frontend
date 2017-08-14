@@ -11,14 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 //import services
-var hotel_service_1 = require("../../Services/hotel/hotel.service");
+var accommodation_service_1 = require("../../Services/Accommodation/accommodation.service");
 var AccomodationComponent = (function () {
-    function AccomodationComponent(hotelService) {
-        this.hotelService = hotelService;
+    function AccomodationComponent(accommodationService) {
+        this.accommodationService = accommodationService;
     }
-    AccomodationComponent.prototype.getHotels = function () {
+    AccomodationComponent.prototype.getAccommodation = function () {
         var _this = this;
-        this.hotelService.getMockHotels().then(function (hotels) { return _this.hotels = hotels; });
+        this.accommodationService.getMockAccommodation()
+            .then(function (accommodation) { return _this.accommodation = accommodation; });
     };
     return AccomodationComponent;
 }());
@@ -28,9 +29,9 @@ AccomodationComponent = __decorate([
         selector: 'accomodation',
         // templateUrl: 'accomodation.component.html',
         templateUrl: 'accomodationListView/accomodationListView.html',
-        providers: [hotel_service_1.HotelService]
+        providers: [accommodation_service_1.AccommodationService]
     }),
-    __metadata("design:paramtypes", [hotel_service_1.HotelService])
+    __metadata("design:paramtypes", [accommodation_service_1.AccommodationService])
 ], AccomodationComponent);
 exports.AccomodationComponent = AccomodationComponent;
 //# sourceMappingURL=accomodation.component.js.map

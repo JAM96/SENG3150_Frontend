@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Route } from '@angular/router';
-import {PackageList} from '../../../Objects/PackageList';
-import {PackagesService} from '../../../Services/package/packages.service';
+import {PackageList} from '../../../Objects/Packages/PackageList';
+import {PackageService} from '../../../Services/Package/packages.service';
 
 import {PackageCategoryComponent} from '../packagecategory.component';
 
@@ -9,7 +9,7 @@ import {PackageCategoryComponent} from '../packagecategory.component';
     moduleId: module.id,
     selector: 'packages',
     templateUrl: 'packagesview.component.html',
-    providers: [PackagesService]
+    providers: [PackageService]
 })
 
 export class PackagesComponent implements OnInit{
@@ -25,10 +25,10 @@ export class PackagesComponent implements OnInit{
 
     guests : number = 0;
 
-    constructor(private route: ActivatedRoute, private _packagesService: PackagesService) {}
+    constructor(private route: ActivatedRoute, private _packageService: PackageService) {}
 
     getPackages() {
-        this._packagesService.getPackages().then((packages: PackageList[]) => this.packages = packages);
+        this._packageService.getMockPackages().then((packages: PackageList[]) => this.packages = packages);
     }
 
     increaseGuests() {

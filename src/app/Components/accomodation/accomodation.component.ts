@@ -1,26 +1,27 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 //import objects
-import {Hotel} from '../../Objects/Hotel/Hotel';
+import {Accommodation} from '../../Objects/Accommodation/Accommodation';
 
 //import services
-import {HotelService} from '../../Services/hotel/hotel.service';
+import {AccommodationService} from '../../Services/Accommodation/accommodation.service';
 
 @Component({
     moduleId: module.id,
     selector: 'accomodation',
     // templateUrl: 'accomodation.component.html',
     templateUrl: 'accomodationListView/accomodationListView.html',
-    providers: [HotelService]
+    providers: [AccommodationService]
 })
 
 export class AccomodationComponent{
-    hotels : Hotel[];
+    accommodation : Accommodation[];
      constructor(
-        private hotelService    :   HotelService
+        private accommodationService    :   AccommodationService
         ) {}
-    getHotels() {
-        
-        this.hotelService.getMockHotels().then((hotels: Hotel[]) => this.hotels = hotels);
+    
+    getAccommodation() {
+        this.accommodationService.getMockAccommodation()
+        .then((accommodation: Accommodation[]) => this.accommodation = accommodation);
     }
 }

@@ -11,16 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 //import services
-var hotel_service_1 = require("../../../../../Services/hotel/hotel.service");
-var food_service_1 = require("../../../../../Services/food/food.service");
+var accommodation_service_1 = require("../../../../../Services/Accommodation/accommodation.service");
+var food_and_drinks_service_1 = require("../../../../../Services/FoodAndDrinks/food-and-drinks.service");
 var activity_service_1 = require("../../../../../Services/activity/activity.service");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
 var custom_package_service_1 = require("../custom-package-service/custom-package.service");
 var router_1 = require("@angular/router");
 var CustomPackageComponent = (function () {
-    function CustomPackageComponent(hotelService, foodService, activityService, packageService, slimLoadingBarService, router) {
-        this.hotelService = hotelService;
-        this.foodService = foodService;
+    function CustomPackageComponent(accommodationService, foodAndDrinksService, activityService, packageService, slimLoadingBarService, router) {
+        this.accommodationService = accommodationService;
+        this.foodAndDrinksService = foodAndDrinksService;
         this.activityService = activityService;
         this.packageService = packageService;
         this.slimLoadingBarService = slimLoadingBarService;
@@ -123,14 +123,14 @@ var CustomPackageComponent = (function () {
             case 2:
                 if (this.isLoaded[0].value == false) {
                     console.log('Loading accommodation');
-                    this.getHotels(); //retrieve accommodation from the database.
+                    this.getAccommodation(); //retrieve accommodation from the database.
                     this.isLoaded[0].value = true; //change loaded status to true.
                 }
                 break;
             case 3:
                 if (this.isLoaded[1].value == false) {
                     console.log('Loading restaurants');
-                    this.getFood(); //retrieve restaurants from the database.
+                    this.getFoodAndDrinks(); //retrieve restaurants from the database.
                     this.isLoaded[1].value = true; //change loaded status to true.
                 }
                 break;
@@ -228,14 +228,15 @@ var CustomPackageComponent = (function () {
     /**
      * LOADING DATA
      */
-    /* Retrieves all the hotel objects from the backend */
-    CustomPackageComponent.prototype.getHotels = function () {
+    /* Retrieves all the accommodation objects from the backend */
+    CustomPackageComponent.prototype.getAccommodation = function () {
         var _this = this;
         console.log('[INFO] Retrieving the accommodation list');
         this.startLoading();
-        this.hotelService.getMockHotels().then(function (hotels) { return _this.accommodationList = hotels; });
-        //  this.hotelService.getHotels()
-        //      .subscribe((hotel : Hotel[]) => this.accommodationList = hotel)
+        // this.accommodationService.getMockAccommodation()
+        // .then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
+        this.accommodationService.getAccommodation()
+            .subscribe(function (accommodation) { return _this.accommodationList = accommodation; });
         //Another way of doing this but does not currently work
         // .subscribe(
         //     function(response) {
@@ -257,13 +258,13 @@ var CustomPackageComponent = (function () {
         }, 1000);
     };
     /* Retrieves all food objects from the backend */
-    CustomPackageComponent.prototype.getFood = function () {
+    CustomPackageComponent.prototype.getFoodAndDrinks = function () {
         var _this = this;
-        console.log('retrieving food');
-        this.foodService.getMockFood().then(function (food) { return _this.food = food; });
+        console.log('retrieving food and drinks');
+        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
         this.startLoading();
-        // this.foodService.getFood()
-        //     .subscribe((food : Food[]) => this.food = food);
+        this.foodAndDrinksService.getFoodAndDrinks()
+            .subscribe(function (fad) { return _this.foodAndDrinks = fad; });
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();
@@ -284,10 +285,10 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.getActivities = function () {
         var _this = this;
         console.log('retrieving Activities');
-        this.activityService.getMockActivities().then(function (activity) { return _this.activities = activity; });
+        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
         this.startLoading();
-        // this.activityService.getActivities()
-        //     .subscribe((activity : Activity[]) => this.activities = activity);
+        this.activityService.getActivities()
+            .subscribe(function (activity) { return _this.activities = activity; });
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();
@@ -312,13 +313,13 @@ CustomPackageComponent = __decorate([
         selector: 'custom-package',
         templateUrl: 'custom-package.component.html',
         providers: [
-            hotel_service_1.HotelService,
-            food_service_1.FoodService,
+            accommodation_service_1.AccommodationService,
+            food_and_drinks_service_1.FoodAndDrinksService,
             activity_service_1.ActivityService
         ]
     }),
-    __metadata("design:paramtypes", [hotel_service_1.HotelService,
-        food_service_1.FoodService,
+    __metadata("design:paramtypes", [accommodation_service_1.AccommodationService,
+        food_and_drinks_service_1.FoodAndDrinksService,
         activity_service_1.ActivityService,
         custom_package_service_1.CustomPackageService,
         ng2_slim_loading_bar_1.SlimLoadingBarService,

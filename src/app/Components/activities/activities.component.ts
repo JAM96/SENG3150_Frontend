@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Route } from '@angular/router';
 import {Activity} from '../../Objects/Activity/Activity';
-import {ActivityService} from '../../Services/activity/activity.service';
+import {ActivityService} from '../../Services/Activity/activity.service';
 
 @Component({
     moduleId: module.id,

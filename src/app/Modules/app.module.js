@@ -33,7 +33,7 @@ var home_component_1 = require("../Components/home/home.component");
 var about_component_1 = require("../Components/about/about.component");
 var eventoverview_component_1 = require("../Components/event/eventoverview.component");
 var activities_component_1 = require("../Components/activities/activities.component");
-var food_component_1 = require("../Components/food/food.component");
+var food_component_1 = require("../Components/food-and-drinks/food.component");
 var accomodation_component_1 = require("../Components/accomodation/accomodation.component");
 var contact_component_1 = require("../Components/contact/contact.component");
 var shoppingCart_component_1 = require("../Components/shoppingCart/shoppingCart.component");
@@ -54,6 +54,7 @@ var packagecategory_component_1 = require("../Components/package/packagecategory
 var packagesview_component_1 = require("../Components/package/packages/packagesview.component");
 //import services here
 var can_deactivate_guard_service_1 = require("../Components/guards/can-deactivate-guard.service");
+var data_service_1 = require("../Services/data.service");
 //ng2 
 var ng2_aside_1 = require("ng2-aside");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
@@ -122,6 +123,7 @@ AppModule = __decorate([
         providers: [
             app_routing_1.appRoutingProviders,
             custom_package_service_1.CustomPackageService,
+            data_service_1.DataService,
             can_deactivate_guard_service_1.CanDeactivateGuard,
         ]
     }),

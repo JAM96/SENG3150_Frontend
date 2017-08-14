@@ -1,7 +1,9 @@
 "use strict";
 /*
- * SERVICE NAME: Packages
- * Role: Retrieving the package data from the backend
+ * SERVICE NAME: Accommodation
+ * Role: Retrieving the accommodation data from the backend
+ * Created By: Jack Mennie
+ * Date Completed: 14/08/17
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -15,32 +17,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 //Imports
 var core_1 = require("@angular/core");
-var mock_packages_1 = require("../../Objects/Packages/mock-packages");
+var Mock_Accommodation_1 = require("../../Objects/Accommodation/MockData/Mock-Accommodation");
+var data_service_1 = require("../data.service");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
-var data_service_1 = require("../data.service");
 //end imports
-var PackageService = (function () {
-    function PackageService(http, data) {
+var AccommodationService = (function () {
+    function AccommodationService(http, data) {
         this.http = http;
         this.data = data;
-        this.url = this.data.getApiUrl('packages');
     }
-    PackageService.prototype.getPackages = function () {
-        return this.http.get(this.url)
+    AccommodationService.prototype.getAccommodation = function () {
+        var url = this.data.getApiUrl('accommodation');
+        return this.http.get(url)
             .map(function (response) { return response.json().result; })
-            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Could not retrieve Accommodation'); });
     };
-    PackageService.prototype.getMockPackages = function () {
-        return Promise.resolve(mock_packages_1.PACKAGE_LIST);
+    AccommodationService.prototype.getMockAccommodation = function () {
+        return Promise.resolve(Mock_Accommodation_1.ACCOMMODATION_LIST);
     };
-    return PackageService;
+    return AccommodationService;
 }());
-PackageService = __decorate([
+AccommodationService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http, data_service_1.DataService])
-], PackageService);
-exports.PackageService = PackageService;
-//# sourceMappingURL=packages.service.js.map
+], AccommodationService);
+exports.AccommodationService = AccommodationService;
+//# sourceMappingURL=accommodation.service.js.map

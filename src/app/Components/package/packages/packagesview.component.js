@@ -11,17 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var packages_service_1 = require("../../../Services/package/packages.service");
+var packages_service_1 = require("../../../Services/Package/packages.service");
 var PackagesComponent = (function () {
-    function PackagesComponent(route, _packagesService) {
+    function PackagesComponent(route, _packageService) {
         this.route = route;
-        this._packagesService = _packagesService;
+        this._packageService = _packageService;
         this.minDate = new Date();
         this.guests = 0;
     }
     PackagesComponent.prototype.getPackages = function () {
         var _this = this;
-        this._packagesService.getPackages().then(function (packages) { return _this.packages = packages; });
+        this._packageService.getMockPackages().then(function (packages) { return _this.packages = packages; });
     };
     PackagesComponent.prototype.increaseGuests = function () {
         this.guests = this.guests + 1;
@@ -47,9 +47,9 @@ PackagesComponent = __decorate([
         moduleId: module.id,
         selector: 'packages',
         templateUrl: 'packagesview.component.html',
-        providers: [packages_service_1.PackagesService]
+        providers: [packages_service_1.PackageService]
     }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute, packages_service_1.PackagesService])
+    __metadata("design:paramtypes", [router_1.ActivatedRoute, packages_service_1.PackageService])
 ], PackagesComponent);
 exports.PackagesComponent = PackagesComponent;
 //# sourceMappingURL=packagesview.component.js.map

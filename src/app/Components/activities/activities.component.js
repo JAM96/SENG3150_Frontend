@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var activity_service_1 = require("../../Services/activity/activity.service");
+var activity_service_1 = require("../../Services/Activity/activity.service");
 var ActivitiesComponent = (function () {
     function ActivitiesComponent(activityService) {
         this.activityService = activityService;
