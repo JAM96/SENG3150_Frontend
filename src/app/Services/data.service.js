@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var DataService = (function () {
     function DataService() {
-        this.apiUrl = 'http://10.0.0.4:8080/'; //Api Location
+        this.apiUrl = 'http://localhost:8080'; //Api Location
     }
     //Passes in the service name and returns the full url
     DataService.prototype.getApiUrl = function (service) {
@@ -23,16 +23,16 @@ var DataService = (function () {
         //Append the struts action method
         switch (service) {
             case 'accommodation':
-                url = url + 'fetchAccommodation';
+                url = url + '/fetchAccommodation';
                 break;
-            case 'accommodation-features':
-                url = url + 'fetchAccommodationFeatures';
+            case 'accommodationFeatures':
+                url = url + '/fetchAccommodationFeatures';
                 break;
             case 'activity':
-                url = url + 'fetchActivities';
+                url = url + '/fetchActivities';
                 break;
             case 'food-and-drinks':
-                url = url + 'fetchFoodAndDrinks';
+                url = url + '/fetchFoodAndDrinks';
                 break;
             case 'packages': break;
         }

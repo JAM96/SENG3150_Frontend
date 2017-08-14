@@ -211,16 +211,10 @@
 
                 <div class="row item-features">
                     <span class="text-sm text-k">Features:</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Free parking</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Restaurant</span>
-
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span class="text-xsm text-k">Pool</span>
-
+                    <span *ngFor="let feature of accommodation.features" class="text-xsm text-k">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        {{feature}}
+                    </span>
                 </div>
 
                 <div class="row item-bottom">
@@ -240,7 +234,7 @@
                                 <button (click)="addAccommodation(accommodation.accommodationID, accommodation.accommodationName)" disabled type="button" md-raised-button color="warn" style="float: right">Selected</button>
                             </ng-template>
                         
-                        <button type="button" md-raised-button style="float: right; margin-right: 10px">
+                        <button (click)="viewItem(1,accommodation.accommodationName, accommodation.accommodationID)" type="button" md-raised-button style="float: right; margin-right: 10px">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             View
                         </button>

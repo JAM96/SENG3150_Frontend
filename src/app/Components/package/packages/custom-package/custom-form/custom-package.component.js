@@ -87,6 +87,17 @@ var CustomPackageComponent = (function () {
         }
         console.log('[INFO] Days Array: ', this.days);
     };
+    CustomPackageComponent.prototype.viewItem = function (item, name, id) {
+        switch (item) {
+            case 1:
+                this.router.navigate(['accommodation', { accommodationName: name }]);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    };
     //fake loading atm
     CustomPackageComponent.prototype.startLoading = function () {
         this.slimLoadingBarService.start(function () {
@@ -122,7 +133,7 @@ var CustomPackageComponent = (function () {
             case 1: break;
             case 2:
                 if (this.isLoaded[0].value == false) {
-                    console.log('Loading accommodation');
+                    console.log('[INFO] Loading Accommodation');
                     this.getAccommodation(); //retrieve accommodation from the database.
                     this.isLoaded[0].value = true; //change loaded status to true.
                 }
@@ -228,15 +239,41 @@ var CustomPackageComponent = (function () {
     /**
      * LOADING DATA
      */
+    CustomPackageComponent.prototype.loadFeatures = function (features) {
+        for (var i = 0; i < this.accommodationList.length; i++) {
+            this.accommodationList[i].features = [];
+        }
+        console.log("loading features");
+        for (var i = 0; i < this.accommodationList.length; i++) {
+            console.log('Accomodation ID: ' + this.accommodationList[i].accommodationID + ' || Name: ' +
+                this.accommodationList[i].accommodationName);
+            for (var j = 0; j < features.length; j++) {
+                console.log('Feature ID: ' + features[j].accomodationID);
+                if (this.accommodationList[i].accommodationID.toString() == (features[j].accomodationID)) {
+                    this.accommodationList[i].features.push(features[j].feature);
+                    console.log(this.accommodationList[i].features);
+                }
+            }
+        }
+    };
     /* Retrieves all the accommodation objects from the backend */
     CustomPackageComponent.prototype.getAccommodation = function () {
         var _this = this;
         console.log('[INFO] Retrieving the accommodation list');
         this.startLoading();
-        // this.accommodationService.getMockAccommodation()
-        // .then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
+        var features = [{ accomodationID: "", feature: "" }];
+        //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
+        // this.accommodationService.getAccommodation()
+        //     .subscribe((accommodation : Accommodation[]) => this.accommodationList = accommodation)
+        // this.accommodationService.getAccommodationFeatures().subscribe(feature => features = feature);
         this.accommodationService.getAccommodation()
-            .subscribe(function (accommodation) { return _this.accommodationList = accommodation; });
+            .then(function (accommodation) { return _this.accommodationList = accommodation; })
+            .then(function () { return console.log("Accommodation Loaded"); })
+            .then(function () { return _this.accommodationService.getAccommodationFeatures()
+            .then(function (feature) { return features = feature; }); })
+            .then(function () { return console.log("Features loaded"); })
+            .then(function () { return _this.loadFeatures(features); })
+            .then(function () { return _this.completeLoading(); });
         //Another way of doing this but does not currently work
         // .subscribe(
         //     function(response) {
@@ -254,17 +291,16 @@ var CustomPackageComponent = (function () {
         //console.log(this.hotels)
         //fake loading bar
         setTimeout(function () {
-            _this.completeLoading();
+            // this.completeLoading();
         }, 1000);
     };
     /* Retrieves all food objects from the backend */
     CustomPackageComponent.prototype.getFoodAndDrinks = function () {
         var _this = this;
         console.log('retrieving food and drinks');
-        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
+        this.foodAndDrinksService.getMockFood().then(function (fad) { return _this.foodAndDrinks = fad; });
         this.startLoading();
-        this.foodAndDrinksService.getFoodAndDrinks()
-            .subscribe(function (fad) { return _this.foodAndDrinks = fad; });
+        //this.foodAndDrinksService.getFoodAndDrinks().subscribe((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad);
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();
@@ -285,10 +321,9 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.getActivities = function () {
         var _this = this;
         console.log('retrieving Activities');
-        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        this.activityService.getMockActivities().then(function (activity) { return _this.activities = activity; });
         this.startLoading();
-        this.activityService.getActivities()
-            .subscribe(function (activity) { return _this.activities = activity; });
+        //this.activityService.getActivities().subscribe((activity : Activity[]) => this.activities = activity);
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();

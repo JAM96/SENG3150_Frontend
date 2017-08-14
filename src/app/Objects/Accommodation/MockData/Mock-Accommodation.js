@@ -13,7 +13,8 @@ exports.ACCOMMODATION_LIST = [
         pricePerNight: 80.0,
         bestSeller: false,
         accommodationType: 'motel',
-        pictureURL: 'ibis.jpg'
+        pictureURL: 'ibis.jpg',
+        features: ['test', 'test']
     },
     {
         accommodationID: 'PI: 82342883',
@@ -27,7 +28,8 @@ exports.ACCOMMODATION_LIST = [
         pricePerNight: 380.0,
         bestSeller: false,
         accommodationType: 'Hotel',
-        pictureURL: 'crowne.jpg'
+        pictureURL: 'crowne.jpg',
+        features: ['test', 'test']
     },
     {
         accommodationID: 'PI: 823238833',
@@ -41,7 +43,8 @@ exports.ACCOMMODATION_LIST = [
         pricePerNight: 180.0,
         bestSeller: true,
         accommodationType: 'Hotel',
-        pictureURL: 'grand.jpg'
+        pictureURL: 'grand.jpg',
+        features: ['test', 'test']
     },
     {
         accommodationID: 'PI: 823238833',
@@ -55,7 +58,8 @@ exports.ACCOMMODATION_LIST = [
         pricePerNight: 180.0,
         bestSeller: true,
         accommodationType: 'Hotel',
-        pictureURL: 'grand.jpg'
+        pictureURL: 'grand.jpg',
+        features: ['test', 'test']
     },
     {
         accommodationID: 'PI: 823238833',
@@ -69,7 +73,8 @@ exports.ACCOMMODATION_LIST = [
         pricePerNight: 180.0,
         bestSeller: true,
         accommodationType: 'Hotel',
-        pictureURL: 'grand.jpg'
+        pictureURL: 'grand.jpg',
+        features: ['test', 'test']
     },
     {
         accommodationID: 'PI: 823238833',
@@ -83,7 +88,8 @@ exports.ACCOMMODATION_LIST = [
         pricePerNight: 180.0,
         bestSeller: true,
         accommodationType: 'Hotel',
-        pictureURL: 'grand.jpg'
+        pictureURL: 'grand.jpg',
+        features: ['test', 'test']
     },
     {
         accommodationID: 'PI: 823238833',
@@ -97,7 +103,8 @@ exports.ACCOMMODATION_LIST = [
         pricePerNight: 180.0,
         bestSeller: true,
         accommodationType: 'Hotel',
-        pictureURL: 'grand.jpg'
+        pictureURL: 'grand.jpg',
+        features: ['test', 'test']
     }
 ];
 //# sourceMappingURL=Mock-Accommodation.js.map

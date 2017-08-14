@@ -122,6 +122,20 @@ export class CustomPackageComponent implements OnInit{
         console.log('[INFO] Days Array: ', this.days);
     }
 
+    viewItem(item : number, name : string, id : string){
+        switch(item) {
+            case 1: //Accommodation
+            
+                this.router.navigate(['accommodation', {accommodationName: name}]); 
+                break;
+            case 2: //Food and Drinks 
+                break;
+            case 3: //Activities
+
+                break;
+        }
+    }
+
     //fake loading atm
     startLoading() {
         this.slimLoadingBarService.start(() => {
@@ -159,7 +173,7 @@ export class CustomPackageComponent implements OnInit{
             case 1: break;
             case 2:         
                 if(this.isLoaded[0].value == false) {
-                    console.log('Loading accommodation');
+                    console.log('[INFO] Loading Accommodation');
                     this.getAccommodation(); //retrieve accommodation from the database.
                     this.isLoaded[0].value = true; //change loaded status to true.
                 }
@@ -276,17 +290,49 @@ export class CustomPackageComponent implements OnInit{
      * LOADING DATA
      */
 
+    loadFeatures(features : any[]) {
+        for(var i = 0; i < this.accommodationList.length; i++) {
+            this.accommodationList[i].features = [];
+        }
+        console.log("loading features");
+        for(var i = 0; i < this.accommodationList.length; i++){
+            console.log('Accomodation ID: ' + this.accommodationList[i].accommodationID + ' || Name: ' +
+                    this.accommodationList[i].accommodationName);
+            for(var j = 0; j < features.length; j++) {
+                console.log('Feature ID: ' + features[j].accomodationID);
+                if(this.accommodationList[i].accommodationID.toString() == (features[j].accomodationID)) {
+                    this.accommodationList[i].features.push(features[j].feature);
+                    console.log(this.accommodationList[i].features);
+                }
+            }
+        }
+    }
+    
     /* Retrieves all the accommodation objects from the backend */
     getAccommodation() {
         console.log('[INFO] Retrieving the accommodation list');
 
         this.startLoading();
 
-        // this.accommodationService.getMockAccommodation()
-        // .then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
-         this.accommodationService.getAccommodation()
-             .subscribe((accommodation : Accommodation[]) => this.accommodationList = accommodation)
+        var features = [{accomodationID: "", feature: ""}];
 
+         //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
+       // this.accommodationService.getAccommodation()
+       //     .subscribe((accommodation : Accommodation[]) => this.accommodationList = accommodation)
+       // this.accommodationService.getAccommodationFeatures().subscribe(feature => features = feature);
+
+        this.accommodationService.getAccommodation()
+            .then((accommodation: Accommodation[]) => this.accommodationList = accommodation)
+            .then(() => console.log("Accommodation Loaded"))
+            .then(() => this.accommodationService.getAccommodationFeatures()
+                        .then(feature => features = feature))
+            .then(() => console.log("Features loaded"))
+            .then(() => this.loadFeatures(features))
+            .then(() => this.completeLoading());
+            
+
+            
+        
         //Another way of doing this but does not currently work
             // .subscribe(
             //     function(response) {
@@ -307,18 +353,17 @@ export class CustomPackageComponent implements OnInit{
 
         //fake loading bar
         setTimeout(() => {
-            this.completeLoading();
+           // this.completeLoading();
         }, 1000);
     }
 
     /* Retrieves all food objects from the backend */
     getFoodAndDrinks() {
         console.log('retrieving food and drinks');
-        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
+        this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
         this.startLoading();
        
-        this.foodAndDrinksService.getFoodAndDrinks()
-            .subscribe((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad);
+        //this.foodAndDrinksService.getFoodAndDrinks().subscribe((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad);
         
         //fake loading bar
         setTimeout(() => {
@@ -342,11 +387,10 @@ export class CustomPackageComponent implements OnInit{
     /* Retrieves all activity objects from the backend */
     getActivities() {
         console.log('retrieving Activities');
-        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
         this.startLoading();
        
-        this.activityService.getActivities()
-            .subscribe((activity : Activity[]) => this.activities = activity);
+        //this.activityService.getActivities().subscribe((activity : Activity[]) => this.activities = activity);
         
         //fake loading bar
         setTimeout(() => {

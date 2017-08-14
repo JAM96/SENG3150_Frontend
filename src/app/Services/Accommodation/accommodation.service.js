@@ -26,14 +26,34 @@ require("rxjs/add/operator/map");
 //end imports
 var AccommodationService = (function () {
     function AccommodationService(http, data) {
+        var _this = this;
         this.http = http;
         this.data = data;
+        this.accommodationFeatures = [{ accomodationID: "", feature: "" }];
+        console.log("Fectching from the database");
+        this.fetchAccommodation().subscribe(function (accommodation) { return _this.accommodation = accommodation; });
+        this.fetchAccommodationFeatures().subscribe(function (feature) { return _this.accommodationFeatures = feature; });
     }
-    AccommodationService.prototype.getAccommodation = function () {
+    AccommodationService.prototype.ngOnInit = function () {
+    };
+    AccommodationService.prototype.fetchAccommodation = function () {
         var url = this.data.getApiUrl('accommodation');
         return this.http.get(url)
             .map(function (response) { return response.json().result; })
             .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Could not retrieve Accommodation'); });
+    };
+    AccommodationService.prototype.fetchAccommodationFeatures = function () {
+        var url = this.data.getApiUrl('accommodationFeatures');
+        return this.http.get(url)
+            .map(function (response) { return response.json().result; })
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Could not retrieve Accommodation'); });
+    };
+    AccommodationService.prototype.getAccommodation = function () {
+        console.log('Returning accommodation promise' + this.accommodation);
+        return Promise.resolve(this.accommodation);
+    };
+    AccommodationService.prototype.getAccommodationFeatures = function () {
+        return Promise.resolve(this.accommodationFeatures);
     };
     AccommodationService.prototype.getMockAccommodation = function () {
         return Promise.resolve(Mock_Accommodation_1.ACCOMMODATION_LIST);

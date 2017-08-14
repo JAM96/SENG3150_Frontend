@@ -103,13 +103,10 @@ body {
 .logo {
     padding: 20px;
     position: absolute;
-    background-image: url("../image/logo.png");
-    background-size: 100% 100%;
     top: 0;
-    left: 50%;
-    width: 300px;
-    height: 100%;
-    margin-left: -150px;
+    left: 0;
+    color: #333333;
+    font-size: 24pt;
 }
 
 .customPackageCreationForm {

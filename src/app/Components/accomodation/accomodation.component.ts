@@ -16,6 +16,7 @@ import {AccommodationService} from '../../Services/Accommodation/accommodation.s
 
 export class AccomodationComponent{
     accommodation : Accommodation[];
+    
      constructor(
         private accommodationService    :   AccommodationService
         ) {}
