@@ -61,6 +61,7 @@ var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
 //calendar
 //custom package service
 var custom_package_service_1 = require("../Components/package/packages/custom-package/custom-package-service/custom-package.service");
+var individual_accommodation_service_1 = require("../Services/Accommodation/individual-accommodation.service");
 //test component
 var test_component_1 = require("../Components/test-component/test.component");
 //add module imports and component declarations here...
@@ -123,6 +124,7 @@ AppModule = __decorate([
         providers: [
             app_routing_1.appRoutingProviders,
             custom_package_service_1.CustomPackageService,
+            individual_accommodation_service_1.IndividualAccommodationService,
             data_service_1.DataService,
             can_deactivate_guard_service_1.CanDeactivateGuard,
         ]

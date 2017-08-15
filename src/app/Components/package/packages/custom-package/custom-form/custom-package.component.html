@@ -270,7 +270,7 @@
                     </div>
                 </md-sidenav>
 
-                <div *ngIf="selected==3" class="container s-view" style="height: 100%"><!-- food day content -->
+                <div class="container"><!-- food day content -->
                     <button type="button" md-raised-button (click)="sidenav.open()">
                         <span class="text-sm text-primary text-b">Select day:</span>
                         <span class="text-sm text-primary">{{selectedDay}}</span>
@@ -291,7 +291,7 @@
                             </div>
 
                             <div class="s-view-f row" [ngStyle]="{'display': time.condition}"><!-- breakfast container -->
-                                <div *ngFor="let f of food" class="row item-container"><!-- restaurant item -->
+                                <div *ngFor="let f of foodAndDrinks" class="row item-container"><!-- restaurant item -->
                                     <div class="col-md-3">
                                         <div class="img img-f">
                                             <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
@@ -464,6 +464,7 @@
         <div clas="col-md-2">
             <h1>Cart:</h1>
             <p>Travel Selected: {{travelValue}}</p>
+            <p><span class="text-b">Accommodation: </span>{{custom.accommodation}}</p>
             <p><span class="text-b">Cost: $</span>{{423}}</p>
         </div>
     </div><!-- row -->

@@ -1,28 +1,29 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {MdDialog, MdDialogRef} from '@angular/material';
 
 //import objects
 import {Accommodation} from '../../Objects/Accommodation/Accommodation';
 
 //import services
-import {AccommodationService} from '../../Services/Accommodation/accommodation.service';
+import {IndividualAccommodationService} from '../../Services/Accommodation/individual-accommodation.service';
 
 @Component({
     moduleId: module.id,
     selector: 'accomodation',
     // templateUrl: 'accomodation.component.html',
-    templateUrl: 'accomodationListView/accomodationListView.html',
-    providers: [AccommodationService]
+    templateUrl: 'accomodation.component.html',
 })
 
-export class AccomodationComponent{
-    accommodation : Accommodation[];
+export class AccomodationComponent implements OnInit{
+    accommodation : Accommodation;
     
      constructor(
-        private accommodationService    :   AccommodationService
+        private accommodationService    :   IndividualAccommodationService,
+        public dialogRef: MdDialogRef<AccomodationComponent>
         ) {}
     
-    getAccommodation() {
-        this.accommodationService.getMockAccommodation()
-        .then((accommodation: Accommodation[]) => this.accommodation = accommodation);
+    ngOnInit() {
+        this.accommodation = Object.assign({}, this.accommodationService.getAccommodation());
+        console.log("Accommodation is loaded: " + this.accommodation.accommodationName);
     }
 }

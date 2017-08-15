@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {MdDialog, MdDialogRef} from '@angular/material';
+import {AccomodationComponent} from '../../../../../Components/accomodation/accomodation.component';
 
 //import objects
 import {Accommodation} from '../../../../../Objects/Accommodation/Accommodation';
@@ -8,6 +10,7 @@ import {CustomPackage} from '../CustomPackage';
 
 //import services
 import {AccommodationService} from '../../../../../Services/Accommodation/accommodation.service';
+import {IndividualAccommodationService} from '../../../../../Services/Accommodation/individual-accommodation.service';
 import {FoodAndDrinksService} from '../../../../../Services/FoodAndDrinks/food-and-drinks.service';
 import {ActivityService} from '../../../../../Services/activity/activity.service';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
@@ -82,12 +85,14 @@ export class CustomPackageComponent implements OnInit{
     ]   // this object will be in charge of iterating through the four times for food.
 
     constructor(
-        private accommodationService        :   AccommodationService,
-        private foodAndDrinksService        :   FoodAndDrinksService,
-        private activityService             :   ActivityService,
-        private packageService              :   CustomPackageService,
-        private slimLoadingBarService       :   SlimLoadingBarService,
-        private router                      :   Router
+        private accommodationService            :   AccommodationService,
+        private individualAccommodationService  :   IndividualAccommodationService,
+        private foodAndDrinksService            :   FoodAndDrinksService,
+        private activityService                 :   ActivityService,
+        private packageService                  :   CustomPackageService,
+        private slimLoadingBarService           :   SlimLoadingBarService,
+        private router                          :   Router,
+        public dialog                           :   MdDialog
         ) {}
 
     ngOnInit() {
@@ -156,17 +161,18 @@ export class CustomPackageComponent implements OnInit{
     }
 
     viewItem(item : number, name : string, id : string){
-        switch(item) {
-            case 1: //Accommodation
-            
-                this.router.navigate(['accommodation', {accommodationName: name}]); 
+        for(var i = 0; i < this.accommodationList.length; i++) {
+            console.log(i);
+            if(this.accommodationList[i].accommodationID == id) {
+                console.log("FOUND");
+                console.log(this.accommodationList[i]);
+                this.individualAccommodationService.setAccommodation(this.accommodationList[i]);
                 break;
-            case 2: //Food and Drinks 
-                break;
-            case 3: //Activities
-
-                break;
+            }
         }
+
+        let dialogRef = this.dialog.open(AccomodationComponent);
+        dialogRef.afterClosed().subscribe(result => {})
     }
 
     //fake loading atm
@@ -349,10 +355,7 @@ export class CustomPackageComponent implements OnInit{
 
         var features = [{accomodationID: "", feature: ""}];
 
-         //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
-       // this.accommodationService.getAccommodation()
-       //     .subscribe((accommodation : Accommodation[]) => this.accommodationList = accommodation)
-       // this.accommodationService.getAccommodationFeatures().subscribe(feature => features = feature);
+        //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
 
         this.accommodationService.getAccommodation()
             .then((accommodation: Accommodation[]) => this.accommodationList = accommodation)
@@ -362,41 +365,15 @@ export class CustomPackageComponent implements OnInit{
             .then(() => console.log("Features loaded"))
             .then(() => this.loadFeatures(features))
             .then(() => this.completeLoading());
-            
-
-            
-        
-        //Another way of doing this but does not currently work
-            // .subscribe(
-            //     function(response) {
-            //         console.log('Success, response is: ', response); 
-            //         (response : Hotel[]) => this.hotels = response;
-            //     },
-            //     function(error) {
-            //         console.log(error)
-            //     },
-            //     function() {
-            //          var cpc : CustomPackageComponent;
-            //         console.log('Completed', cpc.testString);
-                   
-            //         cpc.completeLoading();
-            //     });
-        //console.log(this.hotels)
-
-
-        //fake loading bar
-        setTimeout(() => {
-           // this.completeLoading();
-        }, 1000);
     }
 
     /* Retrieves all food objects from the backend */
     getFoodAndDrinks() {
         console.log('retrieving food and drinks');
-        this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
+        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
         this.startLoading();
        
-        //this.foodAndDrinksService.getFoodAndDrinks().subscribe((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad);
+        this.foodAndDrinksService.getFoodAndDrinks().subscribe((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad);
         
         //fake loading bar
         setTimeout(() => {
@@ -420,10 +397,10 @@ export class CustomPackageComponent implements OnInit{
     /* Retrieves all activity objects from the backend */
     getActivities() {
         console.log('retrieving Activities');
-        this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
+        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
         this.startLoading();
        
-        //this.activityService.getActivities().subscribe((activity : Activity[]) => this.activities = activity);
+        this.activityService.getActivities().subscribe((activity : Activity[]) => this.activities = activity);
         
         //fake loading bar
         setTimeout(() => {

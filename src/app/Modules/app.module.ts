@@ -66,7 +66,7 @@ import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
 
 //custom package service
 import {CustomPackageService} from '../Components/package/packages/custom-package/custom-package-service/custom-package.service';
-
+import {IndividualAccommodationService} from '../Services/Accommodation/individual-accommodation.service';
 //test component
 import {TestComponent} from '../Components/test-component/test.component';
 
@@ -120,6 +120,7 @@ import {TestComponent} from '../Components/test-component/test.component';
   providers: [
     appRoutingProviders,
     CustomPackageService,
+    IndividualAccommodationService,
     DataService,
     CanDeactivateGuard,
   ]

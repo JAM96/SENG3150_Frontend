@@ -17,6 +17,7 @@ var DataService = (function () {
     function DataService() {
         this.apiUrl = 'http://localhost:8080'; //Api Location
     }
+    //apiUrl : string = "http://10.0.0.4:8080";
     //Passes in the service name and returns the full url
     DataService.prototype.getApiUrl = function (service) {
         var url = this.apiUrl;

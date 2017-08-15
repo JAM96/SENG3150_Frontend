@@ -10,16 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var material_1 = require("@angular/material");
 //import services
-var accommodation_service_1 = require("../../Services/Accommodation/accommodation.service");
+var individual_accommodation_service_1 = require("../../Services/Accommodation/individual-accommodation.service");
 var AccomodationComponent = (function () {
-    function AccomodationComponent(accommodationService) {
+    function AccomodationComponent(accommodationService, dialogRef) {
         this.accommodationService = accommodationService;
+        this.dialogRef = dialogRef;
     }
-    AccomodationComponent.prototype.getAccommodation = function () {
-        var _this = this;
-        this.accommodationService.getMockAccommodation()
-            .then(function (accommodation) { return _this.accommodation = accommodation; });
+    AccomodationComponent.prototype.ngOnInit = function () {
+        this.accommodation = Object.assign({}, this.accommodationService.getAccommodation());
+        console.log("Accommodation is loaded: " + this.accommodation.accommodationName);
     };
     return AccomodationComponent;
 }());
@@ -28,10 +29,10 @@ AccomodationComponent = __decorate([
         moduleId: module.id,
         selector: 'accomodation',
         // templateUrl: 'accomodation.component.html',
-        templateUrl: 'accomodationListView/accomodationListView.html',
-        providers: [accommodation_service_1.AccommodationService]
+        templateUrl: 'accomodation.component.html',
     }),
-    __metadata("design:paramtypes", [accommodation_service_1.AccommodationService])
+    __metadata("design:paramtypes", [individual_accommodation_service_1.IndividualAccommodationService,
+        material_1.MdDialogRef])
 ], AccomodationComponent);
 exports.AccomodationComponent = AccomodationComponent;
 //# sourceMappingURL=accomodation.component.js.map

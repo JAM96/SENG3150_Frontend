@@ -9,7 +9,8 @@ import { Injectable } from '@angular/core';
 @Injectable() 
 export class DataService {
   apiUrl: string = 'http://localhost:8080'; //Api Location
-
+  //apiUrl : string = "http://10.0.0.4:8080";
+  
   //Passes in the service name and returns the full url
   getApiUrl(service : String) {
     var url = this.apiUrl;

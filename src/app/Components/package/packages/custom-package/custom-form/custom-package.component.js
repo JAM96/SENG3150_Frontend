@@ -10,21 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var material_1 = require("@angular/material");
+var accomodation_component_1 = require("../../../../../Components/accomodation/accomodation.component");
 //import services
 var accommodation_service_1 = require("../../../../../Services/Accommodation/accommodation.service");
+var individual_accommodation_service_1 = require("../../../../../Services/Accommodation/individual-accommodation.service");
 var food_and_drinks_service_1 = require("../../../../../Services/FoodAndDrinks/food-and-drinks.service");
 var activity_service_1 = require("../../../../../Services/activity/activity.service");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
 var custom_package_service_1 = require("../custom-package-service/custom-package.service");
 var router_1 = require("@angular/router");
 var CustomPackageComponent = (function () {
-    function CustomPackageComponent(accommodationService, foodAndDrinksService, activityService, packageService, slimLoadingBarService, router) {
+    function CustomPackageComponent(accommodationService, individualAccommodationService, foodAndDrinksService, activityService, packageService, slimLoadingBarService, router, dialog) {
         this.accommodationService = accommodationService;
+        this.individualAccommodationService = individualAccommodationService;
         this.foodAndDrinksService = foodAndDrinksService;
         this.activityService = activityService;
         this.packageService = packageService;
         this.slimLoadingBarService = slimLoadingBarService;
         this.router = router;
+        this.dialog = dialog;
         this.isLoaded = [
             { type: 'accommodation', value: false },
             { type: 'restauarants', value: false },
@@ -100,15 +105,17 @@ var CustomPackageComponent = (function () {
         console.log('[INFO] Days Array: ', this.days);
     };
     CustomPackageComponent.prototype.viewItem = function (item, name, id) {
-        switch (item) {
-            case 1:
-                this.router.navigate(['accommodation', { accommodationName: name }]);
+        for (var i = 0; i < this.accommodationList.length; i++) {
+            console.log(i);
+            if (this.accommodationList[i].accommodationID == id) {
+                console.log("FOUND");
+                console.log(this.accommodationList[i]);
+                this.individualAccommodationService.setAccommodation(this.accommodationList[i]);
                 break;
-            case 2:
-                break;
-            case 3:
-                break;
+            }
         }
+        var dialogRef = this.dialog.open(accomodation_component_1.AccomodationComponent);
+        dialogRef.afterClosed().subscribe(function (result) { });
     };
     //fake loading atm
     CustomPackageComponent.prototype.startLoading = function () {
@@ -275,9 +282,6 @@ var CustomPackageComponent = (function () {
         this.startLoading();
         var features = [{ accomodationID: "", feature: "" }];
         //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
-        // this.accommodationService.getAccommodation()
-        //     .subscribe((accommodation : Accommodation[]) => this.accommodationList = accommodation)
-        // this.accommodationService.getAccommodationFeatures().subscribe(feature => features = feature);
         this.accommodationService.getAccommodation()
             .then(function (accommodation) { return _this.accommodationList = accommodation; })
             .then(function () { return console.log("Accommodation Loaded"); })
@@ -286,33 +290,14 @@ var CustomPackageComponent = (function () {
             .then(function () { return console.log("Features loaded"); })
             .then(function () { return _this.loadFeatures(features); })
             .then(function () { return _this.completeLoading(); });
-        //Another way of doing this but does not currently work
-        // .subscribe(
-        //     function(response) {
-        //         console.log('Success, response is: ', response); 
-        //         (response : Hotel[]) => this.hotels = response;
-        //     },
-        //     function(error) {
-        //         console.log(error)
-        //     },
-        //     function() {
-        //          var cpc : CustomPackageComponent;
-        //         console.log('Completed', cpc.testString);
-        //         cpc.completeLoading();
-        //     });
-        //console.log(this.hotels)
-        //fake loading bar
-        setTimeout(function () {
-            // this.completeLoading();
-        }, 1000);
     };
     /* Retrieves all food objects from the backend */
     CustomPackageComponent.prototype.getFoodAndDrinks = function () {
         var _this = this;
         console.log('retrieving food and drinks');
-        this.foodAndDrinksService.getMockFood().then(function (fad) { return _this.foodAndDrinks = fad; });
+        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
         this.startLoading();
-        //this.foodAndDrinksService.getFoodAndDrinks().subscribe((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad);
+        this.foodAndDrinksService.getFoodAndDrinks().subscribe(function (fad) { return _this.foodAndDrinks = fad; });
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();
@@ -333,9 +318,9 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.getActivities = function () {
         var _this = this;
         console.log('retrieving Activities');
-        this.activityService.getMockActivities().then(function (activity) { return _this.activities = activity; });
+        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
         this.startLoading();
-        //this.activityService.getActivities().subscribe((activity : Activity[]) => this.activities = activity);
+        this.activityService.getActivities().subscribe(function (activity) { return _this.activities = activity; });
         //fake loading bar
         setTimeout(function () {
             _this.completeLoading();
@@ -380,11 +365,13 @@ CustomPackageComponent = __decorate([
         ]
     }),
     __metadata("design:paramtypes", [accommodation_service_1.AccommodationService,
+        individual_accommodation_service_1.IndividualAccommodationService,
         food_and_drinks_service_1.FoodAndDrinksService,
         activity_service_1.ActivityService,
         custom_package_service_1.CustomPackageService,
         ng2_slim_loading_bar_1.SlimLoadingBarService,
-        router_1.Router])
+        router_1.Router,
+        material_1.MdDialog])
 ], CustomPackageComponent);
 exports.CustomPackageComponent = CustomPackageComponent;
 //# sourceMappingURL=custom-package.component.js.map
