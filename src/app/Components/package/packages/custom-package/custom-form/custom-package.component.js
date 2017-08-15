@@ -62,10 +62,10 @@ var CustomPackageComponent = (function () {
         this.travelPickup = this.custom.travelPickup;
         this.travelDropoff = this.custom.travelDropoff;
         if (this.travelPickup == null) {
-            this.travelPickup = { address: "", city: "", state: "", postcode: 0, date: new Date(), time: "" };
+            this.travelPickup = { address: "", city: "", state: "", postcode: null, date: null, time: null };
         }
         if (this.travelDropoff == null) {
-            this.travelDropoff = { address: "", city: "", state: "", postcode: 0, date: new Date(), time: "" };
+            this.travelDropoff = { address: "", city: "", state: "", postcode: null, date: null, time: null };
         }
         //From this data, calculate the duration the user is staying in Newcastle
         this.calculateDuration(this.custom.checkin, this.custom.checkout);
@@ -362,6 +362,9 @@ var CustomPackageComponent = (function () {
         this.custom.travelDropoff = this.travelDropoff;
         this.packageService.cp = this.custom;
         console.log("Form Saved");
+    };
+    CustomPackageComponent.prototype.fillDropOff = function () {
+        this.travelDropoff = Object.assign({}, this.travelPickup);
     };
     return CustomPackageComponent;
 }());

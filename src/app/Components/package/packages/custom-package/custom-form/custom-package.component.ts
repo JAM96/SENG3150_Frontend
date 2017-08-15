@@ -107,11 +107,11 @@ export class CustomPackageComponent implements OnInit{
         this.travelDropoff = this.custom.travelDropoff;
 
         if(this.travelPickup == null) {
-            this.travelPickup = {address: "", city: "", state: "", postcode: 0, date: new Date(), time: ""};
+            this.travelPickup = {address: "", city: "", state: "", postcode: null, date: null, time: null};
         }
 
         if(this.travelDropoff == null) {
-            this.travelDropoff = {address: "", city: "", state: "", postcode: 0, date: new Date(), time: ""};
+            this.travelDropoff = {address: "", city: "", state: "", postcode: null, date: null, time: null};
         }
 
         //From this data, calculate the duration the user is staying in Newcastle
@@ -454,5 +454,9 @@ export class CustomPackageComponent implements OnInit{
         this.packageService.cp = this.custom;
 
         console.log("Form Saved");
+    }
+
+    fillDropOff() {
+        this.travelDropoff = Object.assign({}, this.travelPickup);
     }
 }

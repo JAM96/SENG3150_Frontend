@@ -1,456 +1,470 @@
-<navigationtop></navigationtop>
 <ng2-slim-loading-bar [height]="'4px'"></ng2-slim-loading-bar><!-- loading bar which gets activated when loading of data from the database -->
-<div class="container view view-lock add-padding-15"><!-- Main View Container -->
-    <ul class="nav nav-tabs"><!-- Nav bar -->
-        <li role="resentation">
-            <a (click)="prevForm()"><span class="glyphicon glyphicon-triangle-left"></span></a>
-        </li>
+<navigationtop></navigationtop>
+<div class="container-fluid"><!-- Main View Container -->
+    <div class="row">
+        <div class="col-md-10">
+            <ul class="nav nav-tabs" style="background-color: white"><!-- Nav bar -->
+                <li role="resentation">
+                    <a (click)="prevForm()"><span class="glyphicon glyphicon-triangle-left"></span></a>
+                </li>
 
-        <li role="presentation" *ngIf="selected==1; else notActive1" class="active">
-            <a (click)="setNavigation(1)">Travel</a>
-        </li>
-        <ng-template #notActive1>
-            <li role="presentation"><a (click)="setNavigation(1)">Travel</a></li>
-        </ng-template>
+                <li role="presentation" *ngIf="selected==1; else notActive1" class="active">
+                    <a (click)="setNavigation(1)">Travel</a>
+                </li>
+                <ng-template #notActive1>
+                    <li role="presentation"><a (click)="setNavigation(1)">Travel</a></li>
+                </ng-template>
 
-        <li role="presentation" *ngIf="selected==2; else notActive2" class="active">
-            <a (click)="setNavigation(2)">Accommodation</a>
-        </li>
-        <ng-template #notActive2>
-            <li role="presentation"><a (click)="setNavigation(2)">Accommodation</a></li>
-        </ng-template>
+                <li role="presentation" *ngIf="selected==2; else notActive2" class="active">
+                    <a (click)="setNavigation(2)">Accommodation</a>
+                </li>
+                <ng-template #notActive2>
+                    <li role="presentation"><a (click)="setNavigation(2)">Accommodation</a></li>
+                </ng-template>
 
-        <li role="presentation" *ngIf="selected==3; else notActive3" class="active">
-            <a (click)="setNavigation(3)">Food</a>
-        </li>
-        <ng-template #notActive3>
-            <li role="presentation"><a (click)="setNavigation(3)">Food</a></li>
-        </ng-template>
+                <li role="presentation" *ngIf="selected==3; else notActive3" class="active">
+                    <a (click)="setNavigation(3)">Food</a>
+                </li>
+                <ng-template #notActive3>
+                    <li role="presentation"><a (click)="setNavigation(3)">Food</a></li>
+                </ng-template>
 
-        <li role="presentation" *ngIf="selected==4; else notActive4" class="active">
-            <a (click)="setNavigation(4)">Activities</a>
-        </li>
-        <ng-template #notActive4>
-            <li role="presentation"><a (click)="setNavigation(4)">Activities</a></li>
-        </ng-template>
+                <li role="presentation" *ngIf="selected==4; else notActive4" class="active">
+                    <a (click)="setNavigation(4)">Activities</a>
+                </li>
+                <ng-template #notActive4>
+                    <li role="presentation"><a (click)="setNavigation(4)">Activities</a></li>
+                </ng-template>
 
-        <li role="presentation" *ngIf="selected==5; else notActive5" class="active">
-            <a (click)="setNavigation(5)">Cart</a>
-        </li>
-        <ng-template #notActive5>
-            <li role="presentation"><a (click)="setNavigation(5)">Cart</a></li>
-        </ng-template>
+                <li role="presentation" *ngIf="selected==5; else notActive5" class="active">
+                    <a (click)="setNavigation(5)">Cart</a>
+                </li>
+                <ng-template #notActive5>
+                    <li role="presentation"><a (click)="setNavigation(5)">Cart</a></li>
+                </ng-template>
 
-        <li role="presentation">
-            <a (click)="nextForm()"><span class="glyphicon glyphicon-triangle-right"></span></a>
-        </li>
-    </ul><!-- end Nav bar -->
+                <li role="presentation">
+                    <a (click)="nextForm()"><span class="glyphicon glyphicon-triangle-right"></span></a>
+                </li>
+            </ul><!-- end Nav bar -->
 
-    <!-- Following divs are the different views for each form item -->
-    <!-- Note: This way should be replaced with individual components-->
+            <!-- Following divs are the different views for each form item -->
+            <!-- Note: This way should be replaced with individual components-->
 
 
-    <!-- ===========================================
-                    TRAVEL VIEW
-    
-        ============================================-->
-    <div class="container" *ngIf="selected==1">
-        <div class="row"><!-- Travel initial form -->
-            <div class="col-md-12">
-                <p>Newcastle Connections offer a shuttle bus service!</p>
-                <p>Add to your package now</p>
-                <label class="control-label col-sm-3" for="travel">Do you require Travel?</label>
+            <!-- ===========================================
+                            TRAVEL VIEW
+            
+                ============================================-->
+            <div class="container view add-padding-top-15" *ngIf="selected==1">
+                <div class="row"><!-- Travel initial form -->
+                    <div class="col-md-12">
+                        <p>Newcastle Connections offer a shuttle bus service!</p>
+                        <p>Add to your package now</p>
+                        <label class="control-label col-sm-3" for="travel">Do you require Travel?</label>
 
-                <md-radio-group class="example-radio-group" [(ngModel)]="travelValue">
-                    <md-radio-button class="example-radio-button" *ngFor="let option of travelOptions" [value]="option">
-                        {{option}}
-                    </md-radio-button>
-                </md-radio-group>
+                        <md-radio-group class="example-radio-group" [(ngModel)]="travelValue">
+                            <md-radio-button class="example-radio-button" *ngFor="let option of travelOptions" [value]="option">
+                                {{option}}
+                            </md-radio-button>
+                        </md-radio-group>
 
-                <p>If you require travel from a destination or not</p>
-            </div>
-        </div>
-        
-        <!-- Travel form input -->
-        <div class="row s-view" *ngIf="travelValue=='Yes'" style="padding-bottom: 100px">
-            <hr>
-            <p>Pick-up information:</p>
-            <p>
-                <md-input-container class="example-full-width">
-                    <input [(ngModel)]='travelPickup.address' mdInput placeholder="Address" />
-                </md-input-container>
-            </p>
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <md-input-container class="example-full-width">
-                            <input mdInput placeholder="City">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <md-input-container class="example-full-width">
-                            <input mdInput placeholder="State">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <md-input-container class="example-full-width">
-                            <input mdInput #postalCode maxlength="4" placeholder="Postal Code" value="">
-                            <md-hint align="end">{{postalCode.value.length}} / 4</md-hint>
-                        </md-input-container>
-                    </td>
-                </tr>
-            </table>
-            <md2-datepicker 
-                type="date"
-                required="true"
-                mode="portrait"
-                placeholder="Select Date"
-                tabindex="1"
-                openOnFocus="true"
-                container="dialog"
-                [(ngModel)]="travelDate">
-            </md2-datepicker>
-            <md2-datepicker 
-                type="time"
-                required="true"
-                mode="portrait"
-                placeholder="Select Time"
-                tabindex="1"
-                openOnFocus="true"
-                container="dialog"
-                [(ngModel)]="travelTime">
-            </md2-datepicker>
-
-            <hr>
-            <p>Drop-off information:</p>
-            <p>
-                <md-input-container class="example-full-width">
-                    <input mdInput placeholder="Address"/>
-                </md-input-container>
-            </p>
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <md-input-container class="example-full-width">
-                            <input mdInput placeholder="City">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <md-input-container class="example-full-width">
-                            <input mdInput placeholder="State">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <md-input-container class="example-full-width">
-                            <input mdInput #postalCode maxlength="4" placeholder="Postal Code" value="">
-                            <md-hint align="end">{{postalCode.value.length}} / 4</md-hint>
-                        </md-input-container>
-                    </td>
-                </tr>
-            </table>
-            <md2-datepicker 
-                type="date"
-                required="true"
-                mode="portrait"
-                placeholder="Select Date"
-                tabindex="1"
-                openOnFocus="true"
-                container="dialog"
-                [(ngModel)]="travelDate">
-            </md2-datepicker>
-            <md2-datepicker 
-                type="time"
-                required="true"
-                mode="portrait"
-                placeholder="Select Time"
-                tabindex="1"
-                openOnFocus="true"
-                container="dialog"
-                [(ngModel)]="travelTime">
-            </md2-datepicker>
-        </div>
-    </div>
-
-    <!-- ===========================================
-                ACCOMMODATION VIEW
-    
-        ============================================-->
-    <div class="container s-view" *ngIf="selected==2">
-        <div *ngFor="let accommodation of accommodationList" class="row item-container"><!-- accommodation i --> 
-            <div class="col-md-3">
-                <div class="img">
-                    <img src="\res\image\package-item\hotel\{{accommodation.pictureURL}}" width="100%" height="100%"/>
-                    <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
-                </div>
-            </div><!-- image -->
-            <div class="col-md-9 item-content"><!-- content -->
-                <div class="row">
-                    <div class="col-md-9"><!-- accommodation name -->
-                        <h3 class="text-lg text-b text-primary">
-                            <a class="text-hover-primary">{{accommodation.accommodationName}}</a>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                            <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
-                        </h3>
-                        <a class="text-hover-k text-sm text-k">
-                            <span class="text-u">{{accommodation.accommodationSuburb}}</span>
-                            <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </div><!-- accommodation name end-->
-
-                    <div class="col-md-3 item-rating"><!-- rating -->
-                        <span class="text-lg text-w text-hide">Fabulous!</span>
-                        <span class="text-sm text-w text-hide">{{accommodation.accommodationUserRating}}/5</span>
-                        <a>
-                            <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
-                        </a>
-                    </div><!-- rating -->
-                </div>
-
-                <div class="row item-features">
-                    <span class="text-sm text-k">Features:</span>
-                    <span *ngFor="let feature of accommodation.features" class="text-xsm text-k">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        {{feature}}
-                    </span>
-                </div>
-
-                <div class="row item-bottom">
-                    <div class="col-md-8">
-                        <span class="text-xlg text-b text-primary">AUD $</span>
-                        <span class="text-xlg text-b text-primary">{{accommodation.pricePerNight}}</span>
-                        <span class="text-md text-primary glyphicon glyphicon-triangle-left"></span>
-                        <span class="text-md text-k glyphicon glyphicon-bed">{{accommodation.numBeds}}</span>
-                        <span class="text-md text-k glyphicon glyphicon-user">{{accommodation.numPeople}}</span>
-                    </div>
-                    <div class="col-md-4"><!-- Add to cart -->
-                        <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
-                            <ng-template #accNormal>
-                                <button (click)="addAccommodation(accommodation.accommodationID, accommodation.accommodationName)" type="button" md-raised-button color="warn" style="float: right">Select</button>
-                            </ng-template>
-                            <ng-template #accSelected>
-                                <button (click)="addAccommodation(accommodation.accommodationID, accommodation.accommodationName)" disabled type="button" md-raised-button color="warn" style="float: right">Selected</button>
-                            </ng-template>
-                        
-                        <button (click)="viewItem(1,accommodation.accommodationName, accommodation.accommodationID)" type="button" md-raised-button style="float: right; margin-right: 10px">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            View
-                        </button>
+                        <p>If you require travel from a destination or not</p>
                     </div>
                 </div>
-            </div><!--content -->
-        </div>
-    </div>
-
-    <!-- ===========================================
-                FOOD AND DRINKS VIEW
-    
-        ============================================-->
-    <md-sidenav-container *ngIf="selected==3">
-        <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
-            <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
-                <ul class="nav nav-pills nav-stacked" role="tablist">
-                    <li><span class="text-md text-primary">Days</span></li>
-                    <li *ngFor="let day of days">
-                        <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
-                        <ng-template #notActiveDay>
-                            <a (click)="setDays(day); sidenav.close()">{{day}}</a>
-                        </ng-template>
-                    </li>        
-                </ul>
-            </div>
-        </md-sidenav>
-
-        <div *ngIf="selected==3" class="container s-view" style="height: 100%"><!-- food day content -->
-            <button type="button" md-raised-button (click)="sidenav.open()">
-                <span class="text-sm text-primary text-b">Select day:</span>
-                <span class="text-sm text-primary">{{selectedDay}}</span>
-            </button>
-
-            <div class="s-view row"><!-- Menu container -->
-                <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
-                    <span class="text-xsm">Add food and drinks to your package.</span>
-                </div>
-
-                <ng-container *ngFor="let time of foodForm">
-                    <div (click)="expand(time.value)" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
-                        <span class="text-md">{{time.eatingTime}}</span>
-                        <a class="expandButton">
-                            <span *ngIf="time.condition=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
-                            <span *ngIf="time.condition=='block'" class="glyphicon glyphicon-triangle-top"></span>
-                        </a>
-                    </div>
-
-                    <div class="s-view-f row" [ngStyle]="{'display': time.condition}"><!-- breakfast container -->
-                        <div *ngFor="let f of food" class="row item-container"><!-- restaurant item -->
-                            <div class="col-md-3">
-                                <div class="img img-f">
-                                    <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                                    <div class="hotelAdvert" style="bottom: 0">{{f.diningStyle}}</div>
-                                </div>
-                            </div><!-- image -->
-                            <div class="col-md-9 item-content item-content-short"><!-- content -->
-                                <div class="row">
-                                    <div class="col-md-9"><!-- hotel name -->
-                                        <h3 class="text-lg text-b text-primary">
-                                            <a class="text-hover-primary">{{f.name}}</a>
-                                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                            <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                            <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
-                                        </h3>
-                                        <a class="text-hover-k text-sm text-k">
-                                            <span class="text-u">{{f.suburb}}</span>
-                                            <span class="glyphicon glyphicon-globe"></span>
-                                        </a>
-                                    </div><!-- hotel name end-->
-
-                                    <div class="col-md-3 item-rating"><!-- rating -->
-                                        <span class="text-lg text-w text-hide">Fabulous!</span>
-                                        <span class="text-sm text-w text-hide">{{f.userRating}}/5</span>
-                                        <a>
-                                            <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
-                                        </a>
-                                    </div><!-- rating -->
-                                </div>
-
-                                <div class="row item-features">
-                                    <span class="text-sm text-k">Menu Theme: {{f.menuTheme}}</span>
-
-                                    <span class="text-xsm text-k">Description: {{f.briefDescription}}</span>
-
-                                </div>
-
-                                <div class="row item-bottom">
-                                    <div class="col-md-6">
-                                            <span class="text-lg text-b text-primary">$</span>
-                                    </div>
-                                    <div class="col-md-6"><!-- Add to cart -->
-                                        <button type="button" md-raised-button color="warn" (click)="setFood(time.value, f.name, f.foodAndDrinksID, 0)">Select</button>
-                                        <button type="button" md-raised-button color="warn" (click)="setFood(time.value, f.name, f.foodAndDrinksID, 1)">Select for all days</button>
-                                        <button type="button" md-raised-button style="float: left;  margin-right: 10px">
-                                            <span class="glyphicon glyphicon-info-sign"></span>
-                                            View
-                                        </button>
-                                    </div>
-                                </div>
-                            </div><!--content -->
-                        </div>
-                    </div>
-                </ng-container>
-
                 
-            </div><!-- end menu container -->
-        </div><!-- end food content -->
-    </md-sidenav-container>
+                <!-- Travel form input -->
+                <div class="row s-view" *ngIf="travelValue=='Yes'" style="padding-bottom: 100px">
+                    <hr>
+                    <p>Pick-up information:
+                        <span class="badge" data-toggle="tooltip" data-placement="top" title="Location where to pickup from. Leave blank if travel is not required.">?</span></p>
+                    <p>
+                        <md-input-container class="example-full-width">
+                            <input [(ngModel)]='travelPickup.address' mdInput placeholder="Address" />
+                        </md-input-container>
+                    </p>
+                    <table class="example-full-width" cellspacing="0">
+                        <tr>
+                            <td>
+                                <md-input-container class="example-full-width">
+                                    <input [(ngModel)]='travelPickup.city' mdInput placeholder="City">
+                                </md-input-container>
+                            </td>
+                            <td>
+                                <md-input-container class="example-full-width">
+                                    <input mdInput [(ngModel)]='travelPickup.state' placeholder="State">
+                                </md-input-container>
+                            </td>
+                            <td>
+                                <md-input-container class="example-full-width">
+                                    <input mdInput [(ngModel)]='travelPickup.postcode' #postalCode maxlength="4" placeholder="Postal Code" value="">
+                                    <md-hint align="end">{{postalCode.value.length}} / 4</md-hint>
+                                </md-input-container>
+                            </td>
+                        </tr>
+                    </table>
+                    <md2-datepicker 
+                        type="date"
+                        required="true"
+                        mode="portrait"
+                        placeholder="Select Date"
+                        tabindex="1"
+                        openOnFocus="true"
+                        container="dialog"
+                        [(ngModel)]="travelPickup.date">
+                    </md2-datepicker>
+                    <md2-datepicker 
+                        type="time"
+                        required="true"
+                        mode="portrait"
+                        placeholder="Select Time"
+                        tabindex="1"
+                        openOnFocus="true"
+                        container="dialog"
+                        [(ngModel)]="travelPickup.time">
+                    </md2-datepicker>
 
-
-    <!-- ===========================================
-                    ACTIVITES VIEW
-    
-        ============================================-->
-    <md-sidenav-container *ngIf="selected==4">
-        <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
-            <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
-                <ul class="nav nav-pills nav-stacked" role="tablist">
-                    <li><span class="text-md text-primary">Days</span></li>
-                    <li *ngFor="let day of days">
-                        <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
-                        <ng-template #notActiveDay>
-                            <a (click)="setDays(day); sidenav.close()">{{day}}</a>
-                        </ng-template>
-                    </li>        
-                </ul>
+                    <hr>
+                    <p>Drop-off information:
+                        <span class="badge" data-toggle="tooltip" data-placement="top" title="Location where to pickup from when arriving home. Leave blank if travel is not required.">?</span>
+                        <button type="button" (click)="fillDropOff()" md-raised-button>Same as pickup</button>
+                    </p>
+                    
+                    <p>
+                        <md-input-container class="example-full-width">
+                            <input mdInput [(ngModel)]='travelDropoff.address' placeholder="Address"/>
+                        </md-input-container>
+                    </p>
+                    <table class="example-full-width" cellspacing="0">
+                        <tr>
+                            <td>
+                                <md-input-container class="example-full-width">
+                                    <input mdInput [(ngModel)]='travelDropoff.city' placeholder="City">
+                                </md-input-container>
+                            </td>
+                            <td>
+                                <md-input-container class="example-full-width">
+                                    <input mdInput [(ngModel)]='travelDropoff.state' placeholder="State">
+                                </md-input-container>
+                            </td>
+                            <td>
+                                <md-input-container class="example-full-width">
+                                    <input mdInput [(ngModel)]='travelDropoff.postcode' #postalCode maxlength="4" placeholder="Postal Code" value="">
+                                    <md-hint align="end">{{postalCode.value.length}} / 4</md-hint>
+                                </md-input-container>
+                            </td>
+                        </tr>
+                    </table>
+                    <md2-datepicker 
+                        type="date"
+                        required="true"
+                        mode="portrait"
+                        placeholder="Select Date"
+                        tabindex="1"
+                        openOnFocus="true"
+                        container="dialog"
+                        [(ngModel)]="travelDropoff.date">
+                    </md2-datepicker>
+                    <md2-datepicker 
+                        type="time"
+                        required="true"
+                        mode="portrait"
+                        placeholder="Select Time"
+                        tabindex="1"
+                        openOnFocus="true"
+                        container="dialog"
+                        [(ngModel)]="travelDropoff.address">
+                    </md2-datepicker>
+                </div>
             </div>
-        </md-sidenav>
 
-        <div class="container s-view" style="height: 100%"><!-- Activity day content -->
-            <button type="button" md-raised-button (click)="sidenav.open()">
-                <span class="text-sm text-primary text-b">Select day:</span>
-                <span class="text-sm text-primary">{{selectedDay}}</span>
-            </button>
-            <div class="s-view row"><!-- Menu container -->
-                <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
-                    <span class="text-xsm">Add activites / events and attractions to your package.</span>
+            <!-- ===========================================
+                        ACCOMMODATION VIEW
+            
+                ============================================-->
+            <div class="container view add-padding-top-15" *ngIf="selected==2">
+                <div *ngFor="let accommodation of accommodationList" class="row item-container"><!-- accommodation i --> 
+                    <div class="col-md-3">
+                        <div class="img">
+                            <img src="\res\image\package-item\hotel\{{accommodation.pictureURL}}" width="100%" height="100%"/>
+                            <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        </div>
+                    </div><!-- image -->
+                    <div class="col-md-9 item-content"><!-- content -->
+                        <div class="row">
+                            <div class="col-md-9"><!-- accommodation name -->
+                                <h3 class="text-lg text-b text-primary">
+                                    <a class="text-hover-primary">{{accommodation.accommodationName}}</a>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                </h3>
+                                <a class="text-hover-k text-sm text-k">
+                                    <span class="text-u">{{accommodation.accommodationSuburb}}</span>
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                </a>
+                            </div><!-- accommodation name end-->
+
+                            <div class="col-md-3 item-rating"><!-- rating -->
+                                <span class="text-lg text-w text-hide">Fabulous!</span>
+                                <span class="text-sm text-w text-hide">{{accommodation.accommodationUserRating}}/5</span>
+                                <a>
+                                    <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                </a>
+                            </div><!-- rating -->
+                        </div>
+
+                        <div class="row item-features">
+                            <span class="text-sm text-k">Features:</span>
+                            <span *ngFor="let feature of accommodation.features" class="text-xsm text-k">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                {{feature}}
+                            </span>
+                        </div>
+
+                        <div class="row item-bottom">
+                            <div class="col-md-8">
+                                <span class="text-xlg text-b text-primary">AUD $</span>
+                                <span class="text-xlg text-b text-primary">{{accommodation.pricePerNight}}</span>
+                                <span class="text-md text-primary glyphicon glyphicon-triangle-left"></span>
+                                <span class="text-md text-k glyphicon glyphicon-bed">{{accommodation.numBeds}}</span>
+                                <span class="text-md text-k glyphicon glyphicon-user">{{accommodation.numPeople}}</span>
+                            </div>
+                            <div class="col-md-4"><!-- Add to cart -->
+                                <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
+                                    <ng-template #accNormal>
+                                        <button (click)="addAccommodation(accommodation.accommodationID, accommodation.accommodationName)" type="button" md-raised-button color="warn" style="float: right">Select</button>
+                                    </ng-template>
+                                    <ng-template #accSelected>
+                                        <button (click)="addAccommodation(accommodation.accommodationID, accommodation.accommodationName)" disabled type="button" md-raised-button color="warn" style="float: right">Selected</button>
+                                    </ng-template>
+                                
+                                <button (click)="viewItem(1,accommodation.accommodationName, accommodation.accommodationID)" type="button" md-raised-button style="float: right; margin-right: 10px">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div><!--content -->
                 </div>
+            </div>
 
-                <div class="s-view-f row"><!-- breakfast container -->
-                    <div *ngFor="let activity of activities" class="row item-container"><!-- restaurant item --> 
-                        <div class="col-md-3">
-                            <div class="img img-f">
-                                <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                                <div class="hotelAdvert" style="bottom: 0">{{activity.diningStyle}}</div>
-                            </div>
-                        </div><!-- image -->
-                        <div class="col-md-9 item-content item-content-short"><!-- content -->
-                            <div class="row">
-                                <div class="col-md-9"><!-- hotel name -->
-                                    <h3 class="text-lg text-b text-primary">
-                                        <a class="text-hover-primary">{{activity.name}}</a>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
-                                    </h3>
-                                    <a class="text-hover-k text-sm text-k">
-                                        <span class="text-u">{{activity.suburb}}</span>
-                                        <span class="glyphicon glyphicon-globe"></span>
-                                    </a>
-                                </div><!-- hotel name end-->
-
-                                <div class="col-md-3 item-rating"><!-- rating -->
-                                    <span class="text-lg text-w text-hide">Fabulous!</span>
-                                    <!--<span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>-->
-                                    <!-- Currently hardcoding the userRating to 4, since we don't have a userRating variable in the Activity table: -->
-                                    <span class="text-sm text-w text-hide">4/5</span>
-                                    <a>
-                                        <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
-                                    </a>
-                                </div><!-- rating -->
-                            </div>
-
-                            <div class="row item-features">
-                                <!--<span class="text-sm text-k">Menu Theme: {{activity.menuTheme}}</span>-->
-
-                                <span class="text-xsm text-k">Description: {{activity.briefDescription}}</span>
-
-                            </div>
-
-                            <div class="row item-bottom">
-                                <div class="col-md-8">
-                                        <span class="text-lg text-b text-primary">$</span>
-                                </div>
-                                <div class="col-xs-4"><!-- Add to cart -->
-                                    <button type="button" md-raised-button color="warn" >Select</button>
-                                    <button type="button" md-raised-button style="float: left;  margin-right: 10px">
-                                        <span class="glyphicon glyphicon-info-sign"></span>
-                                        View
-                                    </button>
-                                </div>
-                            </div>
-                        </div><!--content -->
+            <!-- ===========================================
+                        FOOD AND DRINKS VIEW
+            
+                ============================================-->
+            <md-sidenav-container *ngIf="selected==3">
+                <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
+                    <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
+                        <ul class="nav nav-pills nav-stacked" role="tablist">
+                            <li><span class="text-md text-primary">Days</span></li>
+                            <li *ngFor="let day of days">
+                                <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
+                                <ng-template #notActiveDay>
+                                    <a (click)="setDays(day); sidenav.close()">{{day}}</a>
+                                </ng-template>
+                            </li>        
+                        </ul>
                     </div>
-                </div>
-            </div><!-- end menu container -->
-        </div><!-- end food content -->
-    </md-sidenav-container>
+                </md-sidenav>
 
-    <!-- ===========================================
-                    CART VIEW
-    
-        ============================================-->
-    <div class="container s-view" *ngIf="selected==5">
-        <span class="text-lg text-primary text-b text-u text-nl">Shopping Cart</span>
-        <span class="text-md text-primary text-b text-nl">Date:</span>
-        <span class="text-sm text-k text-nl">{{custom.checkin}} to {{custom.checkout}}</span>
-        <span class="text-sm text-k text-nl">{{duration}} days</span>
-        <span class="text-md text-primary text-b text-nl">Guests</span>
-        <span class="text-sm text-k text-nl">{{custom.guests}} guests with {{custom.rooms}} rooms.</span>
-        <span class="text-md text-primary text-b text-nl">Hotel</span>
-        <span class="text-sm text-ktext-nl">{{custom.hotel}}</span>
-    </div>
+                <div *ngIf="selected==3" class="container s-view" style="height: 100%"><!-- food day content -->
+                    <button type="button" md-raised-button (click)="sidenav.open()">
+                        <span class="text-sm text-primary text-b">Select day:</span>
+                        <span class="text-sm text-primary">{{selectedDay}}</span>
+                    </button>
+
+                    <div class="s-view row"><!-- Menu container -->
+                        <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                            <span class="text-xsm">Add food and drinks to your package.</span>
+                        </div>
+
+                        <ng-container *ngFor="let time of foodForm">
+                            <div (click)="expand(time.value)" class="row hover" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                                <span class="text-md">{{time.eatingTime}}</span>
+                                <a class="expandButton">
+                                    <span *ngIf="time.condition=='none'" class="glyphicon glyphicon-triangle-bottom"></span>
+                                    <span *ngIf="time.condition=='block'" class="glyphicon glyphicon-triangle-top"></span>
+                                </a>
+                            </div>
+
+                            <div class="s-view-f row" [ngStyle]="{'display': time.condition}"><!-- breakfast container -->
+                                <div *ngFor="let f of food" class="row item-container"><!-- restaurant item -->
+                                    <div class="col-md-3">
+                                        <div class="img img-f">
+                                            <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                                            <div class="hotelAdvert" style="bottom: 0">{{f.diningStyle}}</div>
+                                        </div>
+                                    </div><!-- image -->
+                                    <div class="col-md-9 item-content item-content-short"><!-- content -->
+                                        <div class="row">
+                                            <div class="col-md-9"><!-- hotel name -->
+                                                <h3 class="text-lg text-b text-primary">
+                                                    <a class="text-hover-primary">{{f.name}}</a>
+                                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                    <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                                </h3>
+                                                <a class="text-hover-k text-sm text-k">
+                                                    <span class="text-u">{{f.suburb}}</span>
+                                                    <span class="glyphicon glyphicon-globe"></span>
+                                                </a>
+                                            </div><!-- hotel name end-->
+
+                                            <div class="col-md-3 item-rating"><!-- rating -->
+                                                <span class="text-lg text-w text-hide">Fabulous!</span>
+                                                <span class="text-sm text-w text-hide">{{f.userRating}}/5</span>
+                                                <a>
+                                                    <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                                </a>
+                                            </div><!-- rating -->
+                                        </div>
+
+                                        <div class="row item-features">
+                                            <span class="text-sm text-k">Menu Theme: {{f.menuTheme}}</span>
+
+                                            <span class="text-xsm text-k">Description: {{f.briefDescription}}</span>
+
+                                        </div>
+
+                                        <div class="row item-bottom">
+                                            <div class="col-md-6">
+                                                    <span class="text-lg text-b text-primary">$</span>
+                                            </div>
+                                            <div class="col-md-6"><!-- Add to cart -->
+                                                <button type="button" md-raised-button color="warn" (click)="setFood(time.value, f.name, f.foodAndDrinksID, 0)">Select</button>
+                                                <button type="button" md-raised-button color="warn" (click)="setFood(time.value, f.name, f.foodAndDrinksID, 1)">Select for all days</button>
+                                                <button type="button" md-raised-button style="float: left;  margin-right: 10px">
+                                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                                    View
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div><!--content -->
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        
+                    </div><!-- end menu container -->
+                </div><!-- end food content -->
+            </md-sidenav-container>
+
+
+            <!-- ===========================================
+                            ACTIVITES VIEW
+            
+                ============================================-->
+            <md-sidenav-container *ngIf="selected==4">
+                <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
+                    <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
+                        <ul class="nav nav-pills nav-stacked" role="tablist">
+                            <li><span class="text-md text-primary">Days</span></li>
+                            <li *ngFor="let day of days">
+                                <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
+                                <ng-template #notActiveDay>
+                                    <a (click)="setDays(day); sidenav.close()">{{day}}</a>
+                                </ng-template>
+                            </li>        
+                        </ul>
+                    </div>
+                </md-sidenav>
+
+                <div class="container s-view" style="height: 100%"><!-- Activity day content -->
+                    <button type="button" md-raised-button (click)="sidenav.open()">
+                        <span class="text-sm text-primary text-b">Select day:</span>
+                        <span class="text-sm text-primary">{{selectedDay}}</span>
+                    </button>
+                    <div class="s-view row"><!-- Menu container -->
+                        <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                            <span class="text-xsm">Add activites / events and attractions to your package.</span>
+                        </div>
+
+                        <div class="s-view-f row"><!-- breakfast container -->
+                            <div *ngFor="let activity of activities" class="row item-container"><!-- restaurant item --> 
+                                <div class="col-md-3">
+                                    <div class="img img-f">
+                                        <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                                        <div class="hotelAdvert" style="bottom: 0">{{activity.diningStyle}}</div>
+                                    </div>
+                                </div><!-- image -->
+                                <div class="col-md-9 item-content item-content-short"><!-- content -->
+                                    <div class="row">
+                                        <div class="col-md-9"><!-- hotel name -->
+                                            <h3 class="text-lg text-b text-primary">
+                                                <a class="text-hover-primary">{{activity.name}}</a>
+                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                                <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                            </h3>
+                                            <a class="text-hover-k text-sm text-k">
+                                                <span class="text-u">{{activity.suburb}}</span>
+                                                <span class="glyphicon glyphicon-globe"></span>
+                                            </a>
+                                        </div><!-- hotel name end-->
+
+                                        <div class="col-md-3 item-rating"><!-- rating -->
+                                            <span class="text-lg text-w text-hide">Fabulous!</span>
+                                            <!--<span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>-->
+                                            <!-- Currently hardcoding the userRating to 4, since we don't have a userRating variable in the Activity table: -->
+                                            <span class="text-sm text-w text-hide">4/5</span>
+                                            <a>
+                                                <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                            </a>
+                                        </div><!-- rating -->
+                                    </div>
+
+                                    <div class="row item-features">
+                                        <!--<span class="text-sm text-k">Menu Theme: {{activity.menuTheme}}</span>-->
+
+                                        <span class="text-xsm text-k">Description: {{activity.briefDescription}}</span>
+
+                                    </div>
+
+                                    <div class="row item-bottom">
+                                        <div class="col-md-8">
+                                                <span class="text-lg text-b text-primary">$</span>
+                                        </div>
+                                        <div class="col-xs-4"><!-- Add to cart -->
+                                            <button type="button" md-raised-button color="warn" >Select</button>
+                                            <button type="button" md-raised-button style="float: left;  margin-right: 10px">
+                                                <span class="glyphicon glyphicon-info-sign"></span>
+                                                View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div><!--content -->
+                            </div>
+                        </div>
+                    </div><!-- end menu container -->
+                </div><!-- end food content -->
+            </md-sidenav-container>
+
+            <!-- ===========================================
+                            CART VIEW
+            
+                ============================================-->
+            <div class="container s-view" *ngIf="selected==5">
+                <span class="text-lg text-primary text-b text-u text-nl">Shopping Cart</span>
+                <span class="text-md text-primary text-b text-nl">Date:</span>
+                <span class="text-sm text-k text-nl">{{custom.checkin}} to {{custom.checkout}}</span>
+                <span class="text-sm text-k text-nl">{{duration}} days</span>
+                <span class="text-md text-primary text-b text-nl">Guests</span>
+                <span class="text-sm text-k text-nl">{{custom.guests}} guests with {{custom.rooms}} rooms.</span>
+                <span class="text-md text-primary text-b text-nl">Hotel</span>
+                <span class="text-sm text-ktext-nl">{{custom.hotel}}</span>
+            </div>
+        </div><!-- <div class="md-col-10">-->
+        <div clas="col-md-2">
+            <h1>Cart:</h1>
+            <p>Travel Selected: {{travelValue}}</p>
+            <p><span class="text-b">Cost: $</span>{{423}}</p>
+        </div>
+    </div><!-- row -->
 </div><!-- end Main View Container -->
