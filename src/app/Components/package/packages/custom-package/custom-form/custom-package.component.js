@@ -55,6 +55,18 @@ var CustomPackageComponent = (function () {
         this.custom = this.packageService.getInitialData();
         this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
         this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+        this.selected = this.custom.navigation;
+        this.selectedDay = this.custom.aSelectedDay;
+        this.travelValue = this.custom.requireTravel;
+        this.selectedAccommodation = this.custom.accommodation;
+        this.travelPickup = this.custom.travelPickup;
+        this.travelDropoff = this.custom.travelDropoff;
+        if (this.travelPickup == null) {
+            this.travelPickup = { address: "", city: "", state: "", postcode: 0, date: new Date(), time: "" };
+        }
+        if (this.travelDropoff == null) {
+            this.travelDropoff = { address: "", city: "", state: "", postcode: 0, date: new Date(), time: "" };
+        }
         //From this data, calculate the duration the user is staying in Newcastle
         this.calculateDuration(this.custom.checkin, this.custom.checkout);
         //Populate the days array with this value
@@ -172,9 +184,9 @@ var CustomPackageComponent = (function () {
     /* Item Selection */
     CustomPackageComponent.prototype.addAccommodation = function (accID, accName) {
         alert('You have selected: \n Item ID: ' + accID + '\n Name: ' + accName);
-        this.custom.hotel = accName;
+        this.custom.accommodation = accName;
         this.selectedAccommodation = accID;
-        console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
+        console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
     };
     CustomPackageComponent.prototype.setFood = function (menuType, item, id, setForAll) {
         console.log('Setting food with the following parameters: ');
@@ -334,11 +346,22 @@ var CustomPackageComponent = (function () {
         console.log(this.custom.checkin);
         //check if user wants to navigate away
         if (this.custom.checkin != null) {
-            return window.confirm("You will lose all changes and will have to start again. Are you sure you want to continue?");
+            this.saveForm();
+            return true;
         }
         else {
             return true;
         }
+    };
+    CustomPackageComponent.prototype.saveForm = function () {
+        this.custom.aSelectedDay = this.selectedDay;
+        this.custom.fSelectedDay = this.selectedDay;
+        this.custom.navigation = this.selected;
+        this.custom.requireTravel = this.travelValue;
+        this.custom.travelPickup = this.travelPickup;
+        this.custom.travelDropoff = this.travelDropoff;
+        this.packageService.cp = this.custom;
+        console.log("Form Saved");
     };
     return CustomPackageComponent;
 }());

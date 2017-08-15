@@ -53,7 +53,23 @@ export class CustomPackageComponent implements OnInit{
     //Travel Form
     travelValue : string = 'No';    //Option selected by the user
     travelOptions = ['Yes','No'];   //List of available travel options
+    travelPickup : {
+        address: string, 
+        city: string, 
+        state: string, 
+        postcode: number,
+        date: Date;
+        time: string;
+    };
 
+    travelDropoff : {
+        address: string, 
+        city: string, 
+        state: string, 
+        postcode: number,
+        date: Date;
+        time: string;
+    };
     //Accommodation Form
     selectedAccommodation : String;
 
@@ -78,8 +94,25 @@ export class CustomPackageComponent implements OnInit{
         console.log('[INFO] Custom package creation form is initialising...')
         //Grab the data entered from the initial form (home page)
         this.custom = this.packageService.getInitialData();
+
         this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
         this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+
+        this.selected = this.custom.navigation;
+        this.selectedDay = this.custom.aSelectedDay;
+        this.travelValue = this.custom.requireTravel;
+        this.selectedAccommodation = this.custom.accommodation;
+
+        this.travelPickup = this.custom.travelPickup;
+        this.travelDropoff = this.custom.travelDropoff;
+
+        if(this.travelPickup == null) {
+            this.travelPickup = {address: "", city: "", state: "", postcode: 0, date: new Date(), time: ""};
+        }
+
+        if(this.travelDropoff == null) {
+            this.travelDropoff = {address: "", city: "", state: "", postcode: 0, date: new Date(), time: ""};
+        }
 
         //From this data, calculate the duration the user is staying in Newcastle
         this.calculateDuration(this.custom.checkin, this.custom.checkout);
@@ -216,10 +249,10 @@ export class CustomPackageComponent implements OnInit{
     /* Item Selection */
     addAccommodation(accID : string, accName : string) {
         alert('You have selected: \n Item ID: ' + accID + '\n Name: ' + accName);
-        this.custom.hotel = accName;
+        this.custom.accommodation = accName;
         this.selectedAccommodation = accID;
 
-        console.info('[INFO] Added ', this.custom.hotel, ' to cart.');
+        console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
     }
 
 
@@ -403,9 +436,23 @@ export class CustomPackageComponent implements OnInit{
         console.log(this.custom.checkin);
         //check if user wants to navigate away
         if(this.custom.checkin != null) {
-            return window.confirm("You will lose all changes and will have to start again. Are you sure you want to continue?");
+            this.saveForm();
+            return true;
         } else {
             return true;
         }
+    }
+
+    saveForm() {
+        this.custom.aSelectedDay = this.selectedDay;
+        this.custom.fSelectedDay = this.selectedDay;
+        this.custom.navigation = this.selected;
+        this.custom.requireTravel = this.travelValue;
+        this.custom.travelPickup = this.travelPickup;
+        this.custom.travelDropoff = this.travelDropoff;
+
+        this.packageService.cp = this.custom;
+
+        console.log("Form Saved");
     }
 }
