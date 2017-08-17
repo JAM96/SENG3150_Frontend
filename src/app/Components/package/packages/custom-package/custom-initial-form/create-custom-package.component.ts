@@ -76,15 +76,6 @@ export class CreateCustomPackageInitialComponent { //CCPIC
         this.checkout = event.endJsDate;
     }
 
-    /* TODO:
-        This needs to be optomised since this current implementation does not update budget to unlimited.
-    */
-    updateValue() {
-        if(this.value == this.maxBudget) {
-            this.value = "unlimited";
-        }
-    }
-
     //Following methods increase or decreases the numbers of guests or rooms.
     increaseGuests() {
         if(this.guests != this.maxGuests) {
@@ -124,7 +115,7 @@ export class CreateCustomPackageInitialComponent { //CCPIC
                 this.guests,
                 this.rooms,
                 this.checkin,
-                this.checkout
+                this.checkout,
                 );
             this.router.navigate(["/createpackage"]);
         } 

@@ -60,14 +60,6 @@ var CreateCustomPackageInitialComponent = (function () {
         this.checkin = event.beginJsDate;
         this.checkout = event.endJsDate;
     };
-    /* TODO:
-        This needs to be optomised since this current implementation does not update budget to unlimited.
-    */
-    CreateCustomPackageInitialComponent.prototype.updateValue = function () {
-        if (this.value == this.maxBudget) {
-            this.value = "unlimited";
-        }
-    };
     //Following methods increase or decreases the numbers of guests or rooms.
     CreateCustomPackageInitialComponent.prototype.increaseGuests = function () {
         if (this.guests != this.maxGuests) {

@@ -464,9 +464,9 @@
         <div clas="col-md-2">
             <h1>Cart:</h1>
             <p>Travel Selected: {{travelValue}}</p>
+            
             <p><span class="text-b">Accommodation: </span>{{selectedAccommodationName}}</p>
-            <button (click)="changeBudget()" md-raised-button>Adjust Budget</button>
-            <p><span class="text-b">Cost: </span>${{custom.packageCost}} / ${{budget}}</p>
+            <button (click)="changeBudget()" md-button><span class="text-b">Cost: </span>${{custom.packageCost}} / ${{budget}}</button>
         </div>
     </div><!-- row -->
 </div><!-- end Main View Container -->

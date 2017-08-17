@@ -62,6 +62,7 @@ var CustomPackageComponent = (function () {
         console.log('[INFO] Custom package creation form is initialising...');
         //Grab the data entered from the initial form (home page)
         this.custom = this.packageService.getInitialData();
+        console.log(this.custom);
         this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
         this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
         if (this.custom.navigation == null) {
@@ -69,7 +70,7 @@ var CustomPackageComponent = (function () {
             this.selected = 1;
             this.selectedDay = 1;
             this.travelValue = 'No';
-            this.budget = 472;
+            this.budget = this.custom.budget;
             this.custom.packageCost = 0;
         }
         else {
@@ -84,6 +85,9 @@ var CustomPackageComponent = (function () {
             this.getAccommodation();
             this.getActivities();
             this.getFoodAndDrinks();
+        }
+        if (this.budget == null) {
+            this.budget = 472;
         }
         if (this.custom.travel == null) {
             var temp = {
