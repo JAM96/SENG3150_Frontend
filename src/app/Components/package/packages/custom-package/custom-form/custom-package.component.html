@@ -235,10 +235,10 @@
                             <div class="col-md-4"><!-- Add to cart -->
                                 <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
                                     <ng-template #accNormal>
-                                        <button (click)="addAccommodation(accommodation.accommodationID, accommodation.accommodationName)" type="button" md-raised-button color="warn" style="float: right">Select</button>
+                                        <button (click)="addAccommodation(accommodation, accommodation.pricePerNight)" type="button" md-raised-button color="warn" style="float: right">Select</button>
                                     </ng-template>
                                     <ng-template #accSelected>
-                                        <button (click)="addAccommodation(accommodation.accommodationID, accommodation.accommodationName)" disabled type="button" md-raised-button color="warn" style="float: right">Selected</button>
+                                        <button disabled type="button" md-raised-button color="warn" style="float: right">Selected</button>
                                     </ng-template>
                                 
                                 <button (click)="viewItem(1,accommodation.accommodationName, accommodation.accommodationID)" type="button" md-raised-button style="float: right; margin-right: 10px">
@@ -336,8 +336,8 @@
                                                     <span class="text-lg text-b text-primary">$</span>
                                             </div>
                                             <div class="col-md-6"><!-- Add to cart -->
-                                                <button type="button" md-raised-button color="warn" (click)="setFood(time.value, f.name, f.foodAndDrinksID, 0)">Select</button>
-                                                <button type="button" md-raised-button color="warn" (click)="setFood(time.value, f.name, f.foodAndDrinksID, 1)">Select for all days</button>
+                                                <button type="button" md-raised-button color="warn" (click)="setFood(time.eatingTime, f.name, f.foodAndDrinksID, 0)">Select</button>
+                                                <button type="button" md-raised-button color="warn" (click)="setFood(time.eatingTime, f.name, f.foodAndDrinksID, 1)">Select for all days</button>
                                                 <button type="button" md-raised-button style="float: left;  margin-right: 10px">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                     View
@@ -464,8 +464,9 @@
         <div clas="col-md-2">
             <h1>Cart:</h1>
             <p>Travel Selected: {{travelValue}}</p>
-            <p><span class="text-b">Accommodation: </span>{{custom.accommodation}}</p>
-            <p><span class="text-b">Cost: $</span>{{423}}</p>
+            <p><span class="text-b">Accommodation: </span>{{selectedAccommodationName}}</p>
+            <button (click)="changeBudget()" md-raised-button>Adjust Budget</button>
+            <p><span class="text-b">Cost: </span>${{custom.packageCost}} / ${{budget}}</p>
         </div>
     </div><!-- row -->
 </div><!-- end Main View Container -->

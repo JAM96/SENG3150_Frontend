@@ -18,6 +18,8 @@ var app_routing_1 = require("../app.routing");
 var router_1 = require("@angular/router");
 //some tutorial code, probs not needed, *update* formsmodule is needed
 var forms_1 = require("@angular/forms");
+//google maps
+var core_2 = require("@agm/core");
 //used for the material module (popups)
 var platform_browser_1 = require("@angular/platform-browser");
 var animations_1 = require("@angular/platform-browser/animations");
@@ -48,6 +50,7 @@ var viewVouchers_component_1 = require("../Components/profile/viewVouchers/viewV
 var leaveFeedback_component_1 = require("../Components/profile/leaveFeedback/leaveFeedback.component");
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
+var custom_package_component_2 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var custom_calendar_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component");
 var calendar_truncate_pipe_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
@@ -91,6 +94,9 @@ AppModule = __decorate([
             ng2_aside_1.AsideModule,
             ng2_slim_loading_bar_1.SlimLoadingBarModule.forRoot(),
             mydaterangepicker_1.MyDateRangePickerModule,
+            core_2.AgmCoreModule.forRoot({
+                apiKey: 'AIzaSyAMwjWTDQg0aVK9flKslyeB5wKBBCq46Cg'
+            }),
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -103,6 +109,7 @@ AppModule = __decorate([
             createAccommodation_component_1.CreateAccommodationComponent,
             navigationtop_component_1.NavigationTopComponent,
             navigationtop_component_1.LoginPopupComponent,
+            custom_package_component_2.BudgetChangeComponent,
             navigationtop_component_1.notificationsPopupComponent,
             eventoverview_component_1.EventViewComponent,
             packagecategory_component_1.PackageCategoryComponentDialog,
@@ -120,7 +127,7 @@ AppModule = __decorate([
             custom_calendar_component_1.CustomCalendarComponent,
             calendar_truncate_pipe_1.TruncatePipe
         ],
-        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
+        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, custom_package_component_2.BudgetChangeComponent, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [
             app_routing_1.appRoutingProviders,
             custom_package_service_1.CustomPackageService,

@@ -11,6 +11,8 @@ import {RouterModule, Routes, Router, NavigationStart} from '@angular/router';
 //some tutorial code, probs not needed, *update* formsmodule is needed
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+//google maps
+import {AgmCoreModule} from '@agm/core';
 
 //used for the material module (popups)
 import { BrowserModule } from '@angular/platform-browser';
@@ -50,6 +52,7 @@ import {HomeComponent} from '../Components/home/home.component';
   import {LeaveFeedbackComponent} from '../Components/profile/leaveFeedback/leaveFeedback.component';
   //packages components
   import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
+  import {BudgetChangeComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
   import {CustomCalendarComponent} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component';
   import {TruncatePipe} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe';
   import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
@@ -87,6 +90,9 @@ import {TestComponent} from '../Components/test-component/test.component';
     AsideModule,
     SlimLoadingBarModule.forRoot(),
     MyDateRangePickerModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAMwjWTDQg0aVK9flKslyeB5wKBBCq46Cg'
+    }),
     ],
   declarations: [
     AppComponent,
@@ -99,6 +105,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     CreateAccommodationComponent,
     NavigationTopComponent,
     LoginPopupComponent,
+    BudgetChangeComponent,
     notificationsPopupComponent,
     EventViewComponent,
     PackageCategoryComponentDialog,
@@ -116,7 +123,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     CustomCalendarComponent,
     TruncatePipe
     ],
-  bootstrap:    [ AppComponent, PackageCategoryComponentDialog, LoginPopupComponent, notificationsPopupComponent],
+  bootstrap:    [ AppComponent, PackageCategoryComponentDialog, BudgetChangeComponent, LoginPopupComponent, notificationsPopupComponent],
   providers: [
     appRoutingProviders,
     CustomPackageService,

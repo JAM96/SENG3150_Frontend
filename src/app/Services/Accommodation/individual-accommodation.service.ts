@@ -14,24 +14,13 @@
 export class IndividualAccommodationService {
     accommodation : Accommodation;
 
-    constructor() {
-        console.log("I AM IN THE INDI ACCOMMODATION SERVICE");
-    }
+    constructor() {}
 
     setAccommodation(acc : Accommodation) {
-        var data = new Accommodation;
-        console.log("Imported accommodation is: ")
-        console.log(acc)
-        data = acc;
-
-        this.accommodation = data;
-        console.log("Accommodation has been set: " );
-        console.log(this.accommodation)
+        this.accommodation = acc;
     }
 
     getAccommodation() : Accommodation {
-        console.log("Returning accommodation object");
-        console.log(this.accommodation);
         return this.accommodation;
     };
 }

@@ -17,24 +17,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 //Imports
 var core_1 = require("@angular/core");
-var Accommodation_1 = require("../../Objects/Accommodation/Accommodation");
 //end imports
 var IndividualAccommodationService = (function () {
     function IndividualAccommodationService() {
-        console.log("I AM IN THE INDI ACCOMMODATION SERVICE");
     }
     IndividualAccommodationService.prototype.setAccommodation = function (acc) {
-        var data = new Accommodation_1.Accommodation;
-        console.log("Imported accommodation is: ");
-        console.log(acc);
-        data = acc;
-        this.accommodation = data;
-        console.log("Accommodation has been set: ");
-        console.log(this.accommodation);
+        this.accommodation = acc;
     };
     IndividualAccommodationService.prototype.getAccommodation = function () {
-        console.log("Returning accommodation object");
-        console.log(this.accommodation);
         return this.accommodation;
     };
     ;

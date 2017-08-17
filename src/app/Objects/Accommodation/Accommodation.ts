@@ -1,4 +1,4 @@
-export class Accommodation {
+export interface Accommodation {
     accommodationID             :   string;
     accommodationName           :   string;
     accommodationAddress        :   string;

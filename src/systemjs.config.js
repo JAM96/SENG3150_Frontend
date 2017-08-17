@@ -28,6 +28,7 @@
       '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js', 
       'mydaterangepicker': 'npm:mydaterangepicker/bundles/mydaterangepicker.umd.js',
       'date-fns': 'npm:date-fns@1.28.4',
+      '@agm/core': 'npm:@agm/core/core.umd.js',
       
 
       // other libraries

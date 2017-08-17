@@ -1,0 +1,16 @@
+<h1 md-dialog-title>Budget</h1>
+<div md-dialog-content>Move the slider pin to adjust your budget.</div>
+<div md-dialog-actions>
+    <md-slider 
+        style="width:500px" 
+        thumbLabel 
+        min="0" 
+        max="5000" 
+        step="10" 
+        value="{{value}}" 
+        tickInterval="10"
+        [(ngModel)]="value"
+    ></md-slider>
+
+    <button md-button md-dialog-close="{{value}}">Update</button>
+</div>
