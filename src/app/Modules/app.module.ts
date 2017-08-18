@@ -53,6 +53,7 @@ import {HomeComponent} from '../Components/home/home.component';
   //packages components
   import {CustomPackageComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
   import {BudgetChangeComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
+  import {AddAccommodationComponent} from '../Components/package/packages/custom-package/custom-form/custom-package.component';
   import {CustomCalendarComponent} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component';
   import {TruncatePipe} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe';
   import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
@@ -106,6 +107,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     NavigationTopComponent,
     LoginPopupComponent,
     BudgetChangeComponent,
+    AddAccommodationComponent,
     notificationsPopupComponent,
     EventViewComponent,
     PackageCategoryComponentDialog,
@@ -123,7 +125,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     CustomCalendarComponent,
     TruncatePipe
     ],
-  bootstrap:    [ AppComponent, PackageCategoryComponentDialog, BudgetChangeComponent, LoginPopupComponent, notificationsPopupComponent],
+  bootstrap:    [ AppComponent, PackageCategoryComponentDialog, BudgetChangeComponent, LoginPopupComponent,AddAccommodationComponent, notificationsPopupComponent],
   providers: [
     appRoutingProviders,
     CustomPackageService,

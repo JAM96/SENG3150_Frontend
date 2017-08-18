@@ -4,6 +4,8 @@ import {AccomodationComponent} from '../../../../../Components/accomodation/acco
 
 //import objects
 import {Accommodation} from '../../../../../Objects/Accommodation/Accommodation';
+import {Room} from '../../../../../Objects/Accommodation/Room';
+import {Feature} from '../../../../../Objects/Accommodation/Feature';
 import {FoodAndDrinks} from '../../../../../Objects/FoodAndDrinks/FoodAndDrinks';
 import {Activity} from '../../../../../Objects/Activity/Activity';
 import {CustomPackage} from '../CustomPackage';
@@ -38,6 +40,7 @@ export class CustomPackageComponent implements OnInit{
     accommodationList : Accommodation[];//list of accomodation options in Newcastle
     foodAndDrinks   : FoodAndDrinks[];            //list of restaurants and bars in Newcastle
     activities  : Activity[];   //list of events and activities in Newcastle
+
     isLoaded = [
         {type: 'accommodation', value: false},
         {type: 'restauarants',  value: false},
@@ -276,14 +279,33 @@ export class CustomPackageComponent implements OnInit{
 
 
     /* Item Selection */
-    addAccommodation(accommodation : Accommodation, price : number) {
-        this.custom.accommodation = accommodation;
-        this.selectedAccommodation = accommodation.accommodationID;
-        this.selectedAccommodationName = accommodation.accommodationName;
+    addAccommodation(accommodation : Accommodation) {
+        var selectedRoom : Room;
 
-        this.custom.packageCost = this.custom.packageCost - this.previousSelectedAccommodation + price * this.duration;  //update the package cost
-        this.previousSelectedAccommodation = price * this.duration; //Replace the previous accommodation cost to the selected one
-        console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
+        let dialogRef = this.dialog.open(AddAccommodationComponent, {
+            data: accommodation.room
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log("selected room is: ");
+            console.log(result);
+
+            for(var i = 0; i < accommodation.room.length; i++){
+                if(accommodation.room[i].roomID = result)
+                    selectedRoom = accommodation.room[i]
+            }
+            
+            this.custom.accommodation = accommodation;
+            this.custom.accommodation.selectedRoom = selectedRoom;
+            this.selectedAccommodation = accommodation.accommodationID;
+            this.selectedAccommodationName = accommodation.accommodationName;
+
+            var price = selectedRoom.roomPrice;
+
+            this.custom.packageCost = this.custom.packageCost - this.previousSelectedAccommodation + price * this.duration;  //update the package cost
+            this.previousSelectedAccommodation = price * this.duration; //Replace the previous accommodation cost to the selected one
+            console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
+        });
     }
 
     setFood(menuType : string, item : string, id : string, setForAll : boolean, time : string) {
@@ -345,22 +367,15 @@ export class CustomPackageComponent implements OnInit{
      * LOADING DATA
      */
 
-    loadFeatures(features : any[]) {
-        console.log("assigning features");
-        for(var i = 0; i < this.accommodationList.length; i++) {
-            this.accommodationList[i].features = [];
-        }
-
+    assignTopFeatures() {
+        console.log("Assigning top features");
         for(var i = 0; i < this.accommodationList.length; i++){
-            console.log('Accomodation ID: ' + this.accommodationList[i].accommodationID + ' || Name: ' +
-                    this.accommodationList[i].accommodationName);
-            for(var j = 0; j < features.length; j++) {
-                console.log('Feature ID: ' + features[j].accomodationID);
-                if(this.accommodationList[i].accommodationID.toString() == (features[j].accomodationID)) {
-                    this.accommodationList[i].features.push(features[j].feature);
-                    console.log(this.accommodationList[i].features);
-                }
-            }
+            this.accommodationList[i].topFeatures = []; //initialise top feature array
+
+            //assign the first 3 features to the correct accommodation
+            for(var j = 0; j < 3; j++)
+                if(this.accommodationList[i].features[0] != null) 
+                    this.accommodationList[i].topFeatures.push(this.accommodationList[i].features[j]);
         }
     }
     
@@ -368,20 +383,23 @@ export class CustomPackageComponent implements OnInit{
     getAccommodation() {
         console.log('[INFO] Retrieving the accommodation list');
 
+        //start loading 
         this.startLoading();
 
-        var features = [{accomodationID: "", feature: ""}];
+        //temp variables to hold accommodaiton information
+        var features : Feature[];
+        var rooms : Room[];
 
+        //Mock Database
         //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
 
+        //Load the data from the database
         this.accommodationService.getAccommodation()
-            .then((accommodation: Accommodation[]) => this.accommodationList = accommodation)
-            .then(() => console.log("Accommodation Loaded"))
-            .then(() => this.accommodationService.getAccommodationFeatures()
-                        .then(feature => features = feature))
-            .then(() => console.log("Features loaded"))
-            .then(() => this.loadFeatures(features))
-            .then(() => this.completeLoading());
+            .then((accommodation: Accommodation[]) => this.accommodationList = accommodation)   //get the main accommodation data
+            .then(() => console.log("Accommodation Loaded"))                                    //Output that accommodation has been loaded
+            .then(() => console.log("Features and rooms assigned"))                             //Output
+            .then(() => this.assignTopFeatures())                                               //Set the top 3 features to each accommodation
+            .then(() => this.completeLoading());                                                //Complete the loading
     }
 
     /* Retrieves all food objects from the backend */
@@ -477,5 +495,21 @@ export class BudgetChangeComponent{
                 @Inject(MD_DIALOG_DATA) public data: any) {
                     this.value = data;
                     console.log("imported value: " + this.value)
+                }
+}
+
+@Component({
+    moduleId: module.id,
+    selector: 'AddAccommodationComponent',
+    templateUrl: 'AddAccommodationComponent.html'
+})
+export class AddAccommodationComponent{
+    rooms : Room[];
+
+    constructor (public dialogRef: MdDialogRef<AddAccommodationComponent>,
+                @Inject(MD_DIALOG_DATA) public data: any) {
+                    this.rooms = data;
+                    console.log("imported value to dialog is: ");
+                    console.log(this.rooms);
                 }
 }

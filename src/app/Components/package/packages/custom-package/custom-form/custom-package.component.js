@@ -223,13 +223,28 @@ var CustomPackageComponent = (function () {
     //     this.travelValue = selection;
     // }
     /* Item Selection */
-    CustomPackageComponent.prototype.addAccommodation = function (accommodation, price) {
-        this.custom.accommodation = accommodation;
-        this.selectedAccommodation = accommodation.accommodationID;
-        this.selectedAccommodationName = accommodation.accommodationName;
-        this.custom.packageCost = this.custom.packageCost - this.previousSelectedAccommodation + price * this.duration; //update the package cost
-        this.previousSelectedAccommodation = price * this.duration; //Replace the previous accommodation cost to the selected one
-        console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
+    CustomPackageComponent.prototype.addAccommodation = function (accommodation) {
+        var _this = this;
+        var selectedRoom;
+        var dialogRef = this.dialog.open(AddAccommodationComponent, {
+            data: accommodation.room
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log("selected room is: ");
+            console.log(result);
+            for (var i = 0; i < accommodation.room.length; i++) {
+                if (accommodation.room[i].roomID = result)
+                    selectedRoom = accommodation.room[i];
+            }
+            _this.custom.accommodation = accommodation;
+            _this.custom.accommodation.selectedRoom = selectedRoom;
+            _this.selectedAccommodation = accommodation.accommodationID;
+            _this.selectedAccommodationName = accommodation.accommodationName;
+            var price = selectedRoom.roomPrice;
+            _this.custom.packageCost = _this.custom.packageCost - _this.previousSelectedAccommodation + price * _this.duration; //update the package cost
+            _this.previousSelectedAccommodation = price * _this.duration; //Replace the previous accommodation cost to the selected one
+            console.info('[INFO] Added ', _this.custom.accommodation, ' to cart.');
+        });
     };
     CustomPackageComponent.prototype.setFood = function (menuType, item, id, setForAll, time) {
         console.log('Setting food with the following parameters: ');
@@ -285,38 +300,34 @@ var CustomPackageComponent = (function () {
     /**
      * LOADING DATA
      */
-    CustomPackageComponent.prototype.loadFeatures = function (features) {
-        console.log("assigning features");
+    CustomPackageComponent.prototype.assignTopFeatures = function () {
+        console.log("Assigning top features");
         for (var i = 0; i < this.accommodationList.length; i++) {
-            this.accommodationList[i].features = [];
-        }
-        for (var i = 0; i < this.accommodationList.length; i++) {
-            console.log('Accomodation ID: ' + this.accommodationList[i].accommodationID + ' || Name: ' +
-                this.accommodationList[i].accommodationName);
-            for (var j = 0; j < features.length; j++) {
-                console.log('Feature ID: ' + features[j].accomodationID);
-                if (this.accommodationList[i].accommodationID.toString() == (features[j].accomodationID)) {
-                    this.accommodationList[i].features.push(features[j].feature);
-                    console.log(this.accommodationList[i].features);
-                }
-            }
+            this.accommodationList[i].topFeatures = []; //initialise top feature array
+            //assign the first 3 features to the correct accommodation
+            for (var j = 0; j < 3; j++)
+                if (this.accommodationList[i].features[0] != null)
+                    this.accommodationList[i].topFeatures.push(this.accommodationList[i].features[j]);
         }
     };
     /* Retrieves all the accommodation objects from the backend */
     CustomPackageComponent.prototype.getAccommodation = function () {
         var _this = this;
         console.log('[INFO] Retrieving the accommodation list');
+        //start loading 
         this.startLoading();
-        var features = [{ accomodationID: "", feature: "" }];
+        //temp variables to hold accommodaiton information
+        var features;
+        var rooms;
+        //Mock Database
         //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
+        //Load the data from the database
         this.accommodationService.getAccommodation()
-            .then(function (accommodation) { return _this.accommodationList = accommodation; })
-            .then(function () { return console.log("Accommodation Loaded"); })
-            .then(function () { return _this.accommodationService.getAccommodationFeatures()
-            .then(function (feature) { return features = feature; }); })
-            .then(function () { return console.log("Features loaded"); })
-            .then(function () { return _this.loadFeatures(features); })
-            .then(function () { return _this.completeLoading(); });
+            .then(function (accommodation) { return _this.accommodationList = accommodation; }) //get the main accommodation data
+            .then(function () { return console.log("Accommodation Loaded"); }) //Output that accommodation has been loaded
+            .then(function () { return console.log("Features and rooms assigned"); }) //Output
+            .then(function () { return _this.assignTopFeatures(); }) //Set the top 3 features to each accommodation
+            .then(function () { return _this.completeLoading(); }); //Complete the loading
     };
     /* Retrieves all food objects from the backend */
     CustomPackageComponent.prototype.getFoodAndDrinks = function () {
@@ -427,4 +438,24 @@ BudgetChangeComponent = __decorate([
     __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
 ], BudgetChangeComponent);
 exports.BudgetChangeComponent = BudgetChangeComponent;
+var AddAccommodationComponent = (function () {
+    function AddAccommodationComponent(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.rooms = data;
+        console.log("imported value to dialog is: ");
+        console.log(this.rooms);
+    }
+    return AddAccommodationComponent;
+}());
+AddAccommodationComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'AddAccommodationComponent',
+        templateUrl: 'AddAccommodationComponent.html'
+    }),
+    __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
+    __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
+], AddAccommodationComponent);
+exports.AddAccommodationComponent = AddAccommodationComponent;
 //# sourceMappingURL=custom-package.component.js.map

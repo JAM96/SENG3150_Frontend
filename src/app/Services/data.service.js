@@ -29,6 +29,12 @@ var DataService = (function () {
             case 'accommodationFeatures':
                 url = url + '/fetchAccommodationFeatures';
                 break;
+            case 'accommodationRooms':
+                url = url + '/fetchAccommodationRooms';
+                break;
+            case 'accommodationRoomFeatures':
+                url = url + '/fetchRoomFeatures';
+                break;
             case 'activity':
                 url = url + '/fetchActivities';
                 break;

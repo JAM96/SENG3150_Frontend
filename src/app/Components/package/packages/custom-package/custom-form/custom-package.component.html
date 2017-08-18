@@ -48,10 +48,6 @@
                 </li>
             </ul><!-- end Nav bar -->
 
-            <!-- Following divs are the different views for each form item -->
-            <!-- Note: This way should be replaced with individual components-->
-
-
             <!-- ===========================================
                             TRAVEL VIEW
             
@@ -195,11 +191,7 @@
                             <div class="col-md-9"><!-- accommodation name -->
                                 <h3 class="text-lg text-b text-primary">
                                     <a class="text-hover-primary">{{accommodation.accommodationName}}</a>
-                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                    <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                    <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                    <span *ngFor="let star of accommodation.accommodationStars" class="text-smd text-primary glyphicon glyphicon-star"></span>
                                 </h3>
                                 <a class="text-hover-k text-sm text-k">
                                     <span class="text-u">{{accommodation.accommodationSuburb}}</span>
@@ -207,8 +199,8 @@
                                 </a>
                             </div><!-- accommodation name end-->
 
-                            <div class="col-md-3 item-rating"><!-- rating -->
-                                <span class="text-lg text-w text-hide">Fabulous!</span>
+                            <div *ngIf="accommodation.accommodationUserRating != -1" class="col-md-3 item-rating"><!-- rating -->
+                                <span class="text-lg text-w text-hide">{{accommodation.accommodationRating}}</span>
                                 <span class="text-sm text-w text-hide">{{accommodation.accommodationUserRating}}/5</span>
                                 <a>
                                     <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
@@ -218,9 +210,9 @@
 
                         <div class="row item-features">
                             <span class="text-sm text-k">Features:</span>
-                            <span *ngFor="let feature of accommodation.features" class="text-xsm text-k">
+                            <span *ngFor="let feature of accommodation.topFeatures" class="text-xsm text-k">
                                 <span class="glyphicon glyphicon-ok"></span>
-                                {{feature}}
+                                {{feature.feature}}
                             </span>
                         </div>
 
@@ -235,7 +227,7 @@
                             <div class="col-md-4"><!-- Add to cart -->
                                 <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
                                     <ng-template #accNormal>
-                                        <button (click)="addAccommodation(accommodation, accommodation.pricePerNight)" type="button" md-raised-button color="warn" style="float: right">Select</button>
+                                        <button (click)="addAccommodation(accommodation)" type="button" md-raised-button color="warn" style="float: right">Select</button>
                                     </ng-template>
                                     <ng-template #accSelected>
                                         <button disabled type="button" md-raised-button color="warn" style="float: right">Selected</button>
@@ -461,6 +453,7 @@
                 <span class="text-sm text-ktext-nl">{{custom.hotel}}</span>
             </div>
         </div><!-- <div class="md-col-10">-->
+
         <div clas="col-md-2">
             <h1>Cart:</h1>
             <p>Travel Selected: {{travelValue}}</p>

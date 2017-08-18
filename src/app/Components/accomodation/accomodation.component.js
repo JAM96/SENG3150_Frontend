@@ -18,13 +18,12 @@ var AccomodationComponent = (function () {
         this.accommodationService = accommodationService;
         this.dialogRef = dialogRef;
         this.title = 'My first AGM project';
-        //-32.9252731,151.7734869
-        this.lat = -32.9252731;
-        this.lng = 151.7734869;
     }
     AccomodationComponent.prototype.ngOnInit = function () {
         this.accommodation = Object.assign({}, this.accommodationService.getAccommodation());
         console.log("Accommodation is loaded: " + this.accommodation.accommodationName);
+        this.lat = this.accommodation.latitude;
+        this.lng = this.accommodation.longitude;
     };
     return AccomodationComponent;
 }());

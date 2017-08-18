@@ -23,8 +23,8 @@ export class AccomodationComponent implements OnInit{
 
     title: string = 'My first AGM project';
     //-32.9252731,151.7734869
-    lat: number = -32.9252731;
-    lng: number = 151.7734869;
+    lat: number;
+    lng: number;
     
      constructor(
         private accommodationService    :   IndividualAccommodationService,
@@ -34,5 +34,8 @@ export class AccomodationComponent implements OnInit{
     ngOnInit() {
         this.accommodation = Object.assign({}, this.accommodationService.getAccommodation());
         console.log("Accommodation is loaded: " + this.accommodation.accommodationName);
+
+        this.lat = this.accommodation.latitude;
+        this.lng = this.accommodation.longitude;
     }
 }

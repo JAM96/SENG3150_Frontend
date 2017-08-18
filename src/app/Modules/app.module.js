@@ -51,6 +51,7 @@ var leaveFeedback_component_1 = require("../Components/profile/leaveFeedback/lea
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var custom_package_component_2 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
+var custom_package_component_3 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var custom_calendar_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component");
 var calendar_truncate_pipe_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
@@ -110,6 +111,7 @@ AppModule = __decorate([
             navigationtop_component_1.NavigationTopComponent,
             navigationtop_component_1.LoginPopupComponent,
             custom_package_component_2.BudgetChangeComponent,
+            custom_package_component_3.AddAccommodationComponent,
             navigationtop_component_1.notificationsPopupComponent,
             eventoverview_component_1.EventViewComponent,
             packagecategory_component_1.PackageCategoryComponentDialog,
@@ -127,7 +129,7 @@ AppModule = __decorate([
             custom_calendar_component_1.CustomCalendarComponent,
             calendar_truncate_pipe_1.TruncatePipe
         ],
-        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, custom_package_component_2.BudgetChangeComponent, navigationtop_component_1.LoginPopupComponent, navigationtop_component_1.notificationsPopupComponent],
+        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, custom_package_component_2.BudgetChangeComponent, navigationtop_component_1.LoginPopupComponent, custom_package_component_3.AddAccommodationComponent, navigationtop_component_1.notificationsPopupComponent],
         providers: [
             app_routing_1.appRoutingProviders,
             custom_package_service_1.CustomPackageService,
