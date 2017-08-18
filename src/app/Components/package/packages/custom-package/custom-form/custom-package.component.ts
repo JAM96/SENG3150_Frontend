@@ -1,27 +1,27 @@
-import {Component, Input, OnInit, Inject} from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import {AccomodationComponent} from '../../../../../Components/accomodation/accomodation.component';
+//Core Imports
+    import {Component, Input, OnInit, Inject} from '@angular/core';
+    import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+    import {Router} from '@angular/router';
+//External Components
+    import {AccomodationComponent} from '../../../../../Components/accomodation/accomodation.component';
+//Objects
+    import {Accommodation} from '../../../../../Objects/Accommodation/Accommodation';
+    import {Room} from '../../../../../Objects/Accommodation/Room';
+    import {Feature} from '../../../../../Objects/Accommodation/Feature';
+    import {FoodAndDrinks} from '../../../../../Objects/FoodAndDrinks/FoodAndDrinks';
+    import {Activity} from '../../../../../Objects/Activity/Activity';
+    import {CustomPackage} from '../CustomPackage';
+    import {FoodAndDrinksForm} from './objects/FoodAndDrinksForm';
+    import {TravelInformation} from './objects/TravelInformation';
+//Services
+    import {AccommodationService} from '../../../../../Services/Accommodation/accommodation.service';
+    import {IndividualAccommodationService} from '../../../../../Services/Accommodation/individual-accommodation.service';
+    import {FoodAndDrinksService} from '../../../../../Services/FoodAndDrinks/food-and-drinks.service';
+    import {ActivityService} from '../../../../../Services/activity/activity.service';
+    import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+    import {CustomPackageService} from '../custom-package-service/custom-package.service';
 
-//import objects
-import {Accommodation} from '../../../../../Objects/Accommodation/Accommodation';
-import {Room} from '../../../../../Objects/Accommodation/Room';
-import {Feature} from '../../../../../Objects/Accommodation/Feature';
-import {FoodAndDrinks} from '../../../../../Objects/FoodAndDrinks/FoodAndDrinks';
-import {Activity} from '../../../../../Objects/Activity/Activity';
-import {CustomPackage} from '../CustomPackage';
-import {FoodAndDrinksForm} from './objects/FoodAndDrinksForm';
-import {TravelInformation} from './objects/TravelInformation';
-
-//import services
-import {AccommodationService} from '../../../../../Services/Accommodation/accommodation.service';
-import {IndividualAccommodationService} from '../../../../../Services/Accommodation/individual-accommodation.service';
-import {FoodAndDrinksService} from '../../../../../Services/FoodAndDrinks/food-and-drinks.service';
-import {ActivityService} from '../../../../../Services/activity/activity.service';
-import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
-import {CustomPackageService} from '../custom-package-service/custom-package.service';
-import {Router} from '@angular/router';
-
-
+//Custom Package Component
 @Component({
     moduleId: module.id,
     selector: 'custom-package',
@@ -56,18 +56,18 @@ export class CustomPackageComponent implements OnInit{
     duration : number;          //The amount of days the user is staying in Newcastle
 
     //Side menu
-    isTrue = false;             //Depending on the screen size, if the user is on a computer, it will be opened
+    isTrue = true;             //Depending on the screen size, if the user is on a computer, it will be opened
     screenWidth : number = document.getElementsByTagName('body')[0].clientWidth;    //calculate the users screen width
 
     //Travel Form
     travelValue : string = 'No';    //Option selected by the user
     travelOptions = ['Yes','No'];   //List of available travel options
-    travelPickup : TravelInformation;
-    travelDropoff : TravelInformation;
+    travelPickup : TravelInformation;   //holds the travel pickup information
+    travelDropoff : TravelInformation;  //holds the travel dropoff information
 
     //Accommodation Form
-    selectedAccommodation : string;
-    selectedAccommodationName : string;
+    selectedAccommodation : string;             //the selected accommodation (id)
+    selectedAccommodationName : string;         //the selected accommodation (name)
     previousSelectedAccommodation : number = 0;  //this will store the previously selected price to minus from the total.
 
     //Food and Drinks Form
@@ -144,13 +144,12 @@ export class CustomPackageComponent implements OnInit{
 
         this.travelPickup = this.custom.travel[0];
         this.travelDropoff = this.custom.travel[1];
-
+        
         //From this data, calculate the duration the user is staying in Newcastle
         this.calculateDuration(this.custom.checkin, this.custom.checkout);
         //Populate the days array with this value
         this.setDaysArray(this.duration);
     }
-
 
     //Calculates the duration of the selected holiday
     calculateDuration(checkin : Date, checkout : Date) {
@@ -261,6 +260,10 @@ export class CustomPackageComponent implements OnInit{
         }
     }
 
+    showObject() {
+        console.log(this.custom)
+    }
+
     setDays(selection : number) {
         this.selectedDay = selection;
     }
@@ -272,11 +275,6 @@ export class CustomPackageComponent implements OnInit{
             this.foodForm[value-1].condition = 'none';
         }
     }
-
-    // setTravelValue(selection : boolean) {
-    //     this.travelValue = selection;
-    // }
-
 
     /* Item Selection */
     addAccommodation(accommodation : Accommodation) {

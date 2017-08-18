@@ -4,6 +4,8 @@ import {ActivityForm} from './custom-form/objects/ActivityForm';
 import {Accommodation} from '../../../../Objects/Accommodation/Accommodation';
 
 export class CustomPackage {
+    packageID       : string;
+
     //Navigation Options
     navigation      : number;   //Menu option selected.
     requireTravel   : string;   //If travel form is visible or not
@@ -11,23 +13,23 @@ export class CustomPackage {
     aSelectedDay    : number;   //Activities Selected day
 
     //Customer Information
-    budget  : number;
-    guests  : number;
-    rooms   : number;
-    checkin : Date;
-    checkout: Date;
-    packageCost     : number;
+    budget  : number;           //store the selected budget
+    guests  : number;           //store how many guests are going on the holiday
+    rooms   : number;           //store how many rooms the user wants
+    checkin : Date;             //date when arriving
+    checkout: Date;             //date when departing
+    packageCost     : number;   //cost of the package 
 
     //Travel Information
-    travel  : TravelInformation[];
+    travel  : TravelInformation[];  //pickup and dropoff information
 
     //Accommodation
-    accommodation   : Accommodation;
-    previousSelectedAccommodation : number;
+    accommodation   : Accommodation;    //selected accommodation
+    previousSelectedAccommodation : number; //previously selected accommodation price
 
     //food and drink options
-    foodAndDrinks   : FoodAndDrinksForm[];
+    foodAndDrinks   : FoodAndDrinksForm[];  //selected food and drink items
 
     //activities 
-    activity        : ActivityForm[];
+    activity        : ActivityForm[];   //selected activities
 }

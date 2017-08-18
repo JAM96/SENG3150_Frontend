@@ -12,17 +12,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//Core Imports
 var core_1 = require("@angular/core");
 var material_1 = require("@angular/material");
+var router_1 = require("@angular/router");
+//External Components
 var accomodation_component_1 = require("../../../../../Components/accomodation/accomodation.component");
-//import services
+//Services
 var accommodation_service_1 = require("../../../../../Services/Accommodation/accommodation.service");
 var individual_accommodation_service_1 = require("../../../../../Services/Accommodation/individual-accommodation.service");
 var food_and_drinks_service_1 = require("../../../../../Services/FoodAndDrinks/food-and-drinks.service");
 var activity_service_1 = require("../../../../../Services/activity/activity.service");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
 var custom_package_service_1 = require("../custom-package-service/custom-package.service");
-var router_1 = require("@angular/router");
+//Custom Package Component
 var CustomPackageComponent = (function () {
     function CustomPackageComponent(accommodationService, individualAccommodationService, foodAndDrinksService, activityService, packageService, slimLoadingBarService, router, dialog) {
         this.accommodationService = accommodationService;
@@ -44,7 +47,7 @@ var CustomPackageComponent = (function () {
         this.days = []; //Used to store the amount of days the user is staying
         this.selectedDay = 1; //The day that has been selected for input of the package item
         //Side menu
-        this.isTrue = false; //Depending on the screen size, if the user is on a computer, it will be opened
+        this.isTrue = true; //Depending on the screen size, if the user is on a computer, it will be opened
         this.screenWidth = document.getElementsByTagName('body')[0].clientWidth; //calculate the users screen width
         //Travel Form
         this.travelValue = 'No'; //Option selected by the user
@@ -208,6 +211,9 @@ var CustomPackageComponent = (function () {
             case 5: break;
         }
     };
+    CustomPackageComponent.prototype.showObject = function () {
+        console.log(this.custom);
+    };
     CustomPackageComponent.prototype.setDays = function (selection) {
         this.selectedDay = selection;
     };
@@ -219,9 +225,6 @@ var CustomPackageComponent = (function () {
             this.foodForm[value - 1].condition = 'none';
         }
     };
-    // setTravelValue(selection : boolean) {
-    //     this.travelValue = selection;
-    // }
     /* Item Selection */
     CustomPackageComponent.prototype.addAccommodation = function (accommodation) {
         var _this = this;

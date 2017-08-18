@@ -21,7 +21,7 @@ export interface Accommodation {
     features                    :   Feature[]; //All features when user views the accommodation.
     room                        :   Room[];
     pricePerNight               :   number; //cheapest room price.
-    selectedRoom                :   Room;
+    selectedRoom                :   Room;   //selected room for the accommodation
 }
 
 /*
