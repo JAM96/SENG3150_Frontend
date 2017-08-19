@@ -24,17 +24,57 @@ var data_service_1 = require("../data.service");
 //end imports
 var FoodAndDrinksService = (function () {
     function FoodAndDrinksService(http, data) {
+        var _this = this;
         this.http = http;
         this.data = data;
+        this.fetchFoodAndDrinks().subscribe(function (foodAndDrinks) { return _this.foodAndDrinks = foodAndDrinks; });
     }
-    FoodAndDrinksService.prototype.getFoodAndDrinks = function () {
+    FoodAndDrinksService.prototype.fetchFoodAndDrinks = function () {
         var url = this.data.getApiUrl('food-and-drinks');
         return this.http.get(url)
             .map(function (response) { return response.json().result; })
-            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error: could not retrieve food and drinks'); });
     };
     FoodAndDrinksService.prototype.getMockFood = function () {
         return Promise.resolve(mock_food_and_drinks_1.FOODANDDRINKS_LIST);
+    };
+    FoodAndDrinksService.prototype.getFoodAndDrinks = function () {
+        for (var i = 0; i < this.foodAndDrinks.length; i++) {
+            //Set the star array for each foodAndDrinks
+            this.foodAndDrinks[i].stars = [];
+            for (var j = 0; j < this.foodAndDrinks[i].starRating; j++) {
+                this.foodAndDrinks[i].stars[j] = j;
+            }
+            console.log(this.foodAndDrinks[i].stars);
+            //Assign the rating description for each foodAndDrinks
+            switch (this.foodAndDrinks[i].userRating) {
+                case 1:
+                    this.foodAndDrinks[i].rating = "Bad";
+                    break;
+                case 2:
+                    this.foodAndDrinks[i].rating = "Okay";
+                    break;
+                case 3:
+                    this.foodAndDrinks[i].rating = "Good";
+                    break;
+                case 4:
+                    this.foodAndDrinks[i].rating = "Great";
+                    break;
+                case 5:
+                    this.foodAndDrinks[i].rating = "Fabulous!";
+                    break;
+                default:
+                    this.foodAndDrinks[i].rating = "";
+                    break;
+            }
+            //Assign the expense rating description for each foodAndDrinks
+            this.foodAndDrinks[i].expense = [];
+            for (var e = 0; e < this.foodAndDrinks[i].expenseRating; e++) {
+                this.foodAndDrinks[i].expense[e] = e;
+            }
+            console.log(this.foodAndDrinks[i]);
+        }
+        return Promise.resolve(this.foodAndDrinks);
     };
     return FoodAndDrinksService;
 }());

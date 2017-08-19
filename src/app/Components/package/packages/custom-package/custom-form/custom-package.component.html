@@ -248,6 +248,7 @@
             
                 ============================================-->
             <md-sidenav-container *ngIf="selected==3">
+                <!-- Side Nav to store the day selection  -->
                 <md-sidenav #sidenav mode="side" opened="{{isTrue}}">
                     <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
                         <ul class="nav nav-pills nav-stacked" role="tablist">
@@ -271,11 +272,11 @@
                     <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
                         <span class="text-xsm">Add food and drinks to your package.</span>
                     </div>
-                        
+
                     <div *ngFor="let f of foodAndDrinks" class="row item-container"><!-- restaurant item -->
                         <div class="col-md-3">
-                            <div class="img img-f">
-                                <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
+                            <div class="img">
+                                <img src="\res\image\food-and-drinks\{{f.photoURL}}" width="100%" height="100%"/>
                                 <div class="hotelAdvert" style="bottom: 0">{{f.diningStyle}}</div>
                             </div>
                         </div><!-- image -->
@@ -284,11 +285,7 @@
                                 <div class="col-md-9"><!-- hotel name -->
                                     <h3 class="text-lg text-b text-primary">
                                         <a class="text-hover-primary">{{f.name}}</a>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                        <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
+                                        <span *ngFor="let star of f.stars" class="text-smd text-primary glyphicon glyphicon-star"></span>
                                     </h3>
                                     <a class="text-hover-k text-sm text-k">
                                         <span class="text-u">{{f.suburb}}</span>
@@ -296,8 +293,8 @@
                                     </a>
                                 </div><!-- hotel name end-->
 
-                                <div class="col-md-3 item-rating"><!-- rating -->
-                                    <span class="text-lg text-w text-hide">Fabulous!</span>
+                                <div *ngIf="f.userRating != -1" class="col-md-3 item-rating"><!-- rating -->
+                                    <span class="text-lg text-w text-hide">{{f.rating}}</span>
                                     <span class="text-sm text-w text-hide">{{f.userRating}}/5</span>
                                     <a>
                                         <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
@@ -306,7 +303,7 @@
                             </div>
 
                             <div class="row item-features">
-                                <span class="text-sm text-k">Menu Theme: {{f.menuTheme}}</span>
+                                <span class="text-xsm text-k">Menu Theme: {{f.menuTheme}} | </span>
 
                                 <span class="text-xsm text-k">Description: {{f.briefDescription}}</span>
 
@@ -314,12 +311,12 @@
 
                             <div class="row item-bottom">
                                 <div class="col-md-6">
-                                        <span class="text-lg text-b text-primary">$</span>
+                                        <span *ngFor="let expense of f.expense" class="text-lg text-b text-primary">$</span>
                                 </div>
                                 <div class="col-md-6"><!-- Add to cart -->
-                                    <button type="button" md-button (click)="setFood(time.eatingTime, f.name, f.foodAndDrinksID, 0)">Select</button>
-                                    <button type="button" md-button (click)="setFood(time.eatingTime, f.name, f.foodAndDrinksID, 1)">Select for all days</button>
-                                    <button type="button" md-button style="float: left;  margin-right: 10px">
+                                    <button type="button" md-button (click)="setFood(time.eatingTime, f.name, f.foodAndDrinksID, 0)" style="float: right">Select</button>
+                                    <button type="button" md-button (click)="setFood(time.eatingTime, f.name, f.foodAndDrinksID, 1)" style="float: right">Select for all days</button>
+                                    <button type="button" md-button style="float: right;  margin-right: 10px">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                         View
                                     </button>
@@ -336,90 +333,90 @@
             
                 ============================================-->
             <md-sidenav-container *ngIf="selected==4">
-                <md-sidenav #sidenav mode="push" opened="{{isTrue}}">
+                <md-sidenav #sidenav mode="side" opened="{{isTrue}}">
                     <div class="col" style="height: 100%; border-right: 1px solid rgba(221,221,221,1)">
                         <ul class="nav nav-pills nav-stacked" role="tablist">
                             <li><span class="text-md text-primary">Days</span></li>
                             <li *ngFor="let day of days">
                                 <a (click)="setDays(day)" *ngIf="day==selectedDay; else notActiveDay" style="border: 1px solid rgba(221,221,221,1); border-right: none;">{{day}}</a>
                                 <ng-template #notActiveDay>
-                                    <a (click)="setDays(day); sidenav.close()">{{day}}</a>
+                                    <a (click)="setDays(day)">{{day}}</a>
                                 </ng-template>
                             </li>        
                         </ul>
                     </div>
                 </md-sidenav>
 
-                <div class="container s-view" style="height: 100%"><!-- Activity day content -->
+                <div class="container view add-padding-top-15"><!-- Activity day content -->
                     <button type="button" md-raised-button (click)="sidenav.open()">
                         <span class="text-sm text-primary text-b">Select day:</span>
                         <span class="text-sm text-primary">{{selectedDay}}</span>
                     </button>
-                    <div class="s-view row"><!-- Menu container -->
-                        <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
-                            <span class="text-xsm">Add activites / events and attractions to your package.</span>
-                        </div>
 
-                        <div class="s-view-f row"><!-- breakfast container -->
-                            <div *ngFor="let activity of activities" class="row item-container"><!-- restaurant item --> 
-                                <div class="col-md-3">
-                                    <div class="img img-f">
-                                        <img src="\res\image\home-1.jpg" width="100%" height="100%"/>
-                                        <div class="hotelAdvert" style="bottom: 0">{{activity.diningStyle}}</div>
-                                    </div>
-                                </div><!-- image -->
-                                <div class="col-md-9 item-content item-content-short"><!-- content -->
-                                    <div class="row">
-                                        <div class="col-md-9"><!-- hotel name -->
-                                            <h3 class="text-lg text-b text-primary">
-                                                <a class="text-hover-primary">{{activity.name}}</a>
-                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                                <span class="text-smd text-primary glyphicon glyphicon-star"></span>
-                                                <span class="text-smd text-primary glyphicon glyphicon-star-empty"></span>
-                                            </h3>
-                                            <a class="text-hover-k text-sm text-k">
-                                                <span class="text-u">{{activity.suburb}}</span>
-                                                <span class="glyphicon glyphicon-globe"></span>
-                                            </a>
-                                        </div><!-- hotel name end-->
+                    <div class="row" style="width: 100%; border-bottom: 1px solid rgba(221,221,221,1); padding-bottom: 5px; padding-left: 40px">
+                        <span class="text-xsm">Add activites / events and attractions to your package.</span>
+                    </div>
 
-                                        <div class="col-md-3 item-rating"><!-- rating -->
-                                            <span class="text-lg text-w text-hide">Fabulous!</span>
-                                            <!--<span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>-->
-                                            <!-- Currently hardcoding the userRating to 4, since we don't have a userRating variable in the Activity table: -->
-                                            <span class="text-sm text-w text-hide">4/5</span>
-                                            <a>
-                                                <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
-                                            </a>
-                                        </div><!-- rating -->
-                                    </div>
-
-                                    <div class="row item-features">
-                                        <!--<span class="text-sm text-k">Menu Theme: {{activity.menuTheme}}</span>-->
-
-                                        <span class="text-xsm text-k">Description: {{activity.briefDescription}}</span>
-
-                                    </div>
-
-                                    <div class="row item-bottom">
-                                        <div class="col-md-8">
-                                                <span class="text-lg text-b text-primary">$</span>
-                                        </div>
-                                        <div class="col-xs-4"><!-- Add to cart -->
-                                            <button type="button" md-raised-button color="warn" >Select</button>
-                                            <button type="button" md-raised-button style="float: left;  margin-right: 10px">
-                                                <span class="glyphicon glyphicon-info-sign"></span>
-                                                View
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div><!--content -->
+                    <div *ngFor="let activity of activities" class="row item-container"><!-- activity item --> 
+                        <div class="col-md-3">
+                            <div class="img">
+                                <img src="\res\image\activties\{{activity.photoURL}}" width="100%" height="100%"/>
+                                <div *ngIf="activity.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
                             </div>
-                        </div>
-                    </div><!-- end menu container -->
-                </div><!-- end food content -->
+                        </div><!-- image -->
+
+                        <div class="col-md-9 item-content"><!-- content -->
+                            <div class="row">
+                                <div class="col-md-9"><!-- activity name -->
+                                    <h3 class="text-lg text-b text-primary">
+                                        <a class="text-hover-primary">{{activity.name}}</a>
+                                        <span *ngFor="let star of activity.stars" class="text-smd text-primary glyphicon glyphicon-star"></span>
+                                    </h3>
+                                    <a class="text-hover-k text-sm text-k">
+                                        <span class="text-u">{{activity.suburb}}</span>
+                                        <span class="glyphicon glyphicon-globe"></span>
+                                    </a>
+                                </div><!-- activity name end-->
+
+                                <div class="col-md-3 item-rating"><!-- rating -->
+                                    <span class="text-lg text-w text-hide">Fabulous!</span>
+                                    <!--<span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>-->
+                                    <!-- Currently hardcoding the userRating to 4, since we don't have a userRating variable in the Activity table: -->
+                                    <span class="text-sm text-w text-hide">4/5</span>
+                                    <a>
+                                        <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                                    </a>
+                                </div><!-- rating -->
+                            </div>
+
+                            <div class="row item-features">
+                                <!--<span class="text-sm text-k">Menu Theme: {{activity.menuTheme}}</span>-->
+
+                                <span class="text-xsm text-k">Description: {{activity.briefDescription}}</span>
+
+                            </div>
+
+                            <div class="row item-bottom">
+                                <div class="col-md-8">
+                                    <ng-container *ngIf="activity.price == 0; then showFree else showPrice"></ng-container>
+                                    <ng-template #showFree>
+                                        <span class="text-lg text-b text-primary">Free</span>
+                                    </ng-template>
+                                    <ng-template #showPrice>
+                                        <span class="text-lg text-b text-primary">${{activity.price}}</span>
+                                    </ng-template>
+                                </div>
+                                <div class="col-md-4"><!-- Add to cart -->
+                                    <button type="button" md-button style="float:right" >Select</button>
+                                    <button type="button" md-button style="float: right;  margin-right: 10px">
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                        View
+                                    </button>
+                                </div>
+                            </div>
+                        </div><!--content -->
+                    </div>
+                </div><!-- end activity content -->
             </md-sidenav-container>
 
             <!-- ===========================================

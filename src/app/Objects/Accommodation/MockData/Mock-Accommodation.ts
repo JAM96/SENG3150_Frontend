@@ -8,13 +8,19 @@ export const ACCOMMODATION_LIST: Accommodation[] = [
         accommodationSuburb: 'Newcastle',
         latitude: -32.9251,
         longitude: 151.7732,
-        accommodationStarRating: 3,
-        accommodationUserRating: 4,
+        accommodationStarRating: 5,
+        accommodationStars: [1,1,1,1,1],
+        accommodationUserRating: 5,
+        accommodationRating: 'Fabulous!',
         bestSeller: false,
         accommodationType: 'motel',
         pictureURL: 'ibis.jpg',
         websiteURL: 'crowneplaza.com',
         phoneNo: '042314921',
-        features: ['test', 'test']
+        topFeatures: [null],
+        features: [null],
+        room: [null],
+        pricePerNight: 323,
+        selectedRoom: null
     }
 ]

@@ -20,10 +20,10 @@
 
 @Injectable()
 export class AccommodationService {
-    accommodation               : Accommodation[];
-    accommodationFeatures       : Feature[];
-    accommodationRoomFeatures   : Feature[];
-    accommodationRooms          : Room[];
+    accommodation               : Accommodation[];  //Stores the accommodaiton in the service
+    accommodationFeatures       : Feature[];        //Stores all the accommodation features in the service
+    accommodationRoomFeatures   : Feature[];        //Stores all the room features in the service
+    accommodationRooms          : Room[];           //Stores all the accommodation rooms in the service
 
     constructor(private http : Http, public data : DataService) {
         console.log("Fectching from the database");
@@ -56,14 +56,14 @@ export class AccommodationService {
         var url = this.data.getApiUrl('accommodationRooms');
         return this.http.get(url)
             .map((response:Response) => response.json().result)
-                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve Accommodation'));
+                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve Accommodatio rooms'));
     }
     
     fetchAccommodationRoomFeatures() {
         var url = this.data.getApiUrl('accommodationRoomFeatures');
         return this.http.get(url)
             .map((response:Response) => response.json().result)
-                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve Accommodation'));
+                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve room features'));
     }
     
     getAccommodation() {

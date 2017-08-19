@@ -54,13 +54,13 @@ var AccommodationService = (function () {
         var url = this.data.getApiUrl('accommodationRooms');
         return this.http.get(url)
             .map(function (response) { return response.json().result; })
-            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Could not retrieve Accommodation'); });
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Could not retrieve Accommodatio rooms'); });
     };
     AccommodationService.prototype.fetchAccommodationRoomFeatures = function () {
         var url = this.data.getApiUrl('accommodationRoomFeatures');
         return this.http.get(url)
             .map(function (response) { return response.json().result; })
-            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Could not retrieve Accommodation'); });
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Could not retrieve room features'); });
     };
     AccommodationService.prototype.getAccommodation = function () {
         console.log('Returning accommodation promise' + this.accommodation);

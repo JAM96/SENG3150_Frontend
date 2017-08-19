@@ -235,18 +235,20 @@ var CustomPackageComponent = (function () {
         dialogRef.afterClosed().subscribe(function (result) {
             console.log("selected room is: ");
             console.log(result);
-            for (var i = 0; i < accommodation.room.length; i++) {
-                if (accommodation.room[i].roomID = result)
-                    selectedRoom = accommodation.room[i];
+            if (result != null) {
+                for (var i = 0; i < accommodation.room.length; i++) {
+                    if (accommodation.room[i].roomID = result)
+                        selectedRoom = accommodation.room[i];
+                }
+                _this.custom.accommodation = accommodation;
+                _this.custom.accommodation.selectedRoom = selectedRoom;
+                _this.selectedAccommodation = accommodation.accommodationID;
+                _this.selectedAccommodationName = accommodation.accommodationName;
+                var price = selectedRoom.roomPrice;
+                _this.custom.packageCost = _this.custom.packageCost - _this.previousSelectedAccommodation + price * _this.duration; //update the package cost
+                _this.previousSelectedAccommodation = price * _this.duration; //Replace the previous accommodation cost to the selected one
+                console.info('[INFO] Added ', _this.custom.accommodation, ' to cart.');
             }
-            _this.custom.accommodation = accommodation;
-            _this.custom.accommodation.selectedRoom = selectedRoom;
-            _this.selectedAccommodation = accommodation.accommodationID;
-            _this.selectedAccommodationName = accommodation.accommodationName;
-            var price = selectedRoom.roomPrice;
-            _this.custom.packageCost = _this.custom.packageCost - _this.previousSelectedAccommodation + price * _this.duration; //update the package cost
-            _this.previousSelectedAccommodation = price * _this.duration; //Replace the previous accommodation cost to the selected one
-            console.info('[INFO] Added ', _this.custom.accommodation, ' to cart.');
         });
     };
     CustomPackageComponent.prototype.setFood = function (menuType, item, id, setForAll, time) {
@@ -338,11 +340,10 @@ var CustomPackageComponent = (function () {
         console.log('retrieving food and drinks');
         //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
         this.startLoading();
-        this.foodAndDrinksService.getFoodAndDrinks().subscribe(function (fad) { return _this.foodAndDrinks = fad; });
-        //fake loading bar
-        setTimeout(function () {
-            _this.completeLoading();
-        }, 1000);
+        this.foodAndDrinksService.getFoodAndDrinks()
+            .then(function (fad) { return _this.foodAndDrinks = fad; })
+            .then(function () { return _this.completeLoading(); });
+        //Initialise the Food and Drinks array
         var temp;
         this.custom.foodAndDrinks = [];
         //duration of trip * 4 options

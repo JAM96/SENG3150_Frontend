@@ -288,21 +288,24 @@ export class CustomPackageComponent implements OnInit{
             console.log("selected room is: ");
             console.log(result);
 
-            for(var i = 0; i < accommodation.room.length; i++){
-                if(accommodation.room[i].roomID = result)
-                    selectedRoom = accommodation.room[i]
+            if(result != null) {
+                for(var i = 0; i < accommodation.room.length; i++){
+                    if(accommodation.room[i].roomID = result)
+                        selectedRoom = accommodation.room[i]
+                }
+                
+                
+                this.custom.accommodation = accommodation;
+                this.custom.accommodation.selectedRoom = selectedRoom;
+                this.selectedAccommodation = accommodation.accommodationID;
+                this.selectedAccommodationName = accommodation.accommodationName;
+
+                var price = selectedRoom.roomPrice;
+
+                this.custom.packageCost = this.custom.packageCost - this.previousSelectedAccommodation + price * this.duration;  //update the package cost
+                this.previousSelectedAccommodation = price * this.duration; //Replace the previous accommodation cost to the selected one
+                console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
             }
-            
-            this.custom.accommodation = accommodation;
-            this.custom.accommodation.selectedRoom = selectedRoom;
-            this.selectedAccommodation = accommodation.accommodationID;
-            this.selectedAccommodationName = accommodation.accommodationName;
-
-            var price = selectedRoom.roomPrice;
-
-            this.custom.packageCost = this.custom.packageCost - this.previousSelectedAccommodation + price * this.duration;  //update the package cost
-            this.previousSelectedAccommodation = price * this.duration; //Replace the previous accommodation cost to the selected one
-            console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
         });
     }
 
@@ -405,17 +408,14 @@ export class CustomPackageComponent implements OnInit{
         console.log('retrieving food and drinks');
         //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
         this.startLoading();
-       
-        this.foodAndDrinksService.getFoodAndDrinks().subscribe((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad);
-        
-        //fake loading bar
-        setTimeout(() => {
-            this.completeLoading();
-        }, 1000);
+        this.foodAndDrinksService.getFoodAndDrinks()
+            .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
+            .then(() => this.completeLoading());
 
        
+
+        //Initialise the Food and Drinks array
         var temp : FoodAndDrinksForm;
-
         this.custom.foodAndDrinks = [];
 
         //duration of trip * 4 options
