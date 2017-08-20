@@ -15,6 +15,8 @@ export const ACTIVITY_LIST: Activity[] = [
         limitedTimeOnly: false,
         startDate: new Date(4,23,17),
         endDate: new Date(4,23,17),
-        bestSeller: true
+        bestSeller: true,
+        selectedDay: null,
+        selectedTime: null
     }
 ]

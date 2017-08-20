@@ -34,8 +34,8 @@ var home_component_1 = require("../Components/home/home.component");
 //Navigation Pages
 var about_component_1 = require("../Components/about/about.component");
 var eventoverview_component_1 = require("../Components/event/eventoverview.component");
-var activities_component_1 = require("../Components/activities/activities.component");
-var food_component_1 = require("../Components/food-and-drinks/food.component");
+var activity_component_1 = require("../Components/activities/activity.component");
+var food_and_drinks_component_1 = require("../Components/food-and-drinks/food-and-drinks.component");
 var accomodation_component_1 = require("../Components/accomodation/accomodation.component");
 var contact_component_1 = require("../Components/contact/contact.component");
 var shoppingCart_component_1 = require("../Components/shoppingCart/shoppingCart.component");
@@ -50,8 +50,6 @@ var viewVouchers_component_1 = require("../Components/profile/viewVouchers/viewV
 var leaveFeedback_component_1 = require("../Components/profile/leaveFeedback/leaveFeedback.component");
 //packages components
 var custom_package_component_1 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
-var custom_package_component_2 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
-var custom_package_component_3 = require("../Components/package/packages/custom-package/custom-form/custom-package.component");
 var custom_calendar_component_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component");
 var calendar_truncate_pipe_1 = require("../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe");
 var packagecategory_component_1 = require("../Components/package/packagecategory.component");
@@ -59,13 +57,15 @@ var packagesview_component_1 = require("../Components/package/packages/packagesv
 //import services here
 var can_deactivate_guard_service_1 = require("../Components/guards/can-deactivate-guard.service");
 var data_service_1 = require("../Services/data.service");
+var individual_accommodation_service_1 = require("../Services/Accommodation/individual-accommodation.service");
+var individual_food_and_drinks_service_1 = require("../Services/FoodAndDrinks/individual-food-and-drinks.service");
+var individual_activity_service_1 = require("../Services/Activity/individual-activity.service");
 //ng2 
 var ng2_aside_1 = require("ng2-aside");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
 //calendar
 //custom package service
 var custom_package_service_1 = require("../Components/package/packages/custom-package/custom-package-service/custom-package.service");
-var individual_accommodation_service_1 = require("../Services/Accommodation/individual-accommodation.service");
 //test component
 var test_component_1 = require("../Components/test-component/test.component");
 //add module imports and component declarations here...
@@ -104,14 +104,16 @@ AppModule = __decorate([
             test_component_1.TestComponent,
             home_component_1.HomeComponent,
             about_component_1.AboutComponent,
-            activities_component_1.ActivitiesComponent,
+            activity_component_1.ActivityComponent,
             admin_component_1.AdminComponent,
             create_custom_package_component_1.CreateCustomPackageInitialComponent,
             createAccommodation_component_1.CreateAccommodationComponent,
             navigationtop_component_1.NavigationTopComponent,
             navigationtop_component_1.LoginPopupComponent,
-            custom_package_component_2.BudgetChangeComponent,
-            custom_package_component_3.AddAccommodationComponent,
+            custom_package_component_1.BudgetChangeComponent,
+            custom_package_component_1.AddAccommodationComponent,
+            custom_package_component_1.AddFoodAndDrinksComponent,
+            custom_package_component_1.AddActivityComponent,
             navigationtop_component_1.notificationsPopupComponent,
             eventoverview_component_1.EventViewComponent,
             packagecategory_component_1.PackageCategoryComponentDialog,
@@ -119,7 +121,7 @@ AppModule = __decorate([
             packagesview_component_1.PackagesComponent,
             profile_component_1.ProfileComponent,
             custom_package_component_1.CustomPackageComponent,
-            food_component_1.FoodComponent,
+            food_and_drinks_component_1.FoodAndDrinksComponent,
             accomodation_component_1.AccomodationComponent,
             contact_component_1.ContactComponent,
             shoppingCart_component_1.ShoppingCartComponent,
@@ -129,11 +131,22 @@ AppModule = __decorate([
             custom_calendar_component_1.CustomCalendarComponent,
             calendar_truncate_pipe_1.TruncatePipe
         ],
-        bootstrap: [app_component_1.AppComponent, packagecategory_component_1.PackageCategoryComponentDialog, custom_package_component_2.BudgetChangeComponent, navigationtop_component_1.LoginPopupComponent, custom_package_component_3.AddAccommodationComponent, navigationtop_component_1.notificationsPopupComponent],
+        bootstrap: [
+            app_component_1.AppComponent,
+            packagecategory_component_1.PackageCategoryComponentDialog,
+            custom_package_component_1.BudgetChangeComponent,
+            navigationtop_component_1.LoginPopupComponent,
+            custom_package_component_1.AddAccommodationComponent,
+            custom_package_component_1.AddFoodAndDrinksComponent,
+            custom_package_component_1.AddActivityComponent,
+            navigationtop_component_1.notificationsPopupComponent
+        ],
         providers: [
             app_routing_1.appRoutingProviders,
             custom_package_service_1.CustomPackageService,
             individual_accommodation_service_1.IndividualAccommodationService,
+            individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
+            individual_activity_service_1.IndividualActivityService,
             data_service_1.DataService,
             can_deactivate_guard_service_1.CanDeactivateGuard,
         ]

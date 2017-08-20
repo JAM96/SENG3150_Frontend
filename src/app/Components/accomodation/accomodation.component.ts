@@ -10,7 +10,6 @@ import {IndividualAccommodationService} from '../../Services/Accommodation/indiv
 @Component({
     moduleId: module.id,
     selector: 'accomodation',
-    // templateUrl: 'accomodation.component.html',
     templateUrl: 'accomodation.component.html',
     styles: [`agm-map {
                 height: 300px;
@@ -20,8 +19,7 @@ import {IndividualAccommodationService} from '../../Services/Accommodation/indiv
 
 export class AccomodationComponent implements OnInit{
     accommodation : Accommodation;
-
-    title: string = 'My first AGM project';
+    
     //-32.9252731,151.7734869
     lat: number;
     lng: number;

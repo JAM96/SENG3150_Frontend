@@ -1,0 +1,12 @@
+<h1 md-dialog-title>Add {{foodAndDrinks.name}} to your package:</h1>
+<div md-dialog-content>Select what time you want to book for:</div>
+<div md-dialog-actions>
+    <button *ngFor="let time of foodAndDrinks.timeAvailable" md-button md-dialog-close="{{time}}">{{time}}</button>
+    
+    <ng-container *ngIf="checkMenuType()">
+        <button md-button md-dialog-close="anytime">Anytime</button>
+    </ng-container>
+</div>
+<div md-dialog-content *ngIf="checkMenuType()">
+    Note: selecting anytime does not guarantee a space in the selected venue.
+</div>

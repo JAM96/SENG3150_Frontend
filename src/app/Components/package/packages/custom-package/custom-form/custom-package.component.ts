@@ -4,6 +4,8 @@
     import {Router} from '@angular/router';
 //External Components
     import {AccomodationComponent} from '../../../../../Components/accomodation/accomodation.component';
+    import {ActivityComponent} from '../../../../../Components/activities/activity.component';
+    import {FoodAndDrinksComponent} from '../../../../../Components/food-and-drinks/food-and-drinks.component';
 //Objects
     import {Accommodation} from '../../../../../Objects/Accommodation/Accommodation';
     import {Room} from '../../../../../Objects/Accommodation/Room';
@@ -15,9 +17,11 @@
     import {TravelInformation} from './objects/TravelInformation';
 //Services
     import {AccommodationService} from '../../../../../Services/Accommodation/accommodation.service';
-    import {IndividualAccommodationService} from '../../../../../Services/Accommodation/individual-accommodation.service';
     import {FoodAndDrinksService} from '../../../../../Services/FoodAndDrinks/food-and-drinks.service';
     import {ActivityService} from '../../../../../Services/activity/activity.service';
+    import {IndividualAccommodationService} from '../../../../../Services/Accommodation/individual-accommodation.service';
+    import {IndividualFoodAndDrinksService} from '../../../../../Services/FoodAndDrinks/individual-food-and-drinks.service';
+    import {IndividualActivityService} from '../../../../../Services/Activity/individual-activity.service';
     import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
     import {CustomPackageService} from '../custom-package-service/custom-package.service';
 
@@ -78,12 +82,15 @@ export class CustomPackageComponent implements OnInit{
         {display: 'displayO', condition: 'none', value: 4, eatingTime: 'Other'}
     ]   // this object will be in charge of iterating through the four times for food.
 
+    //declare services
     constructor(
         private accommodationService            :   AccommodationService,
-        private individualAccommodationService  :   IndividualAccommodationService,
         private foodAndDrinksService            :   FoodAndDrinksService,
         private activityService                 :   ActivityService,
         private packageService                  :   CustomPackageService,
+        private individualAccommodationService  :   IndividualAccommodationService,
+        private individualFoodAndDrinksService  :   IndividualFoodAndDrinksService,
+        private individualActivityService       :   IndividualActivityService,
         private slimLoadingBarService           :   SlimLoadingBarService,
         private router                          :   Router,
         public dialog                           :   MdDialog
@@ -185,19 +192,26 @@ export class CustomPackageComponent implements OnInit{
         console.log('[INFO] Days Array: ', this.days);
     }
 
-    viewItem(item : number, name : string, id : string){
-        for(var i = 0; i < this.accommodationList.length; i++) {
-            console.log(i);
-            if(this.accommodationList[i].accommodationID == id) {
-                console.log("FOUND");
-                console.log(this.accommodationList[i]);
-                this.individualAccommodationService.setAccommodation(this.accommodationList[i]);
-                break;
-            }
-        }
+    viewItem(item : number, accommodation : Accommodation, foodAndDrinks : FoodAndDrinks, activity : Activity){
+        //item 1: Accommodation, 2: Food and Drinks, 3: Activities
 
-        let dialogRef = this.dialog.open(AccomodationComponent);
-        dialogRef.afterClosed().subscribe(result => {})
+        switch(item) {
+            case 1: 
+                this.individualAccommodationService.setAccommodation(accommodation);
+                let dialogRef = this.dialog.open(AccomodationComponent);
+                dialogRef.afterClosed().subscribe(result => {});
+                break;
+            case 2: 
+                this.individualFoodAndDrinksService.setFoodAndDrinks(foodAndDrinks);
+                let dialogRef2 = this.dialog.open(FoodAndDrinksComponent);
+                dialogRef2.afterClosed().subscribe(result => {});
+                break;
+            case 3: 
+                this.individualActivityService.setActivity(activity);
+                let dialogRef3 = this.dialog.open(ActivityComponent);
+                dialogRef3.afterClosed().subscribe(result => {});
+                break;
+        }   
     }
 
     //fake loading atm
@@ -309,61 +323,145 @@ export class CustomPackageComponent implements OnInit{
         });
     }
 
-    setFood(menuType : string, item : string, id : string, setForAll : boolean, time : string) {
-        console.log('Setting food with the following parameters: ');
-                console.log(' - Time of Day: ', menuType);
-                console.log(' - Day: ', this.selectedDay);
-                console.log(' - Item: ', item);
-                console.log(' - Set all: ', setForAll);
-        var dayShift = 0; 
+    setFood(foodAndDrinks : FoodAndDrinks, setForAll : boolean) {
+        //this.foodForm
+        var selectedTime : string;
 
-        switch(menuType) {
-            case 'Breakfast':
-                this.foodForm[0].condition = 'none';    //hide breakfast form
-                this.foodForm[1].condition = 'block';   //show lunch form
-                break;
-            case 'Lunch':
-                this.foodForm[1].condition = 'none';    //hide lunch form
-                this.foodForm[2].condition = 'block';   //show dinner form
-                dayShift = this.duration;
-                break;
-            case 'Dinner':
-                this.foodForm[2].condition = 'none';    //hide dinner form
-                this.foodForm[3].condition = 'block';   //show other form
-                dayShift = this.duration*2;
-                break;
-            case 'Other':
-                this.foodForm[3].condition = 'none';    //hide other form;
-                dayShift = this.duration*3;
-                break;
-        }
+        let dialogRef = this.dialog.open(AddFoodAndDrinksComponent, {
+            data: foodAndDrinks
+        });
 
-        if(!setForAll){
-            var tempItem : FoodAndDrinksForm = {
-                type        : menuType,
-                day         : this.selectedDay,
-                venueName   : item,
-                venueID     : id, 
-                time        : time
-            }
-            this.custom.foodAndDrinks[dayShift + this.selectedDay-1] = tempItem;
-        } else {
-            for (let i = dayShift; i < dayShift+this.duration; i++) {
-                 var tempItemA : FoodAndDrinksForm = {
-                    type        : menuType,
-                    day         : i-dayShift + 1,
-                    venueName   : item,
-                    venueID     : id, 
-                    time        : time
+        dialogRef.afterClosed().subscribe(result => {
+            console.log("selected time is: ");
+            console.log(result);    
+
+            if(result != null) {
+                //If user has selected a value then continue adding item to the package
+                if(setForAll) {
+                    //if the user has selected to add to all days
+                    for(var i = 0; i < this.days.length; i++) {
+                        //create a temp object and deep copy the foodAndDrinks object to it
+                        var temp = Object.assign({}, foodAndDrinks);
+
+                        //set the day and time selected to the temp object
+                        temp.selectedDay = this.days[i];
+                        temp.selectedTime = result;
+
+                        //push to the foodAndDrinks array
+                        this.custom.foodAndDrinks.push(temp);
+                        this.custom.selectedFoodAndDrinks.push(temp.foodAndDrinksID+this.days[i]);
+                    }
+                } else {
+                    //user has selected to add to day selected
+                    foodAndDrinks.selectedDay = this.selectedDay;
+                    foodAndDrinks.selectedTime = result;
+                    this.custom.foodAndDrinks.push(foodAndDrinks);
+                    this.custom.selectedFoodAndDrinks.push(foodAndDrinks.foodAndDrinksID+this.selectedDay);
                 }
 
-                this.custom.foodAndDrinks[i] = tempItemA;
+                console.info('[INFO] Added ', this.custom.foodAndDrinks, ' to cart.');
+            }
+        });
+    }
+
+    removeFood(foodAndDrinks : FoodAndDrinks, setForAll : boolean) {
+        if(setForAll) {
+            var temp = this.custom.foodAndDrinks.filter(function(el) {
+                return el.foodAndDrinksID !== foodAndDrinks.foodAndDrinksID;
+            })
+
+            this.custom.foodAndDrinks = temp;
+
+            for(var i = 0; i < this.custom.selectedFoodAndDrinks.length; i++) {
+                for(var j = 1; j <= this.days.length; j++) {
+                    if(this.custom.selectedFoodAndDrinks[i] == foodAndDrinks.foodAndDrinksID + j){
+                        this.custom.selectedFoodAndDrinks.splice(j, 1);
+                    }
+                }
+            }
+        } else {
+            for(var i = 0; i < this.custom.foodAndDrinks.length; i++) {
+                if(this.custom.foodAndDrinks[i].foodAndDrinksID == foodAndDrinks.foodAndDrinksID
+                    && this.custom.foodAndDrinks[i].selectedDay == this.selectedDay
+                ) {
+                    this.custom.foodAndDrinks.splice(i, 1);
+                }
+            }
+
+            for(var j = 0; j < this.custom.selectedFoodAndDrinks.length; j++) {
+                if(this.custom.selectedFoodAndDrinks[j] == foodAndDrinks.foodAndDrinksID + this.selectedDay){
+                    this.custom.selectedFoodAndDrinks.splice(j, 1);
+                }
             }
         }
 
         console.log(this.custom.foodAndDrinks);
     }
     
+    /*  The checkFood function goes through the selecedFoodAndDrinks array
+        and compares the item id and the selected item id
+        
+        If they are equal, then item has been added to the package, hence show 'Remove Item'
+        If they are not equal, then item has not been added to the package, hence show 'Add Item'
+    */
+    checkFood(item : FoodAndDrinks) : boolean {
+        for(var i = 0; i < this.custom.selectedFoodAndDrinks.length; i++)
+            if(item.foodAndDrinksID + this.selectedDay == this.custom.selectedFoodAndDrinks[i]) 
+                return false;
+        return true;
+    }
+
+    setActivity(activity : Activity) {
+        //this.foodForm
+        var selectedTime : string;
+
+        let dialogRef = this.dialog.open(AddActivityComponent, {
+            data: activity
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log("selected time is: ");
+            console.log(result);  
+              
+            if(result != null) {
+                activity.selectedDay = this.selectedDay;
+                activity.selectedTime = result;
+                this.custom.activity.push(activity);
+                this.custom.selectedActivities.push(activity.activityID+this.selectedDay);
+
+                this.custom.packageCost = this.custom.packageCost + activity.price;
+
+                console.info('[INFO] Added ', this.custom.activity, ' to cart.');
+            }
+        });
+    }
+
+    removeActivity(activity : Activity) {
+        for(var i = 0; i < this.custom.activity.length; i++) {
+            if(this.custom.activity[i].activityID == activity.activityID
+                && this.custom.activity[i].selectedDay == this.selectedDay
+            ) {
+                this.custom.activity.splice(i, 1);
+            }
+        }
+
+        for(var j = 0; j < this.custom.selectedActivities.length; j++) {
+            if(this.custom.selectedActivities[j] == activity.activityID + this.selectedDay){
+                this.custom.selectedActivities.splice(j, 1);
+            }
+        }
+        
+        this.custom.packageCost = this.custom.packageCost - activity.price;
+        console.log(this.custom.activity);
+    }
+
+    checkActivity(item : Activity) : boolean {
+        for(var i = 0; i < this.custom.selectedActivities.length; i++)
+            if(item.activityID + this.selectedDay == this.custom.selectedActivities[i]) 
+                return false;
+        return true;
+    }
+
     /**
      * LOADING DATA
      */
@@ -406,36 +504,30 @@ export class CustomPackageComponent implements OnInit{
     /* Retrieves all food objects from the backend */
     getFoodAndDrinks() {
         console.log('retrieving food and drinks');
-        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
+
         this.startLoading();
-        this.foodAndDrinksService.getFoodAndDrinks()
-            .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
-            .then(() => this.completeLoading());
+        this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad)
+        
+        // this.foodAndDrinksService.getFoodAndDrinks()
+        //     .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
+             .then(() => this.completeLoading());
 
        
 
-        //Initialise the Food and Drinks array
-        var temp : FoodAndDrinksForm;
         this.custom.foodAndDrinks = [];
-
-        //duration of trip * 4 options
-        for(var i = 0; i < this.days.length*4; i++) {
-            this.custom.foodAndDrinks[i] = Object.assign({}, temp);
-        }
+        this.custom.selectedFoodAndDrinks = [];
     }
 
     /* Retrieves all activity objects from the backend */
     getActivities() {
         console.log('retrieving Activities');
         //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
-        this.startLoading();
+        //this.startLoading();
        
         this.activityService.getActivities().subscribe((activity : Activity[]) => this.activities = activity);
         
-        //fake loading bar
-        setTimeout(() => {
-            this.completeLoading();
-        }, 1000);
+        this.custom.activity = [];
+        this.custom.selectedActivities = [];
     }
 
     canDeactivate(){ 
@@ -510,4 +602,50 @@ export class AddAccommodationComponent{
                     console.log("imported value to dialog is: ");
                     console.log(this.rooms);
                 }
+}
+
+@Component({
+    moduleId: module.id,
+    selector: 'AddFoodAndDrinksComponent',
+    templateUrl: 'AddFoodAndDrinksComponent.html'
+})
+export class AddFoodAndDrinksComponent{
+    foodAndDrinks : FoodAndDrinks;
+
+    constructor (public dialogRef: MdDialogRef<AddFoodAndDrinksComponent>,
+                @Inject(MD_DIALOG_DATA) public data: any) {
+                    this.foodAndDrinks = data;
+                    console.log("imported value to dialog is: ");
+                    console.log(this.foodAndDrinks);
+                }
+
+    checkMenuType() : boolean {
+        for(var i = 0; i < this.foodAndDrinks.menuType.length; i++) {
+            if(this.foodAndDrinks.menuType[i] == 'Bar') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+@Component({
+    moduleId: module.id,
+    selector: 'AddActivityComponent',
+    templateUrl: 'AddActivityComponent.html'
+})
+export class AddActivityComponent{
+    activity : Activity;
+    time : Date = new Date();
+
+    constructor (public dialogRef: MdDialogRef<AddActivityComponent>,
+                @Inject(MD_DIALOG_DATA) public data: any) {
+                    this.activity = data;
+                    console.log("imported value to dialog is: ");
+                    console.log(this.activity);
+                }
+    returnObj() : string{
+        return '' + this.time.getHours() + this.time.getMinutes();
+    }
 }

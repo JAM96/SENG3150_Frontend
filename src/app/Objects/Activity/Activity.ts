@@ -15,4 +15,7 @@ export interface Activity {
     startDate           :   Date;
     endDate             :   Date;
     bestSeller          :   boolean;
+
+    selectedDay         :   number;
+    selectedTime        :   string;
 }

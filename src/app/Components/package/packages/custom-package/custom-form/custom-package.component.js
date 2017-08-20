@@ -18,21 +18,28 @@ var material_1 = require("@angular/material");
 var router_1 = require("@angular/router");
 //External Components
 var accomodation_component_1 = require("../../../../../Components/accomodation/accomodation.component");
+var activity_component_1 = require("../../../../../Components/activities/activity.component");
+var food_and_drinks_component_1 = require("../../../../../Components/food-and-drinks/food-and-drinks.component");
 //Services
 var accommodation_service_1 = require("../../../../../Services/Accommodation/accommodation.service");
-var individual_accommodation_service_1 = require("../../../../../Services/Accommodation/individual-accommodation.service");
 var food_and_drinks_service_1 = require("../../../../../Services/FoodAndDrinks/food-and-drinks.service");
 var activity_service_1 = require("../../../../../Services/activity/activity.service");
+var individual_accommodation_service_1 = require("../../../../../Services/Accommodation/individual-accommodation.service");
+var individual_food_and_drinks_service_1 = require("../../../../../Services/FoodAndDrinks/individual-food-and-drinks.service");
+var individual_activity_service_1 = require("../../../../../Services/Activity/individual-activity.service");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
 var custom_package_service_1 = require("../custom-package-service/custom-package.service");
 //Custom Package Component
 var CustomPackageComponent = (function () {
-    function CustomPackageComponent(accommodationService, individualAccommodationService, foodAndDrinksService, activityService, packageService, slimLoadingBarService, router, dialog) {
+    //declare services
+    function CustomPackageComponent(accommodationService, foodAndDrinksService, activityService, packageService, individualAccommodationService, individualFoodAndDrinksService, individualActivityService, slimLoadingBarService, router, dialog) {
         this.accommodationService = accommodationService;
-        this.individualAccommodationService = individualAccommodationService;
         this.foodAndDrinksService = foodAndDrinksService;
         this.activityService = activityService;
         this.packageService = packageService;
+        this.individualAccommodationService = individualAccommodationService;
+        this.individualFoodAndDrinksService = individualFoodAndDrinksService;
+        this.individualActivityService = individualActivityService;
         this.slimLoadingBarService = slimLoadingBarService;
         this.router = router;
         this.dialog = dialog;
@@ -141,18 +148,25 @@ var CustomPackageComponent = (function () {
         }
         console.log('[INFO] Days Array: ', this.days);
     };
-    CustomPackageComponent.prototype.viewItem = function (item, name, id) {
-        for (var i = 0; i < this.accommodationList.length; i++) {
-            console.log(i);
-            if (this.accommodationList[i].accommodationID == id) {
-                console.log("FOUND");
-                console.log(this.accommodationList[i]);
-                this.individualAccommodationService.setAccommodation(this.accommodationList[i]);
+    CustomPackageComponent.prototype.viewItem = function (item, accommodation, foodAndDrinks, activity) {
+        //item 1: Accommodation, 2: Food and Drinks, 3: Activities
+        switch (item) {
+            case 1:
+                this.individualAccommodationService.setAccommodation(accommodation);
+                var dialogRef = this.dialog.open(accomodation_component_1.AccomodationComponent);
+                dialogRef.afterClosed().subscribe(function (result) { });
                 break;
-            }
+            case 2:
+                this.individualFoodAndDrinksService.setFoodAndDrinks(foodAndDrinks);
+                var dialogRef2 = this.dialog.open(food_and_drinks_component_1.FoodAndDrinksComponent);
+                dialogRef2.afterClosed().subscribe(function (result) { });
+                break;
+            case 3:
+                this.individualActivityService.setActivity(activity);
+                var dialogRef3 = this.dialog.open(activity_component_1.ActivityComponent);
+                dialogRef3.afterClosed().subscribe(function (result) { });
+                break;
         }
-        var dialogRef = this.dialog.open(accomodation_component_1.AccomodationComponent);
-        dialogRef.afterClosed().subscribe(function (result) { });
     };
     //fake loading atm
     CustomPackageComponent.prototype.startLoading = function () {
@@ -251,56 +265,123 @@ var CustomPackageComponent = (function () {
             }
         });
     };
-    CustomPackageComponent.prototype.setFood = function (menuType, item, id, setForAll, time) {
-        console.log('Setting food with the following parameters: ');
-        console.log(' - Time of Day: ', menuType);
-        console.log(' - Day: ', this.selectedDay);
-        console.log(' - Item: ', item);
-        console.log(' - Set all: ', setForAll);
-        var dayShift = 0;
-        switch (menuType) {
-            case 'Breakfast':
-                this.foodForm[0].condition = 'none'; //hide breakfast form
-                this.foodForm[1].condition = 'block'; //show lunch form
-                break;
-            case 'Lunch':
-                this.foodForm[1].condition = 'none'; //hide lunch form
-                this.foodForm[2].condition = 'block'; //show dinner form
-                dayShift = this.duration;
-                break;
-            case 'Dinner':
-                this.foodForm[2].condition = 'none'; //hide dinner form
-                this.foodForm[3].condition = 'block'; //show other form
-                dayShift = this.duration * 2;
-                break;
-            case 'Other':
-                this.foodForm[3].condition = 'none'; //hide other form;
-                dayShift = this.duration * 3;
-                break;
-        }
-        if (!setForAll) {
-            var tempItem = {
-                type: menuType,
-                day: this.selectedDay,
-                venueName: item,
-                venueID: id,
-                time: time
-            };
-            this.custom.foodAndDrinks[dayShift + this.selectedDay - 1] = tempItem;
+    CustomPackageComponent.prototype.setFood = function (foodAndDrinks, setForAll) {
+        var _this = this;
+        //this.foodForm
+        var selectedTime;
+        var dialogRef = this.dialog.open(AddFoodAndDrinksComponent, {
+            data: foodAndDrinks
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log("selected time is: ");
+            console.log(result);
+            if (result != null) {
+                //If user has selected a value then continue adding item to the package
+                if (setForAll) {
+                    //if the user has selected to add to all days
+                    for (var i = 0; i < _this.days.length; i++) {
+                        //create a temp object and deep copy the foodAndDrinks object to it
+                        var temp = Object.assign({}, foodAndDrinks);
+                        //set the day and time selected to the temp object
+                        temp.selectedDay = _this.days[i];
+                        temp.selectedTime = result;
+                        //push to the foodAndDrinks array
+                        _this.custom.foodAndDrinks.push(temp);
+                        _this.custom.selectedFoodAndDrinks.push(temp.foodAndDrinksID + _this.days[i]);
+                    }
+                }
+                else {
+                    //user has selected to add to day selected
+                    foodAndDrinks.selectedDay = _this.selectedDay;
+                    foodAndDrinks.selectedTime = result;
+                    _this.custom.foodAndDrinks.push(foodAndDrinks);
+                    _this.custom.selectedFoodAndDrinks.push(foodAndDrinks.foodAndDrinksID + _this.selectedDay);
+                }
+                console.info('[INFO] Added ', _this.custom.foodAndDrinks, ' to cart.');
+            }
+        });
+    };
+    CustomPackageComponent.prototype.removeFood = function (foodAndDrinks, setForAll) {
+        if (setForAll) {
+            var temp = this.custom.foodAndDrinks.filter(function (el) {
+                return el.foodAndDrinksID !== foodAndDrinks.foodAndDrinksID;
+            });
+            this.custom.foodAndDrinks = temp;
+            for (var i = 0; i < this.custom.selectedFoodAndDrinks.length; i++) {
+                for (var j = 1; j <= this.days.length; j++) {
+                    if (this.custom.selectedFoodAndDrinks[i] == foodAndDrinks.foodAndDrinksID + j) {
+                        this.custom.selectedFoodAndDrinks.splice(j, 1);
+                    }
+                }
+            }
         }
         else {
-            for (var i = dayShift; i < dayShift + this.duration; i++) {
-                var tempItemA = {
-                    type: menuType,
-                    day: i - dayShift + 1,
-                    venueName: item,
-                    venueID: id,
-                    time: time
-                };
-                this.custom.foodAndDrinks[i] = tempItemA;
+            for (var i = 0; i < this.custom.foodAndDrinks.length; i++) {
+                if (this.custom.foodAndDrinks[i].foodAndDrinksID == foodAndDrinks.foodAndDrinksID
+                    && this.custom.foodAndDrinks[i].selectedDay == this.selectedDay) {
+                    this.custom.foodAndDrinks.splice(i, 1);
+                }
+            }
+            for (var j = 0; j < this.custom.selectedFoodAndDrinks.length; j++) {
+                if (this.custom.selectedFoodAndDrinks[j] == foodAndDrinks.foodAndDrinksID + this.selectedDay) {
+                    this.custom.selectedFoodAndDrinks.splice(j, 1);
+                }
             }
         }
         console.log(this.custom.foodAndDrinks);
+    };
+    /*  The checkFood function goes through the selecedFoodAndDrinks array
+        and compares the item id and the selected item id
+        
+        If they are equal, then item has been added to the package, hence show 'Remove Item'
+        If they are not equal, then item has not been added to the package, hence show 'Add Item'
+    */
+    CustomPackageComponent.prototype.checkFood = function (item) {
+        for (var i = 0; i < this.custom.selectedFoodAndDrinks.length; i++)
+            if (item.foodAndDrinksID + this.selectedDay == this.custom.selectedFoodAndDrinks[i])
+                return false;
+        return true;
+    };
+    CustomPackageComponent.prototype.setActivity = function (activity) {
+        var _this = this;
+        //this.foodForm
+        var selectedTime;
+        var dialogRef = this.dialog.open(AddActivityComponent, {
+            data: activity
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log("selected time is: ");
+            console.log(result);
+            if (result != null) {
+                activity.selectedDay = _this.selectedDay;
+                activity.selectedTime = result;
+                _this.custom.activity.push(activity);
+                _this.custom.selectedActivities.push(activity.activityID + _this.selectedDay);
+                _this.custom.packageCost = _this.custom.packageCost + activity.price;
+                console.info('[INFO] Added ', _this.custom.activity, ' to cart.');
+            }
+        });
+    };
+    CustomPackageComponent.prototype.removeActivity = function (activity) {
+        for (var i = 0; i < this.custom.activity.length; i++) {
+            if (this.custom.activity[i].activityID == activity.activityID
+                && this.custom.activity[i].selectedDay == this.selectedDay) {
+                this.custom.activity.splice(i, 1);
+            }
+        }
+        for (var j = 0; j < this.custom.selectedActivities.length; j++) {
+            if (this.custom.selectedActivities[j] == activity.activityID + this.selectedDay) {
+                this.custom.selectedActivities.splice(j, 1);
+            }
+        }
+        this.custom.packageCost = this.custom.packageCost - activity.price;
+        console.log(this.custom.activity);
+    };
+    CustomPackageComponent.prototype.checkActivity = function (item) {
+        for (var i = 0; i < this.custom.selectedActivities.length; i++)
+            if (item.activityID + this.selectedDay == this.custom.selectedActivities[i])
+                return false;
+        return true;
     };
     /**
      * LOADING DATA
@@ -338,30 +419,21 @@ var CustomPackageComponent = (function () {
     CustomPackageComponent.prototype.getFoodAndDrinks = function () {
         var _this = this;
         console.log('retrieving food and drinks');
-        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad);
         this.startLoading();
-        this.foodAndDrinksService.getFoodAndDrinks()
-            .then(function (fad) { return _this.foodAndDrinks = fad; })
+        this.foodAndDrinksService.getMockFood().then(function (fad) { return _this.foodAndDrinks = fad; })
             .then(function () { return _this.completeLoading(); });
-        //Initialise the Food and Drinks array
-        var temp;
         this.custom.foodAndDrinks = [];
-        //duration of trip * 4 options
-        for (var i = 0; i < this.days.length * 4; i++) {
-            this.custom.foodAndDrinks[i] = Object.assign({}, temp);
-        }
+        this.custom.selectedFoodAndDrinks = [];
     };
     /* Retrieves all activity objects from the backend */
     CustomPackageComponent.prototype.getActivities = function () {
         var _this = this;
         console.log('retrieving Activities');
         //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
-        this.startLoading();
+        //this.startLoading();
         this.activityService.getActivities().subscribe(function (activity) { return _this.activities = activity; });
-        //fake loading bar
-        setTimeout(function () {
-            _this.completeLoading();
-        }, 1000);
+        this.custom.activity = [];
+        this.custom.selectedActivities = [];
     };
     CustomPackageComponent.prototype.canDeactivate = function () {
         console.log('i am navigating away');
@@ -414,10 +486,12 @@ CustomPackageComponent = __decorate([
         ]
     }),
     __metadata("design:paramtypes", [accommodation_service_1.AccommodationService,
-        individual_accommodation_service_1.IndividualAccommodationService,
         food_and_drinks_service_1.FoodAndDrinksService,
         activity_service_1.ActivityService,
         custom_package_service_1.CustomPackageService,
+        individual_accommodation_service_1.IndividualAccommodationService,
+        individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
+        individual_activity_service_1.IndividualActivityService,
         ng2_slim_loading_bar_1.SlimLoadingBarService,
         router_1.Router,
         material_1.MdDialog])
@@ -462,4 +536,56 @@ AddAccommodationComponent = __decorate([
     __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
 ], AddAccommodationComponent);
 exports.AddAccommodationComponent = AddAccommodationComponent;
+var AddFoodAndDrinksComponent = (function () {
+    function AddFoodAndDrinksComponent(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.foodAndDrinks = data;
+        console.log("imported value to dialog is: ");
+        console.log(this.foodAndDrinks);
+    }
+    AddFoodAndDrinksComponent.prototype.checkMenuType = function () {
+        for (var i = 0; i < this.foodAndDrinks.menuType.length; i++) {
+            if (this.foodAndDrinks.menuType[i] == 'Bar') {
+                return true;
+            }
+        }
+        return false;
+    };
+    return AddFoodAndDrinksComponent;
+}());
+AddFoodAndDrinksComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'AddFoodAndDrinksComponent',
+        templateUrl: 'AddFoodAndDrinksComponent.html'
+    }),
+    __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
+    __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
+], AddFoodAndDrinksComponent);
+exports.AddFoodAndDrinksComponent = AddFoodAndDrinksComponent;
+var AddActivityComponent = (function () {
+    function AddActivityComponent(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.time = new Date();
+        this.activity = data;
+        console.log("imported value to dialog is: ");
+        console.log(this.activity);
+    }
+    AddActivityComponent.prototype.returnObj = function () {
+        return '' + this.time.getHours() + this.time.getMinutes();
+    };
+    return AddActivityComponent;
+}());
+AddActivityComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'AddActivityComponent',
+        templateUrl: 'AddActivityComponent.html'
+    }),
+    __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
+    __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
+], AddActivityComponent);
+exports.AddActivityComponent = AddActivityComponent;
 //# sourceMappingURL=custom-package.component.js.map

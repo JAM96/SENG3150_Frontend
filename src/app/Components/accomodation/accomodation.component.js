@@ -17,7 +17,6 @@ var AccomodationComponent = (function () {
     function AccomodationComponent(accommodationService, dialogRef) {
         this.accommodationService = accommodationService;
         this.dialogRef = dialogRef;
-        this.title = 'My first AGM project';
     }
     AccomodationComponent.prototype.ngOnInit = function () {
         this.accommodation = Object.assign({}, this.accommodationService.getAccommodation());
@@ -31,7 +30,6 @@ AccomodationComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'accomodation',
-        // templateUrl: 'accomodation.component.html',
         templateUrl: 'accomodation.component.html',
         styles: ["agm-map {\n                height: 300px;\n                width: 400px;\n            }"],
     }),

@@ -10,8 +10,8 @@ var leaveFeedback_component_1 = require("./Components/profile/leaveFeedback/leav
 var packagesview_component_1 = require("./Components/package/packages/packagesview.component");
 var eventoverview_component_1 = require("./Components/event/eventoverview.component");
 var custom_package_component_1 = require("./Components/package/packages/custom-package/custom-form/custom-package.component");
-var activities_component_1 = require("./Components/activities/activities.component");
-var food_component_1 = require("./Components/food-and-drinks/food.component");
+var activity_component_1 = require("./Components/activities/activity.component");
+var food_and_drinks_component_1 = require("./Components/food-and-drinks/food-and-drinks.component");
 var accomodation_component_1 = require("./Components/accomodation/accomodation.component");
 var contact_component_1 = require("./Components/contact/contact.component");
 var shoppingCart_component_1 = require("./Components/shoppingCart/shoppingCart.component");
@@ -39,8 +39,8 @@ var appRoutes = [
         component: custom_package_component_1.CustomPackageComponent,
         canDeactivate: [can_deactivate_guard_service_1.CanDeactivateGuard],
     },
-    { path: 'activities', component: activities_component_1.ActivitiesComponent },
-    { path: 'food-and-drinks', component: food_component_1.FoodComponent },
+    { path: 'activities', component: activity_component_1.ActivityComponent },
+    { path: 'food-and-drinks', component: food_and_drinks_component_1.FoodAndDrinksComponent },
     { path: 'accommodation', component: accomodation_component_1.AccomodationComponent },
     { path: 'contact', component: contact_component_1.ContactComponent },
     { path: 'shoppingCart', component: shoppingCart_component_1.ShoppingCartComponent },

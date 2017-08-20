@@ -15,4 +15,9 @@ export interface FoodAndDrinks {
     photoURL            :   string;
     userRating          :   number;
     rating              :   string; //'Okay', 'Good', 'Great', "Fabulous!"
+    menuType            :   string[]; //e.g. ['Breakfast'], ['Breakfast','Dinner']
+    timeAvailable       :   string[];
+    
+    selectedTime        :   string;
+    selectedDay         :   number;
 }

@@ -1,0 +1,16 @@
+<h1 md-dialog-title>Activity: {{activity.name}}</h1>
+<div md-dialog-content>Select the time you wish to do this activity:</div>
+<div md-dialog-actions>
+    <md2-datepicker 
+        type="time"
+        required="true"
+        mode="portrait"
+        placeholder="Select Time"
+        tabindex="1"
+        openOnFocus="true"
+        container="dialog"
+        [(ngModel)]="time">
+    </md2-datepicker>
+
+    <button md-button md-dialog-close="{{returnObj()}}">Submit!</button>
+</div>

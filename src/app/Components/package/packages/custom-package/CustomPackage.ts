@@ -1,7 +1,8 @@
-import {FoodAndDrinksForm} from './custom-form/objects/FoodAndDrinksForm';
 import {TravelInformation} from './custom-form/objects/TravelInformation';
-import {ActivityForm} from './custom-form/objects/ActivityForm';
+
 import {Accommodation} from '../../../../Objects/Accommodation/Accommodation';
+import {FoodAndDrinks} from '../../../../Objects/FoodAndDrinks/FoodAndDrinks';
+import {Activity} from '../../../../Objects/Activity/Activity';
 
 export class CustomPackage {
     packageID       : string;
@@ -28,8 +29,10 @@ export class CustomPackage {
     previousSelectedAccommodation : number; //previously selected accommodation price
 
     //food and drink options
-    foodAndDrinks   : FoodAndDrinksForm[];  //selected food and drink items
+    foodAndDrinks   : FoodAndDrinks[];  //selected food and drink items
+    selectedFoodAndDrinks   : string[]; //this is to easily check if the item has been added or not
 
     //activities 
-    activity        : ActivityForm[];   //selected activities
+    activity        : Activity[];   //selected activities
+    selectedActivities  : string[];
 }

@@ -11,8 +11,8 @@ import {AboutComponent} from './Components/about/about.component';
 import {PackagesComponent} from './Components/package/packages/packagesview.component';
 import {EventViewComponent} from './Components/event/eventoverview.component';
 import {CustomPackageComponent} from './Components/package/packages/custom-package/custom-form/custom-package.component';
-import {ActivitiesComponent} from './Components/activities/activities.component';
-import {FoodComponent} from './Components/food-and-drinks/food.component';
+import {ActivityComponent} from './Components/activities/activity.component';
+import {FoodAndDrinksComponent} from './Components/food-and-drinks/food-and-drinks.component';
 import {AccomodationComponent} from './Components/accomodation/accomodation.component';
 import {ContactComponent} from './Components/contact/contact.component';
 import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
@@ -42,8 +42,8 @@ const appRoutes: Routes = [
     component: CustomPackageComponent,
     canDeactivate: [CanDeactivateGuard],
     },
-  { path: 'activities', component: ActivitiesComponent},
-  { path: 'food-and-drinks', component: FoodComponent},
+  { path: 'activities', component: ActivityComponent},
+  { path: 'food-and-drinks', component: FoodAndDrinksComponent},
   { path: 'accommodation', component: AccomodationComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
