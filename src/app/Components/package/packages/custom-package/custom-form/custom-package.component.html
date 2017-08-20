@@ -178,9 +178,7 @@
                         ACCOMMODATION VIEW
             
                 ============================================-->
-                <div class="row item-container" style="position:fixed">
-                    Sorting and searching is found here.
-                </div>
+                
             <div class="container view add-padding-top-15" *ngIf="selected==2">
                 
                 <div *ngFor="let accommodation of accommodationList" class="row item-container"><!-- accommodation i --> 
@@ -454,12 +452,42 @@
             </div>
         </div><!-- <div class="md-col-10">-->
 
-        <div clas="col-md-2">
+        <div class="col-sm-2" id="cartForm">
             <h1>Cart:</h1>
-            <p>Travel Selected: {{travelValue}}</p>
+            <p>
+                <span class="text-sm text-b">Travel Selected:</span>
+                <span class="text-sm"> {{travelValue}}</span>
+            </p>
             
-            <p><span class="text-b">Accommodation: </span>{{selectedAccommodationName}}</p>
-            <button (click)="changeBudget()" md-button><span class="text-b">Cost: </span>${{custom.packageCost}} / ${{budget}}</button>
+            <p>
+                <span class="text-sm text-b">Accommodation:</span>
+                <a (click)="viewItem(1,custom.accommodation, null,null)"><span class="text-sm">{{selectedAccommodationName}}</span></a>
+            </p>
+
+            <p>
+                <ng-container *ngFor="let day of days">
+                    <span class="text-sm text-b text-nl text-u">Day {{day}}</span>
+                    <!-- Food and drinks  -->
+                    <div class="col-6">
+                        <span class="text-xsm text-b text-nl">Food and Drinks</span>
+                        <ng-container *ngFor="let food of custom.foodAndDrinks">
+                            <a (click)="viewItem(2,null, food,null)" style="padding-left:5px"><span *ngIf="food.selectedDay == day" class="text-xsm">{{food.name}}</span></a>
+                            <span *ngIf="food.selectedDay == day" class="text-xsm text-nl text-ind">Time: {{food.selectedTime}}</span>
+                        </ng-container>
+                        <hr style="padding: 0; margin: 0; width: 50%">
+                    </div>
+                    <!-- Activities  -->
+                    <div class="col-6">
+                        <span class="text-xsm text-b text-nl">Activities</span>
+                        <ng-container *ngFor="let activity of custom.activity">
+                            <a (click)="viewItem(3, null, null, activity)" style="padding-left:5px"><span *ngIf="activity.selectedDay == day" class="text-xsm">{{activity.name}}</span></a>
+                            <span *ngIf="activity.selectedDay == day" class="text-xsm text-nl text-ind">Time: {{activity.selectedTime}}</span>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </p>
+
+            <button (click)="changeBudget()" md-raised-button><span class="text-b">Cost: </span>${{custom.packageCost}} / ${{budget}}</button>
         </div>
     </div><!-- row -->
 </div><!-- end Main View Container -->

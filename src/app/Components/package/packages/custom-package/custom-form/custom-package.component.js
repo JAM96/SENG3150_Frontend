@@ -61,8 +61,8 @@ var CustomPackageComponent = (function () {
         this.travelOptions = ['Yes', 'No']; //List of available travel options
         this.previousSelectedAccommodation = 0; //this will store the previously selected price to minus from the total.
         //Food and Drinks Form
-        this.foodForm = [
-            { display: 'displayB', condition: 'none', value: 1, eatingTime: 'Breakfast' },
+        this.cartForm = [
+            { display: 'foodanddrinks', condition: 'none', value: 1, eatingTime: 'Breakfast' },
             { display: 'displayL', condition: 'none', value: 2, eatingTime: 'Lunch' },
             { display: 'displayD', condition: 'none', value: 3, eatingTime: 'Dinner' },
             { display: 'displayO', condition: 'none', value: 4, eatingTime: 'Other' }
@@ -232,11 +232,11 @@ var CustomPackageComponent = (function () {
         this.selectedDay = selection;
     };
     CustomPackageComponent.prototype.expand = function (value) {
-        if (this.foodForm[value - 1].condition == 'none') {
-            this.foodForm[value - 1].condition = 'block';
+        if (this.cartForm[value - 1].condition == 'none') {
+            this.cartForm[value - 1].condition = 'block';
         }
         else {
-            this.foodForm[value - 1].condition = 'none';
+            this.cartForm[value - 1].condition = 'none';
         }
     };
     /* Item Selection */

@@ -16,7 +16,7 @@
     }
 }
 
-@media screen and (min-width: 0px) and (max-width: 600px) {
+@media screen and (min-width: 0px) and (max-width: 1420px) {
     .hideRecommendations {
         display: none;
     } 
