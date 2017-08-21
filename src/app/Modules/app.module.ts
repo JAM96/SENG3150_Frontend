@@ -91,7 +91,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     MdNativeDateModule,
     BrowserAnimationsModule,
     FormsModule,
-    Md2Module.forRoot(),
+    Md2Module,
     ReactiveFormsModule,
     routing,
     AsideModule,

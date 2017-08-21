@@ -28,11 +28,11 @@ var IndividualActivityService = (function () {
         return this.activity;
     };
     ;
+    IndividualActivityService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], IndividualActivityService);
     return IndividualActivityService;
 }());
-IndividualActivityService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], IndividualActivityService);
 exports.IndividualActivityService = IndividualActivityService;
 //# sourceMappingURL=individual-activity.service.js.map

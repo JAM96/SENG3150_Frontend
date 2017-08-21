@@ -77,81 +77,81 @@ var AppModule = (function () {
             }
         });
     }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                platform_browser_1.BrowserModule,
+                http_1.HttpModule,
+                material_1.MaterialModule,
+                material_1.MdDatepickerModule,
+                material_1.MdNativeDateModule,
+                animations_1.BrowserAnimationsModule,
+                forms_1.FormsModule,
+                md2_1.Md2Module,
+                forms_1.ReactiveFormsModule,
+                app_routing_1.routing,
+                ng2_aside_1.AsideModule,
+                ng2_slim_loading_bar_1.SlimLoadingBarModule.forRoot(),
+                mydaterangepicker_1.MyDateRangePickerModule,
+                core_2.AgmCoreModule.forRoot({
+                    apiKey: 'AIzaSyAMwjWTDQg0aVK9flKslyeB5wKBBCq46Cg'
+                }),
+            ],
+            declarations: [
+                app_component_1.AppComponent,
+                test_component_1.TestComponent,
+                home_component_1.HomeComponent,
+                about_component_1.AboutComponent,
+                activity_component_1.ActivityComponent,
+                admin_component_1.AdminComponent,
+                create_custom_package_component_1.CreateCustomPackageInitialComponent,
+                createAccommodation_component_1.CreateAccommodationComponent,
+                navigationtop_component_1.NavigationTopComponent,
+                navigationtop_component_1.LoginPopupComponent,
+                custom_package_component_1.BudgetChangeComponent,
+                custom_package_component_1.AddAccommodationComponent,
+                custom_package_component_1.AddFoodAndDrinksComponent,
+                custom_package_component_1.AddActivityComponent,
+                navigationtop_component_1.notificationsPopupComponent,
+                eventoverview_component_1.EventViewComponent,
+                packagecategory_component_1.PackageCategoryComponentDialog,
+                packagecategory_component_1.PackageCategoryComponent,
+                packagesview_component_1.PackagesComponent,
+                profile_component_1.ProfileComponent,
+                custom_package_component_1.CustomPackageComponent,
+                food_and_drinks_component_1.FoodAndDrinksComponent,
+                accomodation_component_1.AccomodationComponent,
+                contact_component_1.ContactComponent,
+                shoppingCart_component_1.ShoppingCartComponent,
+                viewPackages_component_1.ViewPackagesComponent,
+                viewVouchers_component_1.ViewVouchersComponent,
+                leaveFeedback_component_1.LeaveFeedbackComponent,
+                custom_calendar_component_1.CustomCalendarComponent,
+                calendar_truncate_pipe_1.TruncatePipe
+            ],
+            bootstrap: [
+                app_component_1.AppComponent,
+                packagecategory_component_1.PackageCategoryComponentDialog,
+                custom_package_component_1.BudgetChangeComponent,
+                navigationtop_component_1.LoginPopupComponent,
+                custom_package_component_1.AddAccommodationComponent,
+                custom_package_component_1.AddFoodAndDrinksComponent,
+                custom_package_component_1.AddActivityComponent,
+                navigationtop_component_1.notificationsPopupComponent
+            ],
+            providers: [
+                app_routing_1.appRoutingProviders,
+                custom_package_service_1.CustomPackageService,
+                individual_accommodation_service_1.IndividualAccommodationService,
+                individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
+                individual_activity_service_1.IndividualActivityService,
+                data_service_1.DataService,
+                can_deactivate_guard_service_1.CanDeactivateGuard,
+            ]
+        }),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [
-            platform_browser_1.BrowserModule,
-            http_1.HttpModule,
-            material_1.MaterialModule,
-            material_1.MdDatepickerModule,
-            material_1.MdNativeDateModule,
-            animations_1.BrowserAnimationsModule,
-            forms_1.FormsModule,
-            md2_1.Md2Module.forRoot(),
-            forms_1.ReactiveFormsModule,
-            app_routing_1.routing,
-            ng2_aside_1.AsideModule,
-            ng2_slim_loading_bar_1.SlimLoadingBarModule.forRoot(),
-            mydaterangepicker_1.MyDateRangePickerModule,
-            core_2.AgmCoreModule.forRoot({
-                apiKey: 'AIzaSyAMwjWTDQg0aVK9flKslyeB5wKBBCq46Cg'
-            }),
-        ],
-        declarations: [
-            app_component_1.AppComponent,
-            test_component_1.TestComponent,
-            home_component_1.HomeComponent,
-            about_component_1.AboutComponent,
-            activity_component_1.ActivityComponent,
-            admin_component_1.AdminComponent,
-            create_custom_package_component_1.CreateCustomPackageInitialComponent,
-            createAccommodation_component_1.CreateAccommodationComponent,
-            navigationtop_component_1.NavigationTopComponent,
-            navigationtop_component_1.LoginPopupComponent,
-            custom_package_component_1.BudgetChangeComponent,
-            custom_package_component_1.AddAccommodationComponent,
-            custom_package_component_1.AddFoodAndDrinksComponent,
-            custom_package_component_1.AddActivityComponent,
-            navigationtop_component_1.notificationsPopupComponent,
-            eventoverview_component_1.EventViewComponent,
-            packagecategory_component_1.PackageCategoryComponentDialog,
-            packagecategory_component_1.PackageCategoryComponent,
-            packagesview_component_1.PackagesComponent,
-            profile_component_1.ProfileComponent,
-            custom_package_component_1.CustomPackageComponent,
-            food_and_drinks_component_1.FoodAndDrinksComponent,
-            accomodation_component_1.AccomodationComponent,
-            contact_component_1.ContactComponent,
-            shoppingCart_component_1.ShoppingCartComponent,
-            viewPackages_component_1.ViewPackagesComponent,
-            viewVouchers_component_1.ViewVouchersComponent,
-            leaveFeedback_component_1.LeaveFeedbackComponent,
-            custom_calendar_component_1.CustomCalendarComponent,
-            calendar_truncate_pipe_1.TruncatePipe
-        ],
-        bootstrap: [
-            app_component_1.AppComponent,
-            packagecategory_component_1.PackageCategoryComponentDialog,
-            custom_package_component_1.BudgetChangeComponent,
-            navigationtop_component_1.LoginPopupComponent,
-            custom_package_component_1.AddAccommodationComponent,
-            custom_package_component_1.AddFoodAndDrinksComponent,
-            custom_package_component_1.AddActivityComponent,
-            navigationtop_component_1.notificationsPopupComponent
-        ],
-        providers: [
-            app_routing_1.appRoutingProviders,
-            custom_package_service_1.CustomPackageService,
-            individual_accommodation_service_1.IndividualAccommodationService,
-            individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
-            individual_activity_service_1.IndividualActivityService,
-            data_service_1.DataService,
-            can_deactivate_guard_service_1.CanDeactivateGuard,
-        ]
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
-], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

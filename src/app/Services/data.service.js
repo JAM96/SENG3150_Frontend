@@ -46,10 +46,10 @@ var DataService = (function () {
         console.log(url);
         return url;
     };
+    DataService = __decorate([
+        core_1.Injectable()
+    ], DataService);
     return DataService;
 }());
-DataService = __decorate([
-    core_1.Injectable()
-], DataService);
 exports.DataService = DataService;
 //# sourceMappingURL=data.service.js.map

@@ -24,17 +24,17 @@ var AccomodationComponent = (function () {
         this.lat = this.accommodation.latitude;
         this.lng = this.accommodation.longitude;
     };
+    AccomodationComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'accomodation',
+            templateUrl: 'accomodation.component.html',
+            styles: ["agm-map {\n                height: 300px;\n                width: 400px;\n            }"],
+        }),
+        __metadata("design:paramtypes", [individual_accommodation_service_1.IndividualAccommodationService,
+            material_1.MdDialogRef])
+    ], AccomodationComponent);
     return AccomodationComponent;
 }());
-AccomodationComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'accomodation',
-        templateUrl: 'accomodation.component.html',
-        styles: ["agm-map {\n                height: 300px;\n                width: 400px;\n            }"],
-    }),
-    __metadata("design:paramtypes", [individual_accommodation_service_1.IndividualAccommodationService,
-        material_1.MdDialogRef])
-], AccomodationComponent);
 exports.AccomodationComponent = AccomodationComponent;
 //# sourceMappingURL=accomodation.component.js.map

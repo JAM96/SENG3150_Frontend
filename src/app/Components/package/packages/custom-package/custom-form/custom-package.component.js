@@ -472,30 +472,30 @@ var CustomPackageComponent = (function () {
             _this.budget = result;
         });
     };
+    CustomPackageComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'custom-package',
+            templateUrl: 'custom-package.component.html',
+            providers: [
+                accommodation_service_1.AccommodationService,
+                food_and_drinks_service_1.FoodAndDrinksService,
+                activity_service_1.ActivityService
+            ]
+        }),
+        __metadata("design:paramtypes", [accommodation_service_1.AccommodationService,
+            food_and_drinks_service_1.FoodAndDrinksService,
+            activity_service_1.ActivityService,
+            custom_package_service_1.CustomPackageService,
+            individual_accommodation_service_1.IndividualAccommodationService,
+            individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
+            individual_activity_service_1.IndividualActivityService,
+            ng2_slim_loading_bar_1.SlimLoadingBarService,
+            router_1.Router,
+            material_1.MdDialog])
+    ], CustomPackageComponent);
     return CustomPackageComponent;
 }());
-CustomPackageComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'custom-package',
-        templateUrl: 'custom-package.component.html',
-        providers: [
-            accommodation_service_1.AccommodationService,
-            food_and_drinks_service_1.FoodAndDrinksService,
-            activity_service_1.ActivityService
-        ]
-    }),
-    __metadata("design:paramtypes", [accommodation_service_1.AccommodationService,
-        food_and_drinks_service_1.FoodAndDrinksService,
-        activity_service_1.ActivityService,
-        custom_package_service_1.CustomPackageService,
-        individual_accommodation_service_1.IndividualAccommodationService,
-        individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
-        individual_activity_service_1.IndividualActivityService,
-        ng2_slim_loading_bar_1.SlimLoadingBarService,
-        router_1.Router,
-        material_1.MdDialog])
-], CustomPackageComponent);
 exports.CustomPackageComponent = CustomPackageComponent;
 var BudgetChangeComponent = (function () {
     function BudgetChangeComponent(dialogRef, data) {
@@ -504,17 +504,17 @@ var BudgetChangeComponent = (function () {
         this.value = data;
         console.log("imported value: " + this.value);
     }
+    BudgetChangeComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'budgetChangeComponent',
+            templateUrl: 'BudgetChangeComponent.html'
+        }),
+        __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
+        __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
+    ], BudgetChangeComponent);
     return BudgetChangeComponent;
 }());
-BudgetChangeComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'budgetChangeComponent',
-        templateUrl: 'BudgetChangeComponent.html'
-    }),
-    __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
-    __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
-], BudgetChangeComponent);
 exports.BudgetChangeComponent = BudgetChangeComponent;
 var AddAccommodationComponent = (function () {
     function AddAccommodationComponent(dialogRef, data) {
@@ -524,17 +524,17 @@ var AddAccommodationComponent = (function () {
         console.log("imported value to dialog is: ");
         console.log(this.rooms);
     }
+    AddAccommodationComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'AddAccommodationComponent',
+            templateUrl: 'AddAccommodationComponent.html'
+        }),
+        __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
+        __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
+    ], AddAccommodationComponent);
     return AddAccommodationComponent;
 }());
-AddAccommodationComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'AddAccommodationComponent',
-        templateUrl: 'AddAccommodationComponent.html'
-    }),
-    __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
-    __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
-], AddAccommodationComponent);
 exports.AddAccommodationComponent = AddAccommodationComponent;
 var AddFoodAndDrinksComponent = (function () {
     function AddFoodAndDrinksComponent(dialogRef, data) {
@@ -552,17 +552,17 @@ var AddFoodAndDrinksComponent = (function () {
         }
         return false;
     };
+    AddFoodAndDrinksComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'AddFoodAndDrinksComponent',
+            templateUrl: 'AddFoodAndDrinksComponent.html'
+        }),
+        __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
+        __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
+    ], AddFoodAndDrinksComponent);
     return AddFoodAndDrinksComponent;
 }());
-AddFoodAndDrinksComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'AddFoodAndDrinksComponent',
-        templateUrl: 'AddFoodAndDrinksComponent.html'
-    }),
-    __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
-    __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
-], AddFoodAndDrinksComponent);
 exports.AddFoodAndDrinksComponent = AddFoodAndDrinksComponent;
 var AddActivityComponent = (function () {
     function AddActivityComponent(dialogRef, data) {
@@ -576,16 +576,16 @@ var AddActivityComponent = (function () {
     AddActivityComponent.prototype.returnObj = function () {
         return '' + this.time.getHours() + this.time.getMinutes();
     };
+    AddActivityComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'AddActivityComponent',
+            templateUrl: 'AddActivityComponent.html'
+        }),
+        __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
+        __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
+    ], AddActivityComponent);
     return AddActivityComponent;
 }());
-AddActivityComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'AddActivityComponent',
-        templateUrl: 'AddActivityComponent.html'
-    }),
-    __param(1, core_1.Inject(material_1.MD_DIALOG_DATA)),
-    __metadata("design:paramtypes", [material_1.MdDialogRef, Object])
-], AddActivityComponent);
 exports.AddActivityComponent = AddActivityComponent;
 //# sourceMappingURL=custom-package.component.js.map

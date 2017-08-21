@@ -28,11 +28,11 @@ var IndividualFoodAndDrinksService = (function () {
         return this.foodAndDrinks;
     };
     ;
+    IndividualFoodAndDrinksService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], IndividualFoodAndDrinksService);
     return IndividualFoodAndDrinksService;
 }());
-IndividualFoodAndDrinksService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], IndividualFoodAndDrinksService);
 exports.IndividualFoodAndDrinksService = IndividualFoodAndDrinksService;
 //# sourceMappingURL=individual-food-and-drinks.service.js.map

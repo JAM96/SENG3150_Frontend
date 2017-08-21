@@ -149,11 +149,11 @@ var AccommodationService = (function () {
             }
         }
     };
+    AccommodationService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http, data_service_1.DataService])
+    ], AccommodationService);
     return AccommodationService;
 }());
-AccommodationService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, data_service_1.DataService])
-], AccommodationService);
 exports.AccommodationService = AccommodationService;
 //# sourceMappingURL=accommodation.service.js.map

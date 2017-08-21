@@ -22,17 +22,17 @@ var FoodAndDrinksComponent = (function () {
         this.foodAndDrinks = Object.assign({}, this.foodAndDrinksService.getFoodAndDrinks());
         console.log("foodAndDrinks is loaded: " + this.foodAndDrinks.name);
     };
+    FoodAndDrinksComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'food-and-drinks',
+            templateUrl: 'food-and-drinks.component.html',
+            styles: [],
+        }),
+        __metadata("design:paramtypes", [individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
+            material_1.MdDialogRef])
+    ], FoodAndDrinksComponent);
     return FoodAndDrinksComponent;
 }());
-FoodAndDrinksComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'food-and-drinks',
-        templateUrl: 'food-and-drinks.component.html',
-        styles: [],
-    }),
-    __metadata("design:paramtypes", [individual_food_and_drinks_service_1.IndividualFoodAndDrinksService,
-        material_1.MdDialogRef])
-], FoodAndDrinksComponent);
 exports.FoodAndDrinksComponent = FoodAndDrinksComponent;
 //# sourceMappingURL=food-and-drinks.component.js.map

@@ -22,17 +22,17 @@ var ActivityComponent = (function () {
         this.Activity = Object.assign({}, this.ActivityService.getActivity());
         console.log("Activity is loaded: " + this.Activity.name);
     };
+    ActivityComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'activity',
+            templateUrl: 'activity.component.html',
+            styles: [],
+        }),
+        __metadata("design:paramtypes", [individual_activity_service_1.IndividualActivityService,
+            material_1.MdDialogRef])
+    ], ActivityComponent);
     return ActivityComponent;
 }());
-ActivityComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'activity',
-        templateUrl: 'activity.component.html',
-        styles: [],
-    }),
-    __metadata("design:paramtypes", [individual_activity_service_1.IndividualActivityService,
-        material_1.MdDialogRef])
-], ActivityComponent);
 exports.ActivityComponent = ActivityComponent;
 //# sourceMappingURL=activity.component.js.map

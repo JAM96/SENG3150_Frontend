@@ -28,11 +28,11 @@ var IndividualAccommodationService = (function () {
         return this.accommodation;
     };
     ;
+    IndividualAccommodationService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], IndividualAccommodationService);
     return IndividualAccommodationService;
 }());
-IndividualAccommodationService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], IndividualAccommodationService);
 exports.IndividualAccommodationService = IndividualAccommodationService;
 //# sourceMappingURL=individual-accommodation.service.js.map

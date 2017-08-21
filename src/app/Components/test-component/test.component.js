@@ -31,18 +31,18 @@ var TestComponent = (function () {
         this.testService.getMockTest()
             .then(function (test) { return _this.test = test; });
     };
+    TestComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'test',
+            templateUrl: 'test.component.html',
+            providers: [
+                test_service_1.TestService
+            ]
+        }),
+        __metadata("design:paramtypes", [test_service_1.TestService])
+    ], TestComponent);
     return TestComponent;
 }());
-TestComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'test',
-        templateUrl: 'test.component.html',
-        providers: [
-            test_service_1.TestService
-        ]
-    }),
-    __metadata("design:paramtypes", [test_service_1.TestService])
-], TestComponent);
 exports.TestComponent = TestComponent;
 //# sourceMappingURL=test.component.js.map

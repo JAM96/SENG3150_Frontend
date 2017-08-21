@@ -36,11 +36,11 @@ var PackageService = (function () {
     PackageService.prototype.getMockPackages = function () {
         return Promise.resolve(mock_packages_1.PACKAGE_LIST);
     };
+    PackageService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http, data_service_1.DataService])
+    ], PackageService);
     return PackageService;
 }());
-PackageService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, data_service_1.DataService])
-], PackageService);
 exports.PackageService = PackageService;
 //# sourceMappingURL=packages.service.js.map

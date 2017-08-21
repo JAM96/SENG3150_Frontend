@@ -40,16 +40,16 @@ var PackagesComponent = (function () {
             _this.category = params['category'];
         });
     };
+    PackagesComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'packages',
+            templateUrl: 'packagesview.component.html',
+            providers: [packages_service_1.PackageService]
+        }),
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, packages_service_1.PackageService])
+    ], PackagesComponent);
     return PackagesComponent;
 }());
-PackagesComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'packages',
-        templateUrl: 'packagesview.component.html',
-        providers: [packages_service_1.PackageService]
-    }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute, packages_service_1.PackageService])
-], PackagesComponent);
 exports.PackagesComponent = PackagesComponent;
 //# sourceMappingURL=packagesview.component.js.map

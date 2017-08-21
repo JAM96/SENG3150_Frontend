@@ -76,11 +76,11 @@ var FoodAndDrinksService = (function () {
         }
         return Promise.resolve(this.foodAndDrinks);
     };
+    FoodAndDrinksService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http, data_service_1.DataService])
+    ], FoodAndDrinksService);
     return FoodAndDrinksService;
 }());
-FoodAndDrinksService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, data_service_1.DataService])
-], FoodAndDrinksService);
 exports.FoodAndDrinksService = FoodAndDrinksService;
 //# sourceMappingURL=food-and-drinks.service.js.map
