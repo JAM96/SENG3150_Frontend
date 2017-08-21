@@ -14,6 +14,22 @@
         margin-right: 5%;
         padding: 5px;
     }
+
+    md-sidenav {
+        width: 15%;
+    }
+
+    .customPackageCreationForm {
+        height: auto;
+        background-color: rgba(50,50,55,0.9);
+        border: 4px solid rgba(30,27,27,1);
+        color: white;
+        border-radius: 10px;
+    }
+
+    #home-title {
+        font-size: 14px;
+    }
 }
 
 @media screen and (min-width: 0px) and (max-width: 1420px) {

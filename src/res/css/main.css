@@ -85,10 +85,6 @@ body {
     left:50%;
 }
 
-#links {
-    text-align: center;
-}
-
 .headerBar {
     position: absolute;
     width: 100%;
@@ -121,11 +117,8 @@ body {
     border-radius: 10px;
 }
 
-@media screen and (min-height: 1080) {
-    .customPackageCreationForm {
-        height: 50%;
-        margin-top: 10%;
-    }
+#links {
+    text-align: center;
 }
 
 #verticalLine {
@@ -230,6 +223,7 @@ body {
 md2-datepicker {
     color: white;
 }
+
 
 md-sidenav {
   width: 100px;

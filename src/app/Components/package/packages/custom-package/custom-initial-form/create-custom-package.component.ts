@@ -1,5 +1,5 @@
 import {Component, ViewChild, AfterViewInit, Input} from '@angular/core'
-import {MdDatepicker, MdDialog} from '@angular/material'
+import {MdDatepicker, MdDialog, MdTooltipModule} from '@angular/material'
 import {Router} from '@angular/router'
 import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 
@@ -20,6 +20,7 @@ import { slideInOutAnimation } from '../../../../_animations';
 })
 
 export class CreateCustomPackageInitialComponent { //CCPIC
+    position = 'below';
     selectedOption : number = 1;    //defines the selected option
     minBudget = 300;        //define minimum budget value
     maxBudget = 4000;       //define maximum budget value

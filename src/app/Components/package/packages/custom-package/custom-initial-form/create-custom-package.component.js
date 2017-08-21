@@ -19,6 +19,7 @@ var CreateCustomPackageInitialComponent = (function () {
     function CreateCustomPackageInitialComponent(router, packageService) {
         this.router = router;
         this.packageService = packageService;
+        this.position = 'below';
         this.selectedOption = 1; //defines the selected option
         this.minBudget = 300; //define minimum budget value
         this.maxBudget = 4000; //define maximum budget value
