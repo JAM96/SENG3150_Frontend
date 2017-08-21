@@ -19,11 +19,6 @@ import {FoodAndDrinksComponent} from './Components/food-and-drinks/food-and-drin
 import {AccomodationComponent} from './Components/accomodation/accomodation.component';
 import {ContactComponent} from './Components/contact/contact.component';
 import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
-import {AdminComponent} from './Components/admin/admin.component';
-import {CreateAccommodationComponent} from './Components/admin/create/accommodation/createAccommodation.component';
-
-//test component
-import {TestComponent} from './Components/test-component/test.component';
 
 //callback
 import {CallbackComponent} from './callback/callback.component';
@@ -39,10 +34,10 @@ export const ROUTES: Routes = [
   { path: 'callback', component: CallbackComponent},
   { path: 'events', component: EventViewComponent, },
   { path: 'packages', component: PackagesComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'profile/viewPackages', component: ViewPackagesComponent},
-  { path: 'profile/viewVouchers', component: ViewVouchersComponent},
-  { path: 'profile/leaveFeedback', component: LeaveFeedbackComponent},
+  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  { path: 'profile/viewPackages', component: ViewPackagesComponent, canActivate:[AuthGuard]},
+  { path: 'profile/viewVouchers', component: ViewVouchersComponent, canActivate:[AuthGuard]},
+  { path: 'profile/leaveFeedback', component: LeaveFeedbackComponent, canActivate:[AuthGuard] },
   { 
     path: 'createpackage', 
     component: CustomPackageComponent,
@@ -53,9 +48,6 @@ export const ROUTES: Routes = [
   { path: 'accommodation', component: AccomodationComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
-  { path: 'test', component: TestComponent},
-  { path: 'admin', component: AdminComponent},
-  { path: 'createAccommodation', component: CreateAccommodationComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home' }
 ]

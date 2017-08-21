@@ -64,13 +64,6 @@
         <ng-template #notActive7>
             <li><a (click)="setNavOption(7)">Contact</a></li>
         </ng-template>
-
-        <li *ngIf="selectedOption==8; else notActive8" class="active">
-            <a (click)="setNavOption(8)">Test Database<span class="sr-only">(current)</span></a>
-        </li>
-        <ng-template #notActive8>
-            <li><a (click)="setNavOption(8)">Test Database</a></li>
-        </ng-template>
       </ul>
       
       <!-- acount information -->

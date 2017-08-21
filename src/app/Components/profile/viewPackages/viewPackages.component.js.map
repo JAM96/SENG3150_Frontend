@@ -1,1 +1,0 @@
-{"version":3,"file":"viewPackages.component.js","sourceRoot":"","sources":["viewPackages.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAAwC;AAOxC;IAAA;IAAoC,CAAC;IAAxB,qBAAqB;QANjC,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,cAAc;YACxB,WAAW,EAAE,6BAA6B;SAC7C,CAAC;OAEW,qBAAqB,CAAG;IAAD,4BAAC;CAAA,AAArC,IAAqC;AAAxB,sDAAqB"}

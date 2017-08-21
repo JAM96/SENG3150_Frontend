@@ -39,11 +39,9 @@ import {HomeComponent} from '../Components/home/home.component';
   import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
   import {ContactComponent} from '../Components/contact/contact.component';
   import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
-  import {AdminComponent} from '../Components/admin/admin.component';
-  import {CreateAccommodationComponent} from '../Components/admin/create/accommodation/createAccommodation.component';
 
   import {CreateCustomPackageInitialComponent} from '../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component';
-  import {NavigationTopComponent, LoginPopupComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
+  import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
 
   //Profile Component and Profile Components
   import {ProfileComponent} from '../Components/profile/profile.component';
@@ -79,8 +77,6 @@ import { NgxBarcodeModule } from 'ngx-barcode';
 
 //custom package service
 import {CustomPackageService} from '../Components/package/packages/custom-package/custom-package-service/custom-package.service';
-//test component
-import {TestComponent} from '../Components/test-component/test.component';
 
 //import auth0
 import * as auth0 from 'auth0-js'
@@ -110,15 +106,11 @@ import {AuthService} from '../auth/auth.service';
     ],
   declarations: [
     AppComponent,
-    TestComponent,
     HomeComponent,
     AboutComponent,
     ActivityComponent,
-    AdminComponent,
     CreateCustomPackageInitialComponent,
-    CreateAccommodationComponent,
     NavigationTopComponent,
-    LoginPopupComponent,
     BudgetChangeComponent,
     AddAccommodationComponent,
     AddFoodAndDrinksComponent,
@@ -142,8 +134,7 @@ import {AuthService} from '../auth/auth.service';
   bootstrap: [ 
     AppComponent, 
     PackageCategoryComponentDialog, 
-    BudgetChangeComponent, 
-    LoginPopupComponent,
+    BudgetChangeComponent,
     AddAccommodationComponent, 
     AddFoodAndDrinksComponent,
     AddActivityComponent,
