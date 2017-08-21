@@ -1,6 +1,9 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes} from '@angular/router';
+
+//guards
 import {CanDeactivateGuard} from './Components/guards/can-deactivate-guard.service';
+import {AuthGuardService as AuthGuard} from './Components/guards/auth-guard.service';
 
 import {HomeComponent} from './Components/home/home.component';
 import {ProfileComponent} from './Components/profile/profile.component';
@@ -34,7 +37,7 @@ app routes
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'callback', component: CallbackComponent},
-  { path: 'events', component: EventViewComponent},
+  { path: 'events', component: EventViewComponent, },
   { path: 'packages', component: PackagesComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'profile/viewPackages', component: ViewPackagesComponent},

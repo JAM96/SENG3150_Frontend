@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {Router} from '@angular/router'
 
@@ -10,7 +10,9 @@ import {AuthService} from '../../../auth/auth.service';
     templateUrl: 'navigationtop.component.html',
 })
 
-export class NavigationTopComponent {
+export class NavigationTopComponent implements OnInit{
+    profile : any;
+
     constructor(
         public dialog: MdDialog, 
         public router: Router,
@@ -18,6 +20,20 @@ export class NavigationTopComponent {
     ) {
         auth.handleAuthentication();
     }
+
+    ngOnInit() {
+        if(this.auth.isAuthenticated) {
+            if (this.auth.userProfile) {
+                this.profile = this.auth.userProfile;
+            } else {
+                this.auth.getProfile((err, profile) => {
+                    this.profile = profile;
+                });
+            }
+        }
+    }
+    
+
     selectedOption : number = 1;
 
     isOpen : boolean = false;

@@ -62,6 +62,7 @@ import {HomeComponent} from '../Components/home/home.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
 import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
+import {AuthGuardService} from '../Components/guards/auth-guard.service'
 import {DataService} from '../Services/data.service';
 import {IndividualAccommodationService} from '../Services/Accommodation/individual-accommodation.service';
 import {IndividualFoodAndDrinksService} from '../Services/FoodAndDrinks/individual-food-and-drinks.service';
@@ -156,6 +157,7 @@ import {AuthService} from '../auth/auth.service';
     DataService,
     AuthService,
     CanDeactivateGuard,
+    AuthGuardService,
   ]
 })
 

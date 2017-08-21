@@ -1,66 +1,55 @@
 import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth.variables';
-import { Router, NavigationStart } from '@angular/router';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
-import Auth0Lock from 'auth0-lock';
+import * as auth0 from 'auth0-js';
 
 @Injectable()
 export class AuthService {
 
-  lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
-    oidcConformant: true,
-    autoclose: true,
-    auth: {
-      redirectUrl: AUTH_CONFIG.callbackURL,
-      responseType: 'token id_token',
-      audience: `https://${AUTH_CONFIG.domain}/userinfo`,
-      params: {
-        scope: 'openid'
-      }
-    }
+  auth0 = new auth0.WebAuth({
+    clientID: AUTH_CONFIG.clientID,
+    domain: AUTH_CONFIG.domain,
+    responseType: 'token id_token',
+    audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+    redirectUri: AUTH_CONFIG.callbackURL,
+    scope: 'openid profile'
   });
+
+  userProfile: any;
 
   constructor(public router: Router) {}
 
   public login(): void {
-    this.lock.show();
+    this.auth0.authorize();
   }
 
-  // Call this method in app.component.ts
-  // if using path-based routing
   public handleAuthentication(): void {
-    this.lock.on('authenticated', (authResult) => {
+    this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
+      } else if (err) {
+        this.router.navigate(['/home']);
+        console.log(err);
+        alert(`Error: ${err.error}. Check the console for further details.`);
       }
     });
-    this.lock.on('authorization_error', (err) => {
-      this.router.navigate(['/']);
-      console.log(err);
-      alert(`Error: ${err.error}. Check the console for further details.`);
-    });
   }
 
-  // Call this method in app.component.ts
-  // if using hash-based routing
-  public handleAuthenticationWithHash(): void {
-    this
-      .router
-      .events
-      .filter(event => event instanceof NavigationStart)
-      .filter((event: NavigationStart) => (/access_token|id_token|error/).test(event.url))
-      .subscribe(() => {
-        this.lock.resumeAuth(window.location.hash, (err, authResult) => {
-          if (err) {
-            this.router.navigate(['/']);
-            console.log(err);
-            alert(`Error: ${err.error}. Check the console for further details.`);
-            return;
-          }
-          this.setSession(authResult);
-          this.router.navigate(['/']);
-        });
+  public getProfile(cb): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access token must exist to fetch profile');
+    }
+
+    const self = this;
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
     });
   }
 
@@ -89,3 +78,4 @@ export class AuthService {
   }
 
 }
+
