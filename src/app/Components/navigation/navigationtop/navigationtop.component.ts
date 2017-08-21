@@ -2,14 +2,22 @@ import {Component, Input} from "@angular/core";
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {Router} from '@angular/router'
 
+import {AuthService} from '../../../auth/auth.service';
+
 @Component({
     moduleId: module.id,
     selector: 'navigationtop',
-    templateUrl: 'navigationtop.component.html'
+    templateUrl: 'navigationtop.component.html',
 })
 
 export class NavigationTopComponent {
-    constructor(public dialog: MdDialog, public router: Router){}
+    constructor(
+        public dialog: MdDialog, 
+        public router: Router,
+        public auth : AuthService,
+    ) {
+        auth.handleAuthentication();
+    }
     selectedOption : number = 1;
 
     isOpen : boolean = false;
@@ -34,24 +42,25 @@ export class NavigationTopComponent {
     }
 
     openDialog(){
-        if(this.loginButtonText=='Logout'){
-            this.onLogout();
-        }
-        else if(this.isOpen == false) {
+       
+        // if(this.loginButtonText=='Logout'){
+        //     this.onLogout();
+        // }
+        // else if(this.isOpen == false) {
             
             
-            let dialogRef = this.dialog.open(LoginPopupComponent);
-            this.isOpen = true;
+        //     let dialogRef = this.dialog.open(LoginPopupComponent);
+        //     this.isOpen = true;
             
-            dialogRef.afterClosed().subscribe(result => {
-                this.isOpen=false;
-                if (result=='true'){
-                    this.updateUsername('BenDelore');
-                    this.onLogin();
-                }
-            })
+        //     dialogRef.afterClosed().subscribe(result => {
+        //         this.isOpen=false;
+        //         if (result=='true'){
+        //             this.updateUsername('BenDelore');
+        //             this.onLogin();
+        //         }
+        //     })
         
-        }
+        // }
         
     }
 

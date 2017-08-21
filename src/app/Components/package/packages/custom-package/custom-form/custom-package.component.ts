@@ -82,6 +82,27 @@ export class CustomPackageComponent implements OnInit{
         {display: 'displayO', condition: 'none', value: 4, eatingTime: 'Other'}
     ]   // this object will be in charge of iterating through the four times for food.
 
+    //barcode
+    elementType = 'svg';
+    value = 'someValue12340987';
+    format = 'CODE128';
+    lineColor = '#000000';
+    width = 2;
+    height = 100;
+    displayValue = true;
+    fontOptions = '';
+    font = 'monospace';
+    textAlign = 'center';
+    textPosition = 'bottom';
+    textMargin = 2;
+    fontSize = 20;
+    background = 'transparent';
+    margin = 10;
+    marginTop = 10;
+    marginBottom = 10;
+    marginLeft = 10;
+    marginRight = 10;
+    
     //declare services
     constructor(
         private accommodationService            :   AccommodationService,
