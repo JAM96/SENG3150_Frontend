@@ -3,7 +3,7 @@ import { NgModule }      from '@angular/core';
 //providers
 import {HttpModule} from '@angular/http';
 //used for Auth0
-import {routing, appRoutingProviders} from '../app.routing';
+import {ROUTES} from '../app.routing';
 import {AUTH_PROVIDERS} from 'angular2-jwt';
 //Used for navigation
 import {RouterModule, Routes, Router, NavigationStart} from '@angular/router';
@@ -81,6 +81,10 @@ import {CustomPackageService} from '../Components/package/packages/custom-packag
 //test component
 import {TestComponent} from '../Components/test-component/test.component';
 
+//import auth0
+import * as auth0 from 'auth0-js'
+import {CallbackComponent} from '../callback/callback.component';
+import {AuthService} from '../auth/auth.service';
 
 //add module imports and component declarations here...
 @NgModule({
@@ -94,7 +98,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     FormsModule,
     Md2Module,
     ReactiveFormsModule,
-    routing,
+    RouterModule.forRoot(ROUTES),
     //AsideModule,
     SlimLoadingBarModule.forRoot(),
     MyDateRangePickerModule,
@@ -132,6 +136,7 @@ import {TestComponent} from '../Components/test-component/test.component';
     ViewPackagesComponent,
     ViewVouchersComponent,
     LeaveFeedbackComponent,
+    CallbackComponent,
     ],
   bootstrap: [ 
     AppComponent, 
@@ -144,23 +149,24 @@ import {TestComponent} from '../Components/test-component/test.component';
     notificationsPopupComponent
   ],
   providers: [
-    appRoutingProviders,
     CustomPackageService,
     IndividualAccommodationService,
     IndividualFoodAndDrinksService,
     IndividualActivityService,
     DataService,
+    AuthService,
     CanDeactivateGuard,
   ]
 })
 
 export class AppModule {
-  constructor(router: Router) {
-    router.events.subscribe(
-      event => {
-        if (event instanceof NavigationStart) { 
-          console.log('router path:', event.url); 
-        } 
-      });
-  }
+  constructor(){}
+  // constructor(router: Router) {
+  //   router.events.subscribe(
+  //     event => {
+  //       if (event instanceof NavigationStart) { 
+  //         console.log('router path:', event.url); 
+  //       } 
+  //     });
+  // }
 }

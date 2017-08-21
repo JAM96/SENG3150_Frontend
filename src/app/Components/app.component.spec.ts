@@ -1,33 +1,32 @@
+/* tslint:disable:no-unused-variable */
+
+import { TestBed, async } from '@angular/core/testing';
+import { RouterModule, Router } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
+import { AuthService } from '../auth/auth.service';
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By }           from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-describe('AppComponent', function () {
-  let de: DebugElement;
-  let comp: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-
-  beforeEach(async(() => {
+describe('AppComponent', () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ]
-    })
-    .compileComponents();
+      imports: [
+        RouterModule.forRoot([])
+      ],
+      providers: [
+        { provide: AuthService, useValue: { handleAuthentication: () => {}, isAuthenticated: () => {} } },
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ],
+      declarations: [
+        AppComponent
+      ],
+    });
+    TestBed.compileComponents();
+  });
+
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    comp = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('.vegas-container'));
-  });
-
-  it('should create component', () => expect(comp).toBeDefined() );
-
-  it('should have expected <body> text', () => {
-    fixture.detectChanges();
-    const h1 = de.nativeElement;
-    expect(h1.innerText).toMatch(/angular/i,
-      '<h1> should say something about "Angular"');
-  });
 });

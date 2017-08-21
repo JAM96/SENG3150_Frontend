@@ -1,5 +1,5 @@
 import {ModuleWithProviders} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {Routes} from '@angular/router';
 import {CanDeactivateGuard} from './Components/guards/can-deactivate-guard.service';
 
 import {HomeComponent} from './Components/home/home.component';
@@ -22,6 +22,8 @@ import {CreateAccommodationComponent} from './Components/admin/create/accommodat
 //test component
 import {TestComponent} from './Components/test-component/test.component';
 
+//callback
+import {CallbackComponent} from './callback/callback.component';
 /*
 app routes
   add new routes here
@@ -29,8 +31,9 @@ app routes
   the home component contains the first view that the user will see, and then the user can navigate elsewhere, such as
   packages
 */
-const appRoutes: Routes = [
+export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'callback', component: CallbackComponent},
   { path: 'events', component: EventViewComponent},
   { path: 'packages', component: PackagesComponent},
   { path: 'profile', component: ProfileComponent},
@@ -50,9 +53,6 @@ const appRoutes: Routes = [
   { path: 'test', component: TestComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'createAccommodation', component: CreateAccommodationComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'}
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '**', redirectTo: '/home' }
 ]
-
-export const appRoutingProviders: any[] = [];
-
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes)
