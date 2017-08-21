@@ -58,8 +58,6 @@ import {HomeComponent} from '../Components/home/home.component';
     AddFoodAndDrinksComponent,
     AddActivityComponent
   } from '../Components/package/packages/custom-package/custom-form/custom-package.component';
-  import {CustomCalendarComponent} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/custom-calendar.component';
-  import {TruncatePipe} from '../Components/package/packages/custom-package/custom-initial-form/custom-calendar/calendar-truncate.pipe';
   import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
@@ -70,9 +68,12 @@ import {IndividualFoodAndDrinksService} from '../Services/FoodAndDrinks/individu
 import {IndividualActivityService} from '../Services/Activity/individual-activity.service';
 
 //ng2 
-import {AsideModule} from 'ng2-aside';
+//import {AsideModule} from 'ng2-aside';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
 
+
+//barcode
+import { NgxBarcodeModule } from 'ngx-barcode';
 //calendar
 
 //custom package service
@@ -94,12 +95,13 @@ import {TestComponent} from '../Components/test-component/test.component';
     Md2Module,
     ReactiveFormsModule,
     routing,
-    AsideModule,
+    //AsideModule,
     SlimLoadingBarModule.forRoot(),
     MyDateRangePickerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAMwjWTDQg0aVK9flKslyeB5wKBBCq46Cg'
     }),
+    NgxBarcodeModule,
     ],
   declarations: [
     AppComponent,
@@ -130,8 +132,6 @@ import {TestComponent} from '../Components/test-component/test.component';
     ViewPackagesComponent,
     ViewVouchersComponent,
     LeaveFeedbackComponent,
-    CustomCalendarComponent,
-    TruncatePipe
     ],
   bootstrap: [ 
     AppComponent, 

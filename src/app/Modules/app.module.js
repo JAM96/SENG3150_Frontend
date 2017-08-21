@@ -63,6 +63,8 @@ var individual_activity_service_1 = require("../Services/Activity/individual-act
 //ng2 
 var ng2_aside_1 = require("ng2-aside");
 var ng2_slim_loading_bar_1 = require("ng2-slim-loading-bar");
+//barcode
+var ngx_barcode_1 = require("ngx-barcode");
 //calendar
 //custom package service
 var custom_package_service_1 = require("../Components/package/packages/custom-package/custom-package-service/custom-package.service");
@@ -96,6 +98,7 @@ var AppModule = (function () {
                 core_2.AgmCoreModule.forRoot({
                     apiKey: 'AIzaSyAMwjWTDQg0aVK9flKslyeB5wKBBCq46Cg'
                 }),
+                ngx_barcode_1.NgxBarcodeModule,
             ],
             declarations: [
                 app_component_1.AppComponent,

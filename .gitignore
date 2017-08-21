@@ -30,7 +30,7 @@
 npm-debug.log
 testem.log
 /typings
-/src/bower_components/*
+/src/assets/bower_components/*
 
 # e2e
 /e2e/*.js

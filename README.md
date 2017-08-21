@@ -1,29 +1,28 @@
-# SENG3150 Frontend
-## Dependencies steps:
-------
-1. Download and install [Visual Studio Code](https://code.visualstudio.com/Download).
-2. Download and install [Node.JS](https://nodejs.org/en/).
-+ Ensure you are downloading v7.10.0 Current
-3. Download and install Bower through Node Package Manager (npm):
-+ Install bower by opening a command window
-+ Type in the following:
-+ `npm install -g bower`
-+ This will install bower globally to your computer
+# SENG3150FrontendCLI
 
-## Installing Packages
-------
-1. Go to the root of the SENG3150_Frontend.
-2. Open a new command window in this folder.
-3. Install the angular node-modules:
-+ Type in: `npm install`
-+ Note: this may output some errors, but it should be fine
-4. Install bower components:
-+ Navigate into the "src" folder of SENG3150_Frontend
-+ Open a new command window in this folder
-+ Use the following command: `bower install`
-5. Start the front end client side server, by typing in `npm start` in the command window.
-6. The website should load up into your default browser
-+ If it doesn't load automatically, there may be some errors, or navigate to your browser and type in `localhost:PORT`
-+ where port is the number provided in the output. (should be 3000)
-	
-Note: You have to have the backend running for the frontend to display the data from the database.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
