@@ -17,7 +17,42 @@ body {
     overflow: hidden;
 }
 
-/* CONTAINERS */
+/* home.component.html */
+    .home-view {
+        width: 100%;
+        height: 100%;
+        
+        background-color: #333333;
+        z-index: 1000;
+
+        display: table;
+        margin: 0 auto;
+
+        background-image: url("../image/home-4.jpg");
+        background-size: 100% 100%;
+    }
+
+    .home-centre-form {
+        height: 100%;
+        display: table-cell;   
+        vertical-align: middle;
+    }
+
+    .home-creation-form {
+        height: auto;
+        width: 50%;
+        
+        margin: auto;
+
+        padding: 20px;
+        background-color: rgba(50,50,55,0.9);
+        border: 4px solid rgba(30,27,27,1);
+        color: white;
+        border-radius: 10px;
+    }
+/* end home.component.html */
+
+
 
 /*Home Page Panels */
 .panel {
@@ -57,27 +92,9 @@ body {
     padding: 0;
 
 }
-.h-view {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    
-    background-color: #333333;
-    z-index: 1000;
 
-    display: table;
-    margin: 0 auto;
 
-    background-image: url("../image/home-4.jpg");
-    background-size: 100% 100%;
-}
 
-.centrediv {
-    height: 100%;
-    display: table-cell;   
-    vertical-align: middle;
-}
 
 .bottomNav{
     position:absolute;
@@ -250,10 +267,7 @@ md-sidenav {
 }
 
 
-.customIncreasers {
-    padding-top: 10px;
-    width: 100%; 
-}
+
 
 .text {
     color: rgba(227,227,255,1);;
@@ -649,14 +663,6 @@ a:hover {
 
 #home-about-button:hover {
     background-image: url("../image/about-button-hover.png");
-}
-
-#home-title {
-    padding: 0;
-    margin: 0;
-    font-style: bookman;
-    margin-bottom: 20px;
-    font-size: 24pt;
 }
 
 #cartForm {
