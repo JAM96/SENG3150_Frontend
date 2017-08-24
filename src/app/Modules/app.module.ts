@@ -40,7 +40,6 @@ import {HomeComponent} from '../Components/home/home.component';
   import {ContactComponent} from '../Components/contact/contact.component';
   import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
 
-  import {CreateCustomPackageInitialComponent} from '../Components/package/packages/custom-package/custom-initial-form/create-custom-package.component';
   import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
 
   //Profile Component and Profile Components
@@ -109,7 +108,6 @@ import {AuthService} from '../auth/auth.service';
     HomeComponent,
     AboutComponent,
     ActivityComponent,
-    CreateCustomPackageInitialComponent,
     NavigationTopComponent,
     BudgetChangeComponent,
     AddAccommodationComponent,
@@ -154,12 +152,4 @@ import {AuthService} from '../auth/auth.service';
 
 export class AppModule {
   constructor(){}
-  // constructor(router: Router) {
-  //   router.events.subscribe(
-  //     event => {
-  //       if (event instanceof NavigationStart) { 
-  //         console.log('router path:', event.url); 
-  //       } 
-  //     });
-  // }
 }

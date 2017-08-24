@@ -30,7 +30,7 @@ app routes
   packages
 */
 export const ROUTES: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'callback', component: CallbackComponent},
   { path: 'events', component: EventViewComponent, },
   { path: 'packages', component: PackagesComponent},
@@ -48,6 +48,5 @@ export const ROUTES: Routes = [
   { path: 'accommodation', component: AccomodationComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: '**', redirectTo: '/home' }
+  { path: '**', redirectTo: '' }
 ]
