@@ -34,27 +34,52 @@ export class HomeComponent {
         ) {}
 
     myDateRangePickerOptions: IMyDrpOptions = {
-        // other options...
-        dateFormat: 'dd.mm.yyyy',
-        showApplyBtn: false,
+        //Options provided from documentation
+        dayLabels: {su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat'},
+        monthLabels: { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' },
+        dateFormat: 'dd.mm.yyyy',  
         showClearBtn: false,
+        showApplyBtn: false,
+        showSelectDateText: false,
+        selectBeginDateTxt: 'Checkin',
+        selectEndDateTxt: 'Checkout',
         firstDayOfWeek: "su",
         sunHighlight: false,
+        markCurrentDay: true,
+        markCurrentMonth: true,
+        markCurrentYear: true,
+        monthSelector: true,
+        yearSelector: true,
         minYear: 2017,
         maxYear: 3000,
+        disableUntil: {year: 2017, month:8, day:7},     //disable dates before this value
+        disableSince: {year: 2017, month:12, day: 31},  //disable dates after this value
+        //disableDates: no default value, //Array<IMyDate> list of disabled dates
+        //enableDates: no default value, //Array<IMyDate> list of enabled dates
+        //disableDateRanges: no default value, //Array<IMyDate> is in range but cannot be selected
+        disableHeaderButtons: true,
+        showWeekNumbers: false,
+        selectorHeight: '232px',
+        selectorWidth: '100%',
+        inline: false,  //shows the calendar selection
+        showClearDateRangeBtn: false,
         height: '34px',
-        width: '260px',
-        inline: false,
-        editableDateRangeField: false,
-        alignSelectorRight: false,
-        indicateInvalidDateRange: true,
-
+        width: '100%',
+        selectionTxtFontSize: '16px',
+        alignSelectorRight: false, 
+        indicateInvalidDateRange: true, 
+        componentDisabled: false,
+        editableDateRangeField: false, //disables manual input
+        showSelectorArrow: true,
+        openSelectorOnInputClick: true,
+        ariaLabelInputField: "Chose when you are having your holiday",
+        ariaLabelOpenCalendar: "HEI"
     };
 
     // For example initialize to specific date (09.10.2018 - 19.10.2018). It is also possible
     // to set initial date range value using the selDateRange attribute.
-    model: Object = {beginDate: {year: 2017, month: 8, day: 7},
-                             endDate: {year: 2017, month: 8, day: 7}};
+    //model: Object = {beginDate: {year: 2017, month: 8, day: 7},
+     //                        endDate: {year: 2017, month: 8, day: 7}};
 
      onDateRangeChanged(event: IMyDateRangeModel) {
         console.log('onDateRangeChanged(): Begin date: ', event.beginDate, ' End date: ', event.endDate);

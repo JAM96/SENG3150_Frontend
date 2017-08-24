@@ -7,57 +7,85 @@
 <div class="home-view">
     <div class="home-centre-form">
         <div class="home-creation-form">
-            <div class="row"><!-- title -->
+            <div class="row" id="home-form-top"><!-- title -->
                 Create your holiday now!
             </div>
 
-            
-
-            <hr>
-
-            <div class="row"><!-- calendar row -->
+            <div class="row" style="color: black"><!-- calendar row -->
                 <div class="col-md-12">
                     <form #myForm="ngForm" novalidate>
                         <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
                                         [(ngModel)]="model" required
-                                        (dateRangeChanged)="onDateRangeChanged($event)">
+                                        (dateRangeChanged)="onDateRangeChanged($event)"
+                                        placeholder="Select your dates!">
                         </my-date-range-picker>
                     </form>
                 </div>
             </div><!-- end calendar row -->
                 
-            <div class="row"><!-- Guest and rooms -->
-                <div class="col-md-6">
-                    <a>
-                        <span (click)="decreaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
-                    </a>
-                    <div class="text">
-                        Guests: {{guests}}
+            <div class="row" id="home-guests"><!-- Guest and rooms -->
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-xs-11 removePadding">
+                            <md-input-container class="grInput">
+                                <input mdInput placeholder="Number of Guests" value="{{guests}}">
+                            </md-input-container>
+                        </div>
+                        <div class="col-xs-1 removePadding">
+                            <div class="row removePadding" >
+                                <a class="home-increasers" (click)="increaseGuests()">
+                                    <span class="text-lg glyphicon glyphicon-menu-up"></span>
+                                </a>
+                            </div>
+                            <div class="row removePadding">
+                                <a class="home-increasers" (click)="decreaseGuests()">
+                                    <span  class="text-lg glyphicon glyphicon-menu-down"></span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <a>
-                        <span (click)="increaseGuests()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
-                    </a>
                 </div>
 
-                <div class="col-md-6">
-                    <a>
-                        <span (click)="decreaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-left"></span>
-                    </a>
-                    <div class="text">
-                        Rooms: {{rooms}}
+                <div class="col-md-2 home-seperator-vertical">
+                    <svg height="100%" width="2px">
+                        <line x1="0" y1="0" x2="0" y2="200" style="stroke:rgb(130,127,127);stroke-width:2" />
+                    </svg>
+                </div>
+
+                <div class="col-md-2 home-seperator-horizontal">
+                    <hr class="home-seperator-horizontal-line">
+                </div>
+
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-xs-11 removePadding">
+                            <md-input-container class="grInput">
+                                <input mdInput placeholder="Number of Rooms" value="{{rooms}}">
+                            </md-input-container>
+                        </div>
+                        <div class="col-xs-1 removePadding">
+                            <div class="row removePadding">
+                                <a class="home-increasers" (click)="increaseRooms()">
+                                    <span class="text-lg glyphicon glyphicon-menu-up"></span>
+                                </a>
+                            </div>
+                            <div class="row removePadding">
+                                <a class="home-increasers" (click)="decreaseRooms()">
+                                    <span  class="text-lg glyphicon glyphicon-menu-down"></span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <a>
-                        <span (click)="increaseRooms()" class="text-hover-k glyphicon glyphicon-triangle-right"></span>
-                    </a>
                 </div>
             </div><!-- End guest and rooms -->
 
+            <!-- Budget slider -->
+            <h3 class="text-sm text-b">Budget - ${{value}}</h3>
             <div class="row">
-                <!--Slider -->
-                <div class="range-slider">
-                    <h3 class="text-sm text-b">Budget - ${{value}}</h3>
+                <div class="col-md-10 col-md-offset-1">
+                    
                     <md-slider 
-                        style="width:500px;" 
+                        style="width:100%;" 
                         thumbLabel 
                         min="0" 
                         max="5000" 
@@ -66,48 +94,52 @@
                         tickInterval="10"
                         [(ngModel)]="value"
                     ></md-slider>
-                    <!--<input (click)="updateValue()" type="range" [(ngModel)]="value" min="{{minBudget}}" max="{{maxBudget}}">-->
                 </div>
-                <br>
-                <button type="button" md-raised-button color="warn" (click)="submitForm()">Create!</button>
-
-                
             </div>
 
+            <div class="row">
+                <div class="col-md-3" style="float: right">
+                    <button type="button" md-raised-button color="warn" (click)="submitForm()" style="float: right">Create!</button>
+                </div>
+            </div>
+
+            <hr class="home-seperator home-buttons-normal">
+
             <!-- Links to other locations on the site -->
-            <div class="row" style="background-color: rgba(255,255,255,0.8)">
+            <div class="row home-buttons-normal">
                 <div class="col-sm-2">
-                    <button type="button" md-button (click)="setNavOption('packages')">
-                        Packages
+                    <button type="button" md-button (click)="setNavOption('packages')"
+                        mdTooltip="View packages offered by us!" [mdTooltipPosition]="position">
+                        <span class="glyphicon glyphicon-th-large"></span>
                     </button>
                 </div>
                 <div class="col-sm-2">
                     <button type="button" md-button (click)="setNavOption('accommodation')"
-                        mdTooltip="View accommodation" [mdTooltipPosition]="position">
+                        mdTooltip="View accommodation offered in Newcastle." [mdTooltipPosition]="position">
                         <span class="glyphicon glyphicon-home"></span>
                     </button>
                 </div>
                 <div class="col-sm-2">
                     <button type="button" md-button (click)="setNavOption('events')"
-                        mdTooltip="View events happening in Newcastle" [mdTooltipPosition]="position">
+                        mdTooltip="View events happening in Newcastle." [mdTooltipPosition]="position">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </button>
                 </div>
                 <div class="col-sm-2">
                     <button type="button" md-button (click)="setNavOption('activities')"
-                        mdTooltip="View activities to do in Newcastle" [mdTooltipPosition]="position">
+                        mdTooltip="View activities to do in Newcastle." [mdTooltipPosition]="position">
                         <span class="glyphicon glyphicon-tower"></span>
                     </button>
                 </div>
                 <div class="col-sm-2">
                     <button type="button" md-button (click)="setNavOption('restaurants')"
-                        mdTooltip="View restaurants, bars, and more in Newcastle" [mdTooltipPosition]="position">
+                        mdTooltip="View restaurants, bars, cafes, and more in Newcastle." [mdTooltipPosition]="position">
                         <span class="glyphicon glyphicon-cutlery"></span>
                     </button>
                 </div>
                 <div class="col-sm-2">
                     <button type="button" md-button (click)="setNavOption('about')"
-                    mdTooltip="About us and Newcastle" [mdTooltipPosition]="position">
+                    mdTooltip="About us and Newcastle." [mdTooltipPosition]="position">
                         <span class="glyphicon glyphicon-info-sign"></span>
                     </button>
                 </div>
@@ -115,6 +147,76 @@
         </div><!-- home form -->
     </div>
 
-    <!-- <button md-raised-button (click)="setNavOption(2)" id="home-login-button">Login</button>
-    <div class="logo">Newcastle Connections</div> -->
+    <!-- Mobile scaling: show these buttons instead of the above which will dock on the bottom
+        of the screen -->
+    <div id="buttons-mobile">
+        <div class="row" >
+            <div class="col-xs-4 home-mobile-button">
+                <div class="row" style="margin: 0; text-align: center">
+                    <button type="button" md-button (click)="setNavOption('packages')">
+                        <span class="glyphicon glyphicon-th-large"></span>
+                    </button>
+                </div>
+                <div class="row" style="margin: 0; text-align: center">
+                    <span class="text-xxsm">Packages</span>
+                </div>
+            </div>
+            <div class="col-xs-4 home-mobile-button">
+                <div class="row" style="margin: 0; text-align: center">
+                    <button type="button" md-button (click)="setNavOption('accommodation')">
+                        <span class="glyphicon glyphicon-home"></span>
+                    </button>
+                </div>
+                <div class="row" style="margin: 0; text-align: center">
+                    <span class="text-xxsm">Accommodation</span>
+                </div>
+            </div>
+            <div class="col-xs-4 home-mobile-button">
+                <div class="row" style="margin: 0; text-align: center">
+                    <button type="button" md-button (click)="setNavOption('events')">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </button>
+                </div>
+                <div class="row" style="margin: 0; text-align: center">
+                    <span class="text-xxsm">Events</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4 home-mobile-button">
+                <div class="row" style="margin: 0; text-align: center">
+                    <button type="button" md-button (click)="setNavOption('activities')">
+                        <span class="glyphicon glyphicon-tower"></span>
+                    </button>
+                </div>
+                <div class="row" style="margin: 0; text-align: center">
+                    <span class="text-xxsm">Activities</span>
+                </div>
+            </div>
+            <div class="col-xs-4 home-mobile-button">
+                <div class="row" style="margin: 0; text-align: center">
+                    <button type="button" md-button (click)="setNavOption('restaurants')">
+                        <span class="glyphicon glyphicon-cutlery"></span>
+                    </button>
+                </div>
+                <div class="row" style="margin: 0; text-align: center">
+                    <span class="text-xxsm">Food and Drinks</span>
+                </div>
+            </div>
+            <div class="col-xs-4 home-mobile-button">
+                <div class="row" style="margin: 0; text-align: center">
+                    <button type="button" md-button (click)="setNavOption('about')">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </button>
+                </div>
+                <div class="row" style="margin: 0; text-align: center">
+                    <span class="text-xxsm">About</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button md-raised-button color="warn" (click)="setNavOption('login')" id="home-login-button">Login</button>
+    <div id="home-logo">Newcastle Connections</div>
 </div>

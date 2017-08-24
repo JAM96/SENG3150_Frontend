@@ -8,28 +8,72 @@
         background-color: rgba(255,255,255,0.8);
     }
 
-    .customPackageCreationHome {
+    .home-creation-form {
         width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-        padding: 5px;
+        margin: auto;
+        margin-top: -75px;
     }
 
     md-sidenav {
         width: 15%;
     }
 
-    .customPackageCreationForm {
-        height: auto;
-        background-color: rgba(50,50,55,0.9);
-        border: 4px solid rgba(30,27,27,1);
-        color: white;
-        border-radius: 10px;
-    }
 
-    #home-title {
+    /* Home component  */
+    #home-logo {
         font-size: 14px;
     }
+
+    /* Calendar selection */
+    .selection {
+        font-size: 12px !important;
+    }
+
+    
+    #home-guests {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #home-form-top {
+        font-size: 14pt;
+    }
+
+    #buttons-mobile {
+        display: block;
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 120px;
+        
+        color: white;
+
+        border-top: 2px solid rgba(30,27,27,1);
+        background-color: rgba(50,50,55,0.9);
+    }
+
+    .home-mobile-button {
+        border-left: 1px solid #444;
+    }
+    .mat-button {
+        min-width: 0px !important;
+    }
+
+    #home-logo {
+        top: 10px;
+        left: 10px;
+        font-size: 16pt;
+    }
+
+    #home-login-button {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* end home component html */
 }
 
 @media screen and (min-width: 0px) and (max-width: 1420px) {
@@ -66,6 +110,18 @@
     }
 
     .text-hide {
+        display: none;
+    }
+
+    .home-seperator-vertical {
+        display: none;
+    }
+
+    .home-seperator-horizontal {
+        display: block;
+    }
+
+    .home-buttons-normal {
         display: none;
     }
 }
