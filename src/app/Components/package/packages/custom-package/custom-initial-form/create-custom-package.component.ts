@@ -41,7 +41,7 @@ export class CreateCustomPackageInitialComponent { //CCPIC
         private packageService: CustomPackageService
         ) {}
 
-    private myDateRangePickerOptions: IMyDrpOptions = {
+    myDateRangePickerOptions: IMyDrpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
         showApplyBtn: false,
@@ -61,7 +61,7 @@ export class CreateCustomPackageInitialComponent { //CCPIC
 
     // For example initialize to specific date (09.10.2018 - 19.10.2018). It is also possible
     // to set initial date range value using the selDateRange attribute.
-    private model: Object = {beginDate: {year: 2017, month: 8, day: 7},
+    model: Object = {beginDate: {year: 2017, month: 8, day: 7},
                              endDate: {year: 2017, month: 8, day: 7}};
 
      onDateRangeChanged(event: IMyDateRangeModel) {

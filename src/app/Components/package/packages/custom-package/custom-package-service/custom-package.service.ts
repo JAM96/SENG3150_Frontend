@@ -1,3 +1,8 @@
+/*
+    Name: Custom package service
+    Role: Storing the data within the custom package form.
+    can transfer object from different components.
+*/
 import {Injectable} from '@angular/core';
 
 import {CustomPackage} from '../CustomPackage';
@@ -5,9 +10,10 @@ import {CustomPackage} from '../CustomPackage';
 
 @Injectable()
 export class CustomPackageService {
-    cp : CustomPackage;
+    customPackage : CustomPackage;
+
     constructor(){
-        this.cp = new CustomPackage;
+        this.customPackage = new CustomPackage;
     }
 
     setInitialData(
@@ -15,7 +21,7 @@ export class CustomPackageService {
         guests: number,
         rooms: number,
         checkin: Date,
-        checkout: Date) {
+        checkout: Date) : void {
             var data = new CustomPackage;
             data.budget = budget;
             data.guests = guests;
@@ -26,7 +32,7 @@ export class CustomPackageService {
             this.cp = data;
     }
 
-    getInitialData () {
+    getPackage() : CustomPackage {
         return this.cp
     }
 }

@@ -24,6 +24,10 @@
     import {IndividualActivityService} from '../../../../../Services/Activity/individual-activity.service';
     import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
     import {CustomPackageService} from '../custom-package-service/custom-package.service';
+//PDF Creator
+    import jsPDF from 'jspdf';
+    // declare var jquery:any;
+    declare var $ :any;
 
 //Custom Package Component
 @Component({
@@ -37,6 +41,7 @@
         ]
 })
 export class CustomPackageComponent implements OnInit{
+
     custom : CustomPackage; //CustomPackage object for storing all the package items
     public budget : number;
 
@@ -58,10 +63,6 @@ export class CustomPackageComponent implements OnInit{
     days : number[] = [];       //Used to store the amount of days the user is staying
     selectedDay : number = 1;   //The day that has been selected for input of the package item
     duration : number;          //The amount of days the user is staying in Newcastle
-
-    //Side menu
-    isTrue = true;             //Depending on the screen size, if the user is on a computer, it will be opened
-    screenWidth : number = document.getElementsByTagName('body')[0].clientWidth;    //calculate the users screen width
 
     //Travel Form
     travelValue : string = 'No';    //Option selected by the user
@@ -86,6 +87,7 @@ export class CustomPackageComponent implements OnInit{
     elementType = 'svg';
     value = 'someValue12340987';
     format = 'CODE128';
+    //format = 'upc';
     lineColor = '#000000';
     width = 2;
     height = 100;
@@ -122,6 +124,15 @@ export class CustomPackageComponent implements OnInit{
         //Grab the data entered from the initial form (home page)
         this.custom = this.packageService.getInitialData();
         console.log(this.custom);
+
+        //check if there is a local copy of the form
+        var tempImport : CustomPackage;
+        tempImport = $.parseJSON(sessionStorage.getItem('packageForm'));
+
+        if(tempImport !== null) {
+            console.log("object is not null");
+            this.custom = $.parseJSON(sessionStorage.getItem('packageForm'));
+        }
 
         this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
         this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
@@ -575,6 +586,8 @@ export class CustomPackageComponent implements OnInit{
 
         this.packageService.cp = this.custom;
 
+        sessionStorage.setItem('packageForm', JSON.stringify(this.custom));
+
         console.log("Form Saved");
     }
 
@@ -592,7 +605,42 @@ export class CustomPackageComponent implements OnInit{
             this.budget = result;
         });
     }
+
+    createPDF(){
+        let printContents, popupWin;
+        printContents = document.getElementById('cart').innerHTML;
+        popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+        popupWin.document.open();
+        popupWin.document.write(`
+          <html>
+            <head>
+              <title>Print tab</title>
+              <style>
+              //........Customized style.......
+              </style>
+            </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+          </html>`
+        );
+        popupWin.document.close();
+    }
 }
+
+/*
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
+
+
+OTHER COMPONENTS
+
+###################################################################################################################################
+###################################################################################################################################
+###################################################################################################################################
+
+*/
 
 @Component({
     moduleId: module.id,

@@ -56,7 +56,7 @@ import {HomeComponent} from '../Components/home/home.component';
     AddFoodAndDrinksComponent,
     AddActivityComponent
   } from '../Components/package/packages/custom-package/custom-form/custom-package.component';
-  import {PackageCategoryComponent, PackageCategoryComponentDialog} from '../Components/package/packagecategory.component';
+  import {PackageCategoryComponent} from '../Components/package/packagecategory.component';
   import {PackagesComponent} from '../Components/package/packages/packagesview.component';
 //import services here
 import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
@@ -117,7 +117,6 @@ import {AuthService} from '../auth/auth.service';
     AddActivityComponent,
     notificationsPopupComponent,
     EventViewComponent,
-    PackageCategoryComponentDialog,
     PackageCategoryComponent,
     PackagesComponent,
     ProfileComponent,
@@ -131,14 +130,15 @@ import {AuthService} from '../auth/auth.service';
     LeaveFeedbackComponent,
     CallbackComponent,
     ],
-  bootstrap: [ 
-    AppComponent, 
-    PackageCategoryComponentDialog, 
+  entryComponents: [
     BudgetChangeComponent,
     AddAccommodationComponent, 
     AddFoodAndDrinksComponent,
     AddActivityComponent,
     notificationsPopupComponent
+  ],
+  bootstrap: [ 
+    AppComponent,
   ],
   providers: [
     CustomPackageService,

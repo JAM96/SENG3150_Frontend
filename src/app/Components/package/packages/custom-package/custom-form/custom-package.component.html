@@ -440,7 +440,7 @@
                             CART VIEW
             
                 ============================================-->
-            <div class="container s-view" *ngIf="selected==5">
+            <div id="cart" class="container s-view" *ngIf="selected==5">
                 <span class="text-lg text-primary text-b text-u text-nl">Shopping Cart</span>
                 <span class="text-md text-primary text-b text-nl">Date:</span>
                 <span class="text-sm text-k text-nl">{{custom.checkin}} to {{custom.checkout}}</span>
@@ -451,7 +451,10 @@
                 <span class="text-sm text-ktext-nl">{{custom.hotel}}</span>
 
                 <button (click)="showObject()" md-raised-button>Output object</button>
-                
+                <button (click)="createPDF()" md-raised-button>Create PDF</button>
+               
+               
+                <hr>
                 <ngx-barcode 
                 [bc-element-type]="elementType"
                 [bc-value]="value"
