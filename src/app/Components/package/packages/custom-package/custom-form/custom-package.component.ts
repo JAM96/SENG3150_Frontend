@@ -122,7 +122,7 @@ export class CustomPackageComponent implements OnInit{
     ngOnInit() {
         console.log('[INFO] Custom package creation form is initialising...')
         //Grab the data entered from the initial form (home page)
-        this.custom = this.packageService.getInitialData();
+        this.custom = this.packageService.getPackage();
         console.log(this.custom);
 
         //check if there is a local copy of the form
@@ -584,7 +584,7 @@ export class CustomPackageComponent implements OnInit{
         this.custom.budget = this.budget;
         this.custom.previousSelectedAccommodation = this.previousSelectedAccommodation;
 
-        this.packageService.cp = this.custom;
+        this.packageService.setPackage(this.custom);
 
         sessionStorage.setItem('packageForm', JSON.stringify(this.custom));
 

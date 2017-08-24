@@ -1,0 +1,14 @@
+{
+  "name": "jquery.snapscroll",
+  "homepage": "https://github.com/wtm/jquery.snapscroll",
+  "_release": "833f811f53",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "833f811f53f0cc7455b1c59ff927df9139130ec2"
+  },
+  "_source": "https://github.com/wtm/jquery.snapscroll.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/wtm/jquery.snapscroll.git",
+  "_direct": true
+}
