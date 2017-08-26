@@ -1,6 +1,16 @@
 <ng2-slim-loading-bar [height]="'4px'" style="position:fixed"></ng2-slim-loading-bar><!-- loading bar which gets activated when loading of data from the database -->
 <navigationtop></navigationtop>
 <div class="container-fluid"><!-- Main View Container -->
+    <div class="row" style="margin-left: 200px;">
+        <div class="col-md-2 offset-md-4">
+            <h1>Image testing</h1>
+            <div *ngFor="let image of imageList" class="row">
+                testing
+                <img src="data:image/png;base64,{{image.base64Equiv}}" alt="photo not found" />
+            </div>
+        </div>
+    </div>
+
     <!-- Content -->
     <div class="row">
         <div class="col-md-10">

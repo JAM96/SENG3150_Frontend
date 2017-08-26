@@ -66,6 +66,7 @@ import { AppComponent }  from '../Components/app.component';
   import {AccommodationService} from '../Services/Accommodation/accommodation.service';
   import {FoodAndDrinksService} from '../Services/FoodAndDrinks/food-and-drinks.service';
   import {ActivityService} from '../Services/activity/activity.service';
+  import {ImageService} from '../Services/image.service';
 //ng2 
 //import {AsideModule} from 'ng2-aside';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
@@ -155,6 +156,7 @@ import {AuthService} from '../auth/auth.service';
     AccommodationService,
     FoodAndDrinksService,
     ActivityService,
+    ImageService,
   ]
 })
 

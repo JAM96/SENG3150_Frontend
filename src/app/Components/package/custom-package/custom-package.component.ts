@@ -15,9 +15,11 @@
     import {Activity} from '../../../Objects/Activity/Activity';
     import {CustomPackage} from '../../../Objects/Packages/CustomPackage/CustomPackage';
     import {TravelInformation} from '../../../Objects/Packages/CustomPackage/TravelInformation';
+    import {Image} from '../../../Objects/Image';
 //Services
     import {AccommodationService} from '../../../Services/Accommodation/accommodation.service';
     import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-drinks.service';
+    import {ImageService} from '../../../Services/image.service';
     import {ActivityService} from '../../../Services/activity/activity.service';
     import {IndividualFoodAndDrinksService} from '../../../Services/FoodAndDrinks/individual-food-and-drinks.service';
     import {IndividualActivityService} from '../../../Services/Activity/individual-activity.service';
@@ -48,6 +50,7 @@ export class CustomPackageComponent implements OnInit{
     accommodationList : Accommodation[];//list of accomodation options in Newcastle
     foodAndDrinks   : FoodAndDrinks[];            //list of restaurants and bars in Newcastle
     activities  : Activity[];   //list of events and activities in Newcastle
+    imageList   : Image[];
 
     isLoaded = [
         {type: 'accommodation', value: false},
@@ -119,13 +122,17 @@ export class CustomPackageComponent implements OnInit{
         private accommodationService            :   AccommodationService,
         private foodAndDrinksService            :   FoodAndDrinksService,
         private activityService                 :   ActivityService,
+        private imageService                    :   ImageService,
         private packageService                  :   CustomPackageService,
         private individualFoodAndDrinksService  :   IndividualFoodAndDrinksService,
         private individualActivityService       :   IndividualActivityService,
         private slimLoadingBarService           :   SlimLoadingBarService,
         private router                          :   Router,
         public dialog                           :   MdDialog
-        ) {}
+        ) {
+
+            this.getImages();
+        }
 
     ngOnInit() {
         console.log('[INFO] Custom package creation form is initialising...')
@@ -148,6 +155,11 @@ export class CustomPackageComponent implements OnInit{
             this.travelValue = 'No'
             this.budget = this.custom.budget;
             this.custom.packageCost = 0;
+
+            setTimeout(() => {
+                this.getImages();
+            }, 2000)
+           
         } else {
             console.log("Package is already created");
             this.selected = this.custom.navigation;
@@ -164,6 +176,7 @@ export class CustomPackageComponent implements OnInit{
             this.getAccommodation();
             this.getActivities();
             this.getFoodAndDrinks();
+            this.getImages();
         }
 
         if(this.budget == null) {
@@ -195,6 +208,8 @@ export class CustomPackageComponent implements OnInit{
         this.calculateDuration(this.custom.checkin, this.custom.checkout);
         //Populate the days array with this value
         this.setDaysArray(this.duration);
+
+        
     }
 
     //Calculates the duration of the selected holiday
@@ -293,6 +308,8 @@ export class CustomPackageComponent implements OnInit{
         */
         this.selected = selection;
         console.log('[INFO] SELECTED VALUE: ', selection);
+
+        this.getImages();
 
         switch(selection) {
             case 1: break;
@@ -519,6 +536,14 @@ export class CustomPackageComponent implements OnInit{
                 if(this.accommodationList[i].features[0] != null) 
                     this.accommodationList[i].topFeatures.push(this.accommodationList[i].features[j]);
         }
+    }
+
+    getImages() : void {
+        this.imageService.getImages()
+            .then((image : Image[]) => this.imageList = image)
+            .then(() => console.log("images loaded: "))
+            .then(() => console.log(this.imageList));
+        
     }
     
     /* Retrieves all the accommodation objects from the backend */
