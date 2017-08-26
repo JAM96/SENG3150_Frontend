@@ -1,4 +1,4 @@
-<ng2-slim-loading-bar [height]="'4px'"></ng2-slim-loading-bar><!-- loading bar which gets activated when loading of data from the database -->
+<ng2-slim-loading-bar [height]="'4px'" style="position:fixed"></ng2-slim-loading-bar><!-- loading bar which gets activated when loading of data from the database -->
 <navigationtop></navigationtop>
 <div class="container-fluid"><!-- Main View Container -->
     
@@ -450,32 +450,9 @@
                 <span class="text-md text-primary text-b text-nl">Hotel</span>
                 <span class="text-sm text-ktext-nl">{{custom.hotel}}</span>
 
-                <button (click)="showObject()" md-raised-button>Output object</button>
-                <button (click)="createPDF()" md-raised-button>Create PDF</button>
+
                
                
-                <hr>
-                <ngx-barcode 
-                [bc-element-type]="elementType"
-                [bc-value]="value"
-                [bc-format]="format"
-                [bc-line-color]="lineColor"
-                [bc-width]="width"
-                [bc-height]="height"
-                [bc-display-value]="displayValue"
-                [bc-font-options]="fontOptions"
-                [bc-font]="font"
-                [bc-text-align]="textAlign"
-                [bc-text-position]="textPosition"
-                [bc-text-margin]="textMargin"
-                [bc-font-size]="fontSize"
-                [bc-background]="background"
-                [bc-margin]="margin"
-                [bc-margin-top]="marginTop"
-                [bc-margin-bottom]="marginBottom"
-                [bc-margin-left]="marginLeft"
-                [bc-margin-right]="marginRight"
-              ></ngx-barcode>
             </div>
         </div><!-- <div class="md-col-10">-->
 

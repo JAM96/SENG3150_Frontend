@@ -34,9 +34,7 @@
     selector: 'custom-package',
     templateUrl: 'custom-package.component.html',
     providers: [
-        AccommodationService,
-        FoodAndDrinksService,
-        ActivityService
+        
         ]
 })
 export class CustomPackageComponent implements OnInit{
@@ -56,11 +54,11 @@ export class CustomPackageComponent implements OnInit{
     ]
 
     //View variables
-    selected : number = 1;      //Tab selection, 1=Travel, 2=Accommodation, 3=Restauarants, 4=Activities, 5=Cart
+    selected : number;      //Tab selection, 1=Travel, 2=Accommodation, 3=Restauarants, 4=Activities, 5=Cart
 
     //Restaurants and Activities View
     days : number[] = [];       //Used to store the amount of days the user is staying
-    selectedDay : number = 1;   //The day that has been selected for input of the package item
+    selectedDay : number;   //The day that has been selected for input of the package item
     duration : number;          //The amount of days the user is staying in Newcastle
 
     //Travel Form
@@ -144,10 +142,13 @@ export class CustomPackageComponent implements OnInit{
             this.selected = this.custom.navigation;
             this.selectedDay = this.custom.aSelectedDay;
             this.travelValue = this.custom.requireTravel;
-            this.selectedAccommodation = this.custom.accommodation.accommodationID;
-            this.selectedAccommodationName = this.custom.accommodation.accommodationName;
             this.budget = this.custom.budget;
-            this.previousSelectedAccommodation = this.custom.previousSelectedAccommodation;
+            
+            if(this.custom.accommodation != null) {
+                this.selectedAccommodation = this.custom.accommodation.accommodationID;
+                this.selectedAccommodationName = this.custom.accommodation.accommodationName;
+                this.previousSelectedAccommodation = this.custom.previousSelectedAccommodation;
+            }
 
             this.getAccommodation();
             this.getActivities();
@@ -202,6 +203,8 @@ export class CustomPackageComponent implements OnInit{
         //duration is a temp variable which calculates the duration of the trip
         var duration = new Date(checkout).getTime() - new Date(checkin).getTime();
         this.duration = Math.round(duration/one_day);   //round to the nearest day
+
+        this.custom.budget = this.custom.budget * this.duration;
     }
 
 
@@ -241,11 +244,8 @@ export class CustomPackageComponent implements OnInit{
         }   
     }
 
-    //fake loading atm
     startLoading() {
-        this.slimLoadingBarService.start(() => {
-            console.log('Loading complete');
-        });
+        this.slimLoadingBarService.start();
     }
     stopLoading() {
         this.slimLoadingBarService.stop();
@@ -299,10 +299,6 @@ export class CustomPackageComponent implements OnInit{
                 break;
             case 5: break;
         }
-    }
-
-    showObject() {
-        console.log(this.custom)
     }
 
     setDays(selection : number) {
@@ -540,9 +536,10 @@ export class CustomPackageComponent implements OnInit{
              .then(() => this.completeLoading());
 
        
-
-        this.custom.foodAndDrinks = [];
-        this.custom.selectedFoodAndDrinks = [];
+        if(this.custom.foodAndDrinks == null) {
+            this.custom.foodAndDrinks = [];
+            this.custom.selectedFoodAndDrinks = [];
+        }
     }
 
     /* Retrieves all activity objects from the backend */

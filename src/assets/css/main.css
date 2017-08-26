@@ -469,3 +469,17 @@ a:hover {
 
     padding-top: 10px;
 }
+
+
+/* Item View Components */
+.view-item-header {
+    background-color: rgba(50,50,55,0.9);
+    margin: -30px;
+    margin-bottom: 5px;
+    padding: 20px;
+    padding-bottom: 0;
+    font-size: 24pt;
+    color: white;
+}
+
+/* End Item View Components */

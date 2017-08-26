@@ -65,7 +65,9 @@ import { AppComponent }  from '../Components/app.component';
   import {IndividualAccommodationService} from '../Services/Accommodation/individual-accommodation.service';
   import {IndividualFoodAndDrinksService} from '../Services/FoodAndDrinks/individual-food-and-drinks.service';
   import {IndividualActivityService} from '../Services/Activity/individual-activity.service';
-
+  import {AccommodationService} from '../Services/Accommodation/accommodation.service';
+  import {FoodAndDrinksService} from '../Services/FoodAndDrinks/food-and-drinks.service';
+  import {ActivityService} from '../Services/activity/activity.service';
 //ng2 
 //import {AsideModule} from 'ng2-aside';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
@@ -137,6 +139,7 @@ import {AuthService} from '../auth/auth.service';
     ],
   entryComponents: [
     BudgetChangeComponent,
+    AccommodationComponent,
     AddAccommodationComponent, 
     AddFoodAndDrinksComponent,
     AddActivityComponent,
@@ -154,6 +157,9 @@ import {AuthService} from '../auth/auth.service';
     AuthService,
     CanDeactivateGuard,
     AuthGuardService,
+    AccommodationService,
+    FoodAndDrinksService,
+    ActivityService,
   ]
 })
 

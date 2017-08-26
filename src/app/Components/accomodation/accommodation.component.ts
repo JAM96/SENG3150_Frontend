@@ -18,7 +18,9 @@ import {IndividualAccommodationService} from '../../Services/Accommodation/indiv
 })
 
 export class AccommodationComponent implements OnInit{
+    selected : number = 1;
     accommodation : Accommodation;
+
     
     //-32.9252731,151.7734869
     lat: number;
@@ -35,5 +37,9 @@ export class AccommodationComponent implements OnInit{
 
         this.lat = this.accommodation.latitude;
         this.lng = this.accommodation.longitude;
+    }
+
+    setNavigation(selection : number) : void {
+        this.selected = selection;
     }
 }
