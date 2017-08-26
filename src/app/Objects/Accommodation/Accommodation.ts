@@ -1,7 +1,7 @@
 import {Room} from './Room';
 import {Feature} from './Feature';
 
-export interface Accommodation {
+export class Accommodation {
     accommodationID             :   string;
     accommodationName           :   string;
     accommodationAddress        :   string;
@@ -9,7 +9,7 @@ export interface Accommodation {
     latitude                    :   number;
     longitude                   :   number;
     accommodationStarRating     :   number;
-    accommodationStars          :   number[];
+    accommodationStars          :   number[] = [];
     accommodationUserRating     :   number;
     accommodationRating         :   string; //'Okay', 'Good', 'Great', "Fabulous!"
     bestSeller                  :   boolean

@@ -18,7 +18,7 @@ import {CustomPackageComponent} from './Components/package/custom-package/custom
 import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
 
 //Views
-import {AccommodationListComponent} from './Components/accomodation/accommodationListView/accommodationListView.component';
+import {AccommodationListComponent} from './Components/accomodation/accommodationListView.component';
 import {ActivitiesListComponent} from './Components/activities/activities-list/activityList.component';
 import {FoodAndDrinksListComponent} from './Components/food-and-drinks/food-and-drinks-view/food-and-drinks-view.component';
 

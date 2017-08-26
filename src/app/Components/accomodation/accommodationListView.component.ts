@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 
 //import objects
-import {Accommodation} from '../../../Objects/Accommodation/Accommodation';
+import {Accommodation} from '../../Objects/Accommodation/Accommodation';
 
 //import services
-import {AccommodationService} from '../../../Services/Accommodation/accommodation.service';
+import {AccommodationService} from '../../Services/Accommodation/accommodation.service';
 
 @Component({
     moduleId: module.id,
