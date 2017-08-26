@@ -10,14 +10,14 @@ import {IndividualAccommodationService} from '../../Services/Accommodation/indiv
 @Component({
     moduleId: module.id,
     selector: 'accomodation',
-    templateUrl: 'accomodation.component.html',
+    templateUrl: 'accommodation.component.html',
     styles: [`agm-map {
                 height: 300px;
                 width: 400px;
             }`],
 })
 
-export class AccomodationComponent implements OnInit{
+export class AccommodationComponent implements OnInit{
     accommodation : Accommodation;
     
     //-32.9252731,151.7734869
@@ -26,7 +26,7 @@ export class AccomodationComponent implements OnInit{
     
      constructor(
         private accommodationService    :   IndividualAccommodationService,
-        public dialogRef: MdDialogRef<AccomodationComponent>
+        public dialogRef: MdDialogRef<AccommodationComponent>
         ) {}
     
     ngOnInit() {

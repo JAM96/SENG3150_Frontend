@@ -3,7 +3,7 @@
     import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
     import {Router} from '@angular/router';
 //External Components
-    import {AccomodationComponent} from '../../../Components/accomodation/accomodation.component';
+    import {AccommodationComponent} from '../../../Components/accomodation/accommodation.component';
     import {ActivityComponent} from '../../../Components/activities/activity.component';
     import {FoodAndDrinksComponent} from '../../../Components/food-and-drinks/food-and-drinks.component';
 //Objects
@@ -229,7 +229,7 @@ export class CustomPackageComponent implements OnInit{
         switch(item) {
             case 1: 
                 this.individualAccommodationService.setAccommodation(accommodation);
-                let dialogRef = this.dialog.open(AccomodationComponent);
+                let dialogRef = this.dialog.open(AccommodationComponent);
                 dialogRef.afterClosed().subscribe(result => {});
                 break;
             case 2: 

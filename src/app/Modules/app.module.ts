@@ -28,16 +28,13 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { AppComponent }  from '../Components/app.component';
 
 //import components here
-
-import {HomeComponent} from '../Components/home/home.component';
+  import {HomeComponent} from '../Components/home/home.component';
 
   //Navigation Pages
   import {AboutComponent} from '../Components/about/about.component';
   import {EventViewComponent} from '../Components/event/eventoverview.component';
-  import {ActivityComponent} from '../Components/activities/activity.component';
-  import {FoodAndDrinksComponent} from '../Components/food-and-drinks/food-and-drinks.component';
-  import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
-  import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
+  import {PackagesComponent} from '../Components/package/packagesview.component';
+  import {AccommodationListComponent} from '../Components/accomodation/accommodationListView/accommodationListView.component';
 
   import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop.component';
 
@@ -46,22 +43,27 @@ import {HomeComponent} from '../Components/home/home.component';
   import {ViewPackagesComponent} from '../Components/profile/viewPackages/viewPackages.component';
   import {ViewVouchersComponent} from '../Components/profile/viewVouchers/viewVouchers.component';
   import {LeaveFeedbackComponent} from '../Components/profile/leaveFeedback/leaveFeedback.component';
-  //packages components
-  import {
-    CustomPackageComponent, 
-    AddAccommodationComponent,
-    BudgetChangeComponent,
-    AddFoodAndDrinksComponent,
-    AddActivityComponent
-  } from '../Components/package/custom-package/custom-package.component';
-  import {PackagesComponent} from '../Components/package/packagesview.component';
+
+  //Custom Package components
+    import {
+      CustomPackageComponent, 
+      AddAccommodationComponent,
+      BudgetChangeComponent,
+      AddFoodAndDrinksComponent,
+      AddActivityComponent
+    } from '../Components/package/custom-package/custom-package.component';
+    import {ActivityComponent} from '../Components/activities/activity.component';
+    import {FoodAndDrinksComponent} from '../Components/food-and-drinks/food-and-drinks.component';
+    import {AccommodationComponent} from '../Components/accomodation/accommodation.component';
+    import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
+  
 //import services here
-import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
-import {AuthGuardService} from '../Components/guards/auth-guard.service'
-import {DataService} from '../Services/data.service';
-import {IndividualAccommodationService} from '../Services/Accommodation/individual-accommodation.service';
-import {IndividualFoodAndDrinksService} from '../Services/FoodAndDrinks/individual-food-and-drinks.service';
-import {IndividualActivityService} from '../Services/Activity/individual-activity.service';
+  import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
+  import {AuthGuardService} from '../Components/guards/auth-guard.service'
+  import {DataService} from '../Services/data.service';
+  import {IndividualAccommodationService} from '../Services/Accommodation/individual-accommodation.service';
+  import {IndividualFoodAndDrinksService} from '../Services/FoodAndDrinks/individual-food-and-drinks.service';
+  import {IndividualActivityService} from '../Services/Activity/individual-activity.service';
 
 //ng2 
 //import {AsideModule} from 'ng2-aside';
@@ -102,26 +104,32 @@ import {AuthService} from '../auth/auth.service';
     NgxBarcodeModule,
     ],
   declarations: [
+    //App
     AppComponent,
     HomeComponent,
+    //Navigation Views
     AboutComponent,
-    ActivityComponent,
+    AccommodationListComponent,
+    EventViewComponent,
     NavigationTopComponent,
-    BudgetChangeComponent,
+    PackagesComponent,
+    //Profile Components
+    LeaveFeedbackComponent,
+    notificationsPopupComponent,
+    ProfileComponent,
+    ViewPackagesComponent,
+    ViewVouchersComponent,
+    //Custom Package Components
+    AccommodationComponent,
+    ActivityComponent,
     AddAccommodationComponent,
     AddFoodAndDrinksComponent,
     AddActivityComponent,
-    notificationsPopupComponent,
-    EventViewComponent,
-    PackagesComponent,
-    ProfileComponent,
+    BudgetChangeComponent,
     CustomPackageComponent,
     FoodAndDrinksComponent,
-    AccomodationComponent,
     ShoppingCartComponent,
-    ViewPackagesComponent,
-    ViewVouchersComponent,
-    LeaveFeedbackComponent,
+    //Other
     CallbackComponent,
     ],
   entryComponents: [

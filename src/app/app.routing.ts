@@ -18,9 +18,10 @@ import {CustomPackageComponent} from './Components/package/custom-package/custom
 import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
 
 //Views
+import {AccommodationListComponent} from './Components/accomodation/accommodationListView/accommodationListView.component';
 import {ActivityComponent} from './Components/activities/activity.component';
 import {FoodAndDrinksComponent} from './Components/food-and-drinks/food-and-drinks.component';
-import {AccomodationComponent} from './Components/accomodation/accomodation.component';
+
 import {AboutComponent} from './Components/about/about.component';
 import {PackagesComponent} from './Components/package/packagesview.component';
 import {EventViewComponent} from './Components/event/eventoverview.component';
@@ -50,7 +51,7 @@ export const ROUTES: Routes = [
     },
   { path: 'activities', component: ActivityComponent},
   { path: 'food-and-drinks', component: FoodAndDrinksComponent},
-  { path: 'accommodation', component: AccomodationComponent},
+  { path: 'accommodation', component: AccommodationListComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
   { path: '**', redirectTo: '' }
 ]
