@@ -15,7 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AgmCoreModule} from '@agm/core';
 
 //used for the material module (popups)
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule, MdDatepickerModule, MdNativeDateModule} from '@angular/material';
 
@@ -32,10 +32,11 @@ import { AppComponent }  from '../Components/app.component';
 
   //Navigation Pages
   import {AboutComponent} from '../Components/about/about.component';
-  import {EventViewComponent} from '../Components/event/eventoverview.component';
+  import {EventListComponent} from '../Components/event/eventListView.component';
   import {PackagesComponent} from '../Components/package/packagesview.component';
   import {AccommodationListComponent} from '../Components/accomodation/accommodationListView/accommodationListView.component';
-
+  import {ActivitiesListComponent} from '../Components/activities/activities-list/activityList.component';
+  import {FoodAndDrinksListComponent} from '../Components/food-and-drinks/food-and-drinks-view/food-and-drinks-view.component';
   import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop.component';
 
   //Profile Component and Profile Components
@@ -110,7 +111,9 @@ import {AuthService} from '../auth/auth.service';
     //Navigation Views
     AboutComponent,
     AccommodationListComponent,
-    EventViewComponent,
+    ActivitiesListComponent,
+    EventListComponent,
+    FoodAndDrinksListComponent,
     NavigationTopComponent,
     PackagesComponent,
     //Profile Components

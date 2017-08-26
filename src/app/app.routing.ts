@@ -19,12 +19,12 @@ import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.comp
 
 //Views
 import {AccommodationListComponent} from './Components/accomodation/accommodationListView/accommodationListView.component';
-import {ActivityComponent} from './Components/activities/activity.component';
-import {FoodAndDrinksComponent} from './Components/food-and-drinks/food-and-drinks.component';
+import {ActivitiesListComponent} from './Components/activities/activities-list/activityList.component';
+import {FoodAndDrinksListComponent} from './Components/food-and-drinks/food-and-drinks-view/food-and-drinks-view.component';
 
 import {AboutComponent} from './Components/about/about.component';
 import {PackagesComponent} from './Components/package/packagesview.component';
-import {EventViewComponent} from './Components/event/eventoverview.component';
+import {EventListComponent} from './Components/event/eventListView.component';
 
 //callback
 import {CallbackComponent} from './callback/callback.component';
@@ -38,20 +38,29 @@ app routes
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'callback', component: CallbackComponent},
-  { path: 'events', component: EventViewComponent, },
+
+  //Navigation Views
+  { path: 'events', component: EventListComponent, },
   { path: 'packages', component: PackagesComponent},
+  { path: 'activities', component: ActivitiesListComponent},
+  { path: 'food-and-drinks', component: FoodAndDrinksListComponent},
+  { path: 'accommodation', component: AccommodationListComponent},
+  { path: 'about', component: AboutComponent},
+
+  //Profile Paths
   { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   { path: 'profile/viewPackages', component: ViewPackagesComponent, canActivate:[AuthGuard]},
   { path: 'profile/viewVouchers', component: ViewVouchersComponent, canActivate:[AuthGuard]},
   { path: 'profile/leaveFeedback', component: LeaveFeedbackComponent, canActivate:[AuthGuard] },
+  
+  //Custom Package
   { 
     path: 'createpackage', 
     component: CustomPackageComponent,
     canDeactivate: [CanDeactivateGuard],
     },
-  { path: 'activities', component: ActivityComponent},
-  { path: 'food-and-drinks', component: FoodAndDrinksComponent},
-  { path: 'accommodation', component: AccommodationListComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
+  
+  //Redirect
   { path: '**', redirectTo: '' }
 ]

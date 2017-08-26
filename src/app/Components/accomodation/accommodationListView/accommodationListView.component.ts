@@ -1,11 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {Component} from '@angular/core';
 
 //import objects
 import {Accommodation} from '../../../Objects/Accommodation/Accommodation';
 
 //import services
-import {IndividualAccommodationService} from '../../../Services/Accommodation/individual-accommodation.service';
+import {AccommodationService} from '../../../Services/Accommodation/accommodation.service';
 
 @Component({
     moduleId: module.id,
