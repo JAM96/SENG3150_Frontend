@@ -62,5 +62,6 @@ export const ROUTES: Routes = [
   { path: 'shoppingCart', component: ShoppingCartComponent},
   
   //Redirect
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+  { path: 'home', redirectTo: ''}
 ]

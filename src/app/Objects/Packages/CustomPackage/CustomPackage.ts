@@ -33,6 +33,6 @@ export class CustomPackage {
     selectedFoodAndDrinks   : string[]; //this is to easily check if the item has been added or not
 
     //activities 
-    activity        : Activity[];   //selected activities
+    activity            : Activity[];   //selected activities
     selectedActivities  : string[];
 }

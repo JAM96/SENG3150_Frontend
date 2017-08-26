@@ -122,16 +122,12 @@ export class CustomPackageComponent implements OnInit{
         console.log('[INFO] Custom package creation form is initialising...')
         //Grab the data entered from the initial form (home page)
         this.custom = this.packageService.getPackage();
-        console.log(this.custom);
-
-        //check if there is a local copy of the form
-        var tempImport : CustomPackage;
-        tempImport = $.parseJSON(sessionStorage.getItem('packageForm'));
-
-        if(tempImport !== null) {
-            console.log("object is not null");
-            this.custom = $.parseJSON(sessionStorage.getItem('packageForm'));
-        }
+        console.log("Imported Package: " + this.custom);
+        
+        // if(this.custom.checkin == null) {
+        //     console.log("Invalid object");
+        //     this.router.navigate(['/']);
+        // }
 
         this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
         this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above

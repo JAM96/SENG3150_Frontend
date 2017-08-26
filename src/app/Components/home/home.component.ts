@@ -2,29 +2,37 @@ import {Component} from '@angular/core'
 import {MdDatepicker, MdDialog, MdTooltipModule} from '@angular/material'
 import {Router} from '@angular/router'
 import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 import {CustomPackageService} from '../../Services/Package/custom-package.service';
 
 @Component({
     moduleId: module.id,
     selector: 'home',
-    templateUrl: 'home.component.html'
+    templateUrl: 'home.component.html',
+    styleUrls: ['home.component.css']
 })
 
-export class HomeComponent {
+export class HomeComponent{
     position = 'below';     //defines the position of the tooltip
-    minBudget = 300;        //define minimum budget value
-    maxBudget = 4000;       //define maximum budget value
-    minDate = new Date();   //used to prevent previous dates to the current date being selected
     maxRooms: number = 10;  //Maximum rooms the user can book. 
     maxGuests: number = 10; //Maximum guests user wants to book. 
 
     //form data
-    value : any = 472;      //budget value set at $472
+    value : any = 112;      //budget value set at $472
     guests: number = 1;     //guests value set at 1, This will show all accomodation with X+ rooms
     rooms: number = 1;      //rooms value set at 1 This will show all room capable of providing X+ guests
     checkin : Date;         //Date when user wants to have their holiday
     checkout: Date;         //Date when user wants to end their holiday
+
+    //date data
+        date : Date = new Date();   //get the current date
+        //The begin day, month and year will determine the disabled dates
+        beginYear   : number = this.date.getFullYear();
+        beginMonth  : number = this.date.getMonth() + 1;
+        beginDay    : number = this.date.getDate() - 1;
+        //The end year will prevent users from selecting a date that is too long away
+        endYear     : number = this.beginYear + 10;
 
     //CCPIC Constructor with instantiates the router and custom-package services
     constructor (
@@ -49,10 +57,10 @@ export class HomeComponent {
         markCurrentYear: true,
         monthSelector: true,
         yearSelector: true,
-        minYear: 2017,
-        maxYear: 3000,
-        disableUntil: {year: 2017, month:8, day:7},     //disable dates before this value
-        disableSince: {year: 2017, month:12, day: 31},  //disable dates after this value
+        minYear: this.beginYear,
+        maxYear: this.endYear,
+        disableUntil: {year: this.beginYear, month:this.beginMonth, day:this.beginDay},     //disable dates before this value
+        disableSince: {year: this.endYear, month:this.beginMonth, day: this.beginDay},  //disable dates after this value
         //disableDates: no default value, //Array<IMyDate> list of disabled dates
         //enableDates: no default value, //Array<IMyDate> list of enabled dates
         //disableDateRanges: no default value, //Array<IMyDate> is in range but cannot be selected
@@ -149,13 +157,13 @@ export class HomeComponent {
     setNavOption(selection : string) {
 
         switch(selection) {
-            case 'packages': this.router.navigate(['/packages']);            break;
-            case 'login': ;        break; 
-            case 'about': this.router.navigate(['/about']);          break;
-            case 'accommodation': this.router.navigate(['/accommodation']); break;
-            case 'events': this.router.navigate(['/events']); break;
-            case 'activities': this.router.navigate(['/activities']); break;
-            case 'restaurants': this.router.navigate(['/food-and-drinks']); break;
+            case 'packages'     : this.router.navigate(['/packages']);        break;
+            case 'login'        : ;        break; 
+            case 'about'        : this.router.navigate(['/about']);           break;
+            case 'accommodation': this.router.navigate(['/accommodation']);   break;
+            case 'events'       : this.router.navigate(['/events']);          break;
+            case 'activities'   : this.router.navigate(['/activities']);      break;
+            case 'restaurants'  : this.router.navigate(['/food-and-drinks']); break;
         }
     }
 }
