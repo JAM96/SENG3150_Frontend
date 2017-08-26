@@ -2,6 +2,10 @@ import { NgModule }      from '@angular/core';
 
 //providers
 import {HttpModule} from '@angular/http';
+
+// Import HttpClientModule from @angular/common/http
+import {HttpClientModule} from '@angular/common/http';
+
 //used for Auth0
 import {ROUTES} from '../app.routing';
 import {AUTH_PROVIDERS} from 'angular2-jwt';
@@ -89,6 +93,7 @@ import {AuthService} from '../auth/auth.service';
   imports:      [ 
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     MaterialModule,
     MdDatepickerModule,
     MdNativeDateModule,

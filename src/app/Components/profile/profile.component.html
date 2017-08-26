@@ -1,33 +1,70 @@
 <section class="container">
+   <navigationtop></navigationtop>
     <div>
-        <div class="panel-heading">
-          <h3>Profile</h3>
-        </div>
-        <div class="panel-body">
-          <img src="{{profile?.picture}}" height="200px" class="avatar" alt="avatar">
-          <div>
-            <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
-            <h3 class="nickname">{{ profile?.nickname }}</h3>
-          </div>
-          <pre class="full-profile">{{ profile | json }}</pre>
-        </div>
-      </div>
-    
-    <!-- <div style="margin: 0 auto;">
-        <label>Username:</label><input [disabled]="!isEdit" value="BenDelore"> <br>
-        <label *ngIf="isEdit">Change Password:</label><input *ngIf="isEdit" [disabled]="!isEdit" type="password"> <br>
-        <label>First Name:</label><input [disabled]="!isEdit" value="Ben"> <br>
-        <label>Last Name:</label><input [disabled]="!isEdit" value="Delore"> <br>
-        <label>Email:</label><input [disabled]="!isEdit" value="Bdelore@newcastle.com.au"> <br>
-        <label>Street No:</label><input [disabled]="!isEdit" value="1"> <br>
-        <label>Street Name:</label><input [disabled]="!isEdit" value="Newcastle St"> <br>
-        <label>City:</label><input [disabled]="!isEdit" value="Newcastle"> <br>
-        <label>State:</label><input [disabled]="!isEdit" value="NSW"> <br>
-        <label>Home Phone:</label><input [disabled]="!isEdit" value="49434943"> <br>
-        <label>Mobile:</label><input [disabled]="!isEdit" value="0404040404"> <br>
-        <label>Date:</label><input [disabled]="!isEdit" value="01/01/1996">
+     
+       <div >
+         <h3>Profile</h3>
+       </div>
+       <div class="panel-body">
+         <div>
+           <label><i class="glyphicon glyphicon-user"></i> Email: {{ profile?.name }}</label>
+         </div>
+       </div>
     </div>
-    <div style="margin-left: 20%;">
-        <button (click)="onEdit()">{{editText}}</button>
-    </div> -->
+    
+   <div style="margin: 0 auto;">
+        <h3>BILLING DETAILS <button (click)="onEdit()">{{editText}}</button></h3>
+            <div style="margin-left: 20%;">
+        
+    </div>
+        <table>
+          <tr>
+            <td>
+              <label>Address: </label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="11 Ocean Dr Newcastle NSW">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Name on Card:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="ETHAN PAUL">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Card NO:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="0000 0000 0000 0000">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Mobile:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="0404040404">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Expiry Date:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="07/2019">
+            </td>
+          </tr>
+
+        </table>
+        
+        
+        
+        
+        
+    </div>
+
 </section>
