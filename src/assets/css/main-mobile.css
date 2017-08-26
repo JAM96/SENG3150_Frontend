@@ -1,23 +1,41 @@
 @media screen and (min-width: 0px) and (max-width: 600px) {
-    .panelHalf {
-        margin: 0;
-        padding: 0;
-        padding-top: 100px;
-        
-        height: auto;
-        background-color: rgba(255,255,255,0.8);
-    }
-
-    .home-creation-form {
+   .home-creation-form {
         width: 90%;
         margin: auto;
         margin-top: -75px;
     }
-
+    .accommodationDialog {
+        min-width: 0;
+        min-height: 0;
+    }
     md-sidenav {
         width: 15%;
     }
 
+    .nav-tabs {
+        font-size: 10pt !important;
+    }
+
+    #viewFilter {
+        display: inline-block;
+    }
+
+    #sort {
+        display: none;
+    }
+
+    .view-x {
+        height: 90vh;
+    }
+
+    .nav-tabs li {
+        padding: 0 !important;
+    }
+
+    .nav-tabs li a {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
 
     /* Home component  */
     #home-logo {

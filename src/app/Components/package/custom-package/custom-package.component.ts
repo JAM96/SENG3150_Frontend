@@ -1,9 +1,10 @@
 //Core Imports
     import {Component, Input, OnInit, Inject} from '@angular/core';
-    import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+    import {MdDialog, MdDialogRef, MD_DIALOG_DATA, Sort} from '@angular/material';
     import {Router} from '@angular/router';
+    import { Md2Dialog } from 'md2';
+
 //External Components
-    import {AccommodationComponent} from '../../../Components/accomodation/accommodation.component';
     import {ActivityComponent} from '../../../Components/activities/activity.component';
     import {FoodAndDrinksComponent} from '../../../Components/food-and-drinks/food-and-drinks.component';
 //Objects
@@ -18,7 +19,6 @@
     import {AccommodationService} from '../../../Services/Accommodation/accommodation.service';
     import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-drinks.service';
     import {ActivityService} from '../../../Services/activity/activity.service';
-    import {IndividualAccommodationService} from '../../../Services/Accommodation/individual-accommodation.service';
     import {IndividualFoodAndDrinksService} from '../../../Services/FoodAndDrinks/individual-food-and-drinks.service';
     import {IndividualActivityService} from '../../../Services/Activity/individual-activity.service';
     import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
@@ -33,11 +33,11 @@
     moduleId: module.id,
     selector: 'custom-package',
     templateUrl: 'custom-package.component.html',
-    providers: [
-        AccommodationService,
-        FoodAndDrinksService,
-        ActivityService
-        ]
+    providers: [],
+    styles: [`agm-map {
+        height: 300px;
+        width: 100%;
+    }`],
 })
 export class CustomPackageComponent implements OnInit{
 
@@ -56,11 +56,11 @@ export class CustomPackageComponent implements OnInit{
     ]
 
     //View variables
-    selected : number = 1;      //Tab selection, 1=Travel, 2=Accommodation, 3=Restauarants, 4=Activities, 5=Cart
+    selected : number;      //Tab selection, 1=Travel, 2=Accommodation, 3=Restauarants, 4=Activities, 5=Cart
 
     //Restaurants and Activities View
     days : number[] = [];       //Used to store the amount of days the user is staying
-    selectedDay : number = 1;   //The day that has been selected for input of the package item
+    selectedDay : number;   //The day that has been selected for input of the package item
     duration : number;          //The amount of days the user is staying in Newcastle
 
     //Travel Form
@@ -103,6 +103,16 @@ export class CustomPackageComponent implements OnInit{
     marginBottom = 10;
     marginLeft = 10;
     marginRight = 10;
+
+
+    //how to display items
+    view : number  = 1;
+    sortValue : string = "Name";
+
+    //View Items
+    dialogSelection : number = 1;
+    viewAccommodation : Accommodation = new Accommodation; //this stores the data of a selected accommodation
+    sortedData;
     
     //declare services
     constructor(
@@ -110,7 +120,6 @@ export class CustomPackageComponent implements OnInit{
         private foodAndDrinksService            :   FoodAndDrinksService,
         private activityService                 :   ActivityService,
         private packageService                  :   CustomPackageService,
-        private individualAccommodationService  :   IndividualAccommodationService,
         private individualFoodAndDrinksService  :   IndividualFoodAndDrinksService,
         private individualActivityService       :   IndividualActivityService,
         private slimLoadingBarService           :   SlimLoadingBarService,
@@ -144,10 +153,13 @@ export class CustomPackageComponent implements OnInit{
             this.selected = this.custom.navigation;
             this.selectedDay = this.custom.aSelectedDay;
             this.travelValue = this.custom.requireTravel;
-            this.selectedAccommodation = this.custom.accommodation.accommodationID;
-            this.selectedAccommodationName = this.custom.accommodation.accommodationName;
             this.budget = this.custom.budget;
-            this.previousSelectedAccommodation = this.custom.previousSelectedAccommodation;
+            
+            if(this.custom.accommodation != null) {
+                this.selectedAccommodation = this.custom.accommodation.accommodationID;
+                this.selectedAccommodationName = this.custom.accommodation.accommodationName;
+                this.previousSelectedAccommodation = this.custom.previousSelectedAccommodation;
+            }
 
             this.getAccommodation();
             this.getActivities();
@@ -202,6 +214,8 @@ export class CustomPackageComponent implements OnInit{
         //duration is a temp variable which calculates the duration of the trip
         var duration = new Date(checkout).getTime() - new Date(checkin).getTime();
         this.duration = Math.round(duration/one_day);   //round to the nearest day
+
+        this.custom.budget = this.custom.budget * this.duration;
     }
 
 
@@ -210,7 +224,7 @@ export class CustomPackageComponent implements OnInit{
           e.g cannot do *ngFor="let x = 1; x <= duration ..."
           ngFor can only loop through arrays.
     */
-    setDaysArray(duration : number) {
+    setDaysArray(duration : number) : void{
         console.log('[INFO] Duration: ', duration);
 
         for(let i = 1; i <= duration; i++) {
@@ -219,14 +233,21 @@ export class CustomPackageComponent implements OnInit{
         console.log('[INFO] Days Array: ', this.days);
     }
 
-    viewItem(item : number, accommodation : Accommodation, foodAndDrinks : FoodAndDrinks, activity : Activity){
+    changeView(value : number) : void {
+        this.view = value;
+    }
+
+    changeSort(value : string) : void {
+        this.sortValue = value;
+    }
+
+    viewItem(item : number, accommodation : Accommodation, foodAndDrinks : FoodAndDrinks, activity : Activity, dialog : Md2Dialog){
         //item 1: Accommodation, 2: Food and Drinks, 3: Activities
 
         switch(item) {
-            case 1: 
-                this.individualAccommodationService.setAccommodation(accommodation);
-                let dialogRef = this.dialog.open(AccommodationComponent);
-                dialogRef.afterClosed().subscribe(result => {});
+            case 1:
+                this.viewAccommodation = accommodation;
+                dialog.open();
                 break;
             case 2: 
                 this.individualFoodAndDrinksService.setFoodAndDrinks(foodAndDrinks);
@@ -241,11 +262,20 @@ export class CustomPackageComponent implements OnInit{
         }   
     }
 
-    //fake loading atm
+    open(dialog: Md2Dialog) {
+        dialog.open();
+    }
+
+    close(dialog: any) {
+        dialog.close();
+      }
+
+    setDialogNavigation(value : number) {
+        this.dialogSelection = value;
+    }
+
     startLoading() {
-        this.slimLoadingBarService.start(() => {
-            console.log('Loading complete');
-        });
+        this.slimLoadingBarService.start();
     }
     stopLoading() {
         this.slimLoadingBarService.stop();
@@ -255,16 +285,6 @@ export class CustomPackageComponent implements OnInit{
     }
 
     //Navigation
-    prevForm() {
-        if(this.selected != 1) {
-            this.setNavigation(this.selected - 1);
-        }
-    }
-    nextForm() {
-        if(this.selected != 5) {    //prevent from exceeding the limit
-            this.setNavigation(this.selected + 1);
-        }
-    }
     setNavigation(selection : number) {
         /*
             When the user has selected the tab, it will then load the data.
@@ -299,10 +319,6 @@ export class CustomPackageComponent implements OnInit{
                 break;
             case 5: break;
         }
-    }
-
-    showObject() {
-        console.log(this.custom)
     }
 
     setDays(selection : number) {
@@ -540,9 +556,10 @@ export class CustomPackageComponent implements OnInit{
              .then(() => this.completeLoading());
 
        
-
-        this.custom.foodAndDrinks = [];
-        this.custom.selectedFoodAndDrinks = [];
+        if(this.custom.foodAndDrinks == null) {
+            this.custom.foodAndDrinks = [];
+            this.custom.selectedFoodAndDrinks = [];
+        }
     }
 
     /* Retrieves all activity objects from the backend */
@@ -619,8 +636,29 @@ export class CustomPackageComponent implements OnInit{
         );
         popupWin.document.close();
     }
+
+    sortData(sort: Sort) {
+        const data = this.viewAccommodation.room.slice();
+        if (!sort.active || sort.direction == '') {
+          this.sortedData = data;
+          return;
+        }
+    
+        this.sortedData = data.sort((a, b) => {
+          let isAsc = sort.direction == 'asc';
+          switch (sort.active) {
+            case 'room': return compare(a.roomTitle, b.roomTitle, isAsc);
+            case 'features': return compare(+a.features, +b.features, isAsc);
+            case 'price': return compare(+a.roomPrice, +b.roomPrice, isAsc);
+            default: return 0;
+          }
+        });
+      }
 }
 
+function compare(a, b, isAsc) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
 /*
 ###################################################################################################################################
 ###################################################################################################################################

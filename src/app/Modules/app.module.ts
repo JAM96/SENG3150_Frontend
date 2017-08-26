@@ -38,7 +38,7 @@ import { AppComponent }  from '../Components/app.component';
   import {AboutComponent} from '../Components/about/about.component';
   import {EventListComponent} from '../Components/event/eventListView.component';
   import {PackagesComponent} from '../Components/package/packagesview.component';
-  import {AccommodationListComponent} from '../Components/accomodation/accommodationListView/accommodationListView.component';
+  import {AccommodationListComponent} from '../Components/accomodation/accommodationListView.component';
   import {ActivitiesListComponent} from '../Components/activities/activities-list/activityList.component';
   import {FoodAndDrinksListComponent} from '../Components/food-and-drinks/food-and-drinks-view/food-and-drinks-view.component';
   import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop.component';
@@ -59,17 +59,17 @@ import { AppComponent }  from '../Components/app.component';
     } from '../Components/package/custom-package/custom-package.component';
     import {ActivityComponent} from '../Components/activities/activity.component';
     import {FoodAndDrinksComponent} from '../Components/food-and-drinks/food-and-drinks.component';
-    import {AccommodationComponent} from '../Components/accomodation/accommodation.component';
     import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
   
 //import services here
   import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
   import {AuthGuardService} from '../Components/guards/auth-guard.service'
   import {DataService} from '../Services/data.service';
-  import {IndividualAccommodationService} from '../Services/Accommodation/individual-accommodation.service';
   import {IndividualFoodAndDrinksService} from '../Services/FoodAndDrinks/individual-food-and-drinks.service';
   import {IndividualActivityService} from '../Services/Activity/individual-activity.service';
-
+  import {AccommodationService} from '../Services/Accommodation/accommodation.service';
+  import {FoodAndDrinksService} from '../Services/FoodAndDrinks/food-and-drinks.service';
+  import {ActivityService} from '../Services/activity/activity.service';
 //ng2 
 //import {AsideModule} from 'ng2-aside';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
@@ -128,7 +128,6 @@ import {AuthService} from '../auth/auth.service';
     ViewPackagesComponent,
     ViewVouchersComponent,
     //Custom Package Components
-    AccommodationComponent,
     ActivityComponent,
     AddAccommodationComponent,
     AddFoodAndDrinksComponent,
@@ -152,13 +151,15 @@ import {AuthService} from '../auth/auth.service';
   ],
   providers: [
     CustomPackageService,
-    IndividualAccommodationService,
     IndividualFoodAndDrinksService,
     IndividualActivityService,
     DataService,
     AuthService,
     CanDeactivateGuard,
     AuthGuardService,
+    AccommodationService,
+    FoodAndDrinksService,
+    ActivityService,
   ]
 })
 
