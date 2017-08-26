@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Route } from '@angular/router';
-import {PackageList} from '../../../Objects/Packages/PackageList';
-import {PackageService} from '../../../Services/Package/packages.service';
+import {PackageList} from '../../Objects/Packages/PackageList';
+import {PackageService} from '../../Services/Package/packages.service';
 
-import {PackageCategoryComponent} from '../packagecategory.component';
 
 @Component({
     moduleId: module.id,

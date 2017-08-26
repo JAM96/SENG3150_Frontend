@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {Router} from '@angular/router'
 
-import {AuthService} from '../../../auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
     moduleId: module.id,

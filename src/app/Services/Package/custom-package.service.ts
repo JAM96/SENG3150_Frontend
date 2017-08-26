@@ -4,14 +4,16 @@
     can transfer object from different components.
 */
 import {Injectable} from '@angular/core';
-import {CustomPackage} from '../CustomPackage';
+import {CustomPackage} from '../../Objects/Packages/CustomPackage/CustomPackage';
 
 
 @Injectable()
 export class CustomPackageService {
     private customPackage : CustomPackage;
 
-    constructor() {}
+    constructor() {
+        this.customPackage = new CustomPackage;
+    }
 
     /**
      * Obtains a custom package and sets it to the services custom package.

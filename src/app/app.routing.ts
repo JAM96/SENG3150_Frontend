@@ -6,19 +6,24 @@ import {CanDeactivateGuard} from './Components/guards/can-deactivate-guard.servi
 import {AuthGuardService as AuthGuard} from './Components/guards/auth-guard.service';
 
 import {HomeComponent} from './Components/home/home.component';
+
+//Profile Components
 import {ProfileComponent} from './Components/profile/profile.component';
 import {ViewPackagesComponent} from './Components/profile/viewPackages/viewPackages.component';
 import {ViewVouchersComponent} from './Components/profile/viewVouchers/viewVouchers.component';
 import {LeaveFeedbackComponent} from './Components/profile/leaveFeedback/leaveFeedback.component';
-import {AboutComponent} from './Components/about/about.component';
-import {PackagesComponent} from './Components/package/packages/packagesview.component';
-import {EventViewComponent} from './Components/event/eventoverview.component';
-import {CustomPackageComponent} from './Components/package/packages/custom-package/custom-form/custom-package.component';
+
+//Custom Package Components
+import {CustomPackageComponent} from './Components/package/custom-package/custom-package.component';
+import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
+
+//Views
 import {ActivityComponent} from './Components/activities/activity.component';
 import {FoodAndDrinksComponent} from './Components/food-and-drinks/food-and-drinks.component';
 import {AccomodationComponent} from './Components/accomodation/accomodation.component';
-import {ContactComponent} from './Components/contact/contact.component';
-import {ShoppingCartComponent} from './Components/shoppingCart/shoppingCart.component';
+import {AboutComponent} from './Components/about/about.component';
+import {PackagesComponent} from './Components/package/packagesview.component';
+import {EventViewComponent} from './Components/event/eventoverview.component';
 
 //callback
 import {CallbackComponent} from './callback/callback.component';
@@ -46,7 +51,6 @@ export const ROUTES: Routes = [
   { path: 'activities', component: ActivityComponent},
   { path: 'food-and-drinks', component: FoodAndDrinksComponent},
   { path: 'accommodation', component: AccomodationComponent},
-  { path: 'contact', component: ContactComponent},
   { path: 'shoppingCart', component: ShoppingCartComponent},
   { path: '**', redirectTo: '' }
 ]

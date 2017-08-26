@@ -3,7 +3,7 @@ import {MdDatepicker, MdDialog, MdTooltipModule} from '@angular/material'
 import {Router} from '@angular/router'
 import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 
-import {CustomPackageService} from '../package/packages/custom-package/custom-package-service/custom-package.service';
+import {CustomPackageService} from '../../Services/Package/custom-package.service';
 
 @Component({
     moduleId: module.id,
@@ -12,8 +12,7 @@ import {CustomPackageService} from '../package/packages/custom-package/custom-pa
 })
 
 export class HomeComponent {
-    position = 'below';
-    selectedOption : number = 1;    //defines the selected option
+    position = 'below';     //defines the position of the tooltip
     minBudget = 300;        //define minimum budget value
     maxBudget = 4000;       //define maximum budget value
     minDate = new Date();   //used to prevent previous dates to the current date being selected
@@ -147,17 +146,16 @@ export class HomeComponent {
         console.info("[INFO] Loading custom page...");
     }
 
-    setNavOption(selection : number) {
-        this.selectedOption = selection;
+    setNavOption(selection : string) {
 
-        switch(this.selectedOption) {
-            case 1: this.router.navigate(['/packages']);            break;
-            case 2: ;        break; 
-            case 3: this.router.navigate(['/about']);          break;
-            case 4: this.router.navigate(['/accommodation']); break;
-            case 5: this.router.navigate(['/events']); break;
-            case 6: this.router.navigate(['/activities']); break;
-            case 7: this.router.navigate(['/food']); break;
+        switch(selection) {
+            case 'packages': this.router.navigate(['/packages']);            break;
+            case 'login': ;        break; 
+            case 'about': this.router.navigate(['/about']);          break;
+            case 'accommodation': this.router.navigate(['/accommodation']); break;
+            case 'events': this.router.navigate(['/events']); break;
+            case 'activities': this.router.navigate(['/activities']); break;
+            case 'restaurants': this.router.navigate(['/food-and-drinks']); break;
         }
     }
 }

@@ -1,8 +1,8 @@
-import {TravelInformation} from './custom-form/objects/TravelInformation';
+import {TravelInformation} from './TravelInformation';
 
-import {Accommodation} from '../../../../Objects/Accommodation/Accommodation';
-import {FoodAndDrinks} from '../../../../Objects/FoodAndDrinks/FoodAndDrinks';
-import {Activity} from '../../../../Objects/Activity/Activity';
+import {Accommodation} from '../../Accommodation/Accommodation';
+import {FoodAndDrinks} from '../../FoodAndDrinks/FoodAndDrinks';
+import {Activity} from '../../Activity/Activity';
 
 export class CustomPackage {
     packageID       : string;

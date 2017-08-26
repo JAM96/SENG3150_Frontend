@@ -37,10 +37,9 @@ import {HomeComponent} from '../Components/home/home.component';
   import {ActivityComponent} from '../Components/activities/activity.component';
   import {FoodAndDrinksComponent} from '../Components/food-and-drinks/food-and-drinks.component';
   import {AccomodationComponent} from '../Components/accomodation/accomodation.component';
-  import {ContactComponent} from '../Components/contact/contact.component';
   import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
 
-  import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop/navigationtop.component';
+  import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop.component';
 
   //Profile Component and Profile Components
   import {ProfileComponent} from '../Components/profile/profile.component';
@@ -54,9 +53,8 @@ import {HomeComponent} from '../Components/home/home.component';
     BudgetChangeComponent,
     AddFoodAndDrinksComponent,
     AddActivityComponent
-  } from '../Components/package/packages/custom-package/custom-form/custom-package.component';
-  import {PackageCategoryComponent} from '../Components/package/packagecategory.component';
-  import {PackagesComponent} from '../Components/package/packages/packagesview.component';
+  } from '../Components/package/custom-package/custom-package.component';
+  import {PackagesComponent} from '../Components/package/packagesview.component';
 //import services here
 import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
 import {AuthGuardService} from '../Components/guards/auth-guard.service'
@@ -75,7 +73,7 @@ import { NgxBarcodeModule } from 'ngx-barcode';
 //calendar
 
 //custom package service
-import {CustomPackageService} from '../Components/package/packages/custom-package/custom-package-service/custom-package.service';
+import {CustomPackageService} from '../Services/Package/custom-package.service';
 
 //import auth0
 import * as auth0 from 'auth0-js'
@@ -115,13 +113,11 @@ import {AuthService} from '../auth/auth.service';
     AddActivityComponent,
     notificationsPopupComponent,
     EventViewComponent,
-    PackageCategoryComponent,
     PackagesComponent,
     ProfileComponent,
     CustomPackageComponent,
     FoodAndDrinksComponent,
     AccomodationComponent,
-    ContactComponent,
     ShoppingCartComponent,
     ViewPackagesComponent,
     ViewVouchersComponent,

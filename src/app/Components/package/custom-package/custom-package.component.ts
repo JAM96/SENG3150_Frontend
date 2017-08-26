@@ -3,27 +3,26 @@
     import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
     import {Router} from '@angular/router';
 //External Components
-    import {AccomodationComponent} from '../../../../../Components/accomodation/accomodation.component';
-    import {ActivityComponent} from '../../../../../Components/activities/activity.component';
-    import {FoodAndDrinksComponent} from '../../../../../Components/food-and-drinks/food-and-drinks.component';
+    import {AccomodationComponent} from '../../../Components/accomodation/accomodation.component';
+    import {ActivityComponent} from '../../../Components/activities/activity.component';
+    import {FoodAndDrinksComponent} from '../../../Components/food-and-drinks/food-and-drinks.component';
 //Objects
-    import {Accommodation} from '../../../../../Objects/Accommodation/Accommodation';
-    import {Room} from '../../../../../Objects/Accommodation/Room';
-    import {Feature} from '../../../../../Objects/Accommodation/Feature';
-    import {FoodAndDrinks} from '../../../../../Objects/FoodAndDrinks/FoodAndDrinks';
-    import {Activity} from '../../../../../Objects/Activity/Activity';
-    import {CustomPackage} from '../CustomPackage';
-    import {FoodAndDrinksForm} from './objects/FoodAndDrinksForm';
-    import {TravelInformation} from './objects/TravelInformation';
+    import {Accommodation} from '../../../Objects/Accommodation/Accommodation';
+    import {Room} from '../../../Objects/Accommodation/Room';
+    import {Feature} from '../../../Objects/Accommodation/Feature';
+    import {FoodAndDrinks} from '../../../Objects/FoodAndDrinks/FoodAndDrinks';
+    import {Activity} from '../../../Objects/Activity/Activity';
+    import {CustomPackage} from '../../../Objects/Packages/CustomPackage/CustomPackage';
+    import {TravelInformation} from '../../../Objects/Packages/CustomPackage/TravelInformation';
 //Services
-    import {AccommodationService} from '../../../../../Services/Accommodation/accommodation.service';
-    import {FoodAndDrinksService} from '../../../../../Services/FoodAndDrinks/food-and-drinks.service';
-    import {ActivityService} from '../../../../../Services/activity/activity.service';
-    import {IndividualAccommodationService} from '../../../../../Services/Accommodation/individual-accommodation.service';
-    import {IndividualFoodAndDrinksService} from '../../../../../Services/FoodAndDrinks/individual-food-and-drinks.service';
-    import {IndividualActivityService} from '../../../../../Services/Activity/individual-activity.service';
+    import {AccommodationService} from '../../../Services/Accommodation/accommodation.service';
+    import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-drinks.service';
+    import {ActivityService} from '../../../Services/activity/activity.service';
+    import {IndividualAccommodationService} from '../../../Services/Accommodation/individual-accommodation.service';
+    import {IndividualFoodAndDrinksService} from '../../../Services/FoodAndDrinks/individual-food-and-drinks.service';
+    import {IndividualActivityService} from '../../../Services/Activity/individual-activity.service';
     import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
-    import {CustomPackageService} from '../custom-package-service/custom-package.service';
+    import {CustomPackageService} from '../../../Services/Package/custom-package.service';
 //PDF Creator
     import jsPDF from 'jspdf';
     // declare var jquery:any;
