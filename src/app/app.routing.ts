@@ -11,7 +11,6 @@ import {HomeComponent} from './Components/home/home.component';
 import {ProfileComponent} from './Components/profile/profile.component';
 import {ViewPackagesComponent} from './Components/profile/viewPackages/viewPackages.component';
 import {ViewVouchersComponent} from './Components/profile/viewVouchers/viewVouchers.component';
-import {LeaveFeedbackComponent} from './Components/profile/leaveFeedback/leaveFeedback.component';
 
 //Custom Package Components
 import {CustomPackageComponent} from './Components/package/custom-package/custom-package.component';
@@ -51,7 +50,6 @@ export const ROUTES: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   { path: 'profile/viewPackages', component: ViewPackagesComponent, canActivate:[AuthGuard]},
   { path: 'profile/viewVouchers', component: ViewVouchersComponent, canActivate:[AuthGuard]},
-  { path: 'profile/leaveFeedback', component: LeaveFeedbackComponent, canActivate:[AuthGuard] },
   
   //Custom Package
   { 
