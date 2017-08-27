@@ -6,6 +6,7 @@ import {Activity} from '../../Objects/Activity/Activity';
 
 //import services
 import {ActivityService} from '../../Services/Activity/activity.service';
+import {DataService} from '../../Services/data.service'
 
 @Component({
     moduleId: module.id,
@@ -13,4 +14,8 @@ import {ActivityService} from '../../Services/Activity/activity.service';
     templateUrl: 'eventListView.component.html',
 })
 
-export class EventListComponent { }
+export class EventListComponent {
+    constructor(public data : DataService) {
+        data.setNavigation(3);
+    }
+ }

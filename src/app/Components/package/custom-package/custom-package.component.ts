@@ -574,10 +574,10 @@ export class CustomPackageComponent implements OnInit{
         console.log('retrieving food and drinks');
 
         this.startLoading();
-        this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad)
+        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad)
         
-        // this.foodAndDrinksService.getFoodAndDrinks()
-        //     .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
+        this.foodAndDrinksService.getFoodAndDrinks()
+            .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
              .then(() => this.completeLoading());
 
        

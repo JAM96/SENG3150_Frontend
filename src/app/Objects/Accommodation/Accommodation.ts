@@ -1,7 +1,9 @@
 import {Room} from './Room';
 import {Feature} from './Feature';
+import {Image} from '../Image';
 
 export class Accommodation {
+    //Database attributes
     accommodationID             :   string;
     accommodationName           :   string;
     accommodationAddress        :   string;
@@ -9,19 +11,24 @@ export class Accommodation {
     latitude                    :   number;
     longitude                   :   number;
     accommodationStarRating     :   number;
-    accommodationStars          :   number[] = [];
     accommodationUserRating     :   number;
-    accommodationRating         :   string; //'Okay', 'Good', 'Great', "Fabulous!"
     bestSeller                  :   boolean
     accommodationType           :   string;
-    pictureURL                  :   string;
     websiteURL                  :   string;
     phoneNo                     :   string;
+    totalSold                   :   number;
+    totalViewed                 :   number;
+
+    //Angular Attributes
+    accommodationStars          :   number[] = [];
+    accommodationRating         :   string; //'Okay', 'Good', 'Great', "Fabulous!"
     topFeatures                 :   Feature[]; //First 3 features for the list view.
     features                    :   Feature[]; //All features when user views the accommodation.
     room                        :   Room[];
     pricePerNight               :   number; //cheapest room price.
     selectedRoom                :   Room;   //selected room for the accommodation
+    images                      :   Image[];
+
 }
 
 /*
