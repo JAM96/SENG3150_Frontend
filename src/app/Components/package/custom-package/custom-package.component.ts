@@ -489,6 +489,8 @@ export class CustomPackageComponent implements OnInit{
     */
 
     private fetch() : void {
+        this.startLoading();
+        
         //Load Accommodation
         var featuresTemp    : Feature[];
         var roomTemp        : Room[];
@@ -702,6 +704,7 @@ export class CustomPackageComponent implements OnInit{
 
     private checkLoad() : boolean {
         if(this.imagesLoaded && this.accommodationLoaded && this.activitiesLoaded && this.foodAndDrinksLoaded) {
+            this.completeLoading();
             return true;
         } else {
             return false;
