@@ -16,7 +16,7 @@ export interface FoodAndDrinks {
     diningStyle         :   string;
     phoneNo             :   string;
     userRating          :   number;
-    bestSeller          :   number;
+    bestSeller          :   boolean;
     latitude            :   number;
     longtidue           :   number;
     totalSold           :   number;

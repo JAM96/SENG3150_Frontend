@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -p 4200 && start http://localhost:4200",
+    "start": "ng serve --host 10.0.0.4 -p 4200 start http://localhost:4200",
     "build": "ng build",
 	"build_prod": "ng run clean && tsc",
     "test": "ng test",

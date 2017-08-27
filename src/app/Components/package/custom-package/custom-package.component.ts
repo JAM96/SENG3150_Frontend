@@ -748,7 +748,7 @@ export class AddFoodAndDrinksComponent{
 
     checkMenuType() : boolean {
         for(var i = 0; i < this.foodAndDrinks.menuType.length; i++) {
-            if(this.foodAndDrinks.menuType[i] == 'Bar') {
+            if(this.foodAndDrinks.menuType[i].tagString == 'Bar') {
                 return true;
             }
         }
