@@ -5,6 +5,7 @@ import {FoodAndDrinks} from '../../../Objects/FoodAndDrinks/FoodAndDrinks';
 
 //import services
 import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-drinks.service';
+import {DataService} from '../../../Services/data.service'
 
 @Component({
     moduleId: module.id,
@@ -12,4 +13,8 @@ import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-dri
     templateUrl: 'food-and-drinks-view.component.html',
 })
 
-export class FoodAndDrinksListComponent { }
+export class FoodAndDrinksListComponent {
+    constructor(public data : DataService) {
+        data.setNavigation(5);
+    }
+ }

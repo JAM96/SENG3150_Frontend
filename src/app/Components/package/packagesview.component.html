@@ -1,59 +1,9 @@
-    <!--<div class="container">
-        <div class="packageHeader">
-            <div class="packageDates">
-                <md2-datepicker 
-                    type="date"
-                    mode="portrait"
-                    placeholder="Check-in date"
-                    tabindex="1"
-                    openOnFocus="true"
-                    min="minDate"
-                    container="inline"
-                    [(ngModel)]="startDate">
-                </md2-datepicker>
-                <md2-datepicker 
-                    type="date"
-                    mode="portrait"
-                    placeholder="Check-out date"
-                    tabindex="1"
-                    openOnFocus="true"
-                    container="inline"
-                    [(ngModel)]="endDate">
-                </md2-datepicker>
-            </div>
-            <div class="packageFloat">
-                <div class="packageOptionsWrapper">
-                <div id="categorySelect">
-                        <md2-select [(ngModel)]="category" placeholder="Category">
-                            <md2-option>Thrill</md2-option>
-                            <md2-option>Relax</md2-option>
-                            <md2-option>Shopping</md2-option>
-                            <md2-option>Wineries</md2-option>
-                            <md2-option>On the water</md2-option>
-                        </md2-select>
-                    </div>
-                    
-                    <button type="button" md-mini-fab color="accent" (click)="increaseGuests()" style="float: right; margin-right: 10px">+</button>
-                    
-                    <div id="guests">
-                        <div class="text">
-                            Guests: {{guests}}
-                        </div>
-                    </div>
-
-                    <button type="button" md-mini-fab color="accent" (click)="decreaseGuests()" style="float: right;">-</button>
-                </div>
-            </div>
-
-            <div style="clear: both;"></div> 
-        </div>
-    </div>-->
-
-    <div class="container s-view" style="height: 95vh; background-color: white">
+<navigationtop></navigationtop>
+    <div class="container view">
         <div *ngFor="let package of packages" class="row item-container" style="margin-left: 5px">
             <div class="col-md-3"><!-- image -->
                 <div id="img">
-                    <img src="\res\image\{{package.packageImg}}" width="100%" height="100%"/>
+                    <img src="\assets\image\{{package.packageImg}}" width="100%" height="100%"/>
                     <div class="hotelAdvert" style="bottom: 0">WOW BUY NOW!!!</div>
                 </div>
             </div><!-- End Image -->

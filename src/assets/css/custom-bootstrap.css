@@ -36,6 +36,10 @@
     width: 100%;
 }
 
+.navbar-collapse {
+    z-index: 9999;
+}
+
 @media screen and (min-width: 0px) and (max-width: 600px) {
     .form-control {
         width: 100%;

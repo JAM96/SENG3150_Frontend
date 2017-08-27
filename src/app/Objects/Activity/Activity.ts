@@ -1,12 +1,14 @@
+import {Image} from '../Image';
+import {BookingTime} from '../BookingTime';
+
 export interface Activity {
+    //database attributes
     activityID          :   string;
     name                :   string;
     category            :   string;
-    //Later on, we should include this variable:
-    // activityType        :   string;
+    activityType        :   string;
     address             :   string;
     suburb              :   string;
-    mainPhotoURL        :   string;
     briefDescription    :   string;
     websiteURL          :   string;
     phoneNo             :   string;
@@ -15,7 +17,14 @@ export interface Activity {
     startDate           :   Date;
     endDate             :   Date;
     bestSeller          :   boolean;
+    latitude            :   number;
+    longitude           :   number;
+    totalSold           :   number;
+    totalViewed         :   number;
 
+    //angular attributes
     selectedDay         :   number;
     selectedTime        :   string;
+    images              :   Image[];
+    bookingTimes        :   BookingTime[];
 }

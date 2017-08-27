@@ -59,10 +59,10 @@
         </ng-template>
 
         <li *ngIf="selectedOption==7; else notActive7" class="active">
-            <a (click)="setNavOption(7)">Contact<span class="sr-only">(current)</span></a>
+            <a (click)="setNavOption(7)">About<span class="sr-only">(current)</span></a>
         </li>
         <ng-template #notActive7>
-            <li><a (click)="setNavOption(7)">Contact</a></li>
+            <li><a (click)="setNavOption(7)">About</a></li>
         </ng-template>
       </ul>
       

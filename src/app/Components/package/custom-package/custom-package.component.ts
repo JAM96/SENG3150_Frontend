@@ -574,10 +574,10 @@ export class CustomPackageComponent implements OnInit{
         console.log('retrieving food and drinks');
 
         this.startLoading();
-        this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad)
+        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad)
         
-        // this.foodAndDrinksService.getFoodAndDrinks()
-        //     .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
+        this.foodAndDrinksService.getFoodAndDrinks()
+            .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
              .then(() => this.completeLoading());
 
        
@@ -748,7 +748,7 @@ export class AddFoodAndDrinksComponent{
 
     checkMenuType() : boolean {
         for(var i = 0; i < this.foodAndDrinks.menuType.length; i++) {
-            if(this.foodAndDrinks.menuType[i] == 'Bar') {
+            if(this.foodAndDrinks.menuType[i].tagString == 'Bar') {
                 return true;
             }
         }
