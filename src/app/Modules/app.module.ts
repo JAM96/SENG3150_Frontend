@@ -50,7 +50,6 @@ import { AppComponent }  from '../Components/app.component';
   import {ProfileComponent} from '../Components/profile/profile.component';
   import {ViewPackagesComponent} from '../Components/profile/viewPackages/viewPackages.component';
   import {ViewVouchersComponent} from '../Components/profile/viewVouchers/viewVouchers.component';
-  import {LeaveFeedbackComponent} from '../Components/profile/leaveFeedback/leaveFeedback.component';
 
   //Custom Package components
     import {
@@ -130,7 +129,7 @@ import {AuthService} from '../auth/auth.service';
     //Email Components
  //   EmailComponent,
     //Profile Components
-    LeaveFeedbackComponent,
+    
     notificationsPopupComponent,
     ProfileComponent,
     ViewPackagesComponent,

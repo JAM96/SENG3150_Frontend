@@ -6,19 +6,6 @@ import {HttpModule} from '@angular/http';
     moduleId: module.id,
     selector: 'viewVouchers',
     templateUrl: 'viewVouchers.component.html',
-    providers: [HttpService]
 })
 
-export class ViewVouchersComponent {
-        constructor(
-        private _httpService: HttpService
-    ){}
-
-    sendDataToServer(dataFromForm: any){
-        this._httpService.sendData(dataFromForm).subscribe(
-            response => console.log(response), //success
-            error => console.log(error), //error
-            () => console.log('completed')) //complete
-    }
-
-}
+export class ViewVouchersComponent {}
