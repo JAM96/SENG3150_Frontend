@@ -16,7 +16,7 @@ export const FOODANDDRINKS_LIST: FoodAndDrinks[] = [
         userRating: 420,
         bestSeller: true,
         latitude: 0,
-        longtidue: 0,
+        longitude: 0,
         totalSold: 0,
         totalViewed: 0,
         

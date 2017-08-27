@@ -15,6 +15,7 @@ export class ShoppingCartComponent {
 
     constructor(packageService : CustomPackageService) {
         this.custom = packageService.getPackage();
-        console.log("Custom package is: " + this.custom);
+        console.log("Custom package is: ");
+        console.log(this.custom)
     }
 }

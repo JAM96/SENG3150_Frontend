@@ -18,7 +18,7 @@ export interface FoodAndDrinks {
     userRating          :   number;
     bestSeller          :   boolean;
     latitude            :   number;
-    longtidue           :   number;
+    longitude           :   number;
     totalSold           :   number;
     totalViewed         :   number;
    
