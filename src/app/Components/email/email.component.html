@@ -1,0 +1,27 @@
+<div class="center-div">
+<div class="panel panel-primary">
+  <div>
+    <h3>Sign up</h3>
+  </div>
+  <div>
+  <form>
+        <div>
+      <label>Email id</label>
+        <input type="text" id="inputEmail" placeholder="Email Id" [(ngModel)]="newUser.email">
+        </div>
+        <div>
+      <label>Password</label>
+        <input type="password" id="inputPassword" placeholder="password"  [(ngModel)]="newUser.password">
+      
+    </div>
+       
+     <div>
+      
+          <button type="button" (click)="addUser()">Sign up</button>
+      
+    </div>
+  </form>
+</div>
+</div>
+
+</div>

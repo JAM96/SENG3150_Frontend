@@ -43,6 +43,9 @@ import { AppComponent }  from '../Components/app.component';
   import {FoodAndDrinksListComponent} from '../Components/food-and-drinks/food-and-drinks-view/food-and-drinks-view.component';
   import {NavigationTopComponent, notificationsPopupComponent} from '../Components/navigation/navigationtop.component';
 
+  //Email
+  //import {EmailComponent} from '../Components/email/email.component';
+
   //Profile Component and Profile Components
   import {ProfileComponent} from '../Components/profile/profile.component';
   import {ViewPackagesComponent} from '../Components/profile/viewPackages/viewPackages.component';
@@ -71,6 +74,8 @@ import { AppComponent }  from '../Components/app.component';
   import {FoodAndDrinksService} from '../Services/FoodAndDrinks/food-and-drinks.service';
   import {ActivityService} from '../Services/activity/activity.service';
   import {ImageService} from '../Services/image.service';
+  import {HttpService} from '../Services/http/http.service';
+//  import {EmailService} from  '../Services/Email/email.service';
 //ng2 
 //import {AsideModule} from 'ng2-aside';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
@@ -122,6 +127,8 @@ import {AuthService} from '../auth/auth.service';
     FoodAndDrinksListComponent,
     NavigationTopComponent,
     PackagesComponent,
+    //Email Components
+ //   EmailComponent,
     //Profile Components
     LeaveFeedbackComponent,
     notificationsPopupComponent,
@@ -162,6 +169,7 @@ import {AuthService} from '../auth/auth.service';
     FoodAndDrinksService,
     ActivityService,
     ImageService,
+    HttpService,
   ]
 })
 
