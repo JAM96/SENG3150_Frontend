@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Route } from '@angular/router';
 import {PackageList} from '../../Objects/Packages/PackageList';
 import {PackageService} from '../../Services/Package/packages.service';
+import {DataService} from '../../Services/data.service'
 
 
 @Component({
@@ -24,7 +25,13 @@ export class PackagesComponent implements OnInit{
 
     guests : number = 0;
 
-    constructor(private route: ActivatedRoute, private _packageService: PackageService) {}
+    constructor(
+        private route: ActivatedRoute, 
+        private _packageService: PackageService,
+        public data : DataService,
+    ) {
+        data.setNavigation(2);
+    }
 
     getPackages() {
         this._packageService.getMockPackages().then((packages: PackageList[]) => this.packages = packages);

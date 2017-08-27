@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable() 
 export class DataService {
+  navigationSelection : number = 1;
   apiUrl: string = 'http://localhost:8080'; //Api Location
   //apiUrl : string = "http://10.0.0.4:8080";
   
@@ -42,5 +43,13 @@ export class DataService {
 
     console.log(url);
     return url;
+  }
+
+  setNavigation(selection : number) : void {
+    this.navigationSelection = selection;
+  }
+
+  getNavigation() : number {
+    return this.navigationSelection;
   }
 }

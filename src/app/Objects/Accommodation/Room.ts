@@ -1,4 +1,5 @@
 import {Feature} from './Feature';
+import {Image} from '../Image';
 
 export interface Room {
     accommodationID     : string;
@@ -7,5 +8,7 @@ export interface Room {
     roomPrice           : number;
     numPeople           : number;
     numBeds             : number;
+
     features            : Feature[];
+    images              : Image[];
 }

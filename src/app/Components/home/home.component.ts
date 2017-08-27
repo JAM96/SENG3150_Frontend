@@ -5,6 +5,7 @@ import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 import {CustomPackageService} from '../../Services/Package/custom-package.service';
+import {DataService} from '../../Services/data.service'
 
 @Component({
     moduleId: module.id,
@@ -36,8 +37,11 @@ export class HomeComponent{
     //CCPIC Constructor with instantiates the router and custom-package services
     constructor (
         public router: Router,
-        private packageService: CustomPackageService
-        ) {}
+        private packageService: CustomPackageService,
+        public data : DataService,
+        ) {
+            data.setNavigation(1);
+        }
 
     myDateRangePickerOptions: IMyDrpOptions = {
         //Options provided from documentation

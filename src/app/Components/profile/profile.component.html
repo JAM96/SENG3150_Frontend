@@ -8,22 +8,32 @@
        <div class="panel-body">
          <div>
            <label><i class="glyphicon glyphicon-user"></i> Email: {{ profile?.name }}</label>
+           <input id="email" hidden="true" value="{{profile?.name}}">
          </div>
        </div>
     </div>
     
    <div style="margin: 0 auto;">
-        <h3>BILLING DETAILS <button (click)="onEdit()">{{editText}}</button></h3>
+        <h3>BILLING DETAILS <button (click)="onEdit()" md-button>{{editText}}</button></h3>
             <div style="margin-left: 20%;">
         
     </div>
-        <table>
+
+      <table *ngIf="profile?.name == 'ben.delore@live.com'; else ben">
           <tr>
             <td>
               <label>Address: </label>
             </td>
             <td>
-              <input [disabled]="!isEdit" value="11 Ocean Dr Newcastle NSW">
+              <input [disabled]="!isEdit" value="11 Ocean Dr">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label></label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="Newcastle NSW">
             </td>
           </tr>
           <tr>
@@ -31,7 +41,7 @@
               <label>Name on Card:</label>
             </td>
             <td>
-              <input [disabled]="!isEdit" value="ETHAN PAUL">
+              <input [disabled]="!isEdit" value="BEN DELORE">
             </td>
           </tr>
           <tr>
@@ -60,7 +70,60 @@
           </tr>
 
         </table>
-        
+
+    <ng-template #ben>
+        <table>
+          <tr>
+            <td>
+              <label>Address: </label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label></label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Name on Card:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Card NO:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Mobile:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Expiry Date:</label>
+            </td>
+            <td>
+              <input [disabled]="!isEdit" value="">
+            </td>
+          </tr>
+
+        </table>
+    </ng-template>   
         
         
         

@@ -25,6 +25,8 @@ body {
 }
 
 
+
+
 /* Material CSS OVERRIDES  */
 .mat-warn {
     background-color: rgb(249,255,151) !important;
@@ -526,7 +528,7 @@ a:hover {
     width: 50%;
     
     margin: auto;
-
+    margin-top: -25%;
     padding: 20px;
     padding-top: 0;
     background-color: rgba(50,50,55,0.9); 
