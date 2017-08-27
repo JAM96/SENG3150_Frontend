@@ -47,7 +47,7 @@ export class NavigationTopComponent implements OnInit{
             case 2: this.router.navigate(['/packages']);        break; 
             case 3: this.router.navigate(['/events']);          break;
             case 4: this.router.navigate(['/activities']);      break;
-            case 5: this.router.navigate(['/food']);            break;
+            case 5: this.router.navigate(['/food-and-drinks']);            break;
             case 6: this.router.navigate(['/accommodation']);   break;
             case 7: this.router.navigate(['/about']);         break;
         }
