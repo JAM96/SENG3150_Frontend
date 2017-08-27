@@ -52,12 +52,6 @@ export class CustomPackageComponent implements OnInit{
     activities  : Activity[];   //list of events and activities in Newcastle
     imageList   : Image[];
 
-    isLoaded = [
-        {type: 'accommodation', value: false},
-        {type: 'restauarants',  value: false},
-        {type: 'activities',    value: false},
-    ]
-
     //View variables
     selected : number;      //Tab selection, 1=Travel, 2=Accommodation, 3=Restauarants, 4=Activities, 5=Cart
 
@@ -116,6 +110,12 @@ export class CustomPackageComponent implements OnInit{
     dialogSelection : number = 1;
     viewAccommodation : Accommodation = new Accommodation; //this stores the data of a selected accommodation
     sortedData;
+
+    //loading variables
+    private imagesLoaded : boolean = false;
+    private accommodationLoaded : boolean = false;
+    private activitiesLoaded : boolean = false;
+    private foodAndDrinksLoaded : boolean = false;
     
     //declare services
     constructor(
@@ -131,7 +131,7 @@ export class CustomPackageComponent implements OnInit{
         public dialog                           :   MdDialog
         ) {
 
-            this.getImages();
+            this.fetch();
         }
 
     ngOnInit() {
@@ -154,12 +154,7 @@ export class CustomPackageComponent implements OnInit{
             this.selectedDay = 1;
             this.travelValue = 'No'
             this.budget = this.custom.budget;
-            this.custom.packageCost = 0;
-
-            setTimeout(() => {
-                this.getImages();
-            }, 2000)
-           
+            this.custom.packageCost = 0; 
         } else {
             console.log("Package is already created");
             this.selected = this.custom.navigation;
@@ -172,11 +167,6 @@ export class CustomPackageComponent implements OnInit{
                 this.selectedAccommodationName = this.custom.accommodation.accommodationName;
                 this.previousSelectedAccommodation = this.custom.previousSelectedAccommodation;
             }
-
-            this.getAccommodation();
-            this.getActivities();
-            this.getFoodAndDrinks();
-            this.getImages();
         }
 
         if(this.budget == null) {
@@ -308,34 +298,6 @@ export class CustomPackageComponent implements OnInit{
         */
         this.selected = selection;
         console.log('[INFO] SELECTED VALUE: ', selection);
-
-        this.getImages();
-
-        switch(selection) {
-            case 1: break;
-            case 2:         
-                if(this.isLoaded[0].value == false) {
-                    console.log('[INFO] Loading Accommodation');
-                    this.getAccommodation(); //retrieve accommodation from the database.
-                    this.isLoaded[0].value = true; //change loaded status to true.
-                }
-                break;
-            case 3: 
-                if(this.isLoaded[1].value == false) {
-                    console.log('Loading restaurants');
-                    this.getFoodAndDrinks(); //retrieve restaurants from the database.
-                    this.isLoaded[1].value = true; //change loaded status to true.
-                }
-                break;
-            case 4: 
-                if(this.isLoaded[2].value == false) {
-                    console.log('Loading activities');
-                    this.getActivities(); //retrieve activities from the database.
-                    this.isLoaded[2].value = true; //change loaded status to true.
-                }
-                break;
-            case 5: break;
-        }
     }
 
     setDays(selection : number) {
@@ -524,9 +486,181 @@ export class CustomPackageComponent implements OnInit{
 
     /**
      * LOADING DATA
-     */
+    */
 
-    assignTopFeatures() {
+    private fetch() : void {
+        //Load Accommodation
+        var featuresTemp    : Feature[];
+        var roomTemp        : Room[];
+        var roomFeatures    : Feature[];
+        //Load Images
+        this.imageService.fetchImages().subscribe((image : Image[]) => {
+            this.imageList = image;
+            this.imagesLoaded = true;
+            console.log("Images have loaded");
+            console.log(this.imageList);
+        
+            this.accommodationService.fetchAccommodation().subscribe((accommodation : Accommodation[]) => {
+                this.accommodationList = accommodation;
+                console.log("Accommodation is now loaded...");
+                this.accommodationService.fetchAccommodationFeatures().subscribe((feature : Feature[]) => {
+                    featuresTemp = feature;
+                    console.log("Accommodation Features is now loaded...");
+                    this.accommodationService.fetchAccommodationRooms().subscribe((room : Room[]) => {
+                        roomTemp = room;
+                        console.log("Accommodation rooms is now loaded...");
+                        this.accommodationService.fetchAccommodationRoomFeatures().subscribe((roomFeature : Feature[]) => {
+                            roomFeature = roomFeature;
+                            console.log("Accommodation room features is now loaded...");
+                            this.assignAccommodation(featuresTemp, roomTemp, roomFeatures);
+                            this.accommodationLoaded = true;
+                            
+                            //Assign images to the accommodation
+                            for(var i = 0; i < this.accommodationList.length; i++) {
+                                this.accommodationList[i].images = [];
+                                for(var j = 0; j < this.imageList.length; j++) {
+                                    if(this.accommodationList[i].accommodationID == this.imageList[j].associatedItemID) {
+                                        this.accommodationList[i].images.push(this.imageList[j]);
+                                    }
+                                }
+                            }
+
+                            //assign empty image if there is no images for that accommodation
+                            for(var i = 0; i < this.accommodationList.length; i++) {
+                                if(this.accommodationList[i].images[0] == null) {
+                                    console.log("No images found");
+                                    var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                                    this.accommodationList[i].images[0] = img;
+                                } 
+                            }
+                            console.log("Images have been assigned, accommodation is now complete");
+                            console.log(this.accommodationList);
+                        });
+                    });
+                });
+            });   
+
+            //Load Food and Drinks
+            this.foodAndDrinksService.fetchFoodAndDrinks().subscribe((foodAndDrinks : FoodAndDrinks[]) => {
+                this.foodAndDrinks = foodAndDrinks;
+                this.assignFoodAndDrinks();
+                this.custom.foodAndDrinks = [];
+                this.custom.selectedFoodAndDrinks = [];
+                this.foodAndDrinksLoaded = true;
+                
+                //Assign images to the food and drinks
+                for(var i = 0; i < this.foodAndDrinks.length; i++) {
+                    this.foodAndDrinks[i].images = [];
+                    for(var j = 0; j < this.imageList.length; j++) {
+                        if(this.foodAndDrinks[i].foodAndDrinksID == this.imageList[j].associatedItemID) {
+                            this.foodAndDrinks[i].images.push(this.imageList[j]);
+                        }
+                    }
+                }
+
+                //assign empty image if there is no images for that food and drinks item
+                for(var i = 0; i < this.foodAndDrinks.length; i++) {
+                    if(this.foodAndDrinks[i].images[0] == null) {
+                        var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                        this.foodAndDrinks[i].images[0] = img;
+                    }
+                }
+                console.log("Images have been assigned, food and drinks is now complete");
+                console.log(this.foodAndDrinks);
+            });
+
+            //Load Activities
+            this.activityService.getActivities().subscribe((activities : Activity[]) => {
+                this.activities = activities;
+                this.custom.activity = [];
+                this.custom.selectedActivities = [];
+                this.activitiesLoaded = true;
+                
+                //Assign images to the activities
+                for(var i = 0; i < this.activities.length; i++) {
+                    this.activities[i].images = [];
+                    for(var j = 0; j < this.imageList.length; j++) {
+                        if(this.activities[i].activityID == this.imageList[j].associatedItemID) {
+                            this.activities[i].images.push(this.imageList[j]);
+                        }
+                    }
+                }
+
+                //assign empty image if there is no images for that activity
+                for(var i = 0; i < this.activities.length; i++) {
+                    if(this.activities[i].images[0] == null) {
+                        var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                        this.activities[i].images[0] = img;
+                    }
+                }
+                console.log("Images have been assigned, activities is now complete");
+                console.log(this.activities);
+            });
+        });
+    }
+
+    private assignAccommodation(features : Feature[], rooms : Room[], roomFeatures : Feature[]) : void {
+        //Set the accommodation star array and rating
+        for(var i = 0; i < this.accommodationList.length; i++) {
+            //Set the star array for each accommodationList
+            this.accommodationList[i].accommodationStars = [];
+            for(var j = 0; j < this.accommodationList[i].accommodationStarRating; j++) {
+                this.accommodationList[i].accommodationStars[j] = j;
+            }
+            console.log(this.accommodationList[i].accommodationStars);
+
+            //Assign the rating description for each accommodationList
+            switch(this.accommodationList[i].accommodationUserRating) {
+                case 1: this.accommodationList[i].accommodationRating = "Bad"; break;
+                case 2: this.accommodationList[i].accommodationRating = "Okay"; break;
+                case 3: this.accommodationList[i].accommodationRating = "Good"; break;
+                case 4: this.accommodationList[i].accommodationRating = "Great"; break;
+                case 5: this.accommodationList[i].accommodationRating = "Fabulous!"; break;
+                default: this.accommodationList[i].accommodationRating = ""; break;
+            }
+        }
+
+        //Assigning Features
+        console.log("Assigning module: ");
+        for(var i = 0; i < this.accommodationList.length; i++){
+            //initialise features and room of each accommodation
+            this.accommodationList[i].features = [];
+            this.accommodationList[i].room = [];
+            
+            console.log("initialising done, now assiging features");
+
+            //Assign Features to the accommodationList
+            for(var j = 0; j < features.length; j++) 
+                if(this.accommodationList[i].accommodationID == features[j].accommodationID) 
+                    this.accommodationList[i].features.push(features[j]);
+
+            //Assign rooms to the accommodationList
+            console.log("now assigning rooms");
+            for(var j = 0; j < rooms.length; j++) 
+                if(this.accommodationList[i].accommodationID == rooms[j].accommodationID) 
+                    this.accommodationList[i].room.push(rooms[j]);
+        }
+
+        //Obtain the cheapest room and set the price of the item
+        console.log("finding cheapest price");
+        for(var i = 0; i < this.accommodationList.length; i++) {
+            if(this.accommodationList[i].room[0] != null) {
+                console.log("Room price for 0 is defined")
+                var price = this.accommodationList[i].room[0].roomPrice;
+                
+                for(var j = 0; j < this.accommodationList[i].room.length; j++){
+                    if(price <= this.accommodationList[i].room[j].roomPrice) {
+                        price = this.accommodationList[i].room[j].roomPrice;
+                        break;
+                    }
+                }
+                this.accommodationList[i].pricePerNight = price;
+            } else {
+                this.accommodationList[i].pricePerNight = 0;
+            }
+        }
+
+        //Assigning the top 3 features of the accommodation
         console.log("Assigning top features");
         for(var i = 0; i < this.accommodationList.length; i++){
             this.accommodationList[i].topFeatures = []; //initialise top feature array
@@ -538,65 +672,40 @@ export class CustomPackageComponent implements OnInit{
         }
     }
 
-    getImages() : void {
-        this.imageService.getImages()
-            .then((image : Image[]) => this.imageList = image)
-            .then(() => console.log("images loaded: "))
-            .then(() => console.log(this.imageList));
-        
-    }
-    
-    /* Retrieves all the accommodation objects from the backend */
-    getAccommodation() {
-        console.log('[INFO] Retrieving the accommodation list');
+    private assignFoodAndDrinks() : void {
+        for(var i = 0; i < this.foodAndDrinks.length; i++) {
+            //Set the star array for each foodAndDrinks
+            this.foodAndDrinks[i].stars = [];
+            for(var j = 0; j < this.foodAndDrinks[i].starRating; j++) {
+                this.foodAndDrinks[i].stars[j] = j;
+            }
+            console.log(this.foodAndDrinks[i].stars);
 
-        //start loading 
-        this.startLoading();
+            //Assign the rating description for each foodAndDrinks
+            switch(this.foodAndDrinks[i].userRating) {
+                case 1: this.foodAndDrinks[i].rating = "Bad"; break;
+                case 2: this.foodAndDrinks[i].rating = "Okay"; break;
+                case 3: this.foodAndDrinks[i].rating = "Good"; break;
+                case 4: this.foodAndDrinks[i].rating = "Great"; break;
+                case 5: this.foodAndDrinks[i].rating = "Fabulous!"; break;
+                default: this.foodAndDrinks[i].rating = ""; break;
+            }
 
-        //temp variables to hold accommodaiton information
-        var features : Feature[];
-        var rooms : Room[];
-
-        //Mock Database
-        //this.accommodationService.getMockAccommodation().then((accommodation: Accommodation[]) => this.accommodationList = accommodation);
-
-        //Load the data from the database
-        this.accommodationService.getAccommodation()
-            .then((accommodation: Accommodation[]) => this.accommodationList = accommodation)   //get the main accommodation data
-            .then(() => console.log("Accommodation Loaded"))                                    //Output that accommodation has been loaded
-            .then(() => console.log("Features and rooms assigned"))                             //Output
-            .then(() => this.assignTopFeatures())                                               //Set the top 3 features to each accommodation
-            .then(() => this.completeLoading());                                                //Complete the loading
-    }
-
-    /* Retrieves all food objects from the backend */
-    getFoodAndDrinks() {
-        console.log('retrieving food and drinks');
-
-        this.startLoading();
-        //this.foodAndDrinksService.getMockFood().then((fad: FoodAndDrinks[]) => this.foodAndDrinks = fad)
-        
-        this.foodAndDrinksService.getFoodAndDrinks()
-            .then((fad : FoodAndDrinks[]) => this.foodAndDrinks = fad)
-             .then(() => this.completeLoading());
-
-       
-        if(this.custom.foodAndDrinks == null) {
-            this.custom.foodAndDrinks = [];
-            this.custom.selectedFoodAndDrinks = [];
+            //Assign the expense rating description for each foodAndDrinks
+            this.foodAndDrinks[i].expense = [];
+            for(var e = 0; e < this.foodAndDrinks[i].expenseRating; e++) {
+                this.foodAndDrinks[i].expense[e] = e;
+            }
+            console.log(this.foodAndDrinks[i]);
         }
     }
 
-    /* Retrieves all activity objects from the backend */
-    getActivities() {
-        console.log('retrieving Activities');
-        //this.activityService.getMockActivities().then((activity: Activity[]) => this.activities = activity);
-        //this.startLoading();
-       
-        this.activityService.getActivities().subscribe((activity : Activity[]) => this.activities = activity);
-        
-        this.custom.activity = [];
-        this.custom.selectedActivities = [];
+    private checkLoad() : boolean {
+        if(this.imagesLoaded && this.accommodationLoaded && this.activitiesLoaded && this.foodAndDrinksLoaded) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     canDeactivate(){ 

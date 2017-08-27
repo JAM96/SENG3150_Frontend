@@ -15,17 +15,14 @@
 
 @Injectable()
 export class ActivityService {
+    private url = this.data.getApiUrl('activity');
+
     constructor(private http : Http, public data : DataService) {}
 
     getActivities() {
-        var url = this.data.getApiUrl('activity');
-        return this.http.get(url)
+        return this.http.get(this.url)
             .map((response:Response) => response.json().result)
-                .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+                .catch((error:any) => Observable.throw(error.json().error || 'Cannot connect to the backend'));
        
-    }
-
-    getMockActivities() {
-        return Promise.resolve(ACTIVITY_LIST);
     }
 }
