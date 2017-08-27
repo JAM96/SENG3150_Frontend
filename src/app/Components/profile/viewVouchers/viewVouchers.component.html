@@ -1,0 +1,46 @@
+<navigationtop></navigationtop>
+ <div *ngIf="profile?.name == 'ben.delore@live.com'; else ben" class="container view">
+       <h3>VOUCHERS</h3>
+        <div class="row item-container" style="margin-left: 5px">
+            <div class="col-md-3"><!-- image -->
+                <div id="img">
+                    <img src="\assets\image\MEET.jpg" width="100%" height="100%"/>
+                </div>
+            </div><!-- End Image -->
+
+            <div class="col-md-9 item-content"><!-- package content -->
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h3 class="text-lg text-primary text-b">
+                            <a class="text-hover-primary">MEET VOUCHER</a>
+                        </h3>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <ngx-barcode [bc-value]="value" [bc-display-value]="true"></ngx-barcode> 
+                </div><!-- package row-->
+
+                <div class="row item-bottom">
+                    <div class="col-md-8">
+                        <span class="text-xlg text-b text-primary">AUD $</span>
+                        <span class="text-xlg text-b text-primary">50</span>
+                        <span class="text-md">Expires:</span>
+                        <span class="text-sm">05/09/17</span>
+                    </div>
+                    <div class="col-md-4"><!-- Add to cart -->
+                        <button type="button" md-raised-button style="float: right;">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            Print
+                        </button>
+                    </div>
+                </div>
+            </div><!-- end content -->
+        </div><!-- Package One-->
+    </div>
+
+ <ng-template #ben>
+     <div class="container view">
+     <h3>YOU CURRENT HAVE NO VALID VOUCHERS</h3>
+     </div>
+ </ng-template>

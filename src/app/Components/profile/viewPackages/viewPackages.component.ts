@@ -4,7 +4,7 @@ import {ActivatedRoute, Route } from '@angular/router';
 import {PackageList} from '../../../Objects/Packages/PackageList';
 import {PackageService} from '../../../Services/Package/packages.service';
 import {DataService} from '../../../Services/data.service';
-
+import {AuthService} from '../../../auth/auth.service';
 
 @Component({
     moduleId: module.id,
@@ -23,13 +23,14 @@ export class ViewPackagesComponent implements OnInit{
     startDate: Date;
     endDate: Date;
     category: string;
-
+    profile : any;
     guests : number = 0;
 
     constructor(
         private route: ActivatedRoute, 
         private _packageService: PackageService,
         public data : DataService,
+        public auth: AuthService,
     ) {
         data.setNavigation(2);
     }
@@ -48,12 +49,12 @@ export class ViewPackagesComponent implements OnInit{
     }
 
     ngOnInit() {
-        this.getPackages();
-
-        this.sub = this.route.params.subscribe(params => {
-          this.startDate = params['startDate'];
-          this.endDate = params['endDate'];
-          this.category = params['category'];
-        }); 
-    }
+        if (this.auth.userProfile) {
+          this.profile = this.auth.userProfile;
+        } else {
+          this.auth.getProfile((err, profile) => {
+            this.profile = profile;
+          });
+        }
+      }
 }
