@@ -1,9 +1,7 @@
 <ng2-slim-loading-bar [height]="'4px'" style="position:fixed"></ng2-slim-loading-bar><!-- loading bar which gets activated when loading of data from the database -->
 <navigationtop></navigationtop>
-<div *ngIf="!checkLoad()" style="width: 100%; text-align: center">
-    <img src="assets/loading.svg" />
-</div>
-<div *ngIf="checkLoad()" class="container-fluid"><!-- Main View Container -->
+
+<div class="container-fluid"><!-- Main View Container -->
     <!-- <div class="row" style="margin-left: 200px;">
         <div class="col-md-2 offset-md-4">
             <h1>Image testing</h1>
@@ -37,38 +35,58 @@
 
             <ul class="nav nav-tabs" style="background-color: white"><!-- Nav bar -->
                 <li role="presentation" *ngIf="selected==1; else notActive1" class="active">
-                    <a (click)="setNavigation(1)">Travel</a>
+                    <a *ngIf="checkLoad()" (click)="setNavigation(1)">Travel</a>
+                    <a *ngIf="!checkLoad()">Travel</a>
                 </li>
                 <ng-template #notActive1>
-                    <li role="presentation"><a (click)="setNavigation(1)">Travel</a></li>
+                    <li role="presentation">
+                        <a *ngIf="checkLoad()" (click)="setNavigation(1)">Travel</a>
+                        <a *ngIf="!checkLoad()">Travel</a>
+                    </li>
                 </ng-template>
 
                 <li role="presentation" *ngIf="selected==2; else notActive2" class="active">
-                    <a (click)="setNavigation(2)">Accommodation</a>
+                    <a *ngIf="checkLoad()" (click)="setNavigation(2)">Accommodation</a>
+                    <a *ngIf="!checkLoad()">Accommodation</a>
                 </li>
                 <ng-template #notActive2>
-                    <li role="presentation"><a (click)="setNavigation(2)">Accommodation</a></li>
+                    <li role="presentation">
+                        <a *ngIf="checkLoad()" (click)="setNavigation(2)">Accommodation</a>
+                        <a *ngIf="!checkLoad()">Accommodation</a>
+                    </li>
                 </ng-template>
 
                 <li role="presentation" *ngIf="selected==3; else notActive3" class="active">
-                    <a (click)="setNavigation(3)">Food</a>
+                    <a *ngIf="checkLoad()" (click)="setNavigation(3)">Food</a>
+                    <a *ngIf="!checkLoad()">Food</a>
                 </li>
                 <ng-template #notActive3>
-                    <li role="presentation"><a (click)="setNavigation(3)">Food</a></li>
+                    <li role="presentation">
+                        <a *ngIf="checkLoad()" (click)="setNavigation(3)">Food</a>
+                        <a *ngIf="!checkLoad()">Food</a>
+                    </li>
                 </ng-template>
 
                 <li role="presentation" *ngIf="selected==4; else notActive4" class="active">
-                    <a (click)="setNavigation(4)">Activities</a>
+                    <a *ngIf="checkLoad()" (click)="setNavigation(4)">Activities</a>
+                    <a *ngIf="!checkLoad()">Activities</a>
                 </li>
                 <ng-template #notActive4>
-                    <li role="presentation"><a (click)="setNavigation(4)">Activities</a></li>
+                    <li role="presentation">
+                        <a *ngIf="checkLoad()" (click)="setNavigation(4)">Activities</a>
+                        <a *ngIf="!checkLoad()">Activities</a>
+                    </li>
                 </ng-template>
 
                 <li role="presentation" *ngIf="selected==5; else notActive5" class="active">
-                    <a (click)="setNavigation(5)">Cart</a>
+                    <a *ngIf="checkLoad()" (click)="setNavigation(5)">Cart</a>
+                    <a *ngIf="!checkLoad()">Cart</a>
                 </li>
                 <ng-template #notActive5>
-                    <li role="presentation"><a (click)="setNavigation(5)">Cart</a></li>
+                    <li role="presentation">
+                        <a *ngIf="checkLoad()" (click)="setNavigation(5)">Cart</a>
+                        <a *ngIf="!checkLoad()">Cart</a>
+                    </li>
                 </ng-template>
 
                 <li role="presentation" id="viewFilter">
@@ -76,12 +94,17 @@
                 </li>
             </ul><!-- end Nav bar -->
 
+            <div *ngIf="!checkLoad()" style="width: 100%; text-align: center">
+                    <h1>Please wait while the form loads</h1>
+                    
+                    <img src="assets/loading.svg" />
+            </div>
             <!-- ===========================================
                             TRAVEL VIEW
             
                 ============================================-->
-            <div class="container view add-padding-top-15" *ngIf="selected==1">
-                    <div class="row" style="margin-left: 200px;">
+            <div class="container view add-padding-top-15" *ngIf="selected==1 && checkLoad()">
+                    <!-- <div class="row" style="margin-left: 200px;">
                             <div class="col-md-2 offset-md-4">
                                 <h1>Image testing</h1>
                                 <div *ngFor="let image of imageList" class="row">
@@ -89,7 +112,7 @@
                                     <img src="data:image/png;base64,{{image.base64Equiv}}" alt="photo not found" />
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                 <div class="row"><!-- Travel initial form -->
                     <div class="col-md-12">
                         <p>Newcastle Connections offer a shuttle bus service!</p>
