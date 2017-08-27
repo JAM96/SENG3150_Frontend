@@ -10,8 +10,10 @@ import {AuthService} from '../../auth/auth.service';
 
 export class ProfileComponent {
     profile : any;
-    
-    constructor(public auth: AuthService){}
+    name : string;
+
+    constructor(public auth: AuthService){
+    }
 
     editText : String = "Edit";
     isEdit : boolean = false;
