@@ -15,6 +15,10 @@
 .text-smd {font-size: 14pt}     /* Small Medium */
 .text-sm {font-size: 12pt}      /* Small */
 .text-xsm {font-size: 10pt}     /* Extra Small */
+.text-xxsm {
+    font-size: 8pt;
+    line-height: 2px;
+}     /* Extra Extra Small */
 
 /* colouring */
 .text-k {color: black;}

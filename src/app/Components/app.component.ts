@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -6,5 +7,7 @@ import { Component} from '@angular/core';
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  constructor() {}
+  constructor(auth : AuthService) {
+    auth.handleAuthentication();
+  }
 }

@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {AuthService} from '../../auth/auth.service';
+
+
 @Component({
     moduleId: module.id,
     selector: 'profile',
@@ -6,7 +9,10 @@ import {Component} from '@angular/core';
 })
 
 export class ProfileComponent {
-    constructor(){}
+    profile : any;
+    
+    constructor(public auth: AuthService){}
+
     editText : String = "Edit";
     isEdit : boolean = false;
     onEdit(){
@@ -18,4 +24,14 @@ export class ProfileComponent {
             this.isEdit = false;
         }
     }
+
+    ngOnInit() {
+        if (this.auth.userProfile) {
+          this.profile = this.auth.userProfile;
+        } else {
+          this.auth.getProfile((err, profile) => {
+            this.profile = profile;
+          });
+        }
+      }
 }
