@@ -149,8 +149,8 @@ export class CustomPackageComponent implements OnInit{
         //     this.router.navigate(['/']);
         // }
 
-        this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
-        this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+        // this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
+        // this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
 
         if(this.custom.navigation == null) {
             console.log("Setting up custom package for the first time");
