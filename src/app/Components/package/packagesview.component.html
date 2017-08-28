@@ -29,33 +29,27 @@
                             </h3>
                         </div>
                         <div class="col-md-3 item-rating"><!-- duration -->
-                            <span class="text-lg text-w text-hide">{{package.packageDuration}} Days</span>
+                            <span *ngIf="package.numDays > 1" class="text-lg text-w text-hide">{{package.numDays}} Days</span>
+                            <span *ngIf="package.numDays == 1" class="text-lg text-w text-hide">{{package.numDays}} Day</span>
                         </div><!-- rating -->
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             <span class="text-md text-primary text-nl">Hotel</span>
-                            {{package.hotelName}}
+                            {{package.accommodation.accommodationName}}
                         </div>
 
                         <div class="col-md-3">
                             <span class="text-md text-primary">Restaurants</span>
                             <ul>
-                                <li *ngFor="let restaurant of package.restaurants">{{restaurant}}</li>
-                            </ul>
-                        </div>
-
-                        <div class="col-md-3">
-                            <span class="text-md text-primary">Events</span>
-                            <ul>
-                                <li *ngFor="let event of package.events">{{event}}</li>
+                                <li *ngFor="let restaurant of package.restaurants">{{restaurant.name}}</li>
                             </ul>
                         </div>
 
                         <div class="col-md-3">
                             <span class="text-md text-primary">Activities</span>
                             <ul>
-                                <li *ngFor="let activity of package.activities">{{activity}}</li>
+                                <li *ngFor="let activity of package.activities">{{activity.name}}</li>
                             </ul>
                             <!--<h3 style="position: absolute; bottom:0">Purchase Now</h3>-->
                         </div>
@@ -64,9 +58,9 @@
                     <div class="row item-bottom">
                         <div class="col-md-8">
                             <span class="text-xlg text-b text-primary">AUD $</span>
-                            <span class="text-xlg text-b text-primary">{{package.cost}}</span>
-                            <span class="text-md">Availability:</span>
-                            <span class="text-sm">{{package.packageAvailabilityStart}} to {{package.packageAvailabilityEnd}}</span>
+                            <span class="text-xlg text-b text-primary">{{package.totalCost}}</span>
+                            <span class="text-nl text-md">Availability:</span>
+                            <span class="text-sm">{{package.startAvailabilityDate}} to {{package.endAvailabilityDate}}</span>
                         </div>
                         <div class="col-md-4"><!-- Add to cart -->
                             <button type="button" md-raised-button style="float: right;">

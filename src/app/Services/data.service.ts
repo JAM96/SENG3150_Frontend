@@ -40,7 +40,10 @@ export class DataService {
         url = url + '/fetchImages';
         break;
       case 'packages': 
-        url = url + '/fetchPremadePackages'
+        url = url + '/fetchPremadePackages';
+        break;
+      case 'packagesitems':
+        url = url + '/fetchPremadePackageItems';
         break;
     }
 
