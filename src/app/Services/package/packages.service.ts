@@ -17,11 +17,18 @@
 export class PackageService {
     constructor(private http : Http, public data : DataService) {}
          
-    url = this.data.getApiUrl('packages');
+    public fetchPackages() : Observable<any>{
+        var url = this.data.getApiUrl('packages');
+        return this.http.get(url)
+        .map((response:Response) => response.json().result)
+            .catch((error:any) => Observable.throw(error.json().error || 'Cannot connect to the backend'));
+   
+       
+    }
 
-
-    getPackages() {
-        return this.http.get(this.url)
+    public fetchPackageItems() : Observable<any>{
+        var url = this.data.getApiUrl('packagesitems');
+        return this.http.get(url)
             .map((response:Response) => response.json().result)
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
        

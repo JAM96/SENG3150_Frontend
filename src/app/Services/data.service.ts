@@ -38,7 +38,10 @@ export class DataService {
         break;
       case 'images':
         url = url + '/fetchImages';
-      case 'packages': break;
+        break;
+      case 'packages': 
+        url = url + '/fetchPremadePackages'
+        break;
     }
 
     console.log(url);
