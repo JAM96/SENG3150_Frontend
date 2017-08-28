@@ -655,12 +655,12 @@
                             CART VIEW
             
                 ============================================-->
-            <div id="cart" class="container x-view" *ngIf="selected==5" style="overflow: auto">
+            <div id="cart" class="container x-view" *ngIf="selected==5">
                 <shopping-cart></shopping-cart>
             </div>
         </div><!-- <div class="md-col-10">-->
 
-        <div class="col-sm-2" id="cartForm">
+        <div class="col-sm-2" id="cartForm" style="overflow: auto; height: 80vh">
             <h1>Cart:</h1>
             <p>
                 <span class="text-sm text-b">Travel Selected:</span>
