@@ -14,12 +14,20 @@
 
 @Injectable()
 export class FoodAndDrinksService {
-    private url = this.data.getApiUrl('food-and-drinks');
-
+    
     constructor(private http : Http, public data : DataService) {}
     
     fetchFoodAndDrinks() {
-        return this.http.get(this.url)
+        var url = this.data.getApiUrl('food-and-drinks');
+        return this.http.get(url)
+            .map((response:Response) => response.json().result)
+                .catch((error:any) => Observable.throw(error.json().error || 'Server error: could not retrieve food and drinks'));
+       
+    }
+
+    fetchFoodAndDrinksTime() {
+        var url = this.data.getApiUrl('food-and-drinks-times');
+        return this.http.get(url)
             .map((response:Response) => response.json().result)
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error: could not retrieve food and drinks'));
        

@@ -12,6 +12,7 @@ export class CustomPackage {
     requireTravel   : string;   //If travel form is visible or not
     fSelectedDay    : number;   //Food and Drinks selected day
     aSelectedDay    : number;   //Activities Selected day
+    days            : number[] = [];
 
     //Customer Information
     budget  : number;           //store the selected budget

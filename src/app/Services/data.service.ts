@@ -36,6 +36,11 @@ export class DataService {
       case 'food-and-drinks': 
         url = url + '/fetchFoodAndDrinks';
         break;
+      case 'food-and-drinks-times': 
+        url = url + '/fetchBookingTimes';
+        break;
+      case 'tags':
+        url = url + '/fetchTags'
       case 'images':
         url = url + '/fetchImages';
         break;

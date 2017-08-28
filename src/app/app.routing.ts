@@ -34,6 +34,9 @@ app routes
   the home component contains the first view that the user will see, and then the user can navigate elsewhere, such as
   packages
 */
+
+import {PurchaseComponent} from './Components/purchase/purchase.component';
+
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'callback', component: CallbackComponent},
@@ -58,7 +61,7 @@ export const ROUTES: Routes = [
     canDeactivate: [CanDeactivateGuard],
     },
   { path: 'shoppingCart', component: ShoppingCartComponent},
-  
+  { path: 'purchase', component: PurchaseComponent},
   //Redirect
   { path: '**', redirectTo: '' },
   { path: 'home', redirectTo: ''}
