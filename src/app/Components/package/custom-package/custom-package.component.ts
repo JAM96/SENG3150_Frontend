@@ -16,6 +16,8 @@
     import {CustomPackage} from '../../../Objects/Packages/CustomPackage/CustomPackage';
     import {TravelInformation} from '../../../Objects/Packages/CustomPackage/TravelInformation';
     import {Image} from '../../../Objects/Image';
+    import {BookingTime} from '../../../Objects/BookingTime';
+    import {Tag} from '../../../Objects/Tag';
 //Services
     import {AccommodationService} from '../../../Services/Accommodation/accommodation.service';
     import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-drinks.service';
@@ -24,6 +26,7 @@
     import {IndividualFoodAndDrinksService} from '../../../Services/FoodAndDrinks/individual-food-and-drinks.service';
     import {IndividualActivityService} from '../../../Services/Activity/individual-activity.service';
     import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+    import {TagService} from '../../../Services/fetch-tags.service';
     import {CustomPackageService} from '../../../Services/Package/custom-package.service';
 //PDF Creator
     import jsPDF from 'jspdf';
@@ -128,7 +131,8 @@ export class CustomPackageComponent implements OnInit{
         private individualActivityService       :   IndividualActivityService,
         private slimLoadingBarService           :   SlimLoadingBarService,
         private router                          :   Router,
-        public dialog                           :   MdDialog
+        public dialog                           :   MdDialog,
+        private tagService                      :   TagService,
         ) {
 
             this.fetch();
@@ -145,8 +149,8 @@ export class CustomPackageComponent implements OnInit{
         //     this.router.navigate(['/']);
         // }
 
-        this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
-        this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+        // this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
+        // this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
 
         if(this.custom.navigation == null) {
             console.log("Setting up custom package for the first time");
@@ -234,6 +238,7 @@ export class CustomPackageComponent implements OnInit{
 
         for(let i = 1; i <= duration; i++) {
             this.days.push(i);
+            this.custom.days.push(i);
         }
         console.log('[INFO] Days Array: ', this.days);
     }
@@ -549,6 +554,16 @@ export class CustomPackageComponent implements OnInit{
                 this.custom.foodAndDrinks = [];
                 this.custom.selectedFoodAndDrinks = [];
                 this.foodAndDrinksLoaded = true;
+
+                this.foodAndDrinksService.fetchFoodAndDrinksTime().subscribe((foodAndDrinksTime : BookingTime[]) => {
+                    var bookingTime : BookingTime[] = foodAndDrinksTime;
+                    this.assignTimes(bookingTime);
+                })
+
+                this.tagService.fetchTags().subscribe((tag : Tag[]) => {
+                    var tags : Tag[] = tag;
+                    this.assignTags(tags);
+                })
                 
                 //Assign images to the food and drinks
                 for(var i = 0; i < this.foodAndDrinks.length; i++) {
@@ -599,6 +614,30 @@ export class CustomPackageComponent implements OnInit{
                 console.log(this.activities);
             });
         });
+    }
+
+    private assignTags(data : Tag[]) : void {
+        for(var i = 0; i < this.foodAndDrinks.length; i++){
+            this.foodAndDrinks[i].menuType = [];
+
+            for(var j = 0; j < data.length; j++) {
+                if(data[j].itemID == this.foodAndDrinks[i].foodAndDrinksID) {
+                    this.foodAndDrinks[i].menuType.push(data[j]);
+                }
+            }
+        }
+    }
+
+    private assignTimes(data : BookingTime[]) : void {
+        for(var i = 0; i < this.foodAndDrinks.length; i++){
+            this.foodAndDrinks[i].timeAvailable = [];
+
+            for(var j = 0; j < data.length; j++) {
+                if(data[j].packageItemID == this.foodAndDrinks[i].foodAndDrinksID) {
+                    this.foodAndDrinks[i].timeAvailable.push(data[j]);
+                }
+            }
+        }
     }
 
     private assignAccommodation(features : Feature[], rooms : Room[], roomFeatures : Feature[]) : void {

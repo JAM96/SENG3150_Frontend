@@ -45,10 +45,10 @@
         </ng-template>
 
         <li *ngIf="selectedOption==5; else notActive5" class="active">
-            <a (click)="setNavOption(5)">Food<span class="sr-only">(current)</span></a>
+            <a (click)="setNavOption(5)">Food &amp; Drinks<span class="sr-only">(current)</span></a>
         </li>
         <ng-template #notActive5>
-            <li><a (click)="setNavOption(5)">Food</a></li>
+            <li><a (click)="setNavOption(5)">Food &amp; Drinks</a></li>
         </ng-template>
 
         <li *ngIf="selectedOption==6; else notActive6" class="active">

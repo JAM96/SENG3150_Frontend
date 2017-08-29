@@ -51,6 +51,7 @@ import { AppComponent }  from '../Components/app.component';
   import {ViewPackagesComponent} from '../Components/profile/viewPackages/viewPackages.component';
   import {ViewVouchersComponent} from '../Components/profile/viewVouchers/viewVouchers.component';
 
+  import {PurchaseComponent} from '../Components/purchase/purchase.component';
   //Custom Package components
     import {
       CustomPackageComponent, 
@@ -74,6 +75,7 @@ import { AppComponent }  from '../Components/app.component';
   import {ActivityService} from '../Services/activity/activity.service';
   import {ImageService} from '../Services/image.service';
   import {HttpService} from '../Services/http/http.service';
+  import {TagService} from '../Services/fetch-tags.service';
 //  import {EmailService} from  '../Services/Email/email.service';
 //ng2 
 //import {AsideModule} from 'ng2-aside';
@@ -145,6 +147,7 @@ import {AuthService} from '../auth/auth.service';
     ShoppingCartComponent,
     //Other
     CallbackComponent,
+    PurchaseComponent,
     ],
   entryComponents: [
     BudgetChangeComponent,
@@ -164,6 +167,7 @@ import {AuthService} from '../auth/auth.service';
     AuthService,
     CanDeactivateGuard,
     AuthGuardService,
+    TagService,
     AccommodationService,
     FoodAndDrinksService,
     ActivityService,

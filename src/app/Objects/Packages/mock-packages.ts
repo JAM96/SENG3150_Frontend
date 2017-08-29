@@ -12,8 +12,8 @@ export const PACKAGE_LIST: PackageList[] = [
         totalSold: 0,
         totalViewed: 0,
         images: [],
-        restaurants: ['Wests Newcastle', 'Noah\'s on the beach', 'Hogs Breath'],
-        activities: ['Water skiing', 'Sky diving'],
-        events: []
+        restaurants: [],
+        activities: [],
+        accommodation: null,
     }
 ]

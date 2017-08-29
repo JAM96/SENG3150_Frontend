@@ -244,8 +244,8 @@
                     <div  *ngFor="let accommodation of accommodationList" class="row item-container"><!-- accommodation i --> 
                         <div (click)="viewItem(1,accommodation, null, null, accommodationDialog)" class="col-md-3" style="cursor:pointer">
                             <div class="img">
-                                <ng-container *ngIf="accommodation.images[0].fileName != 'none'">
-                                    <img src="data:image/png, base64;{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
+                                <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
+                                    <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
                                     <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
                                 </ng-container>
 
@@ -313,8 +313,17 @@
                             <div class="row" style="margin-bottom: 30px">
                                 <div (click)="viewItem(1,accommodation, null, null, accommodationDialog)" class="col-md-12" style="cursor: pointer">
                                     <div class="img">
-                                        <div *ngIf="accommodation.bestSeller" class="hotelAdvert">Best Seller</div>
-                                        <img src="assets\image\package-item\hotel\{{accommodation.pictureURL}}" width="100%" height="100%"/>
+                                        <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
+                                                <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                                            <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
+                                            
+                                        </ng-container>
+        
+                                        <ng-container *ngIf="accommodation.images[0].fileType == 'none'">
+                                                <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                                            <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
+                                            
+                                        </ng-container>
                                     </div>
                                 </div>
                             </div>
@@ -388,8 +397,8 @@
                         <div *ngFor="let f of foodAndDrinks" class="row item-container"><!-- restaurant item -->
                             <div class="col-md-3">
                                 <div (click)="viewItem(2,null, f, null)" class="img" style="cursor: pointer">
-                                    <ng-container *ngIf="f.images[0].fileName != 'none'">
-                                        <img src="data:image/png, base64;{{f.images[0].base64Equiv}}" width="100%" height="100%"/>
+                                    <ng-container *ngIf="f.images[0].fileType != 'none'">
+                                        <img src="data:image/png;base64,{{f.images[0].base64Equiv}}" width="100%" height="100%"/>
                                         <div class="hotelAdvert" style="bottom: 0">{{f.diningStyle}}</div>
                                     </ng-container>
     
@@ -531,8 +540,8 @@
                         <div *ngFor="let activity of activities" class="row item-container"><!-- activity item --> 
                             <div class="col-md-3">
                                 <div (click)="viewItem(3,null, null, activity, activityDialog)" class="img" style="cursor: pointer">
-                                    <ng-container *ngIf="activity.images[0].fileName != 'none'">
-                                        <img src="data:image/png, base64;{{activity.images[0].base64Equiv}}" width="100%" height="100%"/>
+                                    <ng-container *ngIf="activity.images[0].fileType != 'none'">
+                                        <img src="data:image/png;base64,{{activity.images[0].base64Equiv}}" width="100%" height="100%"/>
                                         <div  *ngIf="activity.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
                                     </ng-container>
     
@@ -646,13 +655,14 @@
                             CART VIEW
             
                 ============================================-->
-            <div id="cart" class="container x-view" *ngIf="selected==5">
+            <div id="cart" class="container view-x" *ngIf="selected==5">
                 <shopping-cart></shopping-cart>
             </div>
         </div><!-- <div class="md-col-10">-->
 
-        <div class="col-sm-2" id="cartForm">
+        <div *ngIf="checkLoad()" class="col-sm-2" id="cartForm" style="overflow: auto; height: 80vh">
             <h1>Cart:</h1>
+            
             <p>
                 <span class="text-sm text-b">Travel Selected:</span>
                 <span class="text-sm"> {{travelValue}}</span>

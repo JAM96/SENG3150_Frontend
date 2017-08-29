@@ -19,6 +19,8 @@ export class FoodAndDrinksListComponent {
     private imageList : Image[];
     private foodAndDrinks : FoodAndDrinks[];
 
+    private view : number = 1;
+
     private imagesLoaded : boolean = false;
     private foodAndDrinksLoaded : boolean = false;
 
@@ -28,10 +30,12 @@ export class FoodAndDrinksListComponent {
         private foodAndDrinksService : FoodAndDrinksService,
     ) {
         data.setNavigation(5);
+        this.fetch();
     }
 
 
     private fetch() : void {
+        console.log("attempting to fetch food and drinks");
         //Load Images
         this.imageService.fetchImages().subscribe((image : Image[]) => {
             this.imageList = image;

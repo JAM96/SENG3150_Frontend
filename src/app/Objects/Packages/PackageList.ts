@@ -1,4 +1,8 @@
-import {Image} from '../Image'
+import {Image} from '../Image';
+import {PackageItems} from './PackageItems';
+import {FoodAndDrinks} from '../FoodAndDrinks/FoodAndDrinks';
+import {Activity} from '../Activity/Activity';
+import {Accommodation} from '../Accommodation/Accommodation';
 
 export interface PackageList {
     premadePackageID            :   string;
@@ -15,8 +19,8 @@ export interface PackageList {
     //Other attributes
     images                      :   Image[];
     
-    restaurants: string[];
-    activities: string[];
-    events: string[];
+    restaurants                 :   FoodAndDrinks[];
+    activities                  :   Activity[];
+    accommodation               :   Accommodation;
 
 }

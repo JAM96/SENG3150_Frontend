@@ -1,2 +1,54 @@
-<h1>This is the shopping cart</h1>
-{{custom.packageID}}
+<h1>Cart:</h1>
+
+<p>
+    <span class="text-sm text-b">Accommodation:</span>
+    <a (click)="viewItem(1,custom.accommodation, null,null)"><span class="text-sm">{{custom.accommodation.accommodationName}}</span></a>
+</p>
+
+<p>
+    <ng-container *ngFor="let day of custom.days">
+        <span class="text-sm text-b text-nl text-u">Day {{day}}</span>
+        <!-- Food and drinks  -->
+        <div class="col-6">
+            <span class="text-xsm text-b text-nl">Food and Drinks</span>
+            <ng-container *ngFor="let food of custom.foodAndDrinks">
+                <a (click)="viewItem(2,null, food,null)" style="padding-left:5px"><span *ngIf="food.selectedDay == day" class="text-xsm">{{food.name}}</span></a>
+                <span *ngIf="food.selectedDay == day" class="text-xsm text-nl text-ind">Time: {{food.selectedTime}}</span>
+            </ng-container>
+            <hr style="padding: 0; margin: 0; width: 50%">
+        </div>
+        <!-- Activities  -->
+        <div class="col-6">
+            <span class="text-xsm text-b text-nl">Activities</span>
+            <ng-container *ngFor="let activity of custom.activity">
+                <a (click)="viewItem(3, null, null, activity)" style="padding-left:5px"><span *ngIf="activity.selectedDay == day" class="text-xsm">{{activity.name}}</span></a>
+                <span *ngIf="activity.selectedDay == day" class="text-xsm text-nl text-ind">Time: {{activity.selectedTime}}</span>
+            </ng-container>
+        </div>
+    </ng-container>
+</p>
+
+<span class="text-md text-b">Cost</span><span class="text-md">${{custom.packageCost}}</span>
+
+
+<br/>
+<br/>
+
+<md-input-container>
+    <input mdInput placeholder="Name" value="">
+    
+  </md-input-container>
+
+  <form class="example-form">
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Email" [formControl]="emailFormControl">
+      <md-error *ngIf="emailFormControl.hasError('pattern')">
+        Please enter a valid email address
+      </md-error>
+      <md-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+  </form>
+
+<button type="button" md-raised-button (click)="showPurchase()">Purchase!</button>
