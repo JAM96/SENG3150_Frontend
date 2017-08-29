@@ -20,14 +20,14 @@ export class CustomPackage {
     rooms   : number;           //store how many rooms the user wants
     checkin : Date;             //date when arriving
     checkout: Date;             //date when departing
-    packageCost     : number;   //cost of the package 
+    packageCost     : number = 0;   //cost of the package 
 
     //Travel Information
     travel  : TravelInformation[];  //pickup and dropoff information
 
     //Accommodation
     accommodation   : Accommodation;    //selected accommodation
-    previousSelectedAccommodation : number; //previously selected accommodation price
+    previousSelectedAccommodation : number = 0; //previously selected accommodation price
 
     //food and drink options
     foodAndDrinks   : FoodAndDrinks[];  //selected food and drink items

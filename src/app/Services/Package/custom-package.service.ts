@@ -6,6 +6,11 @@
 import {Injectable} from '@angular/core';
 import {CustomPackage} from '../../Objects/Packages/CustomPackage/CustomPackage';
 
+import {Accommodation} from '../../Objects/Accommodation/Accommodation';
+import {Room} from '../../Objects/Accommodation/Room';
+import {FoodAndDrinks} from '../../Objects/FoodAndDrinks/FoodAndDrinks';
+import {Activity} from '../../Objects/Activity/Activity';
+
 
 @Injectable()
 export class CustomPackageService {
@@ -51,5 +56,19 @@ export class CustomPackageService {
         this.customPackage.rooms = rooms;
         this.customPackage.checkin = checkin;
         this.customPackage.checkout = checkout;
+    }
+
+    public setAccommodation(accommodation : Accommodation, room : Room) : void {
+        this.customPackage.accommodation = accommodation;
+        this.customPackage.accommodation.selectedRoom = room;
+    }
+
+    public setPackageCost(cost : number, previousCost : number) : void {
+        this.customPackage.packageCost = cost;
+        this.customPackage.previousSelectedAccommodation = previousCost;
+    }
+
+    public getPackageCost() : number {
+        return this.customPackage.packageCost - this.customPackage.previousSelectedAccommodation;
     }
 }

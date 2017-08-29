@@ -1,6 +1,110 @@
-<navigationtop></navigationtop>
-<section class="panelHalf">
-    <h1>Activities page:</h1>
-    <p>Eventually, the entire list of activities will be displayed on this page.</p>
-    <p>This is to allow customers to have a look at the activities on offer in Newcastle, without having to start creating a custom package to view the activities.</p>
-</section>
+<ng-container *ngIf="view == 1">
+    <div class="row item-container">
+        <div class="col-md-3">
+            <div (click)="viewItem(3,null, null, activity, activityDialog)" class="img" style="cursor: pointer">
+                <ng-container *ngIf="activity.images[0].fileType != 'none'">
+                    <img src="data:image/png;base64,{{activity.images[0].base64Equiv}}" width="100%" height="100%"/>
+                    <div  *ngIf="activity.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                </ng-container>
+
+                <ng-container *ngIf="activity.images[0].fileType == 'none'">
+                    <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
+                    <div *ngIf="activity.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                </ng-container>
+            </div>
+        </div><!-- image -->
+
+        <div class="col-md-9 item-content"><!-- content -->
+            <div class="row">
+                <div class="col-md-9"><!-- activity name -->
+                    <h3 class="text-lg text-b text-primary">
+                        <a (click)="viewItem(3,null, null, activity, activityDialog)" class="text-hover-primary">{{activity.name}}</a>
+                        <span *ngFor="let star of activity.stars" class="text-smd text-primary glyphicon glyphicon-star"></span>
+                    </h3>
+                    <a class="text-hover-k text-sm text-k">
+                        <span class="text-u">{{activity.suburb}}</span>
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </a>
+                </div><!-- activity name end-->
+
+                <div class="col-md-3 item-rating"><!-- rating -->
+                    <span class="text-lg text-w text-hide">Fabulous!</span>
+                    <!--<span class="text-sm text-w text-hide">{{activity.userRating}}/5</span>-->
+                    <!-- Currently hardcoding the userRating to 4, since we don't have a userRating variable in the Activity table: -->
+                    <span class="text-sm text-w text-hide">4/5</span>
+                    <a>
+                        <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                    </a>
+                </div><!-- rating -->
+            </div>
+
+            <div class="row item-features">
+                <span class="text-xsm text-k">Description: {{activity.briefDescription}}</span>
+            </div>
+
+            <div class="row item-bottom">
+                <div class="col-md-8">
+                    <ng-container *ngIf="activity.price == 0; then showFree else showPrice"></ng-container>
+                    <ng-template #showFree>
+                        <span class="text-lg text-b text-primary">Free</span>
+                    </ng-template>
+                    <ng-template #showPrice>
+                        <span class="text-lg text-b text-primary">${{activity.price}}</span>
+                    </ng-template>
+                </div>
+                <div class="col-md-4"><!-- Add to cart -->
+                    <ng-container *ngIf="checkActivity(activity); then add else remove"></ng-container>
+                    <ng-template #add>
+                        <button type="button" md-button (click)="setActivity(activity)" style="float: right">Add</button>
+                    </ng-template>
+                    <ng-template #remove>
+                        <button type="button" md-raised-button color='warn' (click)="removeActivity(activity)" style="float: right">Remove</button>
+                    </ng-template>
+                </div>
+            </div>
+        </div><!--content -->
+    </div>
+</ng-container>
+
+<ng-container *ngIf="view == 2">
+    <div class="col-sm-3 item-container-grid">
+        <div class="row" style="margin-bottom: 50px">
+            <div (click)="viewItem(item)" class="col-md-12" style="cursor: pointer">
+                <div class="img">
+                    <div *ngIf="a.bestSeller" class="hotelAdvert">Best Seller</div>
+                    <img src="assets\image\package-item\hotel\{{a.pictureURL}}" width="100%" height="100%"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <span class="text-md text-b text-nl text-primary">
+                    <a (click)="viewItem(item)" class="text-hover-primary">{{a.name}}</a>
+                </span>
+                <a class="text-hover-k text-sm text-k">
+                    <span class="text-u">{{a.suburb}}</span>
+                    <span class="glyphicon glyphicon-globe"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="text-lg text-b text-primary">AUD $</span>
+                <span class="text-lg text-b text-primary">{{a.price}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"><!-- Add to cart -->
+                <ng-container *ngIf="checkActivity(); then add else remove"></ng-container>
+                <ng-template #add>
+                    <button type="button" md-button (click)="setActivity()" style="float: right">Add</button>
+                </ng-template>
+                <ng-template #remove>
+                    <button type="button" md-raised-button color='warn' (click)="removeActivity()" style="float: right">Remove</button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</ng-container>

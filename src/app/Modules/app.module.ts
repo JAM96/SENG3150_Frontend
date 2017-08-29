@@ -55,7 +55,6 @@ import { AppComponent }  from '../Components/app.component';
   //Custom Package components
     import {
       CustomPackageComponent, 
-      AddAccommodationComponent,
       BudgetChangeComponent,
       AddFoodAndDrinksComponent,
       AddActivityComponent
@@ -63,13 +62,11 @@ import { AppComponent }  from '../Components/app.component';
     import {ActivityComponent} from '../Components/activities/activity.component';
     import {FoodAndDrinksComponent} from '../Components/food-and-drinks/food-and-drinks.component';
     import {ShoppingCartComponent} from '../Components/shoppingCart/shoppingCart.component';
-  
+    import {AccommodationComponent} from '../Components/accomodation/accommodation.component';
 //import services here
   import {CanDeactivateGuard} from '../Components/guards/can-deactivate-guard.service';
   import {AuthGuardService} from '../Components/guards/auth-guard.service'
   import {DataService} from '../Services/data.service';
-  import {IndividualFoodAndDrinksService} from '../Services/FoodAndDrinks/individual-food-and-drinks.service';
-  import {IndividualActivityService} from '../Services/Activity/individual-activity.service';
   import {AccommodationService} from '../Services/Accommodation/accommodation.service';
   import {FoodAndDrinksService} from '../Services/FoodAndDrinks/food-and-drinks.service';
   import {ActivityService} from '../Services/activity/activity.service';
@@ -138,7 +135,7 @@ import {AuthService} from '../auth/auth.service';
     ViewVouchersComponent,
     //Custom Package Components
     ActivityComponent,
-    AddAccommodationComponent,
+    AccommodationComponent,
     AddFoodAndDrinksComponent,
     AddActivityComponent,
     BudgetChangeComponent,
@@ -151,7 +148,6 @@ import {AuthService} from '../auth/auth.service';
     ],
   entryComponents: [
     BudgetChangeComponent,
-    AddAccommodationComponent, 
     AddFoodAndDrinksComponent,
     AddActivityComponent,
     notificationsPopupComponent
@@ -161,8 +157,6 @@ import {AuthService} from '../auth/auth.service';
   ],
   providers: [
     CustomPackageService,
-    IndividualFoodAndDrinksService,
-    IndividualActivityService,
     DataService,
     AuthService,
     CanDeactivateGuard,

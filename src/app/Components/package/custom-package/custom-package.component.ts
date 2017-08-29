@@ -7,6 +7,7 @@
 //External Components
     import {ActivityComponent} from '../../../Components/activities/activity.component';
     import {FoodAndDrinksComponent} from '../../../Components/food-and-drinks/food-and-drinks.component';
+    import {AccommodationComponent} from '../../../Components/accomodation/accommodation.component';
 //Objects
     import {Accommodation} from '../../../Objects/Accommodation/Accommodation';
     import {Room} from '../../../Objects/Accommodation/Room';
@@ -23,8 +24,6 @@
     import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-drinks.service';
     import {ImageService} from '../../../Services/image.service';
     import {ActivityService} from '../../../Services/activity/activity.service';
-    import {IndividualFoodAndDrinksService} from '../../../Services/FoodAndDrinks/individual-food-and-drinks.service';
-    import {IndividualActivityService} from '../../../Services/Activity/individual-activity.service';
     import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
     import {TagService} from '../../../Services/fetch-tags.service';
     import {CustomPackageService} from '../../../Services/Package/custom-package.service';
@@ -38,11 +37,6 @@
     moduleId: module.id,
     selector: 'custom-package',
     templateUrl: 'custom-package.component.html',
-    providers: [],
-    styles: [`agm-map {
-        height: 300px;
-        width: 100%;
-    }`],
 })
 export class CustomPackageComponent implements OnInit{
 
@@ -69,10 +63,6 @@ export class CustomPackageComponent implements OnInit{
     travelPickup : TravelInformation;   //holds the travel pickup information
     travelDropoff : TravelInformation;  //holds the travel dropoff information
 
-    //Accommodation Form
-    selectedAccommodation : string;             //the selected accommodation (id)
-    selectedAccommodationName : string;         //the selected accommodation (name)
-    previousSelectedAccommodation : number = 0;  //this will store the previously selected price to minus from the total.
 
     //Food and Drinks Form
     cartForm = [
@@ -110,8 +100,7 @@ export class CustomPackageComponent implements OnInit{
     sortValue : string = "Name";
 
     //View Items
-    dialogSelection : number = 1;
-    viewAccommodation : Accommodation = new Accommodation; //this stores the data of a selected accommodation
+    
     sortedData;
 
     //loading variables
@@ -127,8 +116,6 @@ export class CustomPackageComponent implements OnInit{
         private activityService                 :   ActivityService,
         private imageService                    :   ImageService,
         private packageService                  :   CustomPackageService,
-        private individualFoodAndDrinksService  :   IndividualFoodAndDrinksService,
-        private individualActivityService       :   IndividualActivityService,
         private slimLoadingBarService           :   SlimLoadingBarService,
         private router                          :   Router,
         public dialog                           :   MdDialog,
@@ -149,8 +136,8 @@ export class CustomPackageComponent implements OnInit{
         //     this.router.navigate(['/']);
         // }
 
-        // this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
-        // this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+        this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
+        this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
 
         if(this.custom.navigation == null) {
             console.log("Setting up custom package for the first time");
@@ -165,12 +152,6 @@ export class CustomPackageComponent implements OnInit{
             this.selectedDay = this.custom.aSelectedDay;
             this.travelValue = this.custom.requireTravel;
             this.budget = this.custom.budget;
-            
-            if(this.custom.accommodation != null) {
-                this.selectedAccommodation = this.custom.accommodation.accommodationID;
-                this.selectedAccommodationName = this.custom.accommodation.accommodationName;
-                this.previousSelectedAccommodation = this.custom.previousSelectedAccommodation;
-            }
         }
 
         if(this.budget == null) {
@@ -193,6 +174,14 @@ export class CustomPackageComponent implements OnInit{
             this.custom.travel[1] = Object.assign({}, temp);
             
             this.custom.travel[1].pickup = false;
+        }
+
+
+        if(this.custom.accommodation == null) {
+            var tempAcc : Accommodation = new Accommodation;
+            console.log("accommodation not defined");
+            this.custom.accommodation = tempAcc;
+            this.custom.accommodation.accommodationName = "";
         }
 
         this.travelPickup = this.custom.travel[0];
@@ -251,27 +240,6 @@ export class CustomPackageComponent implements OnInit{
         this.sortValue = value;
     }
 
-    viewItem(item : number, accommodation : Accommodation, foodAndDrinks : FoodAndDrinks, activity : Activity, dialog : Md2Dialog){
-        //item 1: Accommodation, 2: Food and Drinks, 3: Activities
-
-        switch(item) {
-            case 1:
-                this.viewAccommodation = accommodation;
-                dialog.open();
-                break;
-            case 2: 
-                this.individualFoodAndDrinksService.setFoodAndDrinks(foodAndDrinks);
-                let dialogRef2 = this.dialog.open(FoodAndDrinksComponent);
-                dialogRef2.afterClosed().subscribe(result => {});
-                break;
-            case 3: 
-                this.individualActivityService.setActivity(activity);
-                let dialogRef3 = this.dialog.open(ActivityComponent);
-                dialogRef3.afterClosed().subscribe(result => {});
-                break;
-        }   
-    }
-
     open(dialog: Md2Dialog) {
         dialog.open();
     }
@@ -280,9 +248,7 @@ export class CustomPackageComponent implements OnInit{
         dialog.close();
       }
 
-    setDialogNavigation(value : number) {
-        this.dialogSelection = value;
-    }
+    
 
     startLoading() {
         this.slimLoadingBarService.start();
@@ -317,38 +283,7 @@ export class CustomPackageComponent implements OnInit{
         }
     }
 
-    /* Item Selection */
-    addAccommodation(accommodation : Accommodation) {
-        var selectedRoom : Room;
-
-        let dialogRef = this.dialog.open(AddAccommodationComponent, {
-            data: accommodation.room
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log("selected room is: ");
-            console.log(result);
-
-            if(result != null) {
-                for(var i = 0; i < accommodation.room.length; i++){
-                    if(accommodation.room[i].roomID = result)
-                        selectedRoom = accommodation.room[i]
-                }
-                
-                
-                this.custom.accommodation = accommodation;
-                this.custom.accommodation.selectedRoom = selectedRoom;
-                this.selectedAccommodation = accommodation.accommodationID;
-                this.selectedAccommodationName = accommodation.accommodationName;
-
-                var price = selectedRoom.roomPrice;
-
-                this.custom.packageCost = this.custom.packageCost - this.previousSelectedAccommodation + price * this.duration;  //update the package cost
-                this.previousSelectedAccommodation = price * this.duration; //Replace the previous accommodation cost to the selected one
-                console.info('[INFO] Added ', this.custom.accommodation, ' to cart.');
-            }
-        });
-    }
+    
 
     setFood(foodAndDrinks : FoodAndDrinks, setForAll : boolean) {
         //this.foodForm
@@ -425,18 +360,7 @@ export class CustomPackageComponent implements OnInit{
         console.log(this.custom.foodAndDrinks);
     }
     
-    /*  The checkFood function goes through the selecedFoodAndDrinks array
-        and compares the item id and the selected item id
-        
-        If they are equal, then item has been added to the package, hence show 'Remove Item'
-        If they are not equal, then item has not been added to the package, hence show 'Add Item'
-    */
-    checkFood(item : FoodAndDrinks) : boolean {
-        for(var i = 0; i < this.custom.selectedFoodAndDrinks.length; i++)
-            if(item.foodAndDrinksID + this.selectedDay == this.custom.selectedFoodAndDrinks[i]) 
-                return false;
-        return true;
-    }
+    
 
     setActivity(activity : Activity) {
         //this.foodForm
@@ -482,12 +406,7 @@ export class CustomPackageComponent implements OnInit{
         console.log(this.custom.activity);
     }
 
-    checkActivity(item : Activity) : boolean {
-        for(var i = 0; i < this.custom.selectedActivities.length; i++)
-            if(item.activityID + this.selectedDay == this.custom.selectedActivities[i]) 
-                return false;
-        return true;
-    }
+    
 
     /**
      * LOADING DATA
@@ -770,7 +689,6 @@ export class CustomPackageComponent implements OnInit{
         this.custom.travel[0] = this.travelPickup;
         this.custom.travel[1] = this.travelDropoff;
         this.custom.budget = this.budget;
-        this.custom.previousSelectedAccommodation = this.previousSelectedAccommodation;
 
         this.packageService.setPackage(this.custom);
 
@@ -814,22 +732,22 @@ export class CustomPackageComponent implements OnInit{
     }
 
     sortData(sort: Sort) {
-        const data = this.viewAccommodation.room.slice();
-        if (!sort.active || sort.direction == '') {
-          this.sortedData = data;
-          return;
-        }
+    //     const data = this.viewAccommodation.room.slice();
+    //     if (!sort.active || sort.direction == '') {
+    //       this.sortedData = data;
+    //       return;
+    //     }
     
-        this.sortedData = data.sort((a, b) => {
-          let isAsc = sort.direction == 'asc';
-          switch (sort.active) {
-            case 'room': return compare(a.roomTitle, b.roomTitle, isAsc);
-            case 'features': return compare(+a.features, +b.features, isAsc);
-            case 'price': return compare(+a.roomPrice, +b.roomPrice, isAsc);
-            default: return 0;
-          }
-        });
-      }
+    //     this.sortedData = data.sort((a, b) => {
+    //       let isAsc = sort.direction == 'asc';
+    //       switch (sort.active) {
+    //         case 'room': return compare(a.roomTitle, b.roomTitle, isAsc);
+    //         case 'features': return compare(+a.features, +b.features, isAsc);
+    //         case 'price': return compare(+a.roomPrice, +b.roomPrice, isAsc);
+    //         default: return 0;
+    //       }
+    //     });
+       }
 }
 
 function compare(a, b, isAsc) {
@@ -866,21 +784,6 @@ export class BudgetChangeComponent{
                 }
 }
 
-@Component({
-    moduleId: module.id,
-    selector: 'AddAccommodationComponent',
-    templateUrl: 'AddAccommodationComponent.html'
-})
-export class AddAccommodationComponent{
-    rooms : Room[];
-
-    constructor (public dialogRef: MdDialogRef<AddAccommodationComponent>,
-                @Inject(MD_DIALOG_DATA) public data: any) {
-                    this.rooms = data;
-                    console.log("imported value to dialog is: ");
-                    console.log(this.rooms);
-                }
-}
 
 @Component({
     moduleId: module.id,

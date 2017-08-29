@@ -1,0 +1,206 @@
+<ng-container *ngIf="view == 1">
+    <div class="row item-container">
+        <div (click)="open(accommodationDialog)" class="col-md-3" style="cursor:pointer">
+            <div class="img">
+                <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
+                    <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
+                    <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                </ng-container>
+
+                <ng-container *ngIf="accommodation.images[0].fileType == 'none'">
+                    <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
+                    <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                </ng-container>
+            </div>
+        </div><!-- image -->
+        <div class="col-md-9 item-content"><!-- content -->
+            <div class="row">
+                <div class="col-md-9"><!-- accommodation name -->
+                    <h3 class="text-lg text-b text-primary">
+                        <a (click)="open(accommodationDialog)" class="text-hover-primary">{{accommodation.accommodationName}}</a>
+                        <span *ngFor="let star of accommodation.accommodationStars" class="text-smd text-primary glyphicon glyphicon-star"></span>
+                    </h3>
+                    <a class="text-hover-k text-sm text-k">
+                        <span class="text-u">{{accommodation.accommodationSuburb}}</span>
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </a>
+                </div><!-- accommodation name end-->
+
+                <div *ngIf="accommodation.accommodationUserRating != -1" class="col-md-3 item-rating"><!-- rating -->
+                    <span class="text-lg text-w text-hide">{{accommodation.accommodationRating}}</span>
+                    <span class="text-sm text-w text-hide">{{accommodation.accommodationUserRating}}/5</span>
+                    <a>
+                        <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
+                    </a>
+                </div><!-- rating -->
+            </div>
+
+            <div class="row item-features">
+                <span class="text-sm text-k">Features:</span>
+                <span *ngFor="let feature of accommodation.topFeatures" class="text-xsm text-k">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {{feature.feature}}
+                </span>
+            </div>
+
+            <div class="row item-bottom">
+                <div class="col-md-8">
+                    <span class="text-xlg text-b text-primary">AUD $</span>
+                    <span class="text-xlg text-b text-primary">{{accommodation.pricePerNight}}</span>
+                    <span class="text-md text-primary glyphicon glyphicon-triangle-left"></span>
+                    <span class="text-md text-k glyphicon glyphicon-bed">{{accommodation.numBeds}}</span>
+                    <span class="text-md text-k glyphicon glyphicon-user">{{accommodation.numPeople}}</span>
+                </div>
+                <div class="col-md-4"><!-- Add to cart -->
+                    <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
+                    <ng-template #accNormal>
+                        <button (click)="open(add)" type="button" md-button style="float: right">Select</button>
+                    </ng-template>
+                    <ng-template #accSelected>
+                        <button disabled type="button" md-button style="float: right">Selected</button>
+                    </ng-template>
+                </div>
+            </div>
+        </div><!--content -->
+    </div>
+</ng-container>
+
+<ng-container *ngIf="view == 2">
+    <div class="col-sm-3 item-container-grid">
+        <div class="row" style="margin-bottom: 30px">
+            <div (click)="open(accommodationDialog)" class="col-md-12" style="cursor: pointer">
+                <div class="img">
+                    <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
+                            <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
+                        
+                    </ng-container>
+
+                    <ng-container *ngIf="accommodation.images[0].fileType == 'none'">
+                            <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
+                        
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-lg text-b text-primary">
+                    <a (click)="open(accommodationDialog)" class="text-hover-primary">{{accommodation.accommodationName}}</a>
+                    <span *ngFor="let star of accommodation.accommodationStars" class="text-smd text-primary glyphicon glyphicon-star"></span>
+                </h3>
+                <a class="text-hover-k text-sm text-k">
+                    <span class="text-u">{{accommodation.accommodationSuburb}}</span>
+                    <span class="glyphicon glyphicon-globe"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="text-lg text-b text-primary">AUD $</span>
+                <span class="text-lg text-b text-primary">{{accommodation.pricePerNight}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"><!-- Add to cart -->
+                <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
+                <ng-template #accNormal>
+                    <button (click)="open(add)" type="button" md-button style="float: right">Select</button>
+                </ng-template>
+                <ng-template #accSelected>
+                    <button disabled type="button" md-button style="float: right">Selected</button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<!-- View Item Dialog -->
+<md2-dialog #accommodationDialog [title]="accommodation.accommodationName" style="background-color:grey">
+    <div class="view-item-header">
+        <ul class="nav nav-tabs" 
+            style=
+                "   font-size: 12pt; 
+                    margin-bottom: 0;
+                    border: 0;
+                "><!-- Nav bar -->
+            <li role="presentation" *ngIf="dialogSelection==1; else notADActive1" class="active">
+                <a (click)="setDialogNavigation(1)">Details</a>
+            </li>
+            <ng-template #notADActive1>
+                <li role="presentation"><a (click)="setDialogNavigation(1)">Details</a></li>
+            </ng-template>
+    
+            <li role="presentation" *ngIf="dialogSelection==2; else notADActive2" class="active">
+                <a (click)="setDialogNavigation(2)">Room Details</a>
+            </li>
+            <ng-template #notADActive2>
+                <li role="presentation"><a (click)="setDialogNavigation(2)">Room Details</a></li>
+            </ng-template>
+        </ul>
+    </div>
+
+    <div class="view-item-content-main" *ngIf="dialogSelection==1">
+        <div class="row"> <!-- Picture Gallery and reviews -->
+            <div class="main-image" style="margin-bottom: 30px">
+                <img src="assets/img_nature_wide.jpg" width="100%" height="200px">
+            </div>
+        </div>
+
+        <div class="row"> <!-- Map and hotel features -->
+            <div class="col-md-6">
+                <agm-map [zoom]="18" [latitude]="accommodation.latitude" [longitude]="accommodation.longitude">
+                    <agm-marker [latitude]="accommodation.latitude" [longitude]="accommodation.longitude"></agm-marker>
+                </agm-map>
+            </div>
+
+            <div class="col-md-6">
+                <span class="text-b">Location: </span>
+                <span>{{accommodation.accommodationAddress}}</span>
+                <h4><span class="text-b" style="text-transform: capitalize">{{accommodation.accommodationType}} Features:</span></h4>
+
+                <div class="col-md-2 offset-md-1">
+                <h4 *ngFor="let f of accommodation.features">
+                    <span class="label label-primary">{{f.feature}}</span>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="view-item-content-rooms" *ngIf="dialogSelection==2">
+        <table mdSort (mdSortChange)="sortData($event)">
+            <tr style="background-color: grey">
+                <th md-sort-header="room">Room Type</th>
+                <th md-sort-header="features">Features</th>
+                <th md-sort-header="price">Price</th>
+            </tr>
+            
+            <tr *ngFor="let room of accommodation.room">
+                <td>
+                    <span class="text-b text-nl">{{room.roomTitle}}</span>
+                    <span class="text-nl text-sm">{{room.numBeds}} bed/s</span>
+                    <span class="text-sm">Room sleeps {{room.numPeople}} guests</span>
+                </td>
+                <td>
+                    <span class="text-primary" *ngFor="let f of room.features">{{f}}</span>
+                </td>
+                <td>{{room.roomPrice}}</td>
+            </tr>
+        </table>
+    </div>
+</md2-dialog>
+
+<!-- Add Accommodation Dialog -->
+<md2-dialog #add [title]="'Select your room'" style="background-color:black">
+    <button *ngFor="let room of accommodation.room" md-raised-button (click)="selectOption(room); close(add)">
+        <span class="text-b">{{room.roomTitle}}, </span>
+        <span class="text-nl">${{room.roomPrice}}</span>
+        <span class="text-nl">Guests: {{room.numPeople}}</span>
+        <span class="text-nl">Beds: {{room.numBeds}}</span>
+    </button>     
+</md2-dialog>
