@@ -100,6 +100,9 @@ export class CustomPackageComponent implements OnInit{
     viewString : string = "List";
     sortValue : string = "Name";
 
+    show : number = 1;
+    showString : string = "All"
+
     //View Items
     
     sortedData;
@@ -242,6 +245,71 @@ export class CustomPackageComponent implements OnInit{
         }
     }
 
+    changeShow(value : number) {
+        this.show = value;
+
+        switch(value) {
+            case 1: this.showString = "All"; break;
+            case 2: this.showString = "Best Seller"; break;
+            case 3: this.showString = "bar"; break;
+            case 4: this.showString = "dining"; break;
+            case 5: this.showString = "takeout"; break;
+            case 6: this.showString = "cafe"; break;
+        }
+    }
+
+    checkShow(a : Accommodation, f : FoodAndDrinks, ac : Activity, select : number) : boolean{
+        switch(select) {
+            case 1: 
+                //accommodation
+                if(this.show == 1) {
+                    return true;
+                }
+                else if(this.show == 2) {
+                    if(a.bestSeller) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } 
+                break;
+            case 2:
+                //food and drinks
+                switch(this.show) {
+                    case 1: return true;
+                    case 3: 
+                        if(f.diningStyle == "bar") return true;
+                        else return false;
+                    case 4:
+                        if(f.diningStyle == "dining") return true;
+                        else return false;
+                    case 5: 
+                        if(f.diningStyle == "takeout") return true;
+                        else return false;
+                    case 6:
+                        if(f.diningStyle == "cafe") return true;
+                        else return false;
+
+                }
+                break;
+            case 3: 
+                //activity
+                if(this.show == 1) {
+                    return true;
+                }
+                else if(this.show == 2) {
+                    if(ac.bestSeller) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } 
+                break;
+        }
+
+        return false;
+    }
+
     changeSort(value : string) : void {
         this.sortValue = value;
     }
@@ -274,6 +342,8 @@ export class CustomPackageComponent implements OnInit{
             since the actual data has not been loaded yet.
         */
         this.selected = selection;
+        this.show = 1;
+        this.showString = "All";
         console.log('[INFO] SELECTED VALUE: ', selection);
     }
 

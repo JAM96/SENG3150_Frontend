@@ -26,10 +26,22 @@
                     <button md-menu-item (click)="changeSort('Price')">Price</button>
                 </md-menu>
 
-                <button md-button [mdMenuTriggerFor]="menu">View: {{viewString}}</button>
-                <md-menu #menu="mdMenu">
+                <button md-button [mdMenuTriggerFor]="view">View: {{viewString}}</button>
+                <md-menu #view="mdMenu">
                     <button md-menu-item (click)="changeView(1)">View items as list</button>
                     <button md-menu-item (click)="changeView(2)">View items as grid</button>
+                </md-menu>
+
+                <button md-button [mdMenuTriggerFor]="show">Show: {{showString}}</button>
+                <md-menu #show="mdMenu">
+                    <button md-menu-item (click)="changeShow(1)">All</button>
+                    <button *ngIf="selected==2 || selected==4" md-menu-item (click)="changeShow(2)">Best Seller</button>
+                    <ng-container *ngIf="selected==3">
+                        <button md-menu-item (click)="changeShow(3)">Bar</button>
+                        <button md-menu-item (click)="changeShow(4)">Dining</button>
+                        <button md-menu-item (click)="changeShow(5)">Take Away</button>
+                        <button md-menu-item (click)="changeShow(6)">Cafe</button>
+                    </ng-container>
                 </md-menu>
             </div>
 
@@ -234,12 +246,14 @@
                 
             <div class="row view-x" *ngIf="selected==2">
                 <ng-container  *ngFor="let a of accommodationList" ><!-- accommodation i --> 
-                    <accommodation 
-                        [accommodation]="a" 
-                        [selectedAccommodation]="custom.accommodation.accommodationID" 
-                        [view]="view"
-                        [duration]="duration" >
-                    </accommodation>
+                    <ng-container *ngIf="checkShow(a,null,null, 1)">
+                        <accommodation 
+                            [accommodation]="a" 
+                            [selectedAccommodation]="custom.accommodation.accommodationID" 
+                            [view]="view"
+                            [duration]="duration" >
+                        </accommodation>
+                    </ng-container>
                 </ng-container>
             </div>
 
@@ -265,7 +279,9 @@
 
                 <div class="row view-x">
                     <ng-container *ngFor="let f of foodAndDrinks"><!-- restaurant item -->
-                        <food-and-drinks [foodAndDrinks]="f" [view]="view" [selectedFoodAndDrinks]="custom.selectedFoodAndDrinks" [selectedDay]="selectedDay" (selected)="setFoodAndDrinks($event)"></food-and-drinks>
+                        <ng-container *ngIf="checkShow(null, f, null, 2)">
+                            <food-and-drinks [foodAndDrinks]="f" [view]="view" [selectedFoodAndDrinks]="custom.selectedFoodAndDrinks" [selectedDay]="selectedDay" (selected)="setFoodAndDrinks($event)"></food-and-drinks>
+                        </ng-container>
                     </ng-container>
                 </div><!-- end food content -->
             </md-sidenav-container>
@@ -292,7 +308,9 @@
 
                 <div class="row view-x">
                     <ng-container *ngFor="let activity of activities" ><!-- activity item --> 
-                        <activity [activity]="activity" [selectedActivities]="custom.selectedActivities" [view]="view" [selectedDay]="selectedDay" (selected)="setActivity($event)"></activity>
+                        <ng-container *ngIf="checkShow(null,null, activity, 3)">
+                            <activity [activity]="activity" [selectedActivities]="custom.selectedActivities" [view]="view" [selectedDay]="selectedDay" (selected)="setActivity($event)"></activity>
+                        </ng-container>
                     </ng-container>
                 </div><!-- end activity content -->
             </md-sidenav-container>
