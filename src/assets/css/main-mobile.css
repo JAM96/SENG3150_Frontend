@@ -1,3 +1,11 @@
+
+@media screen and (min-width: 0px) and (max-width: 770px) {
+    .item-container {
+        max-width: 350px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+}
 @media screen and (min-width: 0px) and (max-width: 600px) {
    .home-creation-form {
         width: 90%;
@@ -99,25 +107,17 @@
         display: none;
     } 
 
-    .s-view {
-        height: 70vh;
-    }
-
-    .s-view-a { /* accomodation scaling */
-        height: 100%;
-    } 
-
-    .s-view-f {
-        margin-left: 10%;
-        width: 90%;
-    } 
-
     .m-form-extend {
         width: 100%;
     }
 }
 
-@media screen and (min-width: 0px) and (max-width: 990px) {
+@media screen and (min-width: 0px) and (max-width: 992px) {
+    .day-container {
+        max-width: 400px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
      .hotelAdvert {
         display:none;
     }

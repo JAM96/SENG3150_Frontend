@@ -69,7 +69,7 @@ import { AppComponent }  from '../Components/app.component';
   import {DataService} from '../Services/data.service';
   import {AccommodationService} from '../Services/Accommodation/accommodation.service';
   import {FoodAndDrinksService} from '../Services/FoodAndDrinks/food-and-drinks.service';
-  import {ActivityService} from '../Services/activity/activity.service';
+  import {ActivityService} from '../Services/Activity/activity.service';
   import {ImageService} from '../Services/image.service';
   import {HttpService} from '../Services/http/http.service';
   import {TagService} from '../Services/fetch-tags.service';

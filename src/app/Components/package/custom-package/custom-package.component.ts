@@ -23,7 +23,7 @@
     import {AccommodationService} from '../../../Services/Accommodation/accommodation.service';
     import {FoodAndDrinksService} from '../../../Services/FoodAndDrinks/food-and-drinks.service';
     import {ImageService} from '../../../Services/image.service';
-    import {ActivityService} from '../../../Services/activity/activity.service';
+    import {ActivityService} from '../../../Services/Activity/activity.service';
     import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
     import {TagService} from '../../../Services/fetch-tags.service';
     import {CustomPackageService} from '../../../Services/Package/custom-package.service';
@@ -122,7 +122,7 @@ export class CustomPackageComponent implements OnInit{
         private tagService                      :   TagService,
         ) {
 
-            this.fetch();
+            
         }
 
     ngOnInit() {
@@ -136,8 +136,8 @@ export class CustomPackageComponent implements OnInit{
         //     this.router.navigate(['/']);
         // }
 
-        this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
-        this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+        // this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
+        // this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
 
         if(this.custom.navigation == null) {
             console.log("Setting up custom package for the first time");
@@ -192,7 +192,7 @@ export class CustomPackageComponent implements OnInit{
         //Populate the days array with this value
         this.setDaysArray(this.duration);
 
-        
+        this.fetch();
     }
 
     //Calculates the duration of the selected holiday
@@ -413,255 +413,176 @@ export class CustomPackageComponent implements OnInit{
     */
 
     private fetch() : void {
-        //this.startLoading();
+        console.log("fetching the images from the app.component");
 
-        //Load Accommodation
-        var featuresTemp    : Feature[];
-        var roomTemp        : Room[];
-        var roomFeatures    : Feature[];
-        //Load Images
-        this.imageService.fetchImages().subscribe((image : Image[]) => {
-            this.imageList = image;
-            this.imagesLoaded = true;
-            console.log("Images have loaded");
-            console.log(this.imageList);
-        
-            this.accommodationService.fetchAccommodation().subscribe((accommodation : Accommodation[]) => {
-                this.accommodationList = accommodation;
-                console.log("Accommodation is now loaded...");
-                this.accommodationService.fetchAccommodationFeatures().subscribe((feature : Feature[]) => {
-                    featuresTemp = feature;
-                    console.log("Accommodation Features is now loaded...");
-                    this.accommodationService.fetchAccommodationRooms().subscribe((room : Room[]) => {
-                        roomTemp = room;
-                        console.log("Accommodation rooms is now loaded...");
-                        this.accommodationService.fetchAccommodationRoomFeatures().subscribe((roomFeature : Feature[]) => {
-                            roomFeature = roomFeature;
-                            console.log("Accommodation room features is now loaded...");
-                            this.assignAccommodation(featuresTemp, roomTemp, roomFeatures);
-                            this.accommodationLoaded = true;
-                            
-                            //Assign images to the accommodation
-                            for(var i = 0; i < this.accommodationList.length; i++) {
-                                this.accommodationList[i].images = [];
-                                for(var j = 0; j < this.imageList.length; j++) {
-                                    if(this.accommodationList[i].accommodationID == this.imageList[j].associatedItemID) {
-                                        this.accommodationList[i].images.push(this.imageList[j]);
+        if(!this.imageService.isLoaded()) {
+            this.imageService.fetchImages()
+                .subscribe(
+                    res => {
+                        this.imageService.setData(res);
+
+                        console.log("Images have loaded");
+                        console.log(this.imageService.getData());
+                        this.imageService.setLoaded(true);
+                
+                        this.fetchAccommodation();
+                    },
+                    err => {
+                        console.log("Connection Failed: Could not retrieve images");
+                    }
+                );
+        } else {
+            this.fetchAccommodation();
+        }
+    }
+
+    
+    private fetchAccommodation() : void {
+        if(!this.accommodationService.isAccommodationLoaded()) {
+            this.accommodationService.fetchAccommodation()
+            .subscribe(
+                res => {
+                    this.accommodationService.setAccommodation(res);
+                    console.log("Accommodation is now loaded...");
+
+                    //Get Accommodation features
+                    this.accommodationService.fetchAccommodationFeatures()
+                        .subscribe(
+                            res => {
+                            this.accommodationService.setFeatures(res);
+                            console.log("Accommodation features are now loaded.");
+
+                            //Get accommodation rooms
+                            this.accommodationService.fetchAccommodationRooms()
+                                .subscribe(
+                                    res => {
+                                        this.accommodationService.setRooms(res);
+                                        console.log("Accommodation rooms are now loaded");
+
+                                        //Get accommodation room features
+                                        this.accommodationService.fetchAccommodationRoomFeatures()
+                                            .subscribe(
+                                                res => {
+                                                    this.accommodationService.setRoomFeatures(res);
+                                                    console.log("Accommodation room features are now loaded");
+
+                                                    //assign features and rooms to the accommodation and initialise the accommodation
+                                                    this.accommodationList = this.accommodationService.assign();
+                                                    this.accommodationList = this.accommodationService.assignImages(this.imageService.getData());
+
+                                                    //set loaded
+                                                    this.accommodationService.setAccommodationLoaded(true);
+
+                                                    this.fetchFoodAndDrinks();
+                                                },
+                                                err => {
+                                                    console.log("Connection Failed: Could not retrieve accommodation room features");
+                                                }
+                                            );
+                                    },
+                                    err => {
+                                        console.log("Connection Failed: Could not retrieve accommodation rooms");
                                     }
-                                }
+                                );
+                            },
+                            err => {
                             }
+                        );
+                },
+                err => {
+                    console.log("Connection Failed: Could not retrieve accommodation");
+                }
+            );
+        } else {
+            this.accommodationList = this.accommodationService.getAccommodation();
+            this.fetchFoodAndDrinks();
+        }
+    }
+    
+    private fetchFoodAndDrinks() : void {   
+        if(!this.foodAndDrinksService.isLoaded()) {
+            this.foodAndDrinksService.fetchFoodAndDrinks()
+            .subscribe(
+                res => {
+                    this.foodAndDrinksService.setFoodAndDrinks(res);
 
-                            //assign empty image if there is no images for that accommodation
-                            for(var i = 0; i < this.accommodationList.length; i++) {
-                                if(this.accommodationList[i].images[0] == null) {
-                                    console.log("No images found");
-                                    var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
-                                    this.accommodationList[i].images[0] = img;
-                                } 
+                    //get tags
+                    this.tagService.fetchTags()
+                        .subscribe(
+                            res => {
+                                this.foodAndDrinksService.setTags(res);
+                                console.log("Tags for the food and drinks have now been loaded")
+
+                                //get booking times
+                                this.foodAndDrinksService.fetchFoodAndDrinksTime()
+                                    .subscribe(
+                                        res => {
+                                            this.foodAndDrinksService.setBookingTimes(res);
+                                            console.log("Booking times for the food and drinks have now been loaded");
+
+                                            //assign times and tags to the food and drinks
+                                            this.foodAndDrinks = this.foodAndDrinksService.assign();
+                                            this.foodAndDrinks = this.foodAndDrinksService.assignImages(this.imageService.getData());
+
+                                            //set loaded
+                                            this.foodAndDrinksService.setLoaded(true);
+                                            this.fetchActivities();
+                                        },
+                                        err => {
+                                            console.log("Connection Failed: Could not retrieve booking times");
+                                        }
+                                    );
+                            }, 
+                            err => {
+                                console.log("Connection Failed: Could not retrieve tags");
                             }
-                            console.log("Images have been assigned, accommodation is now complete");
-                            console.log(this.accommodationList);
-                        });
-                    });
-                });
-            });   
-
-            //Load Food and Drinks
-            this.foodAndDrinksService.fetchFoodAndDrinks().subscribe((foodAndDrinks : FoodAndDrinks[]) => {
-                this.foodAndDrinks = foodAndDrinks;
-                this.assignFoodAndDrinks();
-                this.custom.foodAndDrinks = [];
-                this.custom.selectedFoodAndDrinks = [];
-                this.foodAndDrinksLoaded = true;
-
-                this.foodAndDrinksService.fetchFoodAndDrinksTime().subscribe((foodAndDrinksTime : BookingTime[]) => {
-                    var bookingTime : BookingTime[] = foodAndDrinksTime;
-                    this.assignTimes(bookingTime);
-                })
-
-                this.tagService.fetchTags().subscribe((tag : Tag[]) => {
-                    var tags : Tag[] = tag;
-                    this.assignTags(tags);
-                })
-                
-                //Assign images to the food and drinks
-                for(var i = 0; i < this.foodAndDrinks.length; i++) {
-                    this.foodAndDrinks[i].images = [];
-                    for(var j = 0; j < this.imageList.length; j++) {
-                        if(this.foodAndDrinks[i].foodAndDrinksID == this.imageList[j].associatedItemID) {
-                            this.foodAndDrinks[i].images.push(this.imageList[j]);
-                        }
-                    }
+                        );
+                },
+                err => {
+                    console.log("Connection Failed: Could not retrieve food and drinks");
                 }
+            );
+        } else {
+            this.foodAndDrinks = this.foodAndDrinksService.getData();
+            this.fetchActivities();
+        }
 
-                //assign empty image if there is no images for that food and drinks item
-                for(var i = 0; i < this.foodAndDrinks.length; i++) {
-                    if(this.foodAndDrinks[i].images[0] == null) {
-                        var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
-                        this.foodAndDrinks[i].images[0] = img;
-                    }
-                }
-                console.log("Images have been assigned, food and drinks is now complete");
-                console.log(this.foodAndDrinks);
-            });
-
-            //Load Activities
-            this.activityService.getActivities().subscribe((activities : Activity[]) => {
-                this.activities = activities;
-                this.custom.activity = [];
-                this.custom.selectedActivities = [];
-                this.activitiesLoaded = true;
-                
-                //Assign images to the activities
-                for(var i = 0; i < this.activities.length; i++) {
-                    this.activities[i].images = [];
-                    for(var j = 0; j < this.imageList.length; j++) {
-                        if(this.activities[i].activityID == this.imageList[j].associatedItemID) {
-                            this.activities[i].images.push(this.imageList[j]);
-                        }
-                    }
-                }
-
-                //assign empty image if there is no images for that activity
-                for(var i = 0; i < this.activities.length; i++) {
-                    if(this.activities[i].images[0] == null) {
-                        var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
-                        this.activities[i].images[0] = img;
-                    }
-                }
-                console.log("Images have been assigned, activities is now complete");
-                console.log(this.activities);
-            });
-        });
+        this.custom.selectedFoodAndDrinks = [];
     }
+    
+    private fetchActivities() : void {
+        if(this.activityService.isLoaded()) {
+            this.activityService.fetchActivities()
+                .subscribe(
+                    res => {
+                        this.activityService.setData(res);
+                        this.activities = this.activityService.getData();
+                        console.log("activities have been loaded");
 
-    private assignTags(data : Tag[]) : void {
-        for(var i = 0; i < this.foodAndDrinks.length; i++){
-            this.foodAndDrinks[i].menuType = [];
-
-            for(var j = 0; j < data.length; j++) {
-                if(data[j].itemID == this.foodAndDrinks[i].foodAndDrinksID) {
-                    this.foodAndDrinks[i].menuType.push(data[j]);
-                }
-            }
-        }
-    }
-
-    private assignTimes(data : BookingTime[]) : void {
-        for(var i = 0; i < this.foodAndDrinks.length; i++){
-            this.foodAndDrinks[i].timeAvailable = [];
-
-            for(var j = 0; j < data.length; j++) {
-                if(data[j].packageItemID == this.foodAndDrinks[i].foodAndDrinksID) {
-                    this.foodAndDrinks[i].timeAvailable.push(data[j]);
-                }
-            }
-        }
-    }
-
-    private assignAccommodation(features : Feature[], rooms : Room[], roomFeatures : Feature[]) : void {
-        //Set the accommodation star array and rating
-        for(var i = 0; i < this.accommodationList.length; i++) {
-            //Set the star array for each accommodationList
-            this.accommodationList[i].accommodationStars = [];
-            for(var j = 0; j < this.accommodationList[i].accommodationStarRating; j++) {
-                this.accommodationList[i].accommodationStars[j] = j;
-            }
-            console.log(this.accommodationList[i].accommodationStars);
-
-            //Assign the rating description for each accommodationList
-            switch(this.accommodationList[i].accommodationUserRating) {
-                case 1: this.accommodationList[i].accommodationRating = "Bad"; break;
-                case 2: this.accommodationList[i].accommodationRating = "Okay"; break;
-                case 3: this.accommodationList[i].accommodationRating = "Good"; break;
-                case 4: this.accommodationList[i].accommodationRating = "Great"; break;
-                case 5: this.accommodationList[i].accommodationRating = "Fabulous!"; break;
-                default: this.accommodationList[i].accommodationRating = ""; break;
-            }
-        }
-
-        //Assigning Features
-        console.log("Assigning module: ");
-        for(var i = 0; i < this.accommodationList.length; i++){
-            //initialise features and room of each accommodation
-            this.accommodationList[i].features = [];
-            this.accommodationList[i].room = [];
-            
-            console.log("initialising done, now assiging features");
-
-            //Assign Features to the accommodationList
-            for(var j = 0; j < features.length; j++) 
-                if(this.accommodationList[i].accommodationID == features[j].accommodationID) 
-                    this.accommodationList[i].features.push(features[j]);
-
-            //Assign rooms to the accommodationList
-            console.log("now assigning rooms");
-            for(var j = 0; j < rooms.length; j++) 
-                if(this.accommodationList[i].accommodationID == rooms[j].accommodationID) 
-                    this.accommodationList[i].room.push(rooms[j]);
-        }
-
-        //Obtain the cheapest room and set the price of the item
-        console.log("finding cheapest price");
-        for(var i = 0; i < this.accommodationList.length; i++) {
-            if(this.accommodationList[i].room[0] != null) {
-                console.log("Room price for 0 is defined")
-                var price = this.accommodationList[i].room[0].roomPrice;
-                
-                for(var j = 0; j < this.accommodationList[i].room.length; j++){
-                    if(price <= this.accommodationList[i].room[j].roomPrice) {
-                        price = this.accommodationList[i].room[j].roomPrice;
-                        break;
+                        //assign images
+                        var temp = this.activityService.assignImages(this.imageService.getData());
+                        //set loaded
+                        this.activityService.setLoaded(true);
+                    },
+                    err => {
+                        console.log("Connection Failed: Could not retrieve activities");
                     }
-                }
-                this.accommodationList[i].pricePerNight = price;
-            } else {
-                this.accommodationList[i].pricePerNight = 0;
-            }
-        }
+                );
+        } else {
+            this.activities = this.activityService.getData();
+        } 
 
-        //Assigning the top 3 features of the accommodation
-        console.log("Assigning top features");
-        for(var i = 0; i < this.accommodationList.length; i++){
-            this.accommodationList[i].topFeatures = []; //initialise top feature array
-
-            //assign the first 3 features to the correct accommodation
-            for(var j = 0; j < 3; j++)
-                if(this.accommodationList[i].features[0] != null) 
-                    this.accommodationList[i].topFeatures.push(this.accommodationList[i].features[j]);
-        }
-    }
-
-    private assignFoodAndDrinks() : void {
-        for(var i = 0; i < this.foodAndDrinks.length; i++) {
-            //Set the star array for each foodAndDrinks
-            this.foodAndDrinks[i].stars = [];
-            for(var j = 0; j < this.foodAndDrinks[i].starRating; j++) {
-                this.foodAndDrinks[i].stars[j] = j;
-            }
-            console.log(this.foodAndDrinks[i].stars);
-
-            //Assign the rating description for each foodAndDrinks
-            switch(this.foodAndDrinks[i].userRating) {
-                case 1: this.foodAndDrinks[i].rating = "Bad"; break;
-                case 2: this.foodAndDrinks[i].rating = "Okay"; break;
-                case 3: this.foodAndDrinks[i].rating = "Good"; break;
-                case 4: this.foodAndDrinks[i].rating = "Great"; break;
-                case 5: this.foodAndDrinks[i].rating = "Fabulous!"; break;
-                default: this.foodAndDrinks[i].rating = ""; break;
-            }
-
-            //Assign the expense rating description for each foodAndDrinks
-            this.foodAndDrinks[i].expense = [];
-            for(var e = 0; e < this.foodAndDrinks[i].expenseRating; e++) {
-                this.foodAndDrinks[i].expense[e] = e;
-            }
-            console.log(this.foodAndDrinks[i]);
-        }
+        this.custom.selectedActivities = [];
     }
 
     private checkLoad() : boolean {
-        if(this.imagesLoaded && this.accommodationLoaded && this.activitiesLoaded && this.foodAndDrinksLoaded) {
+        if
+            (
+                this.accommodationService.isAccommodationLoaded()
+                && this.imageService.isLoaded()
+                && this.foodAndDrinksService.isLoaded()
+                && this.activityService.isLoaded()
+            ) {
            // this.completeLoading();
             return true;
         } else {

@@ -32,12 +32,6 @@ export class ImageService {
     public fetchImages() : Observable<any> {
         return this.http.get(this.url)
             .map((response:Response) => response.json().result)
-            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-    }
-
-    testImages() : Observable<any> {
-        return this.http.get(this.url)
-            .map((response: Response) => response.json().result);
     }
 
     /**

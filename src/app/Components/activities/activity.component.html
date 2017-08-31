@@ -1,5 +1,5 @@
 <ng-container *ngIf="view == 1">
-    <div class="row item-container">
+    <div class="row item-container day-container">
         <div class="col-md-3">
             <div (click)="viewItem(3,null, null, activity, activityDialog)" class="img" style="cursor: pointer">
                 <ng-container *ngIf="activity.images[0].fileType != 'none'">
@@ -71,18 +71,25 @@
         <div class="row" style="margin-bottom: 50px">
             <div (click)="viewItem(item)" class="col-md-12" style="cursor: pointer">
                 <div class="img">
-                    <div *ngIf="a.bestSeller" class="hotelAdvert">Best Seller</div>
-                    <img src="assets\image\package-item\hotel\{{a.pictureURL}}" width="100%" height="100%"/>
+                    <ng-container *ngIf="activity.images[0].fileType != 'none'">
+                        <div  *ngIf="activity.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        <img src="data:image/png;base64,{{activity.images[0].base64Equiv}}" width="100%" height="100%"/>
+                    </ng-container>
+    
+                    <ng-container *ngIf="activity.images[0].fileType == 'none'">
+                        <div *ngIf="activity.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                        <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
+                    </ng-container>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <span class="text-md text-b text-nl text-primary">
-                    <a (click)="viewItem(item)" class="text-hover-primary">{{a.name}}</a>
+                    <a (click)="viewItem(item)" class="text-hover-primary">{{activity.name}}</a>
                 </span>
                 <a class="text-hover-k text-sm text-k">
-                    <span class="text-u">{{a.suburb}}</span>
+                    <span class="text-u">{{activity.suburb}}</span>
                     <span class="glyphicon glyphicon-globe"></span>
                 </a>
             </div>
@@ -91,7 +98,7 @@
         <div class="row">
             <div class="col-md-12">
                 <span class="text-lg text-b text-primary">AUD $</span>
-                <span class="text-lg text-b text-primary">{{a.price}}</span>
+                <span class="text-lg text-b text-primary">{{activity.price}}</span>
             </div>
         </div>
 

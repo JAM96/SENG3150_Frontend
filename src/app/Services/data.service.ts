@@ -8,8 +8,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable() 
 export class DataService {
-  navigationSelection : number = 1;
-  apiUrl: string = 'http://localhost:8080'; //Api Location
+  private navigationSelection : number = 1;
+  private apiUrl: string = 'http://localhost:8080'; //Api Location
   //apiUrl : string = "http://10.0.0.4:8080";
   
   //Passes in the service name and returns the full url
@@ -49,6 +49,9 @@ export class DataService {
         break;
       case 'packagesitems':
         url = url + '/fetchPremadePackageItems';
+        break;
+      case 'image':
+        url = url + '/image?';
         break;
     }
 

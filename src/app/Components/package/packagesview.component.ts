@@ -18,7 +18,7 @@ import {DataService} from '../../Services/data.service';
 import {AccommodationService} from '../../Services/Accommodation/accommodation.service';
 import {FoodAndDrinksService} from '../../Services/FoodAndDrinks/food-and-drinks.service';
 import {ImageService} from '../../Services/image.service';
-import {ActivityService} from '../../Services/activity/activity.service';
+import {ActivityService} from '../../Services/Activity/activity.service';
 
 
 
@@ -128,7 +128,7 @@ export class PackagesComponent implements OnInit{
                                 console.log(foodAndDrinks);
 
                                 //Load Activities
-                                this.activityService.getActivities().subscribe((activities : Activity[]) => {
+                                this.activityService.fetchActivities().subscribe((activities : Activity[]) => {
                                     activities = activities;
                                     this.activitiesLoaded = true;
                                     

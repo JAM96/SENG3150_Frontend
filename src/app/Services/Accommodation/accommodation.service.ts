@@ -18,6 +18,7 @@
         import {Accommodation} from '../../Objects/Accommodation/Accommodation';
         import {Room} from '../../Objects/Accommodation/Room';
         import {Feature} from '../../Objects/Accommodation/Feature';
+        import {Image} from '../../Objects/Image';
 //End Imports
 
 @Injectable()
@@ -38,7 +39,6 @@ export class AccommodationService {
         var url = this.data.getApiUrl('accommodation');
         return this.http.get(url)
             .map((response:Response) => response.json().result)
-                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve Accommodation'));
     }
 
     /**
@@ -48,7 +48,6 @@ export class AccommodationService {
         var url = this.data.getApiUrl('accommodationFeatures');
         return this.http.get(url)
             .map((response:Response) => response.json().result)
-                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve Accommodation features'));
     }
 
     /**
@@ -58,7 +57,6 @@ export class AccommodationService {
         var url = this.data.getApiUrl('accommodationRooms');
         return this.http.get(url)
             .map((response:Response) => response.json().result)
-                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve Accommodatio rooms'));
     }
     
     /**
@@ -68,13 +66,11 @@ export class AccommodationService {
         var url = this.data.getApiUrl('accommodationRoomFeatures');
         return this.http.get(url)
             .map((response:Response) => response.json().result)
-                .catch((error:any) => Observable.throw(error.json().error || 'Could not retrieve room features'));
     }
 
     //Getters
 
     public isAccommodationLoaded() : boolean {
-        console.log("Accomodation is set to: " + this.accommodationLoaded)
         return this.accommodationLoaded;
     }
 
@@ -187,6 +183,33 @@ export class AccommodationService {
                 if(this.accommodation[i].features[0] != null) 
                     this.accommodation[i].topFeatures.push(this.accommodation[i].features[j]);
         }
+
+        return this.accommodation;
+    }
+
+    //Assigns images to the accommodation object and returns it
+    public assignImages(data : Image[]) : Accommodation[] {
+        //Assign images to the accommodation
+        for(var i = 0; i < this.accommodation.length; i++) {
+            this.accommodation[i].images = [];
+            for(var j = 0; j < data.length; j++) {
+                if(this.accommodation[i].accommodationID == data[j].associatedItemID) {
+                    this.accommodation[i].images.push(data[j]);
+                }
+            }
+        }
+
+        //assign empty image if there is no images for that accommodation
+        for(var i = 0; i < this.accommodation.length; i++) {
+            if(this.accommodation[i].images[0] == null) {
+                console.log("No images found");
+                var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                this.accommodation[i].images[0] = img;
+            } 
+        }
+        console.log("Images have been assigned, accommodation is now complete");
+        console.log(this.accommodation);
+
 
         return this.accommodation;
     }
