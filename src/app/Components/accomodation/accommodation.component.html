@@ -3,13 +3,13 @@
         <div (click)="open(accommodationDialog)" class="col-sm-3" style="cursor:pointer">
             <div class="img">
                 <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
-                    <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
-                    <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                    <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="150px"/>
+                    <div *ngIf="accommodation.bestSeller" class="item-advert">Best Seller</div>
                 </ng-container>
 
                 <ng-container *ngIf="accommodation.images[0].fileType == 'none'">
-                    <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
-                    <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
+                    <img src="assets/image/imagenotfound.png" width="100%" height="150px"/>
+                    <div *ngIf="accommodation.bestSeller" class="item-advert">Best Seller</div>
                 </ng-container>
             </div>
         </div><!-- image -->
@@ -66,28 +66,26 @@
 </ng-container>
 
 <ng-container *ngIf="view == 2">
-    <div class="col-sm-3 item-container-grid">
-        <div class="row" style="margin-bottom: 30px">
+    <div class="col-sm-2 item-container-grid">
+        <div class="row">
             <div (click)="open(accommodationDialog)" class="col-sm-12" style="cursor: pointer">
                 <div class="img">
                     <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
-                            <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
-                        <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
-                        
+                        <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="150px"/>
+                        <div *ngIf="accommodation.bestSeller" class="item-advert">Best Seller</div>
                     </ng-container>
 
                     <ng-container *ngIf="accommodation.images[0].fileType == 'none'">
-                            <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
-                        <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
-                        
+                        <img src="assets/image/imagenotfound.png" width="100%" height="150px"/>
+                        <div *ngIf="accommodation.bestSeller" class="item-advert">Best Seller</div>
                     </ng-container>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <h3 class="text-lg text-b text-primary">
-                    <a (click)="open(accommodationDialog)" class="text-hover-primary">{{accommodation.accommodationName}}</a>
+                <h3 class="text-sm text-b text-primary">
+                    <a (click)="open(accommodationDialog)" class="text-hover-primary text-nl">{{accommodation.accommodationName}}</a>
                     <span *ngFor="let star of accommodation.accommodationStars" class="text-smd text-primary glyphicon glyphicon-star"></span>
                 </h3>
                 <a class="text-hover-k text-sm text-k">

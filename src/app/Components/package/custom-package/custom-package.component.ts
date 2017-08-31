@@ -97,6 +97,7 @@ export class CustomPackageComponent implements OnInit{
 
     //how to display items
     view : number  = 1;
+    viewString : string = "List";
     sortValue : string = "Name";
 
     //View Items
@@ -136,8 +137,8 @@ export class CustomPackageComponent implements OnInit{
         //     this.router.navigate(['/']);
         // }
 
-        // this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
-        // this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+        this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
+        this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
 
         if(this.custom.navigation == null) {
             console.log("Setting up custom package for the first time");
@@ -234,6 +235,11 @@ export class CustomPackageComponent implements OnInit{
 
     changeView(value : number) : void {
         this.view = value;
+        
+        switch(value) {
+            case 1: this.viewString = "List"; break;
+            case 2: this.viewString = "Grid"; break;
+        }
     }
 
     changeSort(value : string) : void {

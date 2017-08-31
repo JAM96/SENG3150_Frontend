@@ -18,6 +18,8 @@
     }
     md-sidenav {
         width: 15%;
+        padding: 0;
+        padding-top: 20px;
     }
 
     .nav-tabs {
