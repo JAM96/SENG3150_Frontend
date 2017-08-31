@@ -36,10 +36,13 @@ app routes
 */
 
 import {PurchaseComponent} from './Components/purchase/purchase.component';
+import {ErrorComponent} from './Components/error/error.component';
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'callback', component: CallbackComponent},
+
+  { path: 'error/:type', component: ErrorComponent},
 
   //Navigation Views
   { path: 'events', component: EventListComponent, },

@@ -1,4 +1,25 @@
 <!-- Components -->
+<div *ngIf="!imageService.isLoaded()" id="loader-wrapper">
+    <ng-container *ngIf="!error">
+    <h1 class="loaderText">Loading</h1>
+    <h4 class="loaderText" style="margin-top: 5px; color: rgba(255,180,50,0.5)">Please Wait</h4>
+    
+    <div id="loader">
+        <div id=square>
+        </div>
+        
+    </div>
 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
 
-<router-outlet></router-outlet>
+    </ng-container>
+
+    <div class="loaderMessage">
+            <h4>{{loadingMessage}}</h4>
+    </div>
+
+    <!-- <p class="text-sm" id="timeoutmessage">If you are seeing this screen for longer than 5 seconds, please contact the <a href="#">system administrator</a>.</p> -->
+</div>
+
+<router-outlet *ngIf="imageService.isLoaded()"></router-outlet>

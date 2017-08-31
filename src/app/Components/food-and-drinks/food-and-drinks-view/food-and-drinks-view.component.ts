@@ -37,12 +37,48 @@ export class FoodAndDrinksListComponent {
     private fetch() : void {
         console.log("attempting to fetch food and drinks");
         //Load Images
-        this.imageService.fetchImages().subscribe((image : Image[]) => {
-            this.imageList = image;
+        if(!this.imageService.isLoaded()) {
+            this.imageService.fetchImages().subscribe((image : Image[]) => {
+                this.imageList = image;
+                this.imagesLoaded = true;
+                this.imageService.setLoaded(true);
+                this.imageService.setData(this.imageList);
+
+                console.log("Images have loaded");
+                console.log(this.imageList);
+                
+                //Load Food and Drinks
+                this.foodAndDrinksService.fetchFoodAndDrinks().subscribe((foodAndDrinks : FoodAndDrinks[]) => {
+                    this.foodAndDrinks = foodAndDrinks;
+                    this.assignFoodAndDrinks();
+                    this.foodAndDrinksLoaded = true;
+                    
+                    //Assign images to the food and drinks
+                    for(var i = 0; i < this.foodAndDrinks.length; i++) {
+                        this.foodAndDrinks[i].images = [];
+                        for(var j = 0; j < this.imageList.length; j++) {
+                            if(this.foodAndDrinks[i].foodAndDrinksID == this.imageList[j].associatedItemID) {
+                                this.foodAndDrinks[i].images.push(this.imageList[j]);
+                            }
+                        }
+                    }
+
+                    //assign empty image if there is no images for that food and drinks item
+                    for(var i = 0; i < this.foodAndDrinks.length; i++) {
+                        if(this.foodAndDrinks[i].images[0] == null) {
+                            var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                            this.foodAndDrinks[i].images[0] = img;
+                        }
+                    }
+                    console.log("Images have been assigned, food and drinks is now complete");
+                    console.log(this.foodAndDrinks);
+                });
+            });
+        } else {
+            console.log("Images have been loaded");
+            this.imageList = this.imageService.getData();
             this.imagesLoaded = true;
-            console.log("Images have loaded");
-            console.log(this.imageList);
-            
+
             //Load Food and Drinks
             this.foodAndDrinksService.fetchFoodAndDrinks().subscribe((foodAndDrinks : FoodAndDrinks[]) => {
                 this.foodAndDrinks = foodAndDrinks;
@@ -69,7 +105,7 @@ export class FoodAndDrinksListComponent {
                 console.log("Images have been assigned, food and drinks is now complete");
                 console.log(this.foodAndDrinks);
             });
-        });
+        }
     }
 
     private assignFoodAndDrinks() : void {

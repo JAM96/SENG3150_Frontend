@@ -33,7 +33,7 @@ import { AppComponent }  from '../Components/app.component';
 
 //import components here
   import {HomeComponent} from '../Components/home/home.component';
-
+  import {ErrorComponent} from '../Components/error/error.component';
   //Navigation Pages
   import {AboutComponent} from '../Components/about/about.component';
   import {EventListComponent} from '../Components/event/eventListView.component';
@@ -117,6 +117,7 @@ import {AuthService} from '../auth/auth.service';
     //App
     AppComponent,
     HomeComponent,
+    ErrorComponent,
     //Navigation Views
     AboutComponent,
     AccommodationListComponent,
