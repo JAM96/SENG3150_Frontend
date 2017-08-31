@@ -139,6 +139,13 @@
             <ng-template #notADActive2>
                 <li role="presentation"><a (click)="setDialogNavigation(2)">Room Details</a></li>
             </ng-template>
+
+            <li role="presentation" *ngIf="dialogSelection==3; else notADActive3" class="active">
+                <a (click)="setDialogNavigation(3)">Location</a>
+            </li>
+            <ng-template #notADActive3>
+                <li role="presentation"><a (click)="setDialogNavigation(3)">Location</a></li>
+            </ng-template>
         </ul>
     </div>
 
@@ -149,16 +156,8 @@
             </div>
         </div>
 
-        <div class="row"> <!-- Map and hotel features -->
-            <div class="col-sm-6">
-                <agm-map [zoom]="18" [latitude]="accommodation.latitude" [longitude]="accommodation.longitude">
-                    <agm-marker [latitude]="accommodation.latitude" [longitude]="accommodation.longitude"></agm-marker>
-                </agm-map>
-            </div>
-
-            <div class="col-sm-6">
-                <span class="text-b">Location: </span>
-                <span>{{accommodation.accommodationAddress}}</span>
+        <div class="row"> <!-- hotel features -->
+            <div class="col-sm-12">
                 <h4><span class="text-b" style="text-transform: capitalize">{{accommodation.accommodationType}} Features:</span></h4>
 
                 <div class="col-sm-2 offset-sm-1">
@@ -191,6 +190,16 @@
             </tr>
         </table>
     </div>
+
+    <div class="view-item-content-map" *ngIf="dialogSelection==3">
+        <span class="text-b">Location: </span>
+        <span>{{accommodation.accommodationAddress}}</span>
+
+        <agm-map [zoom]="18" [latitude]="accommodation.latitude" [longitude]="accommodation.longitude">
+            <agm-marker [latitude]="accommodation.latitude" [longitude]="accommodation.longitude"></agm-marker>
+        </agm-map>
+    </div>
+
 </md2-dialog>
 
 <!-- Add Accommodation Dialog -->

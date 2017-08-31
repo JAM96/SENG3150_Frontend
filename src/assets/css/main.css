@@ -53,6 +53,9 @@ body {
     padding: 20px;
 }
 
+.md2-dialog-body {
+    overflow-x: hidden !important;
+}
 
 .bottomNav{
     position:absolute;
