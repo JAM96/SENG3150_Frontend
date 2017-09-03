@@ -36,7 +36,7 @@ export class ViewPackagesComponent implements OnInit{
     }
 
     getPackages() {
-        this._packageService.getMockPackages().then((packages: PackageList[]) => this.packages = packages);
+        //this._packageService.getMockPackages().then((packages: PackageList[]) => this.packages = packages);
     }
 
     increaseGuests() {

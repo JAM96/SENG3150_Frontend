@@ -35,132 +35,109 @@ export class AccommodationListComponent {
         this.fetch();
     }
 
-
+    /**
+     * The fetch functions calls each service that is required.
+     * For this case, the image service and the accommodation service
+     * 
+     * The fetch function checks if images are loaded or not, if not
+     * then subscribe to the image service and append the data to the component
+     * 
+     * Then it calls the fetch accommodation function.
+     */
     private fetch() : void {
+        //Load Images
+        if(!this.imageService.isLoaded()){
+            this.imageService.fetchImages().subscribe((image : Image[]) => {
+                this.imageList = image;
+                this.imagesLoaded = true;
+                this.imageService.setLoaded(true);
+                this.imageService.setData(this.imageList);
+
+                console.log("Images have loaded");
+                console.log(this.imageList);
+                
+                if(!this.accommodationService.isAccommodationLoaded()) {
+                      this.fetchAccommodation();
+                } else {
+                    this.accommodationList = this.accommodationService.getAccommodation();
+                    this.accommodationLoaded = true;
+                }
+            });
+        } else {
+            console.log("images are loaded");
+            this.imageList = this.imageService.getData();
+            this.imagesLoaded = true;
+            
+            if(!this.accommodationService.isAccommodationLoaded()) {
+                console.log("accommodation is not loaded");
+                this.fetchAccommodation();
+            } else {
+                console.log("accommodaiton is loaded");
+                this.accommodationList = this.accommodationService.getAccommodation();
+                this.accommodationLoaded = true;
+            }
+        }
+    }
+
+    private fetchAccommodation() {
         //Load Accommodation
         var featuresTemp    : Feature[];
         var roomTemp        : Room[];
         var roomFeatures    : Feature[];
-        //Load Images
-        this.imageService.fetchImages().subscribe((image : Image[]) => {
-            this.imageList = image;
-            this.imagesLoaded = true;
-            console.log("Images have loaded");
-            console.log(this.imageList);
-        
-            this.accommodationService.fetchAccommodation().subscribe((accommodation : Accommodation[]) => {
-                this.accommodationList = accommodation;
-                console.log("Accommodation is now loaded...");
-                this.accommodationService.fetchAccommodationFeatures().subscribe((feature : Feature[]) => {
-                    featuresTemp = feature;
-                    console.log("Accommodation Features is now loaded...");
-                    this.accommodationService.fetchAccommodationRooms().subscribe((room : Room[]) => {
-                        roomTemp = room;
-                        console.log("Accommodation rooms is now loaded...");
-                        this.accommodationService.fetchAccommodationRoomFeatures().subscribe((roomFeature : Feature[]) => {
-                            roomFeature = roomFeature;
-                            console.log("Accommodation room features is now loaded...");
-                            this.assignAccommodation(featuresTemp, roomTemp, roomFeatures);
-                            this.accommodationLoaded = true;
-                            
-                            //Assign images to the accommodation
-                            for(var i = 0; i < this.accommodationList.length; i++) {
-                                this.accommodationList[i].images = [];
-                                for(var j = 0; j < this.imageList.length; j++) {
-                                    if(this.accommodationList[i].accommodationID == this.imageList[j].associatedItemID) {
-                                        this.accommodationList[i].images.push(this.imageList[j]);
-                                    }
+
+        this.accommodationService.fetchAccommodation().subscribe((accommodation : Accommodation[]) => {
+            this.accommodationList = accommodation;
+            this.accommodationService.setAccommodation(this.accommodationList);
+            
+
+            console.log("Accommodation is now loaded...");
+
+            this.accommodationService.fetchAccommodationFeatures().subscribe((feature : Feature[]) => {
+                featuresTemp = feature;
+                this.accommodationService.setFeatures(featuresTemp);
+            
+                console.log("Accommodation Features is now loaded...");
+                
+                this.accommodationService.fetchAccommodationRooms().subscribe((room : Room[]) => {
+                    roomTemp = room;
+                    this.accommodationService.setRooms(roomTemp);
+
+                    console.log("Accommodation rooms is now loaded...");
+                    this.accommodationService.fetchAccommodationRoomFeatures().subscribe((roomFeature : Feature[]) => {
+                        roomFeature = roomFeature;
+                        this.accommodationService.setRoomFeatures(roomFeature);
+                        
+                        this.accommodationLoaded = true;
+                        this.accommodationService.setAccommodationLoaded(true);
+
+                        this.accommodationList = this.accommodationService.assign();
+                        
+                        console.log("Accommodation room features is now loaded...");
+                        
+                        //Assign images to the accommodation
+                        for(var i = 0; i < this.accommodationList.length; i++) {
+                            this.accommodationList[i].images = [];
+                            for(var j = 0; j < this.imageList.length; j++) {
+                                if(this.accommodationList[i].accommodationID == this.imageList[j].associatedItemID) {
+                                    this.accommodationList[i].images.push(this.imageList[j]);
                                 }
                             }
+                        }
 
-                            //assign empty image if there is no images for that accommodation
-                            for(var i = 0; i < this.accommodationList.length; i++) {
-                                if(this.accommodationList[i].images[0] == null) {
-                                    console.log("No images found");
-                                    var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
-                                    this.accommodationList[i].images[0] = img;
-                                } 
-                            }
-                            console.log("Images have been assigned, accommodation is now complete");
-                            console.log(this.accommodationList);
-                        });
+                        //assign empty image if there is no images for that accommodation
+                        for(var i = 0; i < this.accommodationList.length; i++) {
+                            if(this.accommodationList[i].images[0] == null) {
+                                console.log("No images found");
+                                var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                                this.accommodationList[i].images[0] = img;
+                            } 
+                        }
+                        console.log("Images have been assigned, accommodation is now complete");
+                        console.log(this.accommodationList);
                     });
                 });
-            });   
-        });
-    }
-
-    private assignAccommodation(features : Feature[], rooms : Room[], roomFeatures : Feature[]) : void {
-        //Set the accommodation star array and rating
-        for(var i = 0; i < this.accommodationList.length; i++) {
-            //Set the star array for each accommodationList
-            this.accommodationList[i].accommodationStars = [];
-            for(var j = 0; j < this.accommodationList[i].accommodationStarRating; j++) {
-                this.accommodationList[i].accommodationStars[j] = j;
-            }
-            console.log(this.accommodationList[i].accommodationStars);
-
-            //Assign the rating description for each accommodationList
-            switch(this.accommodationList[i].accommodationUserRating) {
-                case 1: this.accommodationList[i].accommodationRating = "Bad"; break;
-                case 2: this.accommodationList[i].accommodationRating = "Okay"; break;
-                case 3: this.accommodationList[i].accommodationRating = "Good"; break;
-                case 4: this.accommodationList[i].accommodationRating = "Great"; break;
-                case 5: this.accommodationList[i].accommodationRating = "Fabulous!"; break;
-                default: this.accommodationList[i].accommodationRating = ""; break;
-            }
-        }
-
-        //Assigning Features
-        console.log("Assigning module: ");
-        for(var i = 0; i < this.accommodationList.length; i++){
-            //initialise features and room of each accommodation
-            this.accommodationList[i].features = [];
-            this.accommodationList[i].room = [];
-            
-            console.log("initialising done, now assiging features");
-
-            //Assign Features to the accommodationList
-            for(var j = 0; j < features.length; j++) 
-                if(this.accommodationList[i].accommodationID == features[j].accommodationID) 
-                    this.accommodationList[i].features.push(features[j]);
-
-            //Assign rooms to the accommodationList
-            console.log("now assigning rooms");
-            for(var j = 0; j < rooms.length; j++) 
-                if(this.accommodationList[i].accommodationID == rooms[j].accommodationID) 
-                    this.accommodationList[i].room.push(rooms[j]);
-        }
-
-        //Obtain the cheapest room and set the price of the item
-        console.log("finding cheapest price");
-        for(var i = 0; i < this.accommodationList.length; i++) {
-            if(this.accommodationList[i].room[0] != null) {
-                console.log("Room price for 0 is defined")
-                var price = this.accommodationList[i].room[0].roomPrice;
-                
-                for(var j = 0; j < this.accommodationList[i].room.length; j++){
-                    if(price <= this.accommodationList[i].room[j].roomPrice) {
-                        price = this.accommodationList[i].room[j].roomPrice;
-                        break;
-                    }
-                }
-                this.accommodationList[i].pricePerNight = price;
-            } else {
-                this.accommodationList[i].pricePerNight = 0;
-            }
-        }
-
-        //Assigning the top 3 features of the accommodation
-        console.log("Assigning top features");
-        for(var i = 0; i < this.accommodationList.length; i++){
-            this.accommodationList[i].topFeatures = []; //initialise top feature array
-
-            //assign the first 3 features to the correct accommodation
-            for(var j = 0; j < 3; j++)
-                if(this.accommodationList[i].features[0] != null) 
-                    this.accommodationList[i].topFeatures.push(this.accommodationList[i].features[j]);
-        }
+            });
+        }); 
     }
 
     private checkLoad() : boolean {
