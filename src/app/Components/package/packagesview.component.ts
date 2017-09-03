@@ -79,8 +79,6 @@ export class PackagesComponent implements OnInit{
                 this.packageService.setData(this.packages);
                 this.packages = this.packageService.assignImages(this.imageService.getData())
                 this.packagesLoaded = true;
-                console.log("Images have been assigned, packages is now complete");
-                console.log(this.packages);
             });
         });               
     }

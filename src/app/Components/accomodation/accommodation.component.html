@@ -1,3 +1,14 @@
+<!-- Accommodation Component HTML
+    Contains all the html code for displaying an individual accommodation item on the page
+
+    this file contains two accommodaiton views defined by the Input() view
+    View 1 defines that it is a list view
+    View 2 defines that it is a grid view
+
+    This file also contains two popups;
+        view accommodaiton Dialog which shows more information for an accommodaiton
+        add Accommodaiton dialog which allows the user to select an accommodation room before adding to the package
+-->
 <ng-container *ngIf="view == 1">
     <div class="row item-container">
         <div (click)="open(accommodationDialog)" class="col-sm-3" style="cursor:pointer">

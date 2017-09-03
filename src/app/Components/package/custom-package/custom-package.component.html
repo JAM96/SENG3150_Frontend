@@ -345,7 +345,7 @@
                         <span class="text-xsm text-b text-nl">Food and Drinks</span>
                         <ng-container *ngFor="let food of custom.foodAndDrinks">
                             <a (click)="viewItem(2,null, food,null)" style="padding-left:5px"><span *ngIf="food.selectedDay == day" class="text-xsm">{{food.name}}</span></a>
-                            <span *ngIf="food.selectedDay == day" class="text-xsm text-nl text-ind">Time: {{food.selectedTime}}</span>
+                            <span *ngIf="food.selectedDay == day" class="text-xsm text-nl text-ind">Time: {{food.selectedTime.time}}</span>
                         </ng-container>
                         <hr style="padding: 0; margin: 0; width: 50%">
                     </div>

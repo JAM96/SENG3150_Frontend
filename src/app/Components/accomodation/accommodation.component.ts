@@ -1,3 +1,15 @@
+/*
+    Name : Accommodaiton Component
+    This component is in charge of displaying and handling an individual accommodation component
+    the accommodation data is passed in from the parent component which may be from the custom package or the accommodaiton view component
+
+    Inputs:
+        accommodation : all the individual component data
+        selectedAccommodation: the id of the currently selected accommodation
+        view: the type of view in which to display the item
+        duration: how long the package is lasting for
+*/
+
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import { Md2Dialog } from 'md2';
 
@@ -51,20 +63,21 @@ export class AccommodationComponent {
         this.dialogSelection = value;
     }
 
+    /**
+     * this sets the room option and adds it to the custom package
+     * @param room 
+     */
     private selectOption(room : Room) : void {
         this.packageService.setAccommodation(
             this.accommodation,
             room,
         );
-        
-
+    
         var price = room.roomPrice;
-        console.log("room price is: " + price)
         var packageCost = this.packageService.getPackageCost() + price * this.duration;
 
+        //update the package cost
         this.packageService.setPackageCost(packageCost, price * this.duration);
-        
-        console.info('[INFO] Added ', this.accommodation, ' to cart.');
     }
 
     private close(dialog: any) {

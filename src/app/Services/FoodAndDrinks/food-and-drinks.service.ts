@@ -85,8 +85,6 @@ export class FoodAndDrinksService {
             for(var j = 0; j < this.foodAndDrinks[i].starRating; j++) {
                 this.foodAndDrinks[i].stars[j] = j;
             }
-            console.log(this.foodAndDrinks[i].stars);
-
             //Assign the rating description for each foodAndDrinks
             switch(this.foodAndDrinks[i].userRating) {
                 case 1: this.foodAndDrinks[i].rating = "Bad"; break;
@@ -102,7 +100,6 @@ export class FoodAndDrinksService {
             for(var e = 0; e < this.foodAndDrinks[i].expenseRating; e++) {
                 this.foodAndDrinks[i].expense[e] = e;
             }
-            console.log(this.foodAndDrinks[i]);
         }
 
         //Assign Tags
@@ -146,14 +143,10 @@ export class FoodAndDrinksService {
         //assign empty image if there is no images for that foodAndDrinks
         for(var i = 0; i < this.foodAndDrinks.length; i++) {
             if(this.foodAndDrinks[i].images[0] == null) {
-                console.log("No images found");
                 var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', mainAssociatedItemPhoto: false};
                 this.foodAndDrinks[i].images[0] = img;
             } 
         }
-        console.log("Images have been assigned, foodAndDrinks is now complete");
-        console.log(this.foodAndDrinks);
-
 
         return this.foodAndDrinks;
     }

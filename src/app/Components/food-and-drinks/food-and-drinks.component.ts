@@ -76,7 +76,6 @@ export class FoodAndDrinksComponent {
             //if the user has selected to add to all days
             for(var i = 0; i < days.length; i++) {
                 //create a temp object and deep copy the foodAndDrinks object to it
-                console.log("creating a temp food and drinks");
                 var temp : FoodAndDrinks = Object.assign({}, this.foodAndDrinks);
 
                 //set the day and time selected to the temp object
