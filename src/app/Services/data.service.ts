@@ -51,7 +51,7 @@ export class DataService {
         url = url + '/fetchPremadePackageItems';
         break;
       case 'image':
-        url = url + '/image?';
+        url = url + '/fetchImage?imageId=';
         break;
     }
 

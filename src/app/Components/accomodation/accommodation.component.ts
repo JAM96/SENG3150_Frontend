@@ -7,6 +7,7 @@ import {Room} from '../../Objects/Accommodation/Room'
 
 //Custom Package Service
 import {CustomPackageService} from '../../Services/Package/custom-package.service';
+import {DataService} from '../../Services/data.service';
 
 @Component({
     moduleId: module.id,
@@ -30,6 +31,7 @@ export class AccommodationComponent {
 
 
     constructor(
+        private data : DataService,
         private packageService : CustomPackageService,
     ) {}
 

@@ -5,119 +5,13 @@
             ACCOMMODATION VIEW
 
     ============================================-->
-    <ng-container *ngIf="view == 1 && checkLoad()">
+    <ng-container *ngIf="checkLoad()">
         <div  *ngFor="let accommodation of accommodationList" class="row item-container"><!-- accommodation i --> 
-            <div (click)="viewItem(1,accommodation, null, null, accommodationDialog)" class="col-md-3" style="cursor:pointer">
-                <div class="img">
-                    <ng-container *ngIf="accommodation.images[0].fileName != 'none'">
-                        <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="100%"/>
-                        <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
-                    </ng-container>
-
-                    <ng-container *ngIf="accommodation.images[0].fileType == 'none'">
-                        <img src="assets/image/imagenotfound.png" width="100%" height="100%"/>
-                        <div *ngIf="accommodation.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div>
-                    </ng-container>
-                </div>
-            </div><!-- image -->
-            <div class="col-md-9 item-content"><!-- content -->
-                <div class="row">
-                    <div class="col-md-9"><!-- accommodation name -->
-                        <h3 class="text-lg text-b text-primary">
-                            <a (click)="viewItem(1,accommodation, null, null, accommodationDialog)" class="text-hover-primary">{{accommodation.accommodationName}}</a>
-                            <span *ngFor="let star of accommodation.accommodationStars" class="text-smd text-primary glyphicon glyphicon-star"></span>
-                        </h3>
-                        <a class="text-hover-k text-sm text-k">
-                            <span class="text-u">{{accommodation.accommodationSuburb}}</span>
-                            <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </div><!-- accommodation name end-->
-
-                    <div *ngIf="accommodation.accommodationUserRating != -1" class="col-md-3 item-rating"><!-- rating -->
-                        <span class="text-lg text-w text-hide">{{accommodation.accommodationRating}}</span>
-                        <span class="text-sm text-w text-hide">{{accommodation.accommodationUserRating}}/5</span>
-                        <a>
-                            <span class="text-u text-hover-k text-xsm text-g text-nl">3782 reviews</span>
-                        </a>
-                    </div><!-- rating -->
-                </div>
-
-                <div class="row item-features">
-                    <span class="text-sm text-k">Features:</span>
-                    <span *ngFor="let feature of accommodation.topFeatures" class="text-xsm text-k">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        {{feature.feature}}
-                    </span>
-                </div>
-
-                <div class="row item-bottom">
-                    <div class="col-md-8">
-                        <span class="text-xlg text-b text-primary">AUD $</span>
-                        <span class="text-xlg text-b text-primary">{{accommodation.pricePerNight}}</span>
-                        <span class="text-md text-primary glyphicon glyphicon-triangle-left"></span>
-                        <span class="text-md text-k glyphicon glyphicon-bed">{{accommodation.numBeds}}</span>
-                        <span class="text-md text-k glyphicon glyphicon-user">{{accommodation.numPeople}}</span>
-                    </div>
-                    <div class="col-md-4"><!-- Add to cart -->
-                        <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
-                        <ng-template #accNormal>
-                            <button (click)="addAccommodation(accommodation)" type="button" md-button style="float: right">Select</button>
-                        </ng-template>
-                        <ng-template #accSelected>
-                            <button disabled type="button" md-button style="float: right">Selected</button>
-                        </ng-template>
-                    </div>
-                </div>
-            </div><!--content -->
+            <accommodation [accommodation]="accommodation" [view]="view"></accommodation>
         </div>
     </ng-container>
 
-    <ng-container *ngIf="view == 2 && checkLoad()">
-        <div class="row">
-            <div class="col-sm-3 item-container-grid" *ngFor="let accommodation of accommodationList">
-                <div class="row" style="margin-bottom: 30px">
-                    <div (click)="viewItem(1,accommodation, null, null, accommodationDialog)" class="col-md-12" style="cursor: pointer">
-                        <div class="img">
-                            <div *ngIf="accommodation.bestSeller" class="hotelAdvert">Best Seller</div>
-                            <img src="assets\image\package-item\hotel\{{accommodation.pictureURL}}" width="100%" height="100%"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="text-lg text-b text-primary">
-                            <a (click)="viewItem(1,accommodation, null, null, accommodationDialog)" class="text-hover-primary">{{accommodation.accommodationName}}</a>
-                            <span *ngFor="let star of accommodation.accommodationStars" class="text-smd text-primary glyphicon glyphicon-star"></span>
-                        </h3>
-                        <a class="text-hover-k text-sm text-k">
-                            <span class="text-u">{{accommodation.accommodationSuburb}}</span>
-                            <span class="glyphicon glyphicon-globe"></span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="text-lg text-b text-primary">AUD $</span>
-                        <span class="text-lg text-b text-primary">{{accommodation.pricePerNight}}</span>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12"><!-- Add to cart -->
-                        <ng-container *ngIf="accommodation.accommodationID == selectedAccommodation; then accSelected else accNormal"></ng-container>
-                        <ng-template #accNormal>
-                            <button (click)="addAccommodation(accommodation)" type="button" md-button style="float: right">Select</button>
-                        </ng-template>
-                        <ng-template #accSelected>
-                            <button disabled type="button" md-button style="float: right">Selected</button>
-                        </ng-template>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-
+    
     <div *ngIf="!checkLoad()" style="width: 100%; text-align: center">
         <h3>Please wait while accommodation loads...</h3>
         
