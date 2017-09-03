@@ -56,8 +56,6 @@ import { AppComponent }  from '../Components/app.component';
     import {
       CustomPackageComponent, 
       BudgetChangeComponent,
-      AddFoodAndDrinksComponent,
-      AddActivityComponent
     } from '../Components/package/custom-package/custom-package.component';
     import {ActivityComponent} from '../Components/activities/activity.component';
     import {FoodAndDrinksComponent} from '../Components/food-and-drinks/food-and-drinks.component';
@@ -137,8 +135,6 @@ import {AuthService} from '../auth/auth.service';
     //Custom Package Components
     ActivityComponent,
     AccommodationComponent,
-    AddFoodAndDrinksComponent,
-    AddActivityComponent,
     BudgetChangeComponent,
     CustomPackageComponent,
     FoodAndDrinksComponent,
@@ -149,8 +145,6 @@ import {AuthService} from '../auth/auth.service';
     ],
   entryComponents: [
     BudgetChangeComponent,
-    AddFoodAndDrinksComponent,
-    AddActivityComponent,
     notificationsPopupComponent
   ],
   bootstrap: [ 

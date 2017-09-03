@@ -120,7 +120,6 @@ export class AccommodationService {
             for(var j = 0; j < this.accommodation[i].accommodationStarRating; j++) {
                 this.accommodation[i].accommodationStars[j] = j;
             }
-            console.log(this.accommodation[i].accommodationStars);
 
             //Assign the rating description for each accommodation
             switch(this.accommodation[i].accommodationUserRating) {
@@ -140,25 +139,20 @@ export class AccommodationService {
             this.accommodation[i].features = [];
             this.accommodation[i].room = [];
             
-            console.log("initialising done, now assiging features");
-
             //Assign Features to the accommodation
             for(var j = 0; j < this.features.length; j++) 
                 if(this.accommodation[i].accommodationID == this.features[j].accommodationID) 
                     this.accommodation[i].features.push(this.features[j]);
 
             //Assign rooms to the accommodation
-            console.log("now assigning rooms");
             for(var j = 0; j < this.room.length; j++) 
                 if(this.accommodation[i].accommodationID == this.room[j].accommodationID) 
                     this.accommodation[i].room.push(this.room[j]);
         }
 
         //Obtain the cheapest room and set the price of the item
-        console.log("finding cheapest price");
         for(var i = 0; i < this.accommodation.length; i++) {
             if(this.accommodation[i].room[0] != null) {
-                console.log("Room price for 0 is defined")
                 var price = this.accommodation[i].room[0].roomPrice;
                 
                 for(var j = 0; j < this.accommodation[i].room.length; j++){
@@ -174,7 +168,6 @@ export class AccommodationService {
         }
 
         //Assigning the top 3 features of the accommodation
-        console.log("Assigning top features");
         for(var i = 0; i < this.accommodation.length; i++){
             this.accommodation[i].topFeatures = []; //initialise top feature array
 
@@ -202,15 +195,10 @@ export class AccommodationService {
         //assign empty image if there is no images for that accommodation
         for(var i = 0; i < this.accommodation.length; i++) {
             if(this.accommodation[i].images[0] == null) {
-                console.log("No images found");
                 var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', mainAssociatedItemPhoto: false};
                 this.accommodation[i].images[0] = img;
             } 
         }
-        console.log("Images have been assigned, accommodation is now complete");
-        console.log(this.accommodation);
-
-
         return this.accommodation;
     }
 }

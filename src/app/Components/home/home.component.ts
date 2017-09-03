@@ -92,14 +92,6 @@ export class HomeComponent{
      //                        endDate: {year: 2017, month: 8, day: 7}};
 
      onDateRangeChanged(event: IMyDateRangeModel) {
-        console.log('onDateRangeChanged(): Begin date: ', event.beginDate, ' End date: ', event.endDate);
-        console.log('onDateRangeChanged(): Formatted: ', event.formatted);
-        console.log('onDateRangeChanged(): BeginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
-        
-        //console log of javascript date
-        console.log('JS Start Date: ', event.beginJsDate);
-        console.log('JS End Date: ', event.endJsDate);
-
         this.checkin = event.beginJsDate;
         this.checkout = event.endJsDate;
     }
@@ -133,9 +125,7 @@ export class HomeComponent{
     //Send the data to the custom-package service
     //Navigate to the next page
     submitForm() {
-        console.log(this.checkin);
-
-            this.sendLog();
+            //this.sendLog();
 
             this.packageService.setInitialPackageData(
                 this.value,

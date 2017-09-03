@@ -9,8 +9,12 @@ import { Injectable } from '@angular/core';
 @Injectable() 
 export class DataService {
   private navigationSelection : number = 1;
+
+  //###############################################################
+  
   private apiUrl: string = 'http://localhost:8080'; //Api Location
-  //apiUrl : string = "http://10.0.0.4:8080";
+
+  //###############################################################
   
   //Passes in the service name and returns the full url
   getApiUrl(service : String) {
@@ -54,16 +58,15 @@ export class DataService {
         url = url + '/fetchImage?imageId=';
         break;
     }
-
-    console.log(url);
+    
     return url;
   }
 
-  setNavigation(selection : number) : void {
+  public setNavigation(selection : number) : void {
     this.navigationSelection = selection;
   }
 
-  getNavigation() : number {
+  public getNavigation() : number {
     return this.navigationSelection;
   }
 }

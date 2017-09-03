@@ -69,14 +69,10 @@ export class PackageService {
         //assign empty image if there is no images for that packages
         for(var i = 0; i < this.packages.length; i++) {
             if(this.packages[i].images[0] == null) {
-                console.log("No images found");
                 var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', mainAssociatedItemPhoto: false};
                 this.packages[i].images[0] = img;
             } 
         }
-        console.log("Images have been assigned, packages is now complete");
-        console.log(this.packages);
-
 
         return this.packages;
     }

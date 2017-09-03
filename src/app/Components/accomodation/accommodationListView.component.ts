@@ -21,9 +21,6 @@ export class AccommodationListComponent {
     private view : number = 1;
     private accommodationList : Accommodation[];
 
-    private imagesLoaded : boolean = false;
-    private accommodationLoaded : boolean = false;
-
     constructor(
         private data : DataService, 
         private accommodationService : AccommodationService,
@@ -48,7 +45,6 @@ export class AccommodationListComponent {
 
     private checkLoad() : boolean {
         if(this.imageService.isLoaded() && this.accommodationService.isAccommodationLoaded()) {
-           // this.completeLoading();
             return true;
         } else {
             return false;

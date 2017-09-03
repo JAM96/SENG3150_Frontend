@@ -130,28 +130,19 @@ export class CustomPackageComponent implements OnInit{
         }
 
     ngOnInit() {
-        console.log('[INFO] Custom package creation form is initialising...')
         //Grab the data entered from the initial form (home page)
         this.custom = this.packageService.getPackage();
-        console.log("Imported Package: " + this.custom);
-        
-        // if(this.custom.checkin == null) {
-        //     console.log("Invalid object");
-        //     this.router.navigate(['/']);
-        // }
 
-        this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
-        this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
+        //this.custom.checkin = new Date('February 4, 2016 10:13:00'); //TEMP While testing module
+        //this.custom.checkout = new Date('February 6, 2016 10:13:00'); //as above
 
         if(this.custom.navigation == null) {
-            console.log("Setting up custom package for the first time");
             this.selected = 1;
             this.selectedDay = 1;
             this.travelValue = 'No'
             this.budget = this.custom.budget;
             this.custom.packageCost = 0; 
         } else {
-            console.log("Package is already created");
             this.selected = this.custom.navigation;
             this.selectedDay = this.custom.aSelectedDay;
             this.travelValue = this.custom.requireTravel;
@@ -183,7 +174,6 @@ export class CustomPackageComponent implements OnInit{
 
         if(this.custom.accommodation == null) {
             var tempAcc : Accommodation = new Accommodation;
-            console.log("accommodation not defined");
             this.custom.accommodation = tempAcc;
             this.custom.accommodation.accommodationName = "";
         }
@@ -200,7 +190,7 @@ export class CustomPackageComponent implements OnInit{
     }
 
     //Calculates the duration of the selected holiday
-    calculateDuration(checkin : Date, checkout : Date) {
+    private calculateDuration(checkin : Date, checkout : Date) {
         /*  checks if the date has been entered or not. By Default it will be null, this will prevent
             acccess to the form via a refresh
         */
@@ -209,9 +199,6 @@ export class CustomPackageComponent implements OnInit{
         }
 
         var one_day=1000*60*60*24;  //used to convert the time calculated into days
-
-        console.log('[INFO] Checkin date: ', new Date(checkout));   //TODO: REMOVE
-        console.log('[INFO] Checkout date: ', new Date(checkin));   //TODO: REMOVE
 
         //duration is a temp variable which calculates the duration of the trip
         var duration = new Date(checkout).getTime() - new Date(checkin).getTime();
@@ -226,17 +213,14 @@ export class CustomPackageComponent implements OnInit{
           e.g cannot do *ngFor="let x = 1; x <= duration ..."
           ngFor can only loop through arrays.
     */
-    setDaysArray(duration : number) : void{
-        console.log('[INFO] Duration: ', duration);
-
+    private setDaysArray(duration : number) : void{
         for(let i = 1; i <= duration; i++) {
             this.days.push(i);
             this.custom.days.push(i);
         }
-        console.log('[INFO] Days Array: ', this.days);
     }
 
-    changeView(value : number) : void {
+    private changeView(value : number) : void {
         this.view = value;
         
         switch(value) {
@@ -245,7 +229,7 @@ export class CustomPackageComponent implements OnInit{
         }
     }
 
-    changeShow(value : number) {
+    private  changeShow(value : number) {
         this.show = value;
 
         switch(value) {
@@ -258,7 +242,7 @@ export class CustomPackageComponent implements OnInit{
         }
     }
 
-    checkShow(a : Accommodation, f : FoodAndDrinks, ac : Activity, select : number) : boolean{
+    private checkShow(a : Accommodation, f : FoodAndDrinks, ac : Activity, select : number) : boolean{
         switch(select) {
             case 1: 
                 //accommodation
@@ -310,32 +294,32 @@ export class CustomPackageComponent implements OnInit{
         return false;
     }
 
-    changeSort(value : string) : void {
+    private changeSort(value : string) : void {
         this.sortValue = value;
     }
 
-    open(dialog: Md2Dialog) {
+    private open(dialog: Md2Dialog) {
         dialog.open();
     }
 
-    close(dialog: any) {
+    private close(dialog: any) {
         dialog.close();
       }
 
     
 
-    startLoading() {
+      private startLoading() {
         this.slimLoadingBarService.start();
     }
-    stopLoading() {
+    private stopLoading() {
         this.slimLoadingBarService.stop();
     }
-    completeLoading() {
+    private completeLoading() {
         this.slimLoadingBarService.complete();
     }
 
     //Navigation
-    setNavigation(selection : number) {
+    private setNavigation(selection : number) {
         /*
             When the user has selected the tab, it will then load the data.
             This will prevent long waiting time initially while the page is loading
@@ -344,14 +328,13 @@ export class CustomPackageComponent implements OnInit{
         this.selected = selection;
         this.show = 1;
         this.showString = "All";
-        console.log('[INFO] SELECTED VALUE: ', selection);
     }
 
-    setDays(selection : number) {
+    private setDays(selection : number) : void {
         this.selectedDay = selection;
     }
 
-    expand(value : number) {
+    private expand(value : number) : void {
         if(this.cartForm[value-1].condition == 'none') {
             this.cartForm[value-1].condition = 'block';
         } else {
@@ -361,294 +344,20 @@ export class CustomPackageComponent implements OnInit{
 
     
 
-    setFood(foodAndDrinks : FoodAndDrinks, setForAll : boolean) {
-        //this.foodForm
-        var selectedTime : string;
-
-        let dialogRef = this.dialog.open(AddFoodAndDrinksComponent, {
-            data: foodAndDrinks
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log("selected time is: ");
-            console.log(result);    
-
-            if(result != null) {
-                //If user has selected a value then continue adding item to the package
-                if(setForAll) {
-                    //if the user has selected to add to all days
-                    for(var i = 0; i < this.days.length; i++) {
-                        //create a temp object and deep copy the foodAndDrinks object to it
-                        var temp = Object.assign({}, foodAndDrinks);
-
-                        //set the day and time selected to the temp object
-                        temp.selectedDay = this.days[i];
-                        temp.selectedTime = result;
-
-                        //push to the foodAndDrinks array
-                        this.custom.foodAndDrinks.push(temp);
-                        this.custom.selectedFoodAndDrinks.push(temp.foodAndDrinksID+this.days[i]);
-                    }
-                } else {
-                    //user has selected to add to day selected
-                    foodAndDrinks.selectedDay = this.selectedDay;
-                    foodAndDrinks.selectedTime = result;
-                    this.custom.foodAndDrinks.push(foodAndDrinks);
-                    this.custom.selectedFoodAndDrinks.push(foodAndDrinks.foodAndDrinksID+this.selectedDay);
-                }
-
-                console.info('[INFO] Added ', this.custom.foodAndDrinks, ' to cart.');
-            }
-        });
-    }
-
-    removeFood(foodAndDrinks : FoodAndDrinks, setForAll : boolean) {
-        if(setForAll) {
-            var temp = this.custom.foodAndDrinks.filter(function(el) {
-                return el.foodAndDrinksID !== foodAndDrinks.foodAndDrinksID;
-            })
-
-            this.custom.foodAndDrinks = temp;
-
-            for(var i = 0; i < this.custom.selectedFoodAndDrinks.length; i++) {
-                for(var j = 1; j <= this.days.length; j++) {
-                    if(this.custom.selectedFoodAndDrinks[i] == foodAndDrinks.foodAndDrinksID + j){
-                        this.custom.selectedFoodAndDrinks.splice(j, 1);
-                    }
-                }
-            }
-        } else {
-            for(var i = 0; i < this.custom.foodAndDrinks.length; i++) {
-                if(this.custom.foodAndDrinks[i].foodAndDrinksID == foodAndDrinks.foodAndDrinksID
-                    && this.custom.foodAndDrinks[i].selectedDay == this.selectedDay
-                ) {
-                    this.custom.foodAndDrinks.splice(i, 1);
-                }
-            }
-
-            for(var j = 0; j < this.custom.selectedFoodAndDrinks.length; j++) {
-                if(this.custom.selectedFoodAndDrinks[j] == foodAndDrinks.foodAndDrinksID + this.selectedDay){
-                    this.custom.selectedFoodAndDrinks.splice(j, 1);
-                }
-            }
-        }
-
-        console.log(this.custom.foodAndDrinks);
-    }
-    
-    
-
-    setActivity(activity : Activity) {
-        //this.foodForm
-        var selectedTime : string;
-
-        let dialogRef = this.dialog.open(AddActivityComponent, {
-            data: activity
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log("selected time is: ");
-            console.log(result);  
-              
-            if(result != null) {
-                activity.selectedDay = this.selectedDay;
-                activity.selectedTime = result;
-                this.custom.activity.push(activity);
-                this.custom.selectedActivities.push(activity.activityID+this.selectedDay);
-
-                this.custom.packageCost = this.custom.packageCost + activity.price;
-
-                console.info('[INFO] Added ', this.custom.activity, ' to cart.');
-            }
-        });
-    }
-
-    removeActivity(activity : Activity) {
-        for(var i = 0; i < this.custom.activity.length; i++) {
-            if(this.custom.activity[i].activityID == activity.activityID
-                && this.custom.activity[i].selectedDay == this.selectedDay
-            ) {
-                this.custom.activity.splice(i, 1);
-            }
-        }
-
-        for(var j = 0; j < this.custom.selectedActivities.length; j++) {
-            if(this.custom.selectedActivities[j] == activity.activityID + this.selectedDay){
-                this.custom.selectedActivities.splice(j, 1);
-            }
-        }
-        
-        this.custom.packageCost = this.custom.packageCost - activity.price;
-        console.log(this.custom.activity);
-    }
-
-    
-
     /**
      * LOADING DATA
     */
 
     private fetch() : void {
-        console.log("fetching the images from the app.component");
+        this.imageList = this.imageService.getData();
+        this.accommodationList = this.accommodationService.getAccommodation();
+        this.activities = this.activityService.getData();
+        this.foodAndDrinks = this.foodAndDrinksService.getData();
 
-        if(!this.imageService.isLoaded()) {
-            this.imageService.fetchImages()
-                .subscribe(
-                    res => {
-                        this.imageService.setData(res);
-
-                        console.log("Images have loaded");
-                        console.log(this.imageService.getData());
-                        this.imageService.setLoaded(true);
-                
-                        this.fetchAccommodation();
-                    },
-                    err => {
-                        console.log("Connection Failed: Could not retrieve images");
-                    }
-                );
-        } else {
-            this.fetchAccommodation();
-        }
-    }
-
-    
-    private fetchAccommodation() : void {
-        if(!this.accommodationService.isAccommodationLoaded()) {
-            this.accommodationService.fetchAccommodation()
-            .subscribe(
-                res => {
-                    this.accommodationService.setAccommodation(res);
-                    console.log("Accommodation is now loaded...");
-
-                    //Get Accommodation features
-                    this.accommodationService.fetchAccommodationFeatures()
-                        .subscribe(
-                            res => {
-                            this.accommodationService.setFeatures(res);
-                            console.log("Accommodation features are now loaded.");
-
-                            //Get accommodation rooms
-                            this.accommodationService.fetchAccommodationRooms()
-                                .subscribe(
-                                    res => {
-                                        this.accommodationService.setRooms(res);
-                                        console.log("Accommodation rooms are now loaded");
-
-                                        //Get accommodation room features
-                                        this.accommodationService.fetchAccommodationRoomFeatures()
-                                            .subscribe(
-                                                res => {
-                                                    this.accommodationService.setRoomFeatures(res);
-                                                    console.log("Accommodation room features are now loaded");
-
-                                                    //assign features and rooms to the accommodation and initialise the accommodation
-                                                    this.accommodationList = this.accommodationService.assign();
-                                                    this.accommodationList = this.accommodationService.assignImages(this.imageService.getData());
-
-                                                    //set loaded
-                                                    this.accommodationService.setAccommodationLoaded(true);
-
-                                                    this.fetchFoodAndDrinks();
-                                                },
-                                                err => {
-                                                    console.log("Connection Failed: Could not retrieve accommodation room features");
-                                                }
-                                            );
-                                    },
-                                    err => {
-                                        console.log("Connection Failed: Could not retrieve accommodation rooms");
-                                    }
-                                );
-                            },
-                            err => {
-                            }
-                        );
-                },
-                err => {
-                    console.log("Connection Failed: Could not retrieve accommodation");
-                }
-            );
-        } else {
-            this.accommodationList = this.accommodationService.getAccommodation();
-            this.fetchFoodAndDrinks();
-        }
-    }
-    
-    private fetchFoodAndDrinks() : void {   
-        if(!this.foodAndDrinksService.isLoaded()) {
-            this.foodAndDrinksService.fetchFoodAndDrinks()
-            .subscribe(
-                res => {
-                    this.foodAndDrinksService.setFoodAndDrinks(res);
-
-                    //get tags
-                    this.tagService.fetchTags()
-                        .subscribe(
-                            res => {
-                                this.foodAndDrinksService.setTags(res);
-                                console.log("Tags for the food and drinks have now been loaded")
-
-                                //get booking times
-                                this.foodAndDrinksService.fetchFoodAndDrinksTime()
-                                    .subscribe(
-                                        res => {
-                                            this.foodAndDrinksService.setBookingTimes(res);
-                                            console.log("Booking times for the food and drinks have now been loaded");
-
-                                            //assign times and tags to the food and drinks
-                                            this.foodAndDrinks = this.foodAndDrinksService.assign();
-                                            this.foodAndDrinks = this.foodAndDrinksService.assignImages(this.imageService.getData());
-
-                                            //set loaded
-                                            this.foodAndDrinksService.setLoaded(true);
-                                            this.fetchActivities();
-                                        },
-                                        err => {
-                                            console.log("Connection Failed: Could not retrieve booking times");
-                                        }
-                                    );
-                            }, 
-                            err => {
-                                console.log("Connection Failed: Could not retrieve tags");
-                            }
-                        );
-                },
-                err => {
-                    console.log("Connection Failed: Could not retrieve food and drinks");
-                }
-            );
-        } else {
-            this.foodAndDrinks = this.foodAndDrinksService.getData();
-            this.fetchActivities();
-        }
-
-        this.custom.selectedFoodAndDrinks = [];
-    }
-    
-    private fetchActivities() : void {
-        if(this.activityService.isLoaded()) {
-            this.activityService.fetchActivities()
-                .subscribe(
-                    res => {
-                        this.activityService.setData(res);
-                        this.activities = this.activityService.getData();
-                        console.log("activities have been loaded");
-
-                        //assign images
-                        var temp = this.activityService.assignImages(this.imageService.getData());
-                        //set loaded
-                        this.activityService.setLoaded(true);
-                    },
-                    err => {
-                        console.log("Connection Failed: Could not retrieve activities");
-                    }
-                );
-        } else {
-            this.activities = this.activityService.getData();
-        } 
-
+        this.custom.activity = [];
+        this.custom.foodAndDrinks = [];
         this.custom.selectedActivities = [];
+        this.custom.selectedFoodAndDrinks = [];
     }
 
     private checkLoad() : boolean {
@@ -667,8 +376,6 @@ export class CustomPackageComponent implements OnInit{
     }
 
     canDeactivate(){ 
-        console.log('i am navigating away');
-        console.log(this.custom.checkin);
         //check if user wants to navigate away
         if(this.custom.checkin != null) {
             this.saveForm();
@@ -689,9 +396,7 @@ export class CustomPackageComponent implements OnInit{
 
         this.packageService.setPackage(this.custom);
 
-        sessionStorage.setItem('packageForm', JSON.stringify(this.custom));
-
-        console.log("Form Saved");
+        //sessionStorage.setItem('packageForm', JSON.stringify(this.custom));
     }
 
     fillDropOff() {
@@ -704,29 +409,28 @@ export class CustomPackageComponent implements OnInit{
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log("result is : " + result);
             this.budget = result;
         });
     }
 
-    createPDF(){
-        let printContents, popupWin;
-        printContents = document.getElementById('cart').innerHTML;
-        popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
-        popupWin.document.open();
-        popupWin.document.write(`
-          <html>
-            <head>
-              <title>Print tab</title>
-              <style>
-              //........Customized style.......
-              </style>
-            </head>
-        <body onload="window.print();window.close()">${printContents}</body>
-          </html>`
-        );
-        popupWin.document.close();
-    }
+    // createPDF(){
+    //     let printContents, popupWin;
+    //     printContents = document.getElementById('cart').innerHTML;
+    //     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    //     popupWin.document.open();
+    //     popupWin.document.write(`
+    //       <html>
+    //         <head>
+    //           <title>Print tab</title>
+    //           <style>
+    //           //........Customized style.......
+    //           </style>
+    //         </head>
+    //     <body onload="window.print();window.close()">${printContents}</body>
+    //       </html>`
+    //     );
+    //     popupWin.document.close();
+    // }
 
     sortData(sort: Sort) {
     //     const data = this.viewAccommodation.room.slice();
@@ -747,9 +451,10 @@ export class CustomPackageComponent implements OnInit{
        }
 }
 
-function compare(a, b, isAsc) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-  }
+// function compare(a, b, isAsc) {
+//     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+//   }
+
 /*
 ###################################################################################################################################
 ###################################################################################################################################
@@ -777,53 +482,5 @@ export class BudgetChangeComponent{
     constructor (public dialogRef: MdDialogRef<BudgetChangeComponent>,
                 @Inject(MD_DIALOG_DATA) public data: any) {
                     this.value = data;
-                    console.log("imported value: " + this.value)
                 }
-}
-
-
-@Component({
-    moduleId: module.id,
-    selector: 'AddFoodAndDrinksComponent',
-    templateUrl: 'AddFoodAndDrinksComponent.html'
-})
-export class AddFoodAndDrinksComponent{
-    foodAndDrinks : FoodAndDrinks;
-
-    constructor (public dialogRef: MdDialogRef<AddFoodAndDrinksComponent>,
-                @Inject(MD_DIALOG_DATA) public data: any) {
-                    this.foodAndDrinks = data;
-                    console.log("imported value to dialog is: ");
-                    console.log(this.foodAndDrinks);
-                }
-
-    checkMenuType() : boolean {
-        for(var i = 0; i < this.foodAndDrinks.menuType.length; i++) {
-            if(this.foodAndDrinks.menuType[i].tagString == 'Bar') {
-                return true;
-            }
-        }
-
-        return false;
-    }
-}
-
-@Component({
-    moduleId: module.id,
-    selector: 'AddActivityComponent',
-    templateUrl: 'AddActivityComponent.html'
-})
-export class AddActivityComponent{
-    activity : Activity;
-    time : Date = new Date();
-
-    constructor (public dialogRef: MdDialogRef<AddActivityComponent>,
-                @Inject(MD_DIALOG_DATA) public data: any) {
-                    this.activity = data;
-                    console.log("imported value to dialog is: ");
-                    console.log(this.activity);
-                }
-    returnObj() : string{
-        return '' + this.time.getHours() + this.time.getMinutes();
-    }
 }

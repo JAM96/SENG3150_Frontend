@@ -50,12 +50,12 @@
                     <ng-container *ngIf="pItem">
                         <ng-container *ngIf="checkFood(); then add else remove"></ng-container>
                         <ng-template #add>
-                            <button type="button" md-button (click)="setFood(0)" style="float: right">Add</button>
-                            <button type="button" md-button (click)="setFood(1)" style="float: right">Add for all days</button>
+                            <button type="button" md-button (click)="setFood(false, addFood)" style="float: right">Add</button>
+                            <button type="button" md-button (click)="setFood(true, addFood)" style="float: right">Add for all days</button>
                         </ng-template>
                         <ng-template #remove>
-                            <button type="button" md-raised-button color='warn' (click)="removeFood(0)" style="float: right">Remove</button>
-                            <button type="button" md-raised-button color='warn' (click)="removeFood(1)" style="float: right; margin-right: 10px">Remove for all days</button>
+                            <button type="button" md-raised-button color='warn' (click)="removeFood(false)" style="float: right">Remove</button>
+                            <button type="button" md-raised-button color='warn' (click)="removeFood(true)" style="float: right; margin-right: 10px">Remove for all days</button>
                         </ng-template>
                     </ng-container>
                 </div>
@@ -105,12 +105,12 @@
                 <ng-container *ngIf="pItem">
                     <ng-container *ngIf="checkFood(foodAndDrinks); then add else remove"></ng-container>
                     <ng-template #add>
-                        <button type="button" md-button (click)="setFood(0)" style="float: right">Add</button>
-                        <button type="button" md-button (click)="setFood(1)" style="float: right">Add for all days</button>
+                        <button type="button" md-button (click)="setFood(false, addFood)" style="float: right">Add</button>
+                        <button type="button" md-button (click)="setFood(true, addFood)" style="float: right">Add for all days</button>
                     </ng-template>
                     <ng-template #remove>
-                        <button type="button" md-raised-button color='warn' (click)="removeFood(0)" style="float: right">Remove</button>
-                        <button type="button" md-raised-button color='warn' (click)="removeFood(1)" style="float: right; margin-right: 10px">Remove for all days</button>
+                        <button type="button" md-raised-button color='warn' (click)="removeFood(false)" style="float: right">Remove</button>
+                        <button type="button" md-raised-button color='warn' (click)="removeFood(true)" style="float: right; margin-right: 10px">Remove for all days</button>
                     </ng-template>
                 </ng-container>
             </div>
@@ -192,4 +192,16 @@
             </tr>
         </table>
     </div>
+</md2-dialog>
+
+<!-- Add Accommodation Dialog -->
+<md2-dialog #addFood [title]="'Select the time you want to book for'" style="background-color:black">
+    <button *ngFor="let time of foodAndDrinks.timeAvailable" md-button (click)="selectOption(time); close(addFood)">{{time.time}}</button>
+    
+    <ng-container *ngIf="checkMenuType()">
+        <button md-button md-dialog-close="anytime">Anytime</button>
+    </ng-container>
+    <div *ngIf="checkMenuType()">
+        Note: selecting anytime does not guarantee a space in the selected venue.
+    </div>   
 </md2-dialog>

@@ -29,19 +29,13 @@ export class AppComponent {
   }
 
   private fetchImages() : void {
-    console.log("fetching the images from the app.component");
     this.loadingMessage = "Loading (1/9): Images...";
-
 
     this.imageService.fetchImages()
       .subscribe(
         res => {
           this.imageService.setData(res);
-
-          console.log("Images have loaded");
-          console.log(this.imageService.getData());
           this.imageService.setLoaded(true);
-
           this.fetchAccommodation();
         },
         err => {
@@ -59,7 +53,6 @@ export class AppComponent {
       .subscribe(
         res => {
           this.accommodationService.setAccommodation(res);
-          console.log("Accommodation is now loaded...");
 
           //Get Accommodation features
           this.loadingMessage = "Loading (3/9): Accommodation Features...";
@@ -67,24 +60,21 @@ export class AppComponent {
             .subscribe(
               res => {
                 this.accommodationService.setFeatures(res);
-                console.log("Accommodation features are now loaded.");
-
+ 
                 //Get accommodation rooms
                 this.loadingMessage = "Loading (4/9): Accommodation Rooms...";
                 this.accommodationService.fetchAccommodationRooms()
                   .subscribe(
                     res => {
                       this.accommodationService.setRooms(res);
-                      console.log("Accommodation rooms are now loaded");
-
+      
                       //Get accommodation room features
                       this.loadingMessage = "Loading (5/9): Accommodation Room Features...";
                       this.accommodationService.fetchAccommodationRoomFeatures()
                         .subscribe(
                           res => {
                             this.accommodationService.setRoomFeatures(res);
-                            console.log("Accommodation room features are now loaded");
-
+        
                             //assign features and rooms to the accommodation and initialise the accommodation
                             var temp = this.accommodationService.assign();
                             temp = this.accommodationService.assignImages(this.imageService.getData());
@@ -124,8 +114,7 @@ export class AppComponent {
   }
 
   private fetchFoodAndDrinks() : void {
-    this.loadingMessage = "Loading (6/9): Food and Drinks...";   
-    
+
     this.foodAndDrinksService.fetchFoodAndDrinks()
       .subscribe(
         res => {
@@ -137,16 +126,14 @@ export class AppComponent {
             .subscribe(
               res => {
                 this.foodAndDrinksService.setTags(res);
-                console.log("Tags for the food and drinks have now been loaded")
-
+   
                 //get booking times
                 this.loadingMessage = "Loading (8/9): Food and Drink Booking Times...";
                 this.foodAndDrinksService.fetchFoodAndDrinksTime()
                   .subscribe(
                     res => {
                       this.foodAndDrinksService.setBookingTimes(res);
-                      console.log("Booking times for the food and drinks have now been loaded");
-
+          
                       //assign times and tags to the food and drinks
                       var temp = this.foodAndDrinksService.assign();
                       temp = this.foodAndDrinksService.assignImages(this.imageService.getData());
@@ -184,8 +171,6 @@ export class AppComponent {
       .subscribe(
         res => {
           this.activityService.setData(res);
-          console.log("activities have been loaded");
-
           //assign images
           var temp = this.activityService.assignImages(this.imageService.getData());
           //set loaded

@@ -65,10 +65,77 @@ export class CustomPackageService {
 
     public setPackageCost(cost : number, previousCost : number) : void {
         this.customPackage.packageCost = cost;
-        this.customPackage.previousSelectedAccommodation = previousCost;
+        if(previousCost != null) {
+            this.customPackage.previousSelectedAccommodation = previousCost;
+        }
     }
 
     public getPackageCost() : number {
         return this.customPackage.packageCost - this.customPackage.previousSelectedAccommodation;
+    }
+
+    public getDays() : number[] {
+        return this.customPackage.days;
+    }
+
+    public setFoodAndDrinks(foodAndDrinks : FoodAndDrinks, id : string) : void {
+        this.customPackage.foodAndDrinks.push(foodAndDrinks);
+        this.customPackage.selectedFoodAndDrinks.push(id);
+    }
+
+    public removeFood(setForAll : boolean, foodAndDrinks : FoodAndDrinks, selectedDay : number) : void {
+        if(setForAll) {
+            var temp = this.customPackage.foodAndDrinks.filter(function(el) {
+                return el.foodAndDrinksID !== foodAndDrinks.foodAndDrinksID;
+            })
+
+            this.customPackage.foodAndDrinks = temp;
+
+            for(var i = 0; i < this.customPackage.selectedFoodAndDrinks.length; i++) {
+                for(var j = 1; j <= this.customPackage.days.length; j++) {
+                    if(this.customPackage.selectedFoodAndDrinks[i] == foodAndDrinks.foodAndDrinksID + j){
+                        this.customPackage.selectedFoodAndDrinks.splice(j, 1);
+                    }
+                }
+            }
+        } else {
+            for(var i = 0; i < this.customPackage.foodAndDrinks.length; i++) {
+                if(this.customPackage.foodAndDrinks[i].foodAndDrinksID == foodAndDrinks.foodAndDrinksID
+                    && this.customPackage.foodAndDrinks[i].selectedDay == selectedDay
+                ) {
+                    this.customPackage.foodAndDrinks.splice(i, 1);
+                }
+            }
+
+            for(var j = 0; j < this.customPackage.selectedFoodAndDrinks.length; j++) {
+                if(this.customPackage.selectedFoodAndDrinks[j] == foodAndDrinks.foodAndDrinksID + selectedDay){
+                    this.customPackage.selectedFoodAndDrinks.splice(j, 1);
+                }
+            }
+        }
+
+    }
+
+    public setActivity(activity : Activity, id : string) {
+        this.customPackage.activity.push(activity);
+        this.customPackage.selectedActivities.push(id);
+    }
+
+    public removeActivity(activity : Activity, selectedDay : number) {
+        for(var i = 0; i < this.customPackage.activity.length; i++) {
+            if(this.customPackage.activity[i].activityID == activity.activityID
+                && this.customPackage.activity[i].selectedDay == selectedDay
+            ) {
+                this.customPackage.activity.splice(i, 1);
+            }
+        }
+
+        for(var j = 0; j < this.customPackage.selectedActivities.length; j++) {
+            if(this.customPackage.selectedActivities[j] == activity.activityID + selectedDay){
+                this.customPackage.selectedActivities.splice(j, 1);
+            }
+        }
+        
+        this.customPackage.packageCost = this.customPackage.packageCost - activity.price;
     }
 }

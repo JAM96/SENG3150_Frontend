@@ -26,7 +26,7 @@ export interface FoodAndDrinks {
     stars               :   number[];
     expense             :   number[];   //How many '$' to show
     
-    selectedTime        :   string;
+    selectedTime        :   BookingTime;
     selectedDay         :   number;
 
     rating              :   string; //'Okay', 'Good', 'Great', "Fabulous!"
