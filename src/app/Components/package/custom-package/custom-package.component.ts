@@ -361,129 +361,6 @@ export class CustomPackageComponent implements OnInit{
 
     
 
-    setFood(foodAndDrinks : FoodAndDrinks, setForAll : boolean) {
-        //this.foodForm
-        var selectedTime : string;
-
-        let dialogRef = this.dialog.open(AddFoodAndDrinksComponent, {
-            data: foodAndDrinks
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log("selected time is: ");
-            console.log(result);    
-
-            if(result != null) {
-                //If user has selected a value then continue adding item to the package
-                if(setForAll) {
-                    //if the user has selected to add to all days
-                    for(var i = 0; i < this.days.length; i++) {
-                        //create a temp object and deep copy the foodAndDrinks object to it
-                        var temp = Object.assign({}, foodAndDrinks);
-
-                        //set the day and time selected to the temp object
-                        temp.selectedDay = this.days[i];
-                        temp.selectedTime = result;
-
-                        //push to the foodAndDrinks array
-                        this.custom.foodAndDrinks.push(temp);
-                        this.custom.selectedFoodAndDrinks.push(temp.foodAndDrinksID+this.days[i]);
-                    }
-                } else {
-                    //user has selected to add to day selected
-                    foodAndDrinks.selectedDay = this.selectedDay;
-                    foodAndDrinks.selectedTime = result;
-                    this.custom.foodAndDrinks.push(foodAndDrinks);
-                    this.custom.selectedFoodAndDrinks.push(foodAndDrinks.foodAndDrinksID+this.selectedDay);
-                }
-
-                console.info('[INFO] Added ', this.custom.foodAndDrinks, ' to cart.');
-            }
-        });
-    }
-
-    removeFood(foodAndDrinks : FoodAndDrinks, setForAll : boolean) {
-        if(setForAll) {
-            var temp = this.custom.foodAndDrinks.filter(function(el) {
-                return el.foodAndDrinksID !== foodAndDrinks.foodAndDrinksID;
-            })
-
-            this.custom.foodAndDrinks = temp;
-
-            for(var i = 0; i < this.custom.selectedFoodAndDrinks.length; i++) {
-                for(var j = 1; j <= this.days.length; j++) {
-                    if(this.custom.selectedFoodAndDrinks[i] == foodAndDrinks.foodAndDrinksID + j){
-                        this.custom.selectedFoodAndDrinks.splice(j, 1);
-                    }
-                }
-            }
-        } else {
-            for(var i = 0; i < this.custom.foodAndDrinks.length; i++) {
-                if(this.custom.foodAndDrinks[i].foodAndDrinksID == foodAndDrinks.foodAndDrinksID
-                    && this.custom.foodAndDrinks[i].selectedDay == this.selectedDay
-                ) {
-                    this.custom.foodAndDrinks.splice(i, 1);
-                }
-            }
-
-            for(var j = 0; j < this.custom.selectedFoodAndDrinks.length; j++) {
-                if(this.custom.selectedFoodAndDrinks[j] == foodAndDrinks.foodAndDrinksID + this.selectedDay){
-                    this.custom.selectedFoodAndDrinks.splice(j, 1);
-                }
-            }
-        }
-
-        console.log(this.custom.foodAndDrinks);
-    }
-    
-    
-
-    setActivity(activity : Activity) {
-        //this.foodForm
-        var selectedTime : string;
-
-        let dialogRef = this.dialog.open(AddActivityComponent, {
-            data: activity
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log("selected time is: ");
-            console.log(result);  
-              
-            if(result != null) {
-                activity.selectedDay = this.selectedDay;
-                activity.selectedTime = result;
-                this.custom.activity.push(activity);
-                this.custom.selectedActivities.push(activity.activityID+this.selectedDay);
-
-                this.custom.packageCost = this.custom.packageCost + activity.price;
-
-                console.info('[INFO] Added ', this.custom.activity, ' to cart.');
-            }
-        });
-    }
-
-    removeActivity(activity : Activity) {
-        for(var i = 0; i < this.custom.activity.length; i++) {
-            if(this.custom.activity[i].activityID == activity.activityID
-                && this.custom.activity[i].selectedDay == this.selectedDay
-            ) {
-                this.custom.activity.splice(i, 1);
-            }
-        }
-
-        for(var j = 0; j < this.custom.selectedActivities.length; j++) {
-            if(this.custom.selectedActivities[j] == activity.activityID + this.selectedDay){
-                this.custom.selectedActivities.splice(j, 1);
-            }
-        }
-        
-        this.custom.packageCost = this.custom.packageCost - activity.price;
-        console.log(this.custom.activity);
-    }
-
-    
-
     /**
      * LOADING DATA
     */
@@ -623,6 +500,7 @@ export class CustomPackageComponent implements OnInit{
             this.fetchActivities();
         }
 
+        this.custom.foodAndDrinks = [];
         this.custom.selectedFoodAndDrinks = [];
     }
     
@@ -648,6 +526,7 @@ export class CustomPackageComponent implements OnInit{
             this.activities = this.activityService.getData();
         } 
 
+        this.custom.activity = [];
         this.custom.selectedActivities = [];
     }
 
@@ -779,51 +658,4 @@ export class BudgetChangeComponent{
                     this.value = data;
                     console.log("imported value: " + this.value)
                 }
-}
-
-
-@Component({
-    moduleId: module.id,
-    selector: 'AddFoodAndDrinksComponent',
-    templateUrl: 'AddFoodAndDrinksComponent.html'
-})
-export class AddFoodAndDrinksComponent{
-    foodAndDrinks : FoodAndDrinks;
-
-    constructor (public dialogRef: MdDialogRef<AddFoodAndDrinksComponent>,
-                @Inject(MD_DIALOG_DATA) public data: any) {
-                    this.foodAndDrinks = data;
-                    console.log("imported value to dialog is: ");
-                    console.log(this.foodAndDrinks);
-                }
-
-    checkMenuType() : boolean {
-        for(var i = 0; i < this.foodAndDrinks.menuType.length; i++) {
-            if(this.foodAndDrinks.menuType[i].tagString == 'Bar') {
-                return true;
-            }
-        }
-
-        return false;
-    }
-}
-
-@Component({
-    moduleId: module.id,
-    selector: 'AddActivityComponent',
-    templateUrl: 'AddActivityComponent.html'
-})
-export class AddActivityComponent{
-    activity : Activity;
-    time : Date = new Date();
-
-    constructor (public dialogRef: MdDialogRef<AddActivityComponent>,
-                @Inject(MD_DIALOG_DATA) public data: any) {
-                    this.activity = data;
-                    console.log("imported value to dialog is: ");
-                    console.log(this.activity);
-                }
-    returnObj() : string{
-        return '' + this.time.getHours() + this.time.getMinutes();
-    }
 }

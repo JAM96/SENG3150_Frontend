@@ -54,8 +54,7 @@ export class DataService {
         url = url + '/fetchImage?imageId=';
         break;
     }
-
-    console.log(url);
+    
     return url;
   }
 
