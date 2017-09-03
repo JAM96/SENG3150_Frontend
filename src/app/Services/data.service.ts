@@ -12,7 +12,7 @@ export class DataService {
 
   //###############################################################
   
-  private apiUrl: string = 'http://10.0.0.7:8080'; //Api Location
+  private apiUrl: string = 'http://localhost:8080'; //Api Location
 
   //###############################################################
   
