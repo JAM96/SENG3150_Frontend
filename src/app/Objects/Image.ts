@@ -4,5 +4,5 @@ export interface Image {
     fileName : string;
     fileType: string;
     description: string;
-    base64Equiv: string;
+    mainAssociatedItemPhoto : boolean;
 }

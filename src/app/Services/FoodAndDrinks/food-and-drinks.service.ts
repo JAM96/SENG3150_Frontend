@@ -147,7 +147,7 @@ export class FoodAndDrinksService {
         for(var i = 0; i < this.foodAndDrinks.length; i++) {
             if(this.foodAndDrinks[i].images[0] == null) {
                 console.log("No images found");
-                var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', mainAssociatedItemPhoto: false};
                 this.foodAndDrinks[i].images[0] = img;
             } 
         }

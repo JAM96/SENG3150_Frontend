@@ -3,6 +3,7 @@ import { Md2Dialog } from 'md2';
 
 //import objects
 import {FoodAndDrinks} from '../../Objects/FoodAndDrinks/FoodAndDrinks';
+import {DataService} from '../../Services/data.service';
 
 @Component({
     moduleId: module.id,
@@ -16,10 +17,11 @@ export class FoodAndDrinksComponent {
     @Input() private selectedFoodAndDrinks : String[];
     @Input() private view : string;
     @Input() private selectedDay : number;
+    @Input() private pItem : boolean;
     
     @Output() private selected = new EventEmitter<FoodAndDrinks>();
 
-    constructor() {}
+    constructor(private data : DataService) {}
     
     /**
      * opens the dialog
@@ -44,9 +46,13 @@ export class FoodAndDrinksComponent {
         If they are not equal, then item has not been added to the package, hence show 'Add Item'
     */
     private checkFood() : boolean {
-        for(var i = 0; i < this.selectedFoodAndDrinks.length; i++)
-            if(this.foodAndDrinks.foodAndDrinksID + this.selectedDay == this.selectedFoodAndDrinks[i]) 
-                return false;
-        return true;
+        if(this.pItem) {
+            for(var i = 0; i < this.selectedFoodAndDrinks.length; i++)
+                if(this.foodAndDrinks.foodAndDrinksID + this.selectedDay == this.selectedFoodAndDrinks[i]) 
+                    return false;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

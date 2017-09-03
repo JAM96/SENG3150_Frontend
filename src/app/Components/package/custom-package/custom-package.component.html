@@ -280,7 +280,7 @@
                 <div class="row view-x">
                     <ng-container *ngFor="let f of foodAndDrinks"><!-- restaurant item -->
                         <ng-container *ngIf="checkShow(null, f, null, 2)">
-                            <food-and-drinks [foodAndDrinks]="f" [view]="view" [selectedFoodAndDrinks]="custom.selectedFoodAndDrinks" [selectedDay]="selectedDay" (selected)="setFoodAndDrinks($event)"></food-and-drinks>
+                            <food-and-drinks [pItem]="true" [foodAndDrinks]="f" [view]="view" [selectedFoodAndDrinks]="custom.selectedFoodAndDrinks" [selectedDay]="selectedDay" (selected)="setFoodAndDrinks($event)"></food-and-drinks>
                         </ng-container>
                     </ng-container>
                 </div><!-- end food content -->

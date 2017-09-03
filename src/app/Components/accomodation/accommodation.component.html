@@ -3,7 +3,7 @@
         <div (click)="open(accommodationDialog)" class="col-sm-3" style="cursor:pointer">
             <div class="img">
                 <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
-                    <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="150px"/>
+                    <img src="{{data.getApiUrl('image')}}{{accommodation.images[0].associatedItemID}}" width="100%" height="150px"/>
                     <div *ngIf="accommodation.bestSeller" class="item-advert">Best Seller</div>
                 </ng-container>
 
@@ -71,7 +71,7 @@
             <div (click)="open(accommodationDialog)" class="col-sm-12" style="cursor: pointer">
                 <div class="img">
                     <ng-container *ngIf="accommodation.images[0].fileType !== 'none'">
-                        <img src="data:image/png;base64,{{accommodation.images[0].base64Equiv}}" width="100%" height="150px"/>
+                        <img src="{{data.getApiUrl('image')}}{{accommodation.images[0].associatedItemID}}" width="100%" height="150px"/>
                         <div *ngIf="accommodation.bestSeller" class="item-advert">Best Seller</div>
                     </ng-container>
 
@@ -152,7 +152,7 @@
     <div class="view-item-content-main" *ngIf="dialogSelection==1">
         <div class="row"> <!-- Picture Gallery and reviews -->
             <div class="main-image" style="margin-bottom: 30px">
-                <img src="assets/img_nature_wide.jpg" width="100%" height="200px">
+                <img src="{{data.getApiUrl('image')}}{{accommodation.images[0].associatedItemID}}" width="100%" height="200px"/>
             </div>
         </div>
 

@@ -14,6 +14,7 @@
     import {DataService} from '../data.service';
 //Objects
     import {PackageList} from '../../Objects/Packages/PackageList';
+    import {Image} from '../../Objects/Image';
 //End Imports
 
 @Injectable()
@@ -51,6 +52,33 @@ export class PackageService {
 
     public setData(data : PackageList[]) : void {
         this.packages = data;
+    }
+
+    //Assigns images to the packages object and returns it
+    public assignImages(data : Image[]) : PackageList[] {
+        //Assign images to the packages
+        for(var i = 0; i < this.packages.length; i++) {
+            this.packages[i].images = [];
+            for(var j = 0; j < data.length; j++) {
+                if(this.packages[i].premadePackageID == data[j].associatedItemID) {
+                    this.packages[i].images.push(data[j]);
+                }
+            }
+        }
+
+        //assign empty image if there is no images for that packages
+        for(var i = 0; i < this.packages.length; i++) {
+            if(this.packages[i].images[0] == null) {
+                console.log("No images found");
+                var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', mainAssociatedItemPhoto: false};
+                this.packages[i].images[0] = img;
+            } 
+        }
+        console.log("Images have been assigned, packages is now complete");
+        console.log(this.packages);
+
+
+        return this.packages;
     }
 }
 

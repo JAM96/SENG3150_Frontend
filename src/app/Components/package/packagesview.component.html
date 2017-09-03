@@ -10,7 +10,7 @@
                 <div class="col-md-3"><!-- image -->
                     <div id="img">
                         <ng-container *ngIf="package.images[0].fileName != 'none'">
-                            <img src="data:image/png;base64,{{package.images[0].base64Equiv}}" width="100%" height="100%"/>
+                            <img src="{{data.getApiUrl('image')}}{{package.images[0].associatedItemID}}" width="100%" height="150px"/>
                             <!-- <div *ngIf="package.bestSeller" class="hotelAdvert" style="bottom: 0">Best Seller</div> -->
                         </ng-container>
     

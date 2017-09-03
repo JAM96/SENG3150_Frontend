@@ -203,7 +203,7 @@ export class AccommodationService {
         for(var i = 0; i < this.accommodation.length; i++) {
             if(this.accommodation[i].images[0] == null) {
                 console.log("No images found");
-                var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', base64Equiv: ''};
+                var img : Image = {imageID: '', description: '', fileName: '', fileType: 'none', associatedItemID: '', mainAssociatedItemPhoto: false};
                 this.accommodation[i].images[0] = img;
             } 
         }
