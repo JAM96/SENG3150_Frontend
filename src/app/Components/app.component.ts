@@ -191,7 +191,7 @@ export class AppComponent {
       && this.activityService.isLoaded()) {
         return true;
       } else {
-        return false;
+        return true;
       }
   }
 }
